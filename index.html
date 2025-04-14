@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section</title>
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="components/Navbar/navbar.css">
+    <link rel="stylesheet" href="components/Footer/footer.css">
+
+</head>
+<body>
+    
+      <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">
+        <img src="images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px"/>
+      </a>
+      <nav role="navigation" class="nav-menu-wrapper">
+        <ul role="list" class="nav-menu">
+          <li><a href="#" class="nav-link">About</a></li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-toggle">
+              <div class="nav-dropdown-icon"></div>
+              <div>Proteinpulver</div>
+            </div>
+            <nav class="nav-dropdown-list">
+              <a href="#" class="nav-dropdown-link">Whey Protein</a>
+              <a href="#" class="nav-dropdown-link">Isolat</a>
+              <a href="#" class="nav-dropdown-link">Vegan</a>
+            </nav>
+          </li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-toggle">
+              <div class="nav-dropdown-icon"></div>
+              <div>Proteinriegel</div>
+            </div>
+            <nav class="nav-dropdown-list">
+              <a href="#" class="nav-dropdown-link">Vegan</a>
+              <a href="#" class="nav-dropdown-link">Low Carb</a>
+            </nav>
+          </li>
+        </ul>
+      </nav>
+      <div class="icon-container">
+        <a href="#" class="navbar-icon"><img src="images/user.png" width="32" alt=""/></a>
+        <a href="#" class="navbar-icon"><img src="images/shopping-cart.png" width="32" alt=""/></a>
+      </div>
+      <div class="menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+
+  <!--Dropdown-Funktion -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const dropdowns = document.querySelectorAll('.nav-dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+
+        toggle.addEventListener('click', () => {
+          dropdown.classList.toggle('open');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        dropdowns.forEach(dropdown => {
+          if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('open');
+          }
+        });
+      });
+    });
+  </script>
+
+ <!--Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Protein, das deine<br> Grenzen neu definiert!</h1>
+            <ul>
+                <li>Nachhaltige Qualität</li>
+                <li>Kostenloser Versand</li>
+                <li>Maximale Reinheit</li>
+            </ul>
+            <div class="social-proof">
+                <div class="stars-rating">
+                  <img src="images/BewertungSterne.png" alt="4,9 Sterne Bewertung" width="100">
+                  <p class="rating-number">4,9</p>
+                </div>
+                <p class="rating-text">von über 2000 Bewertungen</p>
+              </div>
+              
+              
+            <button>BUY NOW</button>
+        </div>
+        <img src="images/Proteinpulver_Unsplash.jpg" alt="Featured Product" width="400">
+    </section>
+
+    <section class="teaser-boxes">
+        <div class="teaser-box">
+            <h3>Experten geprüft</h3>
+            <p>Full Power, keine Kompromisse.</p>
+        </div>
+        <div class="teaser-box">
+            <h3>Made in Germany</h3>
+            <p>Höchste Qualität direkt aus deutschen Laboren.</p>
+        </div>
+        <div class="teaser-box">
+            <h3>Schneller Versand</h3>
+            <p>In 1-2 Werktagen direkt bei dir zuhause.</p>
+        </div>
+    </section>
+</body>
+</html>
