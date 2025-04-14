@@ -1,123 +1,53 @@
-/* ========== RESET ========== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ========== BODY ========== */
+/* style.css */
 body {
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  background-color: #fff;
-  color: #1a1a1a;
-}
+    font-family: Arial;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px grey(0,0,0,0.1);
+    width: 350px;
+    text-align: center;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid w;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: blueviolet;
+  }
 
+  loginretro:
+  <link rel="stylesheet" href="style.css">
 
-/* ========== LINKS ========== */
+  registrationretro:
+  <link rel="stylesheet" href="style.css">
+ 
 
-a {
-  color: #0a3563;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-
-/* ========== BILDER ========== */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* ========== LAYOUT HELPERS ========== */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ========== TYPOGRAPHY ========== */
-h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #111;
-}
-
-h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #111;
-}
-
-h3 {
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #111;
-}
-
-h4 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #111;
-}
-
-h5 {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #111;
-}
-
-h6 {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #111;
-}
-
-
-/* ========== PARAGRAPH ========== */
-p {
-  margin-bottom: 1rem;
-}
-
-
-/* ========== BUTTONS ========== */
-button,
-.btn {
-  display: inline-block;
-  background-color: #000000;
-  color: white;
-  padding: 0.75rem 1.25rem;
-  border: 4px;
-  border-color:#000000;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover,
-.btn:hover {
-  background-color: #0056b3;
-}
-
-
-/* ========== UTILITIES ========== */
-.text-center {
-  text-align: center;
-}
-
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
-
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }    
+  logoutretro:
+  <link rel="stylesheet" href="style.css">
+  
+    
