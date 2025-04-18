@@ -53,24 +53,24 @@ h3{
 /* ========== PICTURES ========== */
 .Produktbild{
   display: block;
-  width: 40vw; /* Bild nimmt 100% der Breite ein */
-  height: auto; /* Beibehaltung des Seitenverhältnisses */
+  width: 40vw;
+  height: auto;
   margin-right: 2rem;
 }
 
 .Produktbild img{
-  width: 100%;       /* Bild füllt den Container komplett */
-  height: auto;      /* behält Seitenverhältnis */
+  width: 100%;  
+  height: auto;
 }
 
 /* ========== FLEXBOXES ========== */
 .top{
-  display: flex; /* Flexbox für die Anordnung von Bild und Überschrift */
+  display: flex; 
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Verteilt die Elemente gleichmäßig */
+  justify-content: flex-start; 
   align-items: flex-start;
-  width: 100vw; /* Stellt sicher, dass der Container die gesamte Bildschirmbreite ausfüllt */
+  width: 100vw; 
 }
 
 /* ========== PRICES ========== */

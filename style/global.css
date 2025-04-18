@@ -1,9 +1,12 @@
+/* ========== erstellt von: Felix Bartel (-127), Marvin Kunz (ab 128)========== */
+
 /* ========== RESET ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 
 /* ========== BODY ========== */
 body {
@@ -16,7 +19,6 @@ body {
 
 
 /* ========== LINKS ========== */
-
 a {
   color: #0a3563;
   text-decoration: none;
@@ -34,12 +36,14 @@ img {
   display: block;
 }
 
+
 /* ========== LAYOUT HELPERS ========== */
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
+
 
 /* ========== TYPOGRAPHY ========== */
 h1 {
@@ -120,4 +124,25 @@ button:hover,
 .mt-2 { margin-top: 2rem; }
 
 .mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; }    
+.mb-2 { margin-bottom: 2rem; } 
+
+
+/* ========== SELECT-BOX ========== */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select-wrapper select {
+  appearance: none; 
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  background-color: #000000;
+  
+  border-radius: 4px;
+  padding: 0.75rem 3rem;
+  color: white;
+  cursor: pointer;
+}
