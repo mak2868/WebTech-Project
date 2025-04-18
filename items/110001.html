@@ -1,264 +1,349 @@
-<!-- erstellt von: Marvin Kunz -->
+<!-- erstellt von: Marvin Kunz (außer Navbar) -->
 
 <!DOCTYPE html>
 <html lang="de">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPN | Whey Protein Choco</title>
+    <link rel="stylesheet" href="../style/global.css">
+    <link rel="stylesheet" href="../style/items.css">
+    <link rel="stylesheet" href="../components/Navbar/navbar.css">
+    <link rel="stylesheet" href="../components/Footer/footer.css">
 </head>
 
 <body>
-    <br><br>
-    
-    <nav>
-        <a href='../ProteinpulverList.html'> <button>zurück</button></a>
-    </nav>
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">
+                <img src="../images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" />
+            </a>
+            <nav role="navigation" class="nav-menu-wrapper">
+                <ul role="list" class="nav-menu">
+                    <li><a href="../about.html" class="nav-link">About</a></li>
+                    <li class="nav-dropdown">
+                        <div class="nav-dropdown-toggle">
+                            <div class="nav-dropdown-icon"></div>
+                            <div>Proteinpulver</div>
+                        </div>
+                        <nav class="nav-dropdown-list">
+                            <a href="../ProteinpulverList.html" class="nav-dropdown-link">Whey Protein</a>
+                            <a href="../ProteinpulverList.html" class="nav-dropdown-link">Isolat</a>
+                            <a href="../ProteinpulverList.html" class="nav-dropdown-link">Vegan</a>
+                        </nav>
+                    </li>
+                    <li class="nav-dropdown">
+                        <div class="nav-dropdown-toggle">
+                            <div class="nav-dropdown-icon"></div>
+                            <div>Proteinriegel</div>
+                        </div>
+                        <nav class="nav-dropdown-list">
+                            <a href="../ProteinriegelList.html" class="nav-dropdown-link">Vegan</a>
+                            <a href="../PorteinriegelList.html" class="nav-dropdown-link">Low Carb</a>
+                        </nav>
+                    </li>
+                </ul>
+            </nav>
+            <div class="icon-container">
+                <a href="../login.html" class="navbar-icon"><img src="../images/user.png" width="32" alt="" /></a>
+                <a href="# " class="navbar-icon"><img src="../images/shopping-cart.png" width="32" alt="" /></a>
+            </div>
+            <div class="menu-button">
+                <div class="w-icon-nav-menu"></div>
+            </div>
+        </div>
+    </div>
 
     <main>
-        <!-- Produktüberschrift -->
-        <h1 align='center'>Whey Protein Choco</h1>
-        <h2 align='center'>Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat</h2>
 
-        <!-- Bild -->
-        <img src="../images/Choco Whey.webp" alt="Bild nicht verfügbar">
-        <br>
+        <div class='top'>
+            <div class='top-left'>
+                <!-- Produktbild -->
+                <div class='Produktbild'>
+                    <img src="../images/Choco Whey.webp" alt="Bild nicht verfügbar">
+                </div>
+            </div>
 
-        <!-- Verpackungsgrößen -->
-        <input type="button" value="Probepackung (30g)">
-        <input type="button" value="500g">
-        <input type="button" value="2000g">
-        <input type="button" value="5000g">
+            <div class='top-rigth'>
+                <!-- Produktüberschrift -->
+                <div class='Produktüberschrift'>
+                    <h1>Whey Protein Choco</h1>
+                    <h3>Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat</h3>
+                </div>
 
-        <!-- Preis -->
-        <p>21,00€</p>
-        <p>42€/kg, inkl. MwSt. zzgl. Versand.</p>
-        <input type="button" value="In den Warenkorb!"><br>
-        <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
+                <!-- <div class="select-wrapper">
+                    <select>
+                        <option>Sorte 1</option>
+                        <option>Sorte 2</option>
+                        <option>Sorte 3</option>
+                    </select>
+                </div> -->
+
+                <div class="select-wrapper">
+                    <select>
+                        <option>Choco</option>
+                        <option>Strawberry</option>
+                        <option>Vanilla</option>
+                    </select>
+                </div>
+
+                <!-- Verpackungsgrößen -->
+                <div class='Verpackungsgrößen'>
+                    <input type="button" value="Probepackung (30g)" class="btn">
+                    <input type="button" value="500g" class="btn">
+                    <input type="button" value="2000g" class="btn">
+                    <input type="button" value="5000g" class="btn">
+                </div>
+
+                <!-- Preis -->
+                <div class='Preis'>
+                    <p>21,00€</p>
+                    <p>42€/kg, inkl. MwSt. zzgl. Versand.</p>
+                </div>
+
+                <!-- Versand -->
+                <div class='Versand'>
+                    <input type="button" value="In den Warenkorb!" class="btn">
+                    <br>
+                    <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
+                </div>
+
+            </div>
+
+        </div>
+
 
         <!-- Produktinformationen -->
+        <div class='Produktinformationen'>
 
-        <!-- Beschreibung -->
-        <section>
-            <h3>Beschreibung</h3>
+            <!-- Beschreibung -->
+            <section>
+                <h3>Beschreibung</h3>
 
-            <article>
-                <p>Unser Whey Protein Choco vereint höchste XPN Qualität mit bestem Geschmack – ideal für alle, die
-                    ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.
-                    <br> Mit einem hohen Eiweißanteil aus Molkenproteinkonzentrat liefert es deinem Körper schnell
-                    verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.
-                    <br> Egal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte –
-                    unser Choco-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.
-                </p>
-            </article>
+                <article>
+                    <p>Unser Whey Protein Choco vereint höchste XPN Qualität mit bestem Geschmack – ideal für alle, die
+                        ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.
+                        <br> Mit einem hohen Eiweißanteil aus Molkenproteinkonzentrat liefert es deinem Körper schnell
+                        verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.
+                        <br> Egal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte
+                        –
+                        unser Choco-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.
+                    </p>
+                </article>
 
-            <article>
-                <h4>Produktbezeichnung</h4>
-                <p>Molkenproteinkonzentrat-Pulver mit Schokoladengeschmack</p>
-            </article>
-        </section>
+                <article>
+                    <h4>Produktbezeichnung</h4>
+                    <p>Molkenproteinkonzentrat-Pulver mit Schokoladengeschmack</p>
+                </article>
+            </section>
 
-        <!-- Inhalt -->
-        <section>
-            <h3>Inhalt</h3>
+            <!-- Inhalt -->
+            <section>
+                <h3>Inhalt</h3>
 
-            <article>
-                <h4>Zutaten</h4>
-                <p>Molkenproteinkonzentrat (Milch), fettarmes Kakaopulver, Aroma, Süßungsmittel (Sucralose,
-                    Steviolglykoside), Emulgator (Sojalecithin) <br>
-                    Allergene: Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.</p>
-            </article>
+                <article>
+                    <h4>Zutaten</h4>
+                    <p>Molkenproteinkonzentrat (Milch), fettarmes Kakaopulver, Aroma, Süßungsmittel (Sucralose,
+                        Steviolglykoside), Emulgator (Sojalecithin) <br>
+                        Allergene: Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.</p>
+                </article>
 
-            <article>
-                <h4>Nährwerte</h4>
-                <table>
-                    <caption>Nährwerte (pro 100g)</caption>
-                    <thead>
-                        <tr>
-                            <th>Nährstoffe / Zusammensetzung</th>
-                            <th>pro 100g</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Energie</td>
-                            <td>1577 kJ / 373 kcal</td>
-                        </tr>
-                        <tr>
-                            <td>Fett</td>
-                            <td>5,4 g</td>
-                        </tr>
-                        <tr>
-                            <td>davon gesättigte Fettsäuren</td>
-                            <td>2,8 g</td>
-                        </tr>
-                        <tr>
-                            <td>Kohlenhydrate</td>
-                            <td>9,6 g</td>
-                        </tr>
-                        <tr>
-                            <td>davon Zucker</td>
-                            <td>5,6 g</td>
-                        </tr>
-                        <tr>
-                            <td>Ballaststoffe</td>
-                            <td>2,3 g</td>
-                        </tr>
-                        <tr>
-                            <td>Eiweiß / Protein</td>
-                            <td>72 g</td>
-                        </tr>
-                        <tr>
-                            <td>Salz</td>
-                            <td>1,1 g</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </article>
+                <article>
+                    <h4>Nährwerte</h4>
+                    <table>
+                        <caption>Nährwerte (pro 100g)</caption>
+                        <thead>
+                            <tr>
+                                <th>Nährstoffe / Zusammensetzung</th>
+                                <th>pro 100g</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Energie</td>
+                                <td>1577 kJ / 373 kcal</td>
+                            </tr>
+                            <tr>
+                                <td>Fett</td>
+                                <td>5,4 g</td>
+                            </tr>
+                            <tr>
+                                <td>davon gesättigte Fettsäuren</td>
+                                <td>2,8 g</td>
+                            </tr>
+                            <tr>
+                                <td>Kohlenhydrate</td>
+                                <td>9,6 g</td>
+                            </tr>
+                            <tr>
+                                <td>davon Zucker</td>
+                                <td>5,6 g</td>
+                            </tr>
+                            <tr>
+                                <td>Ballaststoffe</td>
+                                <td>2,3 g</td>
+                            </tr>
+                            <tr>
+                                <td>Eiweiß / Protein</td>
+                                <td>72 g</td>
+                            </tr>
+                            <tr>
+                                <td>Salz</td>
+                                <td>1,1 g</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
 
-            <article>
-                <h4>Aminosäureprofil</h4>
-                <table>
-                    <caption>Aminosäureprofil (pro 100g)</caption>
-                    <thead>
-                        <tr>
-                            <th>Aminosäurebilanz</th>
-                            <th>pro 100g Protein</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Alanin</td>
-                            <td>4,6 g</td>
-                        </tr>
-                        <tr>
-                            <td>Arginin</td>
-                            <td>2,0 g</td>
-                        </tr>
-                        <tr>
-                            <td>Asparaginsäure</td>
-                            <td>11 g</td>
-                        </tr>
-                        <tr>
-                            <td>Cystein</td>
-                            <td>2,7 g</td>
-                        </tr>
-                        <tr>
-                            <td>Glutaminsäure</td>
-                            <td>17 g</td>
-                        </tr>
-                        <tr>
-                            <td>Glycin</td>
-                            <td>1,2 g</td>
-                        </tr>
-                        <tr>
-                            <td>Histidin</td>
-                            <td>1,5 g</td>
-                        </tr>
-                        <tr>
-                            <td>Isoleucin</td>
-                            <td>6,1 g</td>
-                        </tr>
-                        <tr>
-                            <td>Leucin</td>
-                            <td>11 g</td>
-                        </tr>
-                        <tr>
-                            <td>Lysin</td>
-                            <td>9,4 g</td>
-                        </tr>
-                        <tr>
-                            <td>Methionin</td>
-                            <td>1,8 g</td>
-                        </tr>
-                        <tr>
-                            <td>Phenylalanin</td>
-                            <td>3,1 g</td>
-                        </tr>
-                        <tr>
-                            <td>Prolin</td>
-                            <td>5,0 g</td>
-                        </tr>
-                        <tr>
-                            <td>Serin</td>
-                            <td>4,7 g</td>
-                        </tr>
-                        <tr>
-                            <td>Threonin</td>
-                            <td>7,8 g</td>
-                        </tr>
-                        <tr>
-                            <td>Tryptophan</td>
-                            <td>1,7 g</td>
-                        </tr>
-                        <tr>
-                            <td>Tyrosin</td>
-                            <td>3,2 g</td>
-                        </tr>
-                        <tr>
-                            <td>Valin</td>
-                            <td>6,0 g</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </article>
-        </section>
+                <article>
+                    <h4>Aminosäureprofil</h4>
+                    <table>
+                        <caption>Aminosäureprofil (pro 100g)</caption>
+                        <thead>
+                            <tr>
+                                <th>Aminosäurebilanz</th>
+                                <th>pro 100g Protein</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alanin</td>
+                                <td>4,6 g</td>
+                            </tr>
+                            <tr>
+                                <td>Arginin</td>
+                                <td>2,0 g</td>
+                            </tr>
+                            <tr>
+                                <td>Asparaginsäure</td>
+                                <td>11 g</td>
+                            </tr>
+                            <tr>
+                                <td>Cystein</td>
+                                <td>2,7 g</td>
+                            </tr>
+                            <tr>
+                                <td>Glutaminsäure</td>
+                                <td>17 g</td>
+                            </tr>
+                            <tr>
+                                <td>Glycin</td>
+                                <td>1,2 g</td>
+                            </tr>
+                            <tr>
+                                <td>Histidin</td>
+                                <td>1,5 g</td>
+                            </tr>
+                            <tr>
+                                <td>Isoleucin</td>
+                                <td>6,1 g</td>
+                            </tr>
+                            <tr>
+                                <td>Leucin</td>
+                                <td>11 g</td>
+                            </tr>
+                            <tr>
+                                <td>Lysin</td>
+                                <td>9,4 g</td>
+                            </tr>
+                            <tr>
+                                <td>Methionin</td>
+                                <td>1,8 g</td>
+                            </tr>
+                            <tr>
+                                <td>Phenylalanin</td>
+                                <td>3,1 g</td>
+                            </tr>
+                            <tr>
+                                <td>Prolin</td>
+                                <td>5,0 g</td>
+                            </tr>
+                            <tr>
+                                <td>Serin</td>
+                                <td>4,7 g</td>
+                            </tr>
+                            <tr>
+                                <td>Threonin</td>
+                                <td>7,8 g</td>
+                            </tr>
+                            <tr>
+                                <td>Tryptophan</td>
+                                <td>1,7 g</td>
+                            </tr>
+                            <tr>
+                                <td>Tyrosin</td>
+                                <td>3,2 g</td>
+                            </tr>
+                            <tr>
+                                <td>Valin</td>
+                                <td>6,0 g</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </section>
 
-        <!-- Anwendung -->
-        <section>
-            <h3>Anwendung</h3>
+            <!-- Anwendung -->
+            <section>
+                <h3>Anwendung</h3>
 
-            <article>
-                <h4>Zubereitung</h4>
-                <p>Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder
-                    einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.</p>
-            </article>
+                <article>
+                    <h4>Zubereitung</h4>
+                    <p>Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder
+                        einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.</p>
+                </article>
 
-            <article>
-                <h4>Empfehlung</h4>
-                <p>Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder
-                    während des Trainings oder einfach zwischendurch.</p>
-            </article>
+                <article>
+                    <h4>Empfehlung</h4>
+                    <p>Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder
+                        während des Trainings oder einfach zwischendurch.</p>
+                </article>
 
-            <article>
-                <h4>Tipp</h4>
-                <p>Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen.</p>
-            </article>
+                <article>
+                    <h4>Tipp</h4>
+                    <p>Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen.</p>
+                </article>
 
-            <article>
-                <h4>Rezeptidee (Protein Brownies mit XPN Whey Schokolade)</h4>
-                <h5>Zutaten (für ca. 6 Stück):</h5>
-                <ul>
-                    <li>2 reife Bananen (zerdrückt)</li>
-                    <li>2 Eier</li>
-                    <li>40 g XPN Whey Protein Choco</li>
-                    <li>30 g Kakaopulver (ungesüßt)</li>
-                    <li>60 g Haferflocken (zart oder gemahlen)</li>
-                    <li>1 TL Backpulver</li>
-                    <li>1 TL Kokosöl (geschmolzen)</li>
-                    <li>1–2 EL Honig oder Ahornsirup (optional)</li>
-                    <li>1 Prise Salz</li>
-                    <li>Optional: Zartbitterschoko-Stückchen oder Nüsse für extra Crunch</li>
-                </ul>
-                <h5>Zubereitung:</h5>
-                <ol start ='1'>
-                    <li>Den Backofen auf 175 °C (Ober-/Unterhitze) vorheizen und eine kleine Form (ca. 20x20 cm) mit Backpapier auslegen oder leicht einfetten.</li>
-                    <li>Die Bananen mit einer Gabel zerdrücken und mit den Eiern verrühren.</li>
-                    <li>XPN Whey Protein, Kakaopulver, Haferflocken, Backpulver und Salz untermischen.</li>
-                    <li>Kokosöl und Süßungsmittel hinzufügen und alles zu einem glatten Teig verrühren. Optional Schokostückchen oder Nüsse unterheben.</li>
-                    <li>Den Teig gleichmäßig in die Form geben und ca. 20–25 Minuten backen.</li>
-                    <li>Kurz abkühlen lassen, in Stücke schneiden – fertig!</li>
-                </ol>
-            </article>
+                <article>
+                    <h4>Rezeptidee (Protein Brownies mit XPN Whey Schokolade)</h4>
+                    <h5>Zutaten (für ca. 6 Stück):</h5>
+                    <ul>
+                        <li>2 reife Bananen (zerdrückt)</li>
+                        <li>2 Eier</li>
+                        <li>40 g XPN Whey Protein Choco</li>
+                        <li>30 g Kakaopulver (ungesüßt)</li>
+                        <li>60 g Haferflocken (zart oder gemahlen)</li>
+                        <li>1 TL Backpulver</li>
+                        <li>1 TL Kokosöl (geschmolzen)</li>
+                        <li>1–2 EL Honig oder Ahornsirup (optional)</li>
+                        <li>1 Prise Salz</li>
+                        <li>Optional: Zartbitterschoko-Stückchen oder Nüsse für extra Crunch</li>
+                    </ul>
+                    <h5>Zubereitung:</h5>
+                    <ol start='1'>
+                        <li>Den Backofen auf 175 °C (Ober-/Unterhitze) vorheizen und eine kleine Form (ca. 20x20 cm) mit
+                            Backpapier auslegen oder leicht einfetten.</li>
+                        <li>Die Bananen mit einer Gabel zerdrücken und mit den Eiern verrühren.</li>
+                        <li>XPN Whey Protein, Kakaopulver, Haferflocken, Backpulver und Salz untermischen.</li>
+                        <li>Kokosöl und Süßungsmittel hinzufügen und alles zu einem glatten Teig verrühren. Optional
+                            Schokostückchen oder Nüsse unterheben.</li>
+                        <li>Den Teig gleichmäßig in die Form geben und ca. 20–25 Minuten backen.</li>
+                        <li>Kurz abkühlen lassen, in Stücke schneiden – fertig!</li>
+                    </ol>
+                </article>
 
-        </section>
+            </section>
 
-        <!-- Laboranalysen -->
-        <section>
-            <h3>Laboranalysen</h3>
-            <p>Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren
-                testen.</p>
-        </section>
+            <!-- Laboranalysen -->
+            <section>
+                <h3>Laboranalysen</h3>
+                <p>Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren
+                    testen.</p>
+            </section>
+
+        </div>
     </main>
 
 </body>
