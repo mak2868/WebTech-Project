@@ -1,0 +1,148 @@
+/* ========== erstellt von: Felix Bartel (-127), Marvin Kunz (ab 128)========== */
+
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ========== BODY ========== */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #1a1a1a;
+}
+
+
+/* ========== LINKS ========== */
+a {
+  color: #0a3563;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* ========== BILDER ========== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ========== LAYOUT HELPERS ========== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* ========== TYPOGRAPHY ========== */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+
+/* ========== PARAGRAPH ========== */
+p {
+  margin-bottom: 1rem;
+}
+
+
+/* ========== BUTTONS ========== */
+button,
+.btn {
+  display: inline-block;
+  background-color: #000000;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: 4px;
+  border-color:#000000;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #0056b3;
+}
+
+
+/* ========== UTILITIES ========== */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; } 
+
+
+/* ========== SELECT-BOX ========== */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select-wrapper select {
+  appearance: none; 
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  background-color: #000000;
+  
+  border-radius: 4px;
+  padding: 0.75rem 3rem;
+  color: white;
+  cursor: pointer;
+}

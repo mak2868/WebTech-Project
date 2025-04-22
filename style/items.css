@@ -1,0 +1,88 @@
+/* ========== erstellt von: Marvin Kunz ========== */
+
+/* ========== MAIN ========== */
+main {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #1a1a1a;
+  padding: 1rem;
+}
+
+/* ========== SECTION ========== */
+section {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #1a1a1a;
+  padding: 1rem;
+}
+
+/* ========== LISTS ========== */
+ul,
+ol {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #1a1a1a;
+  padding: 1rem;
+}
+
+/* ========== HEADER ========== */
+.Produktüberschrift {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+  width: fit-content;
+  margin-left: 0vw;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+h3{
+  margin-bottom: 2rem;
+}
+
+/* ========== PICTURES ========== */
+.Produktbild{
+  display: block;
+  width: 40vw;
+  height: auto;
+  margin-right: 2rem;
+}
+
+.Produktbild img{
+  width: 100%;  
+  height: auto;
+}
+
+/* ========== FLEXBOXES ========== */
+.top{
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start; 
+  align-items: flex-start;
+  width: 100vw; 
+}
+
+/* ========== PRICES ========== */
+.Preis p:first-of-type{
+  margin-top: 4rem;
+  margin-bottom: 0rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: #111;
+}
+
+.Preis p:nth-of-type(2){
+  color: #111;
+  margin-bottom: 4rem;
+}
