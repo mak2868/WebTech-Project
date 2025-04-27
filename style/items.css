@@ -126,11 +126,11 @@ h3{
   left: 8%;
   z-index: 3;
   filter: brightness(0) invert(1);
+  pointer-events: none;
 }
 
 .VersandFavoriten .btn{
   position: relative;
-  
 
   display: inline-block;
   border: 4px;
@@ -142,8 +142,6 @@ h3{
   padding: 0.75vw 8vw;
   background-color: #cf2424;
   border-color:#cf2424;
-  /* font-size: large; */
-
 }
 
 .VersandFavoriten span{
@@ -155,8 +153,40 @@ h3{
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
+  pointer-events: none;
 }
 
 .VersandFavoriten .btn:hover{
   background-color: #0056b3;
+}
+
+
+/* ========== PRODUKTINFORMATIONEN (Accordion) ========== */
+.accordion{
+  color: #000000;
+  background-color: white;
+  width: 100%;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: left;
+
+  appearance: none; 
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+
+  border-radius: 0px;
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion:hover{
+  background-color: lightgray;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
 }
