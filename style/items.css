@@ -117,27 +117,31 @@ h3{
 }
 
 
-.VersandFavoriten img{
+.VersandFavoriten img:first-of-type{
   height: 1.6vw;
   width: auto;
   position: absolute;
 
-  top: 12%; 
+  top: 5%; 
   left: 8%;
   z-index: 3;
   filter: brightness(0) invert(1);
   pointer-events: none;
 }
 
-.VersandFavoriten .btn{
+.VersandFavoriten .btn:nth-of-type(2){
+  margin-left: 0vw;
   position: relative;
+  top: 0%;
+  left: -22%;
+  padding: 0.75vw 1.5vw;
+}
 
+.VersandFavoriten .btn:first-of-type{
+  position: relative;
+  
   display: inline-block;
-  border: 4px;
-  border-color:#000000;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-right: 0vw;
 
   padding: 0.75vw 8vw;
   background-color: #cf2424;
@@ -158,6 +162,20 @@ h3{
 
 .VersandFavoriten .btn:hover{
   background-color: #0056b3;
+}
+
+.VersandFavoriten img:nth-of-type(2){
+  filter: brightness(0) invert(1);
+  /* background-color: #fff; */
+  z-index: 2;
+  height: 2.5vw;
+  width: auto;
+
+  position: relative;
+  left: 47.75%;
+  top: -40px;
+
+  size: 1.5;
 }
 
 
