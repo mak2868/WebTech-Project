@@ -7,8 +7,9 @@ main {
   line-height: 1.6;
   background-color: #fff;
   color: #1a1a1a;
-  padding: 1rem;
+  padding: 1vw;
 }
+
 
 /* ========== SECTION ========== */
 section {
@@ -17,8 +18,9 @@ section {
   line-height: 1.6;
   background-color: #fff;
   color: #1a1a1a;
-  padding: 1rem;
+  padding: 1vw;
 }
+
 
 /* ========== LISTS ========== */
 ul,
@@ -28,10 +30,11 @@ ol {
   line-height: 1.6;
   background-color: #fff;
   color: #1a1a1a;
-  padding: 1rem;
+  padding: 1vw;
 }
 
-/* ========== HEADER ========== */
+
+/* ========== HEADINGS ========== */
 .Produktüberschrift {
   display: flex;
   flex-direction: column;
@@ -50,6 +53,7 @@ h3{
   margin-bottom: 2rem;
 }
 
+
 /* ========== PICTURES ========== */
 .Produktbild{
   display: block;
@@ -63,6 +67,7 @@ h3{
   height: auto;
 }
 
+
 /* ========== FLEXBOXES ========== */
 .top{
   display: flex; 
@@ -73,10 +78,11 @@ h3{
   width: 100vw; 
 }
 
+
 /* ========== PRICES ========== */
 .Preis p:first-of-type{
-  margin-top: 4rem;
-  margin-bottom: 0rem;
+  margin-top: 3vw;
+  margin-bottom: 0vw;
   font-size: 1.75rem;
   font-weight: bold;
   color: #111;
@@ -84,5 +90,121 @@ h3{
 
 .Preis p:nth-of-type(2){
   color: #111;
-  margin-bottom: 4rem;
+  margin-bottom: 3vw;
+}
+
+
+/* ========== SORTENAUSWAHL ========== */
+.select-wrapper{
+  margin-top: 0vw;
+  margin-bottom: 3vw;
+}
+
+.select-wrapper p{
+  margin: 0vw;
+}
+
+
+/* ========== VERPACKUNGSGRÖSSEN ========== */
+.Verpackungsgrößen p{
+  margin: 0vw;
+}
+
+
+/* ========== VERSAND ========== */
+.VersandFavoriten{
+  position: relative;
+}
+
+
+.VersandFavoriten img:first-of-type{
+  height: 1.6vw;
+  width: auto;
+  position: absolute;
+
+  top: 5%; 
+  left: 8%;
+  z-index: 3;
+  filter: brightness(0) invert(1);
+  pointer-events: none;
+}
+
+.VersandFavoriten .btn:nth-of-type(2){
+  margin-left: 0vw;
+  position: relative;
+  top: 0%;
+  left: -22%;
+  padding: 0.75vw 1.5vw;
+}
+
+.VersandFavoriten .btn:first-of-type{
+  position: relative;
+  
+  display: inline-block;
+  margin-right: 0vw;
+
+  padding: 0.75vw 8vw;
+  background-color: #cf2424;
+  border-color:#cf2424;
+}
+
+.VersandFavoriten span{
+  position: relative;
+  z-index: 2;
+  color: white;
+  left: -11vw;
+  top: 0.1vw;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  pointer-events: none;
+}
+
+.VersandFavoriten .btn:hover{
+  background-color: #0056b3;
+}
+
+.VersandFavoriten img:nth-of-type(2){
+  filter: brightness(0) invert(1);
+  /* background-color: #fff; */
+  z-index: 2;
+  height: 2.5vw;
+  width: auto;
+
+  position: relative;
+  left: 47.75%;
+  top: -40px;
+
+  size: 1.5;
+}
+
+
+/* ========== PRODUKTINFORMATIONEN (Accordion) ========== */
+.accordion{
+  color: #000000;
+  background-color: white;
+  width: 100%;
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: left;
+
+  appearance: none; 
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+
+  border-radius: 0px;
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion:hover{
+  background-color: lightgray;
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
 }
