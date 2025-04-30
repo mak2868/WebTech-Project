@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+header {
+    position: relative;
+}
+
 body {
     font-family: sans-serif;
 }
@@ -14,6 +18,9 @@ body {
     background: white;
     border-bottom: 1px solid #eee;
     padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100vw;
 }
 
 /* Navbar Container */
@@ -26,6 +33,7 @@ body {
 /* Logo */
 .navbar-brand {
     text-decoration: none;
+    filter: invert(1);
 }
 
 .navbar-brand img {

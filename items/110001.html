@@ -9,16 +9,36 @@
     <title>XPN | Whey Protein Choco</title>
     <link rel="stylesheet" href="../style/global.css">
     <link rel="stylesheet" href="../style/items.css">
-    <link rel="stylesheet" href="../components/Navbar/navbar.css">
+    <link rel="stylesheet" href="../components/Navbar/navbar_transparent.css">
     <link rel="stylesheet" href="../components/Footer/footer.css">
+    <script>
+        window.addEventListener('scroll', function () {
+          const scrollY = window.scrollY;
+      
+          const linkElement = document.querySelector('link[href*="navbar_transparent.css"], link[href*="navbar_intransparent.css"]');
+      
+          if (!linkElement) return; 
+      
+          if (scrollY > 700) {
+            linkElement.href = "../components/Navbar/navbar_intransparent.css";
+          } else {
+            linkElement.href = "../components/Navbar/navbar_transparent.css";
+          } 
+
+        });
+      </script>
+      
 </head>
 
-<body>
+<header>
     <!-- NAVBAR -->
+    <div class = 'topPic'>
+        <img src="../images/Schokopulver_Top.jpg" alt="">
+    </div> 
     <div class="navbar">
         <div class="navbar-container">
             <a href="../index.html" class="navbar-brand">
-                <img src="../images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" />
+                <img src="../images/Logo_SchriftWeiß.png" alt="Logo" width="120px" height="100px" />
             </a>
             <nav role="navigation" class="nav-menu-wrapper">
                 <ul role="list" class="nav-menu">
@@ -55,9 +75,11 @@
             </div>
         </div>
     </div>
+</header>
+
+<body>
 
     <main>
-
         <div class='top'>
             <div class='top-left'>
                 <!-- Produktbild -->
