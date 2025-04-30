@@ -13,28 +13,28 @@
     <link rel="stylesheet" href="../components/Footer/footer.css">
     <script>
         window.addEventListener('scroll', function () {
-          const scrollY = window.scrollY;
-      
-          const linkElement = document.querySelector('link[href*="navbar_transparent.css"], link[href*="navbar_intransparent.css"]');
-      
-          if (!linkElement) return; 
-      
-          if (scrollY > 700) {
-            linkElement.href = "../components/Navbar/navbar_intransparent.css";
-          } else {
-            linkElement.href = "../components/Navbar/navbar_transparent.css";
-          } 
+            const scrollY = window.scrollY;
+
+            const linkElement = document.querySelector('link[href*="navbar_transparent.css"], link[href*="navbar_intransparent.css"]');
+
+            if (!linkElement) return;
+
+            if (scrollY > 700) {
+                linkElement.href = "../components/Navbar/navbar_intransparent.css";
+            } else {
+                linkElement.href = "../components/Navbar/navbar_transparent.css";
+            }
 
         });
-      </script>
-      
+    </script>
+
 </head>
 
 <header>
     <!-- NAVBAR -->
-    <div class = 'topPic'>
+    <div class='topPic'>
         <img src="../images/Schokopulver_Top.jpg" alt="">
-    </div> 
+    </div>
     <div class="navbar">
         <div class="navbar-container">
             <a href="../index.html" class="navbar-brand">
@@ -120,14 +120,21 @@
                     <p>42€/kg, inkl. MwSt. zzgl. Versand.</p>
                 </div>
 
-                <!-- Versand-->
+                <!-- Versand + Favoriten-->
                 <div class='VersandFavoriten'>
                     <button class="VersandButton">
                         <img src="../images/shopping-cart.png" alt="">
                         <span>In den Warenkorb</span>
                     </button>
                     <button class="FavoritenButton">
-                        <img src="../images/Herz.png" alt="">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90" width="64" height="64" fill="none"
+                            stroke="white" stroke-width="6">
+                            <path d="M50 80 
+                                     L15 45 
+                                     A20 20 0 0 1 50 20 
+                                     A20 20 0 0 1 85 45 
+                                     Z" />
+                        </svg>
                     </button>
                     <br>
                     <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
