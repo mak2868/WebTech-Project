@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../style/items.css">
     <link rel="stylesheet" href="../components/Navbar/navbar_transparent.css">
     <link rel="stylesheet" href="../components/Footer/footer.css">
+    <script src="items.js"></script>
     <script>
         window.addEventListener('scroll', function () {
             const scrollY = window.scrollY;
@@ -91,7 +92,27 @@
             <div class='top-rigth'>
                 <!-- Produktüberschrift -->
                 <div class='Produktüberschrift'>
-                    <h1>Whey Protein Choco</h1>
+                    <div class='firstLine'>
+                        <h1>Whey Protein Choco</h1>
+                        <!-- Bewertungsskala -->
+                        <div id="Bewertungsskala">
+                            <script>
+                                window.onload = () => {
+                                    const rating = 4.8;
+                                    const container = document.getElementById("Bewertungsskala");
+
+                                    calcStars(rating).then((canvas) => {
+                                        if (canvas instanceof HTMLCanvasElement) {
+                                            container.appendChild(canvas);
+                                        }
+                                    }).catch((error) => {
+                                        console.error("Fehler:", error);
+                                    });
+                                };    
+                            </script>
+                        </div>
+                        <p>(4021)</p>
+                    </div>
                     <h3>Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat</h3>
                 </div>
 

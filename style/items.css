@@ -53,6 +53,27 @@ h3 {
   margin-bottom: 2rem;
 }
 
+/* ========== Bewertungsskala ========== */
+.firstLine {
+  display: inline-flex;
+  align-items: center;
+}
+
+.firstLine h1{
+  margin-right: 10px;
+}
+
+.firstLine p {
+  margin-bottom: 0rem;
+  font-size: 0.7rem;
+}
+
+#Bewertungsskala canvas {
+  height: 1rem;
+  width: auto;
+  display: block;
+  gap: 0px;
+}
 
 /* ========== PICTURES ========== */
 .Produktbild {
