@@ -1,4 +1,4 @@
-function calcStars(rating) {
+function createStars(rating) {
     return new Promise((resolve, reject) => {
         // Bilder erstellen
         const emptyImg = new Image();
@@ -101,4 +101,24 @@ function calcStars(rating) {
     }).catch((error) => {
         console.error("Fehler beim Laden der Bilder:", error);
     });
-}
+};
+
+function openPanel(activatedIndex) {
+    const acc = document.querySelectorAll('.accordion');
+  
+    const button = acc[activatedIndex];
+    const panel = button.nextElementSibling;
+  
+    panel.classList.toggle('open');
+    button.classList.toggle('active');
+  
+    if (panel.classList.contains('open')) {
+      panel.style.maxHeight = panel.scrollHeight + 20 + 'px';
+    } else {
+      panel.style.maxHeight = '0px';
+    }
+
+    if (panel.classList.contains('open')) {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+  }
