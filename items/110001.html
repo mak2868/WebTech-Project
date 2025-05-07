@@ -83,6 +83,11 @@
     <main>
         <div class='top'>
             <div class='top-left'>
+                <div class="ProduktbildAuswahl">
+                    <img src="../images/Choco Whey.webp" alt="Bild nicht verfügbar" onclick="switchProductbild(0)">
+                    <img src="../images/choco_whey.jpeg" alt="" onclick="switchProductbild(1)">
+                    <img src="../images/Proteinpulver_Unsplash.jpg" alt="" onclick="switchProductbild(2)">
+                </div>
                 <!-- Produktbild -->
                 <div class='Produktbild'>
                     <img src="../images/Choco Whey.webp" alt="Bild nicht verfügbar">
@@ -166,7 +171,7 @@
 
 
         <div class='ProduktinformationKlBild'>
-            
+
             <!-- Produktinformationen -->
             <div class='Produktinformationen'>
 
@@ -376,12 +381,18 @@
                         <article>
                             <h4>Tipp</h4>
                             <p>Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge
-                                nutzen. Hier sind ein paar Inspirationen: 
+                                nutzen. Hier sind ein paar Inspirationen:
                             </p>
                         </article>
 
-                        <article>
-                            <h4>Rezeptidee (Protein Brownies mit XPN Whey Schokolade)</h4>
+                        <div class="btn-group-Rezeptidee">
+                            <button onclick="switchRecipe(1)">Brownie</button>
+                            <button onclick="switchRecipe(2)">Porridge</button>
+                            <button onclick="switchRecipe(3)">Milchshake</button>
+                        </div>
+
+                        <article class="Brownie">
+                            <h4>Protein Brownies mit XPN Whey Schokolade</h4>
                             <h5>Zutaten (für ca. 6 Stück):</h5>
                             <ul>
                                 <li>2 reife Bananen (zerdrückt)</li>
@@ -409,6 +420,61 @@
                                 <li>Den Teig gleichmäßig in die Form geben und ca. 20–25 Minuten backen.</li>
                                 <li>Kurz abkühlen lassen, in Stücke schneiden – fertig!</li>
                             </ol>
+                        </article>
+
+                        <article class="Porridge">
+                            <h4>Protein-Porridge mit XPN Whey Choco</h4>
+                            <p>Ein energiereiches Frühstück mit hochwertigem Eiweiß – ideal für Fitness- und
+                                Leistungssport.</p>
+
+                            <h5>Zutaten (für 1 Portion)</h5>
+                            <ul>
+                                <li>50 g Haferflocken (zart oder kernig)</li>
+                                <li>200 ml Milch oder Pflanzendrink</li>
+                                <li>1 Messlöffel XPN Whey Protein Choco</li>
+                                <li>1 Prise Salz</li>
+                                <li>Optional: Zimt, Vanille, Banane oder Beeren als natürliche Süße</li>
+                                <li>Topping: Nüsse, Samen, Chiasamen oder Nussmus</li>
+                            </ul>
+
+                            <h5>Zubereitung</h5>
+                            <ol>
+                                <li>Haferflocken und Milch in einen kleinen Topf geben und bei mittlerer Hitze erhitzen.
+                                </li>
+                                <li>Salz und optional Zimt hinzufügen.</li>
+                                <li>Unter Rühren aufkochen und ca. 5–7 Minuten köcheln lassen, bis ein cremiger Brei
+                                    entsteht.</li>
+                                <li>Topf vom Herd nehmen und das XPN Whey Protein Choco unterrühren (nicht kochen!).
+                                </li>
+                                <li>Mit Toppings nach Wahl servieren.</li>
+                            </ol>
+
+                        </article>
+
+                        <article class="Milchshake">
+                            
+                            <h4>Protein-Milchshake mit XPN Whey Choco</h4>
+                            <p>Perfekt als Pre- oder Post-Workout-Drink – schnell gemixt und voller Eiweiß.</p>
+
+                            <h5>Zutaten (für 1 Portion)</h5>
+                            <ul>
+                                <li>200 ml fettarme Milch oder Pflanzendrink</li>
+                                <li>1 Messlöffel XPN Whey Protein Choco</li>
+                                <li>1 gefrorene Banane oder 1 EL Erdnussbutter (optional, für Energie)</li>
+                                <li>1 TL Kakaopulver (ungesüßt, optional für mehr Schoko-Geschmack)</li>
+                                <li>Optional: etwas Honig oder Datteln zum Süßen</li>
+                            </ul>
+
+                            <h5>Zubereitung</h5>
+                            <ol>
+                                <li>Alle Zutaten in einen Mixer geben.</li>
+                                <li>So lange mixen, bis die Konsistenz cremig und schaumig ist.</li>
+                                <li>In ein Glas füllen und direkt genießen.</li>
+                            </ol>
+
+                            <h5>Tipp</h5>
+                            <p>Für mehr Frische kann eine Handvoll Eiswürfel mitgemixt werden. Ideal direkt nach dem
+                                Workout.</p>
                         </article>
                     </div>
                     <script>
