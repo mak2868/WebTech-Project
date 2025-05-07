@@ -317,10 +317,6 @@ header img {
   border-bottom: none;
 }
 
-.btn-group-Rezeptidee button:not(:last-child) {
-  /* border-right: none;  */
-}
-
 /* Clear floats (clearfix hack) */
 .btn-group-Rezeptidee:after {
   content: "";
