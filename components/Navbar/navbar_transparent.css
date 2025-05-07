@@ -111,6 +111,7 @@ body {
     display: none;
     flex-direction: column;
     z-index: 100;
+   color: black;
 }
 
 /* Dropdown open state on hover */
