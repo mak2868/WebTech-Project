@@ -1,7 +1,7 @@
 <!--Erstellt von Merzan Köse-->
 
 <!DOCTYPE html>
-<html lang="de"></html>
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
@@ -9,7 +9,8 @@
 </head>
 <body>
     <div class="form-wrapper">
-    <form action="..." method="post"></form>
+    <form action="..." method="post">
+    <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
     <h1>Login</h1>
 
     <label for="username">Benutzername</label>
@@ -19,10 +20,13 @@
     <input type="password" id="password" name="password" required>
 
     
-    <button>Anmelden</button>
+    <button type="submit" class="btn-esn">Anmelden</button>
 
-    <p><br> kein Konto?</p>
-    <button onclick="window.location.href='registration.html'">Registrieren</button>
-    </div>
+    <p class="form-text">Noch kein Konto?</p>
+  <button type="button" class="btn-esn" onclick="window.location.href='registration.html'">Registrieren</button>
+    </form>
+</div>
+
+<script src="js/validate-login.js"></script>
 </body>
 </html>
