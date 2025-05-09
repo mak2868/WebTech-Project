@@ -1,30 +1,37 @@
 <!--Erstellt von Merzan Köse-->
 
 <!DOCTYPE html>
-<html lang="de"></html>
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Registrierung</title>
-    <link rel="stylesheet" href="style/global.css">
+  <meta charset="UTF-8">
+  <title>Registrierung</title>
+  <link rel="stylesheet" href="style/global.css">
 </head>
 <body>
-    <div class= "form-wrapper">
-        <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
+  <div class="form-wrapper">
+    <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
     <h1>Registrierung</h1>
-    <form action="..." method="post"></form>
 
-    <label for="name">Benutzername</label>
-    <input type="text" id="name" name="name" required>
+    <!-- FORMULAR START -->
+    <form action="..." method="post">
+      <label for="name">Benutzername</label>
+      <input type="text" id="name" name="name" required>
 
-    <label for="password">Passwort</label>
-    <input type="password" id="password" name="password" required>
+      <label for="password">Passwort</label>
+      <input type="password" id="password" name="password" required>
 
-    <label for="confirm">Passwort wiederholen</label>
-    <input type="password" id="confirm" name="confirm" required>
+      <label for="confirm">Passwort wiederholen</label>
+      <input type="password" id="confirm" name="confirm" required>
 
-    <button type="submit" onclick="window.location.href='login.html'">abbrechen</button>
-    <button type="button" onclick="window.location.href='index.html'">registrieren</button>
+      <!-- Button-Reihe innerhalb des Formulars -->
+      <div style="display: flex; justify-content: space-between;">
+        <button type="button" onclick="window.location.href='login.html'" class="btn-esn">abbrechen</button>
+        <button type="submit" id="submit" class="btn-esn" disabled>registrieren</button>
+      </div>
+    </form>
+    <!-- FORMULAR ENDE -->
 
-    </div>
+  </div>
+  <script src="js/validate-registration.js"></script>
 </body>
 </html>

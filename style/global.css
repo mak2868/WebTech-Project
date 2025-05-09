@@ -172,7 +172,6 @@ button:hover,
 .form-wrapper form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 /* Labels mit normalem Gewicht */
@@ -200,7 +199,7 @@ button:hover,
 
 /* ================= MODERNER ESN-STYLE BUTTON ================= */
 .btn-esn {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   display: block;
   width: 100%;
   padding: 1rem;
@@ -213,7 +212,7 @@ button:hover,
   border-radius: 1.5rem;               /* große, moderne Rundung */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 /* Hover-Farbe für ESN-Stil-Button */
@@ -233,7 +232,7 @@ button:hover,
 /* ================= BUTTON-ABSTAND NEBENEINANDER ================= */
 /* Sorgt für horizontalen Abstand zwischen Buttons (z. B. Registrieren & Abbrechen) */
 .form-wrapper button:not(:last-child) {
-  margin-right: 7.5rem;  /* relativ großer Abstand zum nächsten Button */
+  margin-right: 5.5rem;  /* relativ großer Abstand zum nächsten Button */
 }
 
 .form-Logo {
