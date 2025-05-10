@@ -11,23 +11,11 @@
     <link rel="stylesheet" href="../style/items.css">
     <link rel="stylesheet" href="../components/Navbar/navbar_transparent.css">
     <link rel="stylesheet" href="../components/Footer/footer.css">
-    <script src="items.js"></script>
+    <script type="module" src="../js/items.js"></script>
     <script src="../js/cart.js"></script>
+    <script  type="module" src="../../js/darkMode.js"></script>
     <script>
-        window.addEventListener('scroll', function () {
-            const scrollY = window.scrollY;
-
-            const linkElement = document.querySelector('link[href*="navbar_transparent.css"], link[href*="navbar_intransparent.css"]');
-
-            if (!linkElement) return;
-
-            if (scrollY > 700) {
-                linkElement.href = "../components/Navbar/navbar_intransparent.css";
-            } else {
-                linkElement.href = "../components/Navbar/navbar_transparent.css";
-            }
-
-        });
+       
     </script>
 
 </head>
@@ -40,7 +28,7 @@
     <div class="navbar">
         <div class="navbar-container">
             <a href="../index.html" class="navbar-brand">
-                <img src="../images/Logo_SchriftWeiß.png" alt="Logo" width="120px" height="100px" />
+                <img id = "navbarLogo" src="../images/Logo_SchriftWeiß.png" alt="Logo" width="120px" height="100px" />
             </a>
             <nav role="navigation" class="nav-menu-wrapper">
                 <ul role="list" class="nav-menu">
@@ -69,8 +57,10 @@
                 </ul>
             </nav>
             <div class="icon-container">
-                <a href="../login.html" class="navbar-icon"><img src="../images/user.png" width="32" alt="" /></a>
-                <a href="../cart.html" class="navbar-icon"><img src="../images/shopping-cart.png" width="32"
+                <!-- <button id ="DM">🌓 Darkmode umschalten</button> -->
+                <a id="darkmodeBtn" class="navbar-icon"><img src="../images/Mond.png" width="32" alt="" /></a>
+                <a id="userBtn" href="../login.html" class="navbar-icon"><img src="../images/user.png" width="32" alt="" /></a>
+                <a id="cartBtn" href="../cart.html" class="navbar-icon"><img src="../images/shopping-cart.png" width="32"
                         alt="" /></a>
             </div>
             <div class="menu-button">
@@ -156,12 +146,12 @@
                     </script>
                     <p>21,00€</p>
                     <p id="pricePerKgOutput"></p>
-                    <script>
-                        const result = getPricePerKG(21.00, 0.5);
+                    <!-- <script>
+                        const result = getPricePerKG(21.00, 0.5); 
                         if(result != undefined){
                             document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
                         }
-                    </script>
+                    </script> -->
                 </div>
 
                 <!-- Versand + Favoriten-->

@@ -1,3 +1,14 @@
+window.createStars = createStars;
+window.openPanel = openPanel;
+window.switchRecipe = switchRecipe;
+window.switchProductbild = switchProductbild;
+window.getTotalPrice = getTotalPrice;
+window.getPricePerKG = getPricePerKG;
+
+
+
+
+
 function createStars(rating) {
     return new Promise((resolve, reject) => {
 
@@ -182,14 +193,34 @@ function switchProductbild(pictureNumber) {
     productPic.src = picsSrc[pictureNumber];
 }
 
-function getTotalPrice(priceWOTax){
-    return (priceWOTax * 1.19); 
+function getTotalPrice(priceWOTax) {
+    return (priceWOTax * 1.19);
 }
 
-function getPricePerKG(price, totalWeight){
-    if(isNaN(price) || isNaN(totalWeight) || price <= 0 || totalWeight <= 0){
+function getPricePerKG(price, totalWeight) {
+    if (isNaN(price) || isNaN(totalWeight) || price <= 0 || totalWeight <= 0) {
         return console.error("Preis oder Gewicht der Packung sind unzulässig!");
     }
 
-    return (price/totalWeight); 
+    return (price / totalWeight);
 }
+
+export const scrollBorder = 40;
+
+window.addEventListener('scroll', function () {
+    const scrollY = window.scrollY;
+
+    const linkElement = document.querySelector('link[href*="navbar_transparent.css"], link[href*="navbar_intransparent.css"]');
+
+    if (!linkElement) return;
+
+    if (scrollY > scrollBorder) {
+        linkElement.href = "../components/Navbar/navbar_intransparent.css";
+        updateDarkmodeState();
+    } else {
+        linkElement.href = "../components/Navbar/navbar_transparent.css";
+        updateDarkmodeState();
+    }
+
+});
+

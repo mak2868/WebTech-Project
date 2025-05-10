@@ -111,7 +111,7 @@ body {
     display: none;
     flex-direction: column;
     z-index: 100;
-   color: black;
+    color: black;
 }
 
 /* Dropdown open state on hover */
@@ -139,6 +139,10 @@ body {
     height: 32px;
     filter: invert(1);
 
+}
+
+.navbar-icon img {
+    cursor: pointer;
 }
 
 /* Responsive Layout */
