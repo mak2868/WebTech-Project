@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../components/Navbar/navbar_transparent.css">
     <link rel="stylesheet" href="../components/Footer/footer.css">
     <script src="items.js"></script>
+    <script src="../js/cart.js"></script>
     <script>
         window.addEventListener('scroll', function () {
             const scrollY = window.scrollY;
@@ -69,7 +70,8 @@
             </nav>
             <div class="icon-container">
                 <a href="../login.html" class="navbar-icon"><img src="../images/user.png" width="32" alt="" /></a>
-                <a href="# " class="navbar-icon"><img src="../images/shopping-cart.png" width="32" alt="" /></a>
+                <a href="../cart.html" class="navbar-icon"><img src="../images/shopping-cart.png" width="32"
+                        alt="" /></a>
             </div>
             <div class="menu-button">
                 <div class="w-icon-nav-menu"></div>
@@ -142,13 +144,30 @@
 
                 <!-- Preis -->
                 <div class='Preis'>
+                    <input type="text" id="Preis" name="Preis ohne Steuern"
+                        placeholder="Hier einen Preis ohne Steuern eingeben!">
+                    <script>
+                        document.getElementById("Preis").addEventListener("keydown", function (event) {
+                            if (event.key === "Enter") {
+                                const priceWOTax = parseFloat(this.value);
+                                getTotalPrice(priceWOTax);
+                            }
+                        });
+                    </script>
                     <p>21,00€</p>
-                    <p>42€/kg, inkl. MwSt. zzgl. Versand.</p>
+                    <p id="pricePerKgOutput"></p>
+                    <script>
+                        const result = getPricePerKG(21.00, 0.5);
+                        if(result != undefined){
+                            document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
+                        }
+                    </script>
                 </div>
 
                 <!-- Versand + Favoriten-->
                 <div class='VersandFavoriten'>
-                    <button class="VersandButton">
+                    <button class="VersandButton"
+                        onclick="addToCart('Whey Protein Choco', '../images/Choco Whey.webp', 21.00)">
                         <img src="../images/shopping-cart.png" alt="">
                         <span>In den Warenkorb</span>
                     </button>
@@ -452,7 +471,7 @@
                         </article>
 
                         <article class="Milchshake">
-                            
+
                             <h4>Protein-Milchshake mit XPN Whey Choco</h4>
                             <p>Perfekt als Pre- oder Post-Workout-Drink – schnell gemixt und voller Eiweiß.</p>
 

@@ -1,6 +1,6 @@
 function createStars(rating) {
     return new Promise((resolve, reject) => {
-        // Bilder erstellen
+
         const emptyImg = new Image();
         emptyImg.src = "../images/StarEmpty.svg";
 
@@ -16,13 +16,11 @@ function createStars(rating) {
         const fullImg = new Image();
         fullImg.src = "../images/StarFull.svg";
 
-        // Bilder-Array
         const images = [emptyImg, oneQImg, halfImg, threeQImg, fullImg];
 
         let imagesLoaded = 0;
         const totalImages = images.length;
 
-        // Funktion, um zu überprüfen, ob alle Bilder geladen sind
         const checkLoaded = () => {
             imagesLoaded++;
             if (imagesLoaded === totalImages) {
@@ -30,7 +28,6 @@ function createStars(rating) {
             }
         };
 
-        // Setze onload-Handler für jedes Bild
         images.forEach((img) => {
             img.onload = checkLoaded;
             img.onerror = () => {
@@ -64,33 +61,27 @@ function createStars(rating) {
 
         let currentPosition = 0;
 
-        // Zeichne die vollen Sterne
         for (let i = 0; i < fullStarsCount; i++) {
             ctx.drawImage(fullImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
         }
 
-        // Zeichne den Viertelstern, falls vorhanden
         if (oneQStarCount) {
             ctx.drawImage(oneQImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
         }
 
-        // Zeichne den halben Stern, falls vorhanden
         if (halfStarCount) {
             ctx.drawImage(halfImg, currentPosition * 16 + currentPosition * 2, 0);
-            // currentPosition += halfImg.width + 5;
             currentPosition++;
 
         }
 
-        // Zeichne den Dreiviertelstern, falls vorhanden
         if (threeQStarCount) {
             ctx.drawImage(threeQImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
         }
 
-        // Zeichne leere Sterne, bis 5 erreicht sind
         for (let i = currentPosition; i < 5; i++) {
             ctx.drawImage(emptyImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
@@ -189,4 +180,16 @@ function switchProductbild(pictureNumber) {
 
     const productPic = document.querySelector('.Produktbild img');
     productPic.src = picsSrc[pictureNumber];
+}
+
+function getTotalPrice(priceWOTax){
+    return (priceWOTax * 1.19); 
+}
+
+function getPricePerKG(price, totalWeight){
+    if(isNaN(price) || isNaN(totalWeight) || price <= 0 || totalWeight <= 0){
+        return console.error("Preis oder Gewicht der Packung sind unzulässig!");
+    }
+
+    return (price/totalWeight); 
 }

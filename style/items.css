@@ -338,6 +338,10 @@ header img {
   opacity: 0.3;
 }
 
+.ProduktbildAuswahl img:first-of-type{
+  opacity: 0.8;
+}
+
 .top-left{
   display: flex;
   flex-direction: row;
