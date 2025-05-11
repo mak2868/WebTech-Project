@@ -241,3 +241,78 @@ button:hover,
   height: auto;
   opacity: 0.95;              /* optional: leicht dezenter Look */
 }
+
+
+/* ============================= */
+/*   WARENKORB-SLIDER STYLING   */
+/* ============================= */
+
+/* Der gesamte Warenkorb-Slider – versteckt sich rechts außerhalb des Bildschirms */
+.cart-slider {
+  position: fixed;                  /* Bleibt immer an Ort und Stelle */
+  top: 0;
+  right: -100%;                     /* Anfangs komplett außerhalb sichtbar */
+  width: 360px;                     /* Breite des Sliders */
+  height: 100%;                     /* Volle Höhe */
+  background: #fff;                 /* Weißer Hintergrund */
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2); /* Schöner Schlagschatten von links */
+  transition: right 0.4s ease;      /* Animation beim Einblenden */
+  z-index: 9999;                    /* Ganz oben anzeigen */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Wird diese Klasse ergänzt, fährt der Slider ins Bild */
+.cart-slider.open {
+  right: 0;
+}
+
+/* Kopfzeile des Sliders (mit Text und Schließen-Button) */
+.cart-header {
+  display: flex;
+  justify-content: space-between;  /* Text links, Button rechts */
+  align-items: center;
+  padding: 1rem;
+  font-weight: bold;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Schließen-X oben rechts */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Der Inhaltsbereich für Produktanzeige etc. */
+.cart-content {
+  padding: 1rem;
+  flex: 1;                          /* nimmt restlichen Platz ein */
+  overflow-y: auto;                /* scrollbar bei viel Inhalt */
+}
+
+/* Unterer Bereich mit Buttons */
+.cart-actions {
+  margin-top: auto;                /* immer unten platzieren */
+  display: flex;
+  gap: 1rem;                       /* Abstand zwischen Buttons */
+  padding: 1rem;
+}
+
+/* Beide Buttons im unteren Bereich */
+.cart-actions button {
+  flex: 1;
+  padding: 0.75rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Der "Zum Warenkorb"-Button in Rot */
+.cart-actions .go-cart {
+  background-color: #d00;
+  color: white;
+}
