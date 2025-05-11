@@ -1,11 +1,11 @@
+import { updateDarkmodeState } from './darkMode.js';
+
 window.createStars = createStars;
 window.openPanel = openPanel;
 window.switchRecipe = switchRecipe;
 window.switchProductbild = switchProductbild;
 window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
-
-
 
 
 
@@ -111,9 +111,9 @@ function openPanel(activatedIndex) {
     if (activatedIndex == 2) {
         let selectedButton = document.getElementsByClassName('Brownie')[0];
         selectedButton.style.display = 'block';
-        nonSelectedButton1 = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
+        let nonSelectedButton1 = document.getElementsByClassName('Milchshake')[0];
         nonSelectedButton1.style.display = 'none';
+        let nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
         nonSelectedButton2.style.display = 'none';
     }
     const button = acc[activatedIndex];
@@ -194,7 +194,9 @@ function switchProductbild(pictureNumber) {
 }
 
 function getTotalPrice(priceWOTax) {
-    return (priceWOTax * 1.19);
+    let result = priceWOTax * 1.19;
+
+    return result.toFixed(2);
 }
 
 function getPricePerKG(price, totalWeight) {

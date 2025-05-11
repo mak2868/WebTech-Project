@@ -68,7 +68,7 @@ function ensureDarkmodeStyles() {
     }
 }
 
-function updateDarkmodeState() {
+export function updateDarkmodeState() {
 
     console.log("updateDarkmodeState");
 

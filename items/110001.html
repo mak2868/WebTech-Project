@@ -13,10 +13,7 @@
     <link rel="stylesheet" href="../components/Footer/footer.css">
     <script type="module" src="../js/items.js"></script>
     <script src="../js/cart.js"></script>
-    <script  type="module" src="../../js/darkMode.js"></script>
-    <script>
-       
-    </script>
+    <script type="module" src="../../js/darkMode.js"></script>
 
 </head>
 
@@ -28,7 +25,7 @@
     <div class="navbar">
         <div class="navbar-container">
             <a href="../index.html" class="navbar-brand">
-                <img id = "navbarLogo" src="../images/Logo_SchriftWeiß.png" alt="Logo" width="120px" height="100px" />
+                <img id="navbarLogo" src="../images/Logo_SchriftWeiß.png" alt="Logo" width="120px" height="100px" />
             </a>
             <nav role="navigation" class="nav-menu-wrapper">
                 <ul role="list" class="nav-menu">
@@ -59,9 +56,10 @@
             <div class="icon-container">
                 <!-- <button id ="DM">🌓 Darkmode umschalten</button> -->
                 <a id="darkmodeBtn" class="navbar-icon"><img src="../images/Mond.png" width="32" alt="" /></a>
-                <a id="userBtn" href="../login.html" class="navbar-icon"><img src="../images/user.png" width="32" alt="" /></a>
-                <a id="cartBtn" href="../cart.html" class="navbar-icon"><img src="../images/shopping-cart.png" width="32"
+                <a id="userBtn" href="../login.html" class="navbar-icon"><img src="../images/user.png" width="32"
                         alt="" /></a>
+                <a id="cartBtn" href="../cart.html" class="navbar-icon"><img src="../images/shopping-cart.png"
+                        width="32" alt="" /></a>
             </div>
             <div class="menu-button">
                 <div class="w-icon-nav-menu"></div>
@@ -135,23 +133,24 @@
                 <!-- Preis -->
                 <div class='Preis'>
                     <input type="text" id="Preis" name="Preis ohne Steuern"
-                        placeholder="Hier einen Preis ohne Steuern eingeben!">
+                        placeholder="Hier einen Preis ohne Steuern eingeben!" style="width: 250px;">
+                    <p id="priceWTax"></p>
+                    <p id="pricePerKgOutput"></p>
                     <script>
                         document.getElementById("Preis").addEventListener("keydown", function (event) {
                             if (event.key === "Enter") {
                                 const priceWOTax = parseFloat(this.value);
-                                getTotalPrice(priceWOTax);
+                                const priceWTax = getTotalPrice(priceWOTax);
+                                document.getElementById("priceWTax").textContent = `${priceWTax} €`;
+
+                                const result = getPricePerKG(priceWTax, 0.5);
+                                if (result !== undefined) {
+                                    document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
+                                }
                             }
                         });
+
                     </script>
-                    <p>21,00€</p>
-                    <p id="pricePerKgOutput"></p>
-                    <!-- <script>
-                        const result = getPricePerKG(21.00, 0.5); 
-                        if(result != undefined){
-                            document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
-                        }
-                    </script> -->
                 </div>
 
                 <!-- Versand + Favoriten-->
