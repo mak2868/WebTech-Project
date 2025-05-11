@@ -6,12 +6,13 @@
     <title>Benutzerbereich</title>
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/user.css">
+    <link rel="stylesheet" href="style/logreg.css">
 </head>
 <body>
-
+    <div class="form-wrapper">
+    <form action="..." method="post">
     <h2>Benutzerbereich</h2>
     
-    <form>
         <label for="username">Benutzername:</label>
         <input type="text" id="username" name="username"  required>
         <br><br>
@@ -20,7 +21,8 @@
         <input type="password" id="password" name="password" required>
         <br><br>
 
-        <button type="submit">Speichern</button>
+        <button type="submit" id="submit" class="btn-esn">Speichern</button>
+
     </form>
 
     <br>
