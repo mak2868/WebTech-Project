@@ -1,12 +1,5 @@
 /* ========== erstellt von: Marvin Kunz ========== */
 
-
-
-/* .DM{
-  background-color: green;
-  color: red;
-} */
-
 /* ========== MAIN ========== */
 main {
   font-family: Arial, sans-serif;
@@ -107,6 +100,14 @@ h3 {
   width: 100%;
 }
 
+.top-rigth{ 
+  border: 5px solid #f4f3f3;
+  border-radius: 20px;
+  background-color: #f4f3f3;
+  padding: 40px;
+}
+
+
 
 /* ========== PRICES ========== */
 .Preis p:first-of-type {
@@ -148,6 +149,7 @@ h3 {
   gap: 8px;
   padding: 0.75rem 1.25rem;
   background-color: rgb(207, 47, 47);
+  /* background-color: rgb(249, 249, 234); */
 }
 
 .VersandButton img {
@@ -222,8 +224,8 @@ flex-grow: 1;
   padding-bottom: 0;
   will-change: max-height;
   width: 60vw;
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 .panel.open {

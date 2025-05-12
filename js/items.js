@@ -96,6 +96,8 @@ function createStars(rating) {
         for (let i = currentPosition; i < 5; i++) {
             ctx.drawImage(emptyImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
+            canvas.classList.add("invert-keep");
+
         }
 
         ctx.scale(0.15, 0.15);

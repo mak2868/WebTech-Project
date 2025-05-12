@@ -92,7 +92,7 @@
                         <div id="Bewertungsskala">
                             <script>
                                 window.onload = () => {
-                                    const rating = 2.1;
+                                    const rating = 4.78;
                                     const container = document.getElementById("Bewertungsskala");
 
                                     createStars(rating).then((canvas) => {
@@ -142,7 +142,7 @@
                                 const priceWTax = getTotalPrice(priceWOTax);
                                 document.getElementById("priceWTax").textContent = `${priceWTax} €`;
 
-                                const result = getPricePerKG(priceWTax, 0.5);
+                                const result = getPricePerKG(priceWTax, 0.25);
                                 if (result !== undefined) {
                                     document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
                                 }

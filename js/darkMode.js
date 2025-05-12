@@ -12,26 +12,79 @@ function ensureDarkmodeStyles() {
     const style = document.createElement("style");
     style.id = "darkmode-style";
     style.textContent = `
-        html.darkmode {
-          filter: invert(1) hue-rotate(180deg);
-          background-color: #111;
-      }
+    html.darkmode {
+      filter: invert(1) hue-rotate(180deg);
+      background-color: #111;
+  }
+
+  html.darkmode img {
+      filter: invert(1) hue-rotate(180deg);
+  }
   
-      html.darkmode img, html.darkmode #Bewertungsskala {
-          filter: invert(1) hue-rotate(180deg);
-      }
+  html.darkmode h1, html.darkmode h3{
+    filter: invert(1) hue-rotate(180deg);
+    color: rgb(249, 249, 234); 
+  }
+
+  html.darkmode #Bewertungsskala, html.darkmode button, html.darkmode .btn, html.darkmode .select-wrapper select{
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  html.darkmode img.invert-keep {
+      filter: none;
+  }
   
-      html.darkmode img.invert-keep {
-          filter: none;
-      }
+
+  html.darkmode .btn, html.darkmode button, html.darkmode .select-wrapper select {
+    background-color: rgb(249, 249, 234);  
+    color: black;   
+  }
+
+  html.darkmode .VersandButton{
+    background-color: rgb(207, 47, 47); 
+    color: rgb(249, 249, 234); 
+  }
+
+  html.darkmode .select-wrapper select{
+
+    background-image: url('data:image/svg+xml;utf8,<svg fill=" rgb(249, 249, 234)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+  }
+
+  html.darkmode .FavoritenButton svg{
+    stroke: black; 
+  }
+
+  html.darkmode .accordion::after {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    width: 1rem;
+    height: 1rem;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.8s linear;
+  }
+
+  .accordion.active::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
   
-      // html.darkmode #Bewertungsskala {
-      //   background-color: green;
-      // }
-  
-      body {
-          transition: filter 0.3s ease, background-color 0.3s ease;
-      }
+  .accordion:hover {
+    background-color: inherit;
+  }
+
+   html.darkmode .accordion {
+    background-color: black;
+    color:  rgb(249, 249, 234);
+    background-image
+   }
+
+  body {
+      transition: filter 0.3s ease, background-color 0.3s ease;
+  }
         `;
     document.head.appendChild(style);
   }
