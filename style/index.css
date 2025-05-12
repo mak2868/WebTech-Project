@@ -10,18 +10,27 @@ body {
   color: white;
 }
 
+html.darkmode {
+  filter: invert(1) hue-rotate(180deg);
+  background-color: #111;
+}
+
+html.darkmode img {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html.darkmode img.invert-keep
+{
+  filter: none;
+}
+
 
 
 h1 {
   color: rgb(255, 255, 255);
-  font-size: 3.5rem;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-button {
-  background-color:rgb(255, 255, 255);
-  color:black;
-}
+
 
 /* Hero Section */
 .hero {
@@ -35,6 +44,14 @@ button {
   padding-left: 5%;
   position: relative;
 }
+
+html.darkmode .hero {
+  filter: invert(1) hue-rotate(180deg); /* hebt globales Invert wieder auf */
+}
+
+
+
+
 
 .hero::before {
   content: "";
@@ -160,7 +177,6 @@ button {
 
 .banner-text p {
   margin: 0 0 1rem 0;
-  font-size: 1rem;
   color: #dcdada;
   text-align:center;
 }
@@ -168,13 +184,6 @@ button {
 .button {
   max-width: 10rem;
 }
-
-
-
-
-
-
-
 
 
 
