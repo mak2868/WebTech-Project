@@ -1,32 +1,50 @@
-<!--Erstellt von Merzan Köse-->
+<!-- Erstellt von Merzan Köse -->
 
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de"> <!-- Sprache des Dokuments auf Deutsch eingestellt -->
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="style/global.css">
+    <meta charset="UTF-8"> <!-- Zeichensatz UTF-8 für Umlaute usw. -->
+    <title>Login</title> <!-- Titel, der im Browser-Tab angezeigt wird -->
+
+    <!-- Einbinden der globalen und seitenbezogenen CSS-Dateien -->
+    <link rel="stylesheet" href="./style/global.css">
+    <link rel="stylesheet" href="./style/logreg.css">
 </head>
 <body>
+    <!-- Wrapper für das gesamte Formular zur besseren Formatierung -->
     <div class="form-wrapper">
-    <form action="..." method="post">
-    <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
-    <h1>Login</h1>
 
-    <label for="username">Benutzername</label>
-    <input type="text" id="username" name="username" required>
+        <!-- Formular zum Einloggen (POST wird an Server gesendet) -->
+        <form action="..." method="post">
+            
+            <!-- Logo der Anwendung -->
+            <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
+            
+            <!-- Hauptüberschrift -->
+            <h1>Login</h1>
 
-    <label for="password">Passwort </label>
-    <input type="password" id="password" name="password" required>
+            <!-- Benutzername-Eingabe -->
+            <label for="username">Benutzername</label>
+            <input type="text" id="username" name="username" required> <!-- Pflichtfeld -->
 
-    
-    <button type="submit" class="btn-esn">Anmelden</button>
+            <!-- Passwort-Eingabe -->
+            <label for="password">Passwort</label>
+            <input type="password" id="password" name="password" required> <!-- Pflichtfeld -->
 
-    <p class="form-text">Noch kein Konto?</p>
-  <button type="button" class="btn-esn" onclick="window.location.href='registration.html'">Registrieren</button>
-    </form>
-</div>
+            <!-- Button zum Absenden des Formulars -->
+            <button type="submit" id="submit" class="btn-esn">Anmelden</button>
 
-<script src="js/validate-login.js"></script>
+            <!-- Hinweistext für neue Nutzer -->
+            <p class="form-text">Noch kein Konto?</p>
+
+            <!-- Button zur Weiterleitung auf die Registrierungsseite -->
+            <button type="button" class="btn-esn" onclick="window.location.href='registration.html'">
+                Registrieren
+            </button>
+        </form>
+    </div>
+
+    <!-- Einbinden der JavaScript-Datei zur Validierung -->
+    <script src="js/validate-login.js"></script>
 </body>
 </html>
