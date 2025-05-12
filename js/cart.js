@@ -11,6 +11,28 @@ function addToCart(name, image, price) {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${name} wurde dem Warenkorb hinzugefügt.`);
+  
+  
+// → zusätzlich für Slider: Zeigt das zuletzt hinzugefügte Produkt direkt im Warenkorb-Slider an
+const itemHtml = `
+  <div class="cart-item">
+    <img src="${image}" alt="${name}" />  <!-- Produktbild -->
+    <div>
+      <strong>${name}</strong><br>         <!-- Produktname -->
+      <span class="price-new">€${price.toFixed(2)}</span>  <!-- Preis mit zwei Nachkommastellen -->
+    </div>
+  </div>
+`;
+
+// Holt das div, in dem die Slider-Inhalte (Produkte) angezeigt werden
+const cartItems = document.getElementById("cartItems");
+
+// Ersetzt den bisherigen Inhalt durch das neue Produkt (immer nur 1 Artikel sichtbar)
+cartItems.innerHTML = itemHtml;
+
+// Öffnet den Slider (führt openCart() aus)
+openCart();
+
   }
   
   // Lese den Warenkorb aus dem localStorage
@@ -67,4 +89,18 @@ function addToCart(name, image, price) {
   
     totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
   }
+
+// Öffnet den Warenkorb-Slider, indem die CSS-Klasse "open" hinzugefügt wird
+function openCart() {
+  const slider = document.getElementById("cartSlider"); // Referenz auf das Slider-Element
+  if (slider) slider.classList.add("open");             // fügt die Klasse "open" hinzu → macht den Slider sichtbar
+}
+
+// Schließt den Warenkorb-Slider, indem die CSS-Klasse "open" entfernt wird
+function closeCart() {
+  const slider = document.getElementById("cartSlider"); // Referenz auf das Slider-Element
+  if (slider) slider.classList.remove("open");          // entfernt die Klasse "open" → versteckt den Slider
+}
+
+
   
