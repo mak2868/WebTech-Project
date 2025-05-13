@@ -358,3 +358,6 @@ header img {
   align-items: center;
 }
  
+.btn, button{
+  width: 40%;
+}

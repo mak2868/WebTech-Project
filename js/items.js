@@ -196,9 +196,9 @@ function switchProductbild(pictureNumber) {
 }
 
 function getTotalPrice(priceWOTax) {
-    let result = priceWOTax * 1.19;
+    let returnValue = priceWOTax * 1.19;
 
-    return result.toFixed(2);
+    return returnValue.toFixed(2);
 }
 
 function getPricePerKG(price, totalWeight) {
@@ -206,7 +206,9 @@ function getPricePerKG(price, totalWeight) {
         return console.error("Preis oder Gewicht der Packung sind unzulässig!");
     }
 
-    return (price / totalWeight);
+    let returnValue = price / totalWeight
+
+    return returnValue.toFixed(2);
 }
 
 export const scrollBorder = 40;

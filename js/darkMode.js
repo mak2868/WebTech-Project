@@ -26,12 +26,12 @@ function ensureDarkmodeStyles() {
     color: rgb(249, 249, 234); 
   }
 
-  html.darkmode #Bewertungsskala, html.darkmode button, html.darkmode .btn, html.darkmode .select-wrapper select{
+  html.darkmode button, html.darkmode .btn, html.darkmode .select-wrapper select{
     filter: invert(1) hue-rotate(180deg);
   }
 
   html.darkmode img.invert-keep {
-      filter: none;
+    filter: none;
   }
   
 
