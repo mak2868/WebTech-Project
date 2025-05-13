@@ -41,6 +41,7 @@ main {
 .grid-item {
   background-color: #fafafa;
   border-radius: 15px;
+  overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   cursor: pointer;
   text-align: center;
