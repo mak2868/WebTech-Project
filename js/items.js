@@ -9,7 +9,7 @@ window.getPricePerKG = getPricePerKG;
 
 
 
-function createStars(rating) {
+function createStars(rating) { 
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
@@ -96,6 +96,8 @@ function createStars(rating) {
         for (let i = currentPosition; i < 5; i++) {
             ctx.drawImage(emptyImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
+            canvas.classList.add("invert-keep");
+
         }
 
         ctx.scale(0.15, 0.15);
@@ -194,9 +196,9 @@ function switchProductbild(pictureNumber) {
 }
 
 function getTotalPrice(priceWOTax) {
-    let result = priceWOTax * 1.19;
+    let returnValue = priceWOTax * 1.19;
 
-    return result.toFixed(2);
+    return returnValue.toFixed(2);
 }
 
 function getPricePerKG(price, totalWeight) {
@@ -204,7 +206,9 @@ function getPricePerKG(price, totalWeight) {
         return console.error("Preis oder Gewicht der Packung sind unzulässig!");
     }
 
-    return (price / totalWeight);
+    let returnValue = price / totalWeight
+
+    return returnValue.toFixed(2);
 }
 
 export const scrollBorder = 40;
