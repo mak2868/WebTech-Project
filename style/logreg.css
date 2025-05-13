@@ -1,0 +1,95 @@
+/* ========== FORM PAGES WRAPPER ========== */
+/* ================= FORM LAYOUT WRAPPER ================= */
+/* Begrenzt die Formularbreite, zentriert es auf der Seite, fügt Polsterung, runde Ecken und Schatten hinzu */
+.form-wrapper {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Überschrift: fett, zentriert und mit Abstand nach unten */
+.form-wrapper h1 {
+  margin-top: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 2rem;
+}
+
+/* Ordnet Formularinhalte vertikal untereinander mit gleichmäßigem Abstand */
+.form-wrapper form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels mit normalem Gewicht */
+.form-wrapper label {
+  font-weight: 400;
+}
+
+/* ================= FORMULARFELDER ================= */
+/* Einheitlicher Stil für Text-, Passwort- und E-Mail-Eingaben */
+.form-wrapper input[type="text"],
+.form-wrapper input[type="password"],
+.form-wrapper input[type="email"] {
+  margin-bottom: 0.5rem;               /* Abstand nach unten */
+  padding: 0.75rem 1rem;               /* Innenabstand (oben/unten & seitlich) */
+  border-radius: 10px;                 /* abgerundete Ecken */
+  border: 1px solid #ccc;              /* hellgrauer Rand */
+  font-size: 1rem;
+  width: 100%;                         /* volle Breite innerhalb des Wrappers */
+}
+
+/* Hover-Effekt für .btn (auch für .btn-esn wirksam, wenn gemeinsam genutzt) */
+.form-wrapper .btn:hover {
+  background-color: #333;
+}
+
+/* ================= MODERNER ESN-STYLE BUTTON ================= */
+.btn-esn {
+  margin-top: 0.5rem;
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 1.5rem;               /* große, moderne Rundung */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0;
+}
+
+/* Hover-Farbe für ESN-Stil-Button */
+.btn-esn:hover {
+  background-color: #333;
+}
+
+/* ================= TEXT UNTER FORMULAR ================= */
+/* Styling für Texte wie "Noch kein Konto?" */
+.form-text {
+  text-align: center;
+  margin: 1rem 0 0.5rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* ================= BUTTON-ABSTAND NEBENEINANDER ================= */
+/* Sorgt für horizontalen Abstand zwischen Buttons (z. B. Registrieren & Abbrechen) */
+.form-wrapper button:not(:last-child) {
+  margin-right: 5.5rem;  /* relativ großer Abstand zum nächsten Button */
+}
+
+.form-Logo {
+  margin: 0 auto;                 /* zentriert */
+  max-width: 200px;            /* kleinere Darstellung als vorher */
+  height: auto;
+  opacity: 0.95;              /* optional: leicht dezenter Look */
+}
+

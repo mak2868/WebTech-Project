@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Warenkorb</title>
+  <link rel="stylesheet" href="style/cart.css">
+  <script src="js/cart.js" defer></script>
+</head>
+<body onload="renderCart()">
+
+  <div class="cart-header">
+    <h2>Warenkorb</h2>
+    <button class="checkout-btn">Zur Kasse</button>
+  </div>
+
+  <div class="cart-container" id="cart-items">
+    <!-- Produkte werden dynamisch eingefügt -->
+  </div>
+
+  <div class="cart-footer">
+    <h3 id="cart-total">Gesamt: 0 €</h3>
+  </div>
+</body>
+</html>

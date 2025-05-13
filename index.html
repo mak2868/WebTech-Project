@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section</title>
+    <link rel="stylesheet" href="style/global.css">
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="components/Navbar/navbar.css">
+    <link rel="stylesheet" href="components/Footer/footer.css">
+</head>
+<body>
+    
+      <!-- NAVBAR -->
+  <div class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-brand">
+        <img src="images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" class="invert-keep"/>
+      </a>
+      <nav role="navigation" class="nav-menu-wrapper">
+        <ul role="list" class="nav-menu">
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-toggle">
+              <div class="nav-dropdown-icon"></div>
+              <div>Proteinpulver</div>
+            </div>
+            <nav class="nav-dropdown-list">
+              <a href="ProteinpulverList.html" class="nav-dropdown-link">Whey Protein</a>
+              <a href="ProteinpulverList.html" class="nav-dropdown-link">Isolat</a>
+              <a href="ProteinpulverList.html" class="nav-dropdown-link">Vegan</a>
+            </nav>
+          </li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-toggle">
+              <div class="nav-dropdown-icon"></div>
+              <div>Proteinriegel</div>
+            </div>
+            <nav class="nav-dropdown-list">
+              <a href="ProteinriegelList.html" class="nav-dropdown-link">Vegan</a>
+              <a href="ProteinriegelList.html" class="nav-dropdown-link">Low Carb</a>
+            </nav>
+          </li>
+        </ul>
+      </nav>
+      <div class="icon-container">
+<a id="darkmodeBtn" class="navbar-icon" onclick="document.documentElement.classList.toggle('darkmode')">
+  <img src="images/Mond.png" width="32" alt="Darkmode umschalten" class="invert-keep"/>
+</a>
+<a href="login.html" class="navbar-icon">
+  <img src="images/user.png" width="32" alt="" class="invert-keep" />
+</a>
+<a href="cart.html" class="navbar-icon">
+  <img src="images/shopping-cart.png" width="32" alt="" class="invert-keep"/></a>
+      </div>
+      <div class="menu-button">
+        <div class="w-icon-nav-menu"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Made for Athletes</h1>
+      <p>Nutrition that tates as good as it works</p>
+      <button class="button" onclick="window.location.href='ProteinpulverList'">Shop now</button>
+    </div>
+  </section>
+
+
+<!-- Logo Section -->
+<section class="logo-section">
+  <div class="logo-section-inner">
+    <p>Top brands trust us for quality that delivers</p>
+    <div class="logo-slider">
+      <div class="logos">
+        <img src="images/Foodspring_Logo.png" alt="Foodspring Logo" class="logo invert-keep">
+        <img src="images/GoldsGym_Logo.png" alt="Gold's Gym Logo" class="logo invert-keep">
+        <img src="images/MyProtein_Logo.png" alt="MyProtein Logo" class="logo invert-keep">
+        <img src="images/Dm_Logo.png" alt="dm Logo" class="logo invert-keep">
+        <img src="images/JohnReed_Logo.png" alt="John Reed Logo" class="logo invert-keep">
+        <img src="images/Edeka_Logo.png" alt="Edeka Logo" class="logo invert-keep">
+        <!-- Wiederholung für Endlosschleife -->
+        <img src="images/Foodspring_Logo.png" alt="Foodspring Logo" class="logo invert-keep">
+        <img src="images/GoldsGym_Logo.png" alt="Gold's Gym Logo" class="logo invert-keep">
+        <img src="images/MyProtein_Logo.png" alt="MyProtein Logo" class="logo invert-keep">
+        <img src="images/Dm_Logo.png" alt="dm Logo" class="logo invert-keep">
+        <img src="images/JohnReed_Logo.png" alt="John Reed Logo" class="logo invert-keep">
+        <img src="images/Edeka_Logo.png" alt="Edeka Logo" class="logo invert-keep">
+        <!-- Wiederholung für Endlosschleife -->
+        <img src="images/Foodspring_Logo.png" alt="Foodspring Logo" class="logo invert-keep">
+        <img src="images/GoldsGym_Logo.png" alt="Gold's Gym Logo" class="logo invert-keep">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+
+  <!-- Banner Section -->
+<section class="banner-section">
+  <div class="banner-container">
+    <div class="banner-image">
+      <img src="images/Proteinriegel_Banner.png" alt="Banner Image" class="no-invert">
+    </div>
+    <div class="banner-text">
+      <h2>Deutschlands Nr. 1 Proteinriegel</h2>
+      <p>Protein Snack für maximalen Muskelaufbau.</p>
+      <button class="button" onclick="window.location.href='ProteinpulverList.html'">20% Aktion</button>
+    </div>
+  </div>
+</section>
+
+
+ <!-- Bestseller Section -->
+<section class="bestseller-section">
+  <div class="container">
+    <h2>Unsere Bestseller</h2>
+    <p>Besonders beliebt</p>
+    <div class="product-grid">
+      
+
+
+<!-- Produktkarte 1 -->
+<div class="product-card">
+  <div class="badge">Bestseller</div>
+  <div class="image-wrapper">
+    <img src="images/Proteinpulver_Isoclear.png" alt="Produkt" class="no-invert">
+    <div class="icons">
+      <div class="icon" onclick="addToCart('Isoclear Whey Protein Isolate', 'images/Proteinpulver_Isoclear.png', 49.90)">
+        <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+      </div>
+    </div>
+  </div>
+  <p class="flavor">Peach Iced Tea</p>
+  <h3 class="title">Isoclear Whey Protein Isolate</h3>
+  <p class="desc">Erfrischend klarer Protein-Drink</p>
+  <div class="rating">
+    <span class="stars">★★★★☆</span>
+    <span class="reviews">(5800)</span>
+  </div>
+  <p class="price">€49,90 <span class="price-kg">(€54,96/kg)</span></p>
+</div>
+
+
+
+<!-- Produktkarte 2 -->
+<div class="product-card">
+  <div class="badge">Bestseller</div>
+  <div class="image-wrapper">
+    <img src="images/Proteinriegel_LowCarb.png" alt="Produkt" class="no-invert">
+    <div class="icons">
+      <div class="icon" onclick="addToCart('Proteinriegel Low Carb', 'images/Proteinriegel_LowCarb.png', 23.90)">
+        <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+      </div>
+    </div>
+  </div>
+  <p class="flavor">Peach Iced Tea</p>
+  <h3 class="title">Isoclear Whey Protein Isolate</h3>
+  <p class="desc">Erfrischend klarer Protein-Drink</p>
+  <div class="rating">
+    <span class="stars">★★★★☆</span>
+    <span class="reviews">(5800)</span>
+  </div>
+  <p class="price">€49,90 <span class="price-kg">(€54,96/kg)</span></p>
+</div>
+
+
+
+<!-- Produktkarte 3 -->
+<div class="product-card">
+  <div class="badge">Bestseller</div>
+  <div class="image-wrapper">
+    <img src="images/Proteinpulver_Isoclear.png" alt="Produkt" class="no-invert">
+    <div class="icons">
+      <div class="icon" onclick="addToCart('Isoclear Whey Protein Isolate', 'images/Proteinpulver_Isoclear.png', 49.90)">
+        <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+      </div>
+    </div>
+  </div>
+  <p class="flavor">Peach Iced Tea</p>
+  <h3 class="title">Isoclear Whey Protein Isolate</h3>
+  <p class="desc">Erfrischend klarer Protein-Drink</p>
+  <div class="rating">
+    <span class="stars">★★★★☆</span>
+    <span class="reviews">(5800)</span>
+  </div>
+  <p class="price">€49,90 <span class="price-kg">(€54,96/kg)</span></p>
+</div>
+
+
+
+<!-- Produktkarte 4 -->
+<div class="product-card">
+  <div class="badge">Bestseller</div>
+  <div class="image-wrapper">
+    <img src="images/Proteinriegel_LowCarb.png" alt="Produkt" class="no-invert">
+    <div class="icons">
+      <div class="icon" onclick="addToCart('Proteinriegel Low Carb', 'images/Proteinriegel_LowCarb.png', 23.90)">
+        <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+      </div>
+    </div>
+  </div>
+  <p class="flavor">Peach Iced Tea</p>
+  <h3 class="title">Isoclear Whey Protein Isolate</h3>
+  <p class="desc">Erfrischend klarer Protein-Drink</p>
+  <div class="rating">
+    <span class="stars">★★★★☆</span>
+    <span class="reviews">(5800)</span>
+  </div>
+  <p class="price">€49,90 <span class="price-kg">(€54,96/kg)</span></p>
+</div>
+    </div>
+  </div>
+</section>
+<script src="js/cart.js"></script>
+  </body>
+  </html>
+  
