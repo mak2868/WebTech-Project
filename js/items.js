@@ -9,7 +9,7 @@ window.getPricePerKG = getPricePerKG;
 
 
 
-function createStars(rating) {
+function createStars(rating) { 
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
