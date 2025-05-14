@@ -57,8 +57,8 @@
                 <a id="darkmodeBtn" class="navbar-icon"><img src="images/Mond.png" width="32" alt="" /></a>
                 <a id="userBtn" href="login.html" class="navbar-icon"><img src="images/user.png" width="32"
                         alt="" /></a>
-                <a id="cartBtn" href="cart.html" class="navbar-icon"><img src="images/shopping-cart.png"
-                        width="32" alt="" /></a>
+                <a id="cartBtn" href="cart.html" class="navbar-icon"><img src="images/shopping-cart.png" width="32"
+                        alt="" /></a>
             </div>
             <div class="menu-button">
                 <div class="w-icon-nav-menu"></div>
@@ -120,60 +120,56 @@
                     </select>
                 </div>
 
+
+
                 <!-- Verpackungsgrößen -->
                 <div class='Verpackungsgrößen'>
                     <p>Verpackungsgrößen</p>
                     <div class='VerpackungsgrößenButtons'>
-                        <button class="btn">Probe<br>(30g)</button>
-                        <button class="btn">500g</button>
-                        <button class="btn">2000g</button>
-                        <button class="btn">5000g</button>
+                        <button class="btn" onclick="changeSelectedSize()">30g</button>
+                        <button class="btn" id="selectedSize" onclick="changeSelectedSize()">500g</button>
+                        <button class="btn" onclick="changeSelectedSize()">2000g</button>
+                        <button class="btn" onclick="changeSelectedSize()">5000g</button>
                     </div>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        changeSelectedSize();
+                    });
+                </script>
 
 
                 <!-- Preis -->
                 <div class='Preis'>
-                    <input type="text" id="Preis" name="Preis ohne Steuern"
-                        placeholder="Hier einen Preis ohne Steuern eingeben!" style="width: 250px;">
                     <p id="priceWTax"></p>
                     <p id="pricePerKgOutput"></p>
                     <script>
-                        document.getElementById("Preis").addEventListener("keydown", function (event) {
-                            if (event.key === "Enter") {
-                                const priceWOTax = parseFloat(this.value);
-                                const priceWTax = getTotalPrice(priceWOTax);
-                                document.getElementById("priceWTax").textContent = `${priceWTax} €`;
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const priceWOTax = 21;
+                            const priceWTax = getTotalPrice(priceWOTax);
+                            document.getElementById("priceWTax").textContent = `${priceWTax} €`;
 
-                                const result = getPricePerKG(priceWTax, 0.25);
-                                if (result !== undefined) {
-                                    document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
-                                }
+                            const result = getPricePerKG(priceWTax, 0.25);
+                            if (result !== undefined) {
+                                document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
                             }
                         });
-
                     </script>
                 </div>
 
                 <!-- Versand + Favoriten-->
                 <div class='VersandFavoriten'>
-                    <button class="VersandButton" onclick="addToCart('Whey Protein Choco', 'images/Choco Whey.webp', 21.00); openCart();">
+                    <button class="VersandButton"
+                        onclick="addToCart('Whey Protein Choco', 'images/Choco Whey.webp', 21.00); openCart();">
                         <img src="images/shopping-cart.png" alt="">
                         <span>In den Warenkorb</span>
                     </button>
-                    <button class="FavoritenButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90" width="64" height="64" fill="none"
-                            stroke="white" stroke-width="6">
-                            <path d="M50 80 
-                                     L15 45 
-                                     A20 20 0 0 1 50 20 
-                                     A20 20 0 0 1 85 45 
-                                     Z" />
-                        </svg>
-                    </button>
+                    <!-- <img class = "FavButton" src="images/favorite_16566172.png" alt=""> -->
+                    <!-- <img class = "FavButton" src="images/Herz_unausgefüllt.png" alt=""> -->
+                    <img class="FavButton" src="images/Herz_ausgefüllt.png" alt="">
                     <br>
-                    <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
                 </div>
+                <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
             </div>
 
         </div>
@@ -541,7 +537,8 @@
         <!-- Aktions-Buttons unten im Slider -->
         <div class="cart-actions">
             <button onclick="closeCart()">Weiter einkaufen</button> <!-- Schließt den Slider -->
-            <button class="go-cart" onclick="window.location.href='cart.html'">Zum Warenkorb</button> <!-- Link zur Warenkorbseite -->
+            <button class="go-cart" onclick="window.location.href='cart.html'">Zum Warenkorb</button>
+            <!-- Link zur Warenkorbseite -->
         </div>
 
     </div>

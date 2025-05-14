@@ -6,10 +6,9 @@ window.switchRecipe = switchRecipe;
 window.switchProductbild = switchProductbild;
 window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
+window.changeSelectedSize = changeSelectedSize;
 
-
-
-function createStars(rating) { 
+function createStars(rating) {
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
@@ -210,6 +209,26 @@ function getPricePerKG(price, totalWeight) {
 
     return returnValue.toFixed(2);
 }
+
+let isFirstCallchangeSelectedSize = true;
+
+function changeSelectedSize() {
+
+    if (isFirstCallchangeSelectedSize) {
+        isFirstCallchangeSelectedSize = false;
+
+        document.getElementById('selectedSize').classList.add('active');
+    }
+    document.querySelectorAll('.VerpackungsgrößenButtons .btn').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.VerpackungsgrößenButtons .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        });
+    });
+}
+
 
 export const scrollBorder = 40;
 
