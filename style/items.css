@@ -57,6 +57,7 @@ h3 {
 .firstLine {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem; 
 }
 
 .firstLine h1{
