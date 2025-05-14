@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8"/>
+    <title>Navbar</title>
+    <link rel="stylesheet" href="navbar_transparent.css">
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <script src="../../js/darkMode.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <a href="../../index.html" class="navbar-brand">
+                <img id = "navbarLogo" src="../../images/Logo_SchriftWeiß.png" alt="Extrem Performance Nutrition Logo" width="120px" height="100px"/>
+            </a>
+            <nav role="navigation" class="nav-menu-wrapper">
+                <ul role="list" class="nav-menu">
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li class="nav-dropdown">
+                        <div class="nav-dropdown-toggle">
+                            <div class="nav-dropdown-icon"></div>
+                            <div>Proteinpulver</div>
+                        </div>
+                        <nav class="nav-dropdown-list">
+                            <a href="#" class="nav-dropdown-link">Whey Protein</a>
+                            <a href="#" class="nav-dropdown-link">Isolat</a>
+                            <a href="#" class="nav-dropdown-link">Vegan</a>
+                        </nav>
+                    </li>
+                    <li class="nav-dropdown">
+                        <div class="nav-dropdown-toggle">
+                            <div class="nav-dropdown-icon"></div>
+                            <div>Proteinriegel</div>
+                        </div>
+                        <nav class="nav-dropdown-list">
+                            <a href="#" class="nav-dropdown-link">Vegan</a>
+                            <a href="#" class="nav-dropdown-link">Low Carb</a>
+                        </nav>
+                    </li>
+                </ul>
+            </nav>
+            <div class="icon-container">
+                <a href="#" class="navbar-icon"><img src="../../images/user.png" width="32" alt=""/></a>
+                <a href="#" class="navbar-icon"><img src="../../images/shopping-cart.png" width="32" alt=""/></a>
+            </div>
+            <div class="menu-button">
+                <div class="w-icon-nav-menu"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const dropdowns = document.querySelectorAll('.nav-dropdown');
+        
+        dropdowns.forEach(dropdown => {
+          const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+
+          toggle.addEventListener('click', () => {
+            dropdown.classList.toggle('open');
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          dropdowns.forEach(dropdown => {
+            if (!dropdown.contains(e.target)) {
+              dropdown.classList.remove('open');
+            }
+          });
+        });
+      });
+    </script>
+</body>
+</html>

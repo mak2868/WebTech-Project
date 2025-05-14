@@ -1,0 +1,221 @@
+/* ========== erstellt von: Felix Bartel (-127), Marvin Kunz (ab 128), Merzan Köse (ab 150 - 200)========== */
+
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ========== BODY ========== */
+body {
+  font-family: Arial, sans-serif;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.6;
+  background-color: var(--color-background-weiß);
+  color: var(--color-text);
+}
+
+
+:root {
+  --color-text: #1a1a1a;      
+  --color-heading: #111;
+  --color-background-weiß: #ffffff;
+  --color-background-schwarz: #000000;
+  --color-button: #ffc356;
+  --color-button-text: #000000;
+  --color-button-hover: #efecec;
+  --color-link: #ffc356;
+  --color-border: #ccc;
+}
+
+
+
+/* ========== LINKS ========== */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* ========== BILDER ========== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* ========== LAYOUT HELPERS ========== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* ========== TYPOGRAPHY ========== */
+h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+h3 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--color-heading);
+}
+
+
+/* ========== PARAGRAPH ========== */
+p {
+  margin-bottom: 1rem;
+}
+
+
+/* ========== BUTTONS ========== */
+button, 
+.btn {
+  margin-top: 0.5rem;
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  background-color: var(--color-button);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 1.5rem;               /* große, moderne Rundung */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--color-button-hover);
+}
+
+
+/* ========== UTILITIES ========== */
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; } 
+
+
+/* ========== SELECT-BOX ========== */
+.select-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.select-wrapper select {
+  appearance: none; 
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  background-color: var(--color-button);
+  
+  border-radius: 1.5rem;
+  border-color: var(--color-button);
+  padding: 0.75rem 3rem;
+  color: var(--color-button-text);
+  cursor: pointer;
+}
+
+
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+@media (max-width: 1024px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+
+  button,
+  .btn {
+    font-size: 1.05rem;
+    padding: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  button,
+  .btn {
+    font-size: 1rem;
+    padding: 0.65rem;
+  }
+
+  .container {
+    width: 95%;
+  }
+
+  .select-wrapper select {
+    padding: 0.65rem 2.5rem;
+    background-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.1rem; }
+
+  button,
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
+}
+
