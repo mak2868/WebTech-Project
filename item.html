@@ -14,6 +14,7 @@
     <script type="module" src="js/items.js"></script>
     <script src="js/cart.js"></script>
     <script type="module" src="js/darkMode.js"></script>
+    <script src="js/wishList.js"></script>
     <link rel="stylesheet" href="style/cart-slide.css">
 </head>
 
@@ -68,10 +69,10 @@
 </header>
 
 <body>
-
     <main>
-        <div class='top'>
+        <section class='top'>
             <div class='top-left'>
+                <!-- Produktbild-Auswahl -->
                 <div class="ProduktbildAuswahl">
                     <img src="images/Choco Whey.webp" alt="Bild nicht verfügbar" onclick="switchProductbild(0)">
                     <img src="images/choco_whey.jpeg" alt="" onclick="switchProductbild(1)">
@@ -85,30 +86,28 @@
 
             <div class='top-rigth'>
                 <!-- Produktüberschrift -->
-                <div class='Produktüberschrift'>
-                    <div class='firstLine'>
-                        <h2>Whey Protein Choco</h2>
-                        <!-- Bewertungsskala -->
-                        <div id="Bewertungsskala">
-                            <script>
-                                window.onload = () => {
-                                    const rating = 4.78;
-                                    const container = document.getElementById("Bewertungsskala");
+                <div class='firstLine'>
+                    <h2>Whey Protein Choco</h2>
+                    <!-- Bewertungsskala -->
+                    <div id="Bewertungsskala">
+                        <script>
+                            window.onload = () => {
+                                const rating = 4.78;
+                                const container = document.getElementById("Bewertungsskala");
 
-                                    createStars(rating).then((canvas) => {
-                                        if (canvas instanceof HTMLCanvasElement) {
-                                            container.appendChild(canvas);
-                                        }
-                                    }).catch((error) => {
-                                        console.error("Fehler:", error);
-                                    });
-                                };    
-                            </script>
-                        </div>
-                        <p>(4021)</p>
+                                createStars(rating).then((canvas) => {
+                                    if (canvas instanceof HTMLCanvasElement) {
+                                        container.appendChild(canvas);
+                                    }
+                                }).catch((error) => {
+                                    console.error("Fehler:", error);
+                                });
+                            };    
+                        </script>
                     </div>
-                    <h3>Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat</h3>
+                    <p>(4021)</p>
                 </div>
+                <h3>Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat</h3>
 
                 <!-- Sortenauswahl -->
                 <div class="select-wrapper">
@@ -157,6 +156,7 @@
                     </script>
                 </div>
 
+
                 <!-- Versand + Favoriten-->
                 <div class='VersandFavoriten'>
                     <button class="VersandButton"
@@ -164,15 +164,13 @@
                         <img src="images/shopping-cart.png" alt="">
                         <span>In den Warenkorb</span>
                     </button>
-                    <!-- <img class = "FavButton" src="images/favorite_16566172.png" alt=""> -->
-                    <!-- <img class = "FavButton" src="images/Herz_unausgefüllt.png" alt=""> -->
-                    <img class="FavButton" src="images/Herz_ausgefüllt.png" alt="">
+                    <img class="FavButton"  onclick="changeWishListStatus('Whey Protein Choco', 'images/Choco Whey.webp', 21.00)" src="images/Herz_unausgefüllt.png" alt="">
                     <br>
                 </div>
                 <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
             </div>
 
-        </div>
+        </section>
 
 
         <div class='ProduktinformationKlBild'>
@@ -386,12 +384,12 @@
                         <article>
                             <h4>Tipp</h4>
                             <p>Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge
-                                nutzen. Hier sind ein paar Inspirationen:
+                                nutzen. <br>Hier sind ein paar Inspirationen:
                             </p>
-                        </article>
-
+                        </article>     
+                        
                         <div class="btn-group-Rezeptidee">
-                            <button onclick="switchRecipe(1)">Brownie</button>
+                            <button id='selectedRecipe' onclick="switchRecipe(1)">Brownie</button>
                             <button onclick="switchRecipe(2)">Porridge</button>
                             <button onclick="switchRecipe(3)">Milchshake</button>
                         </div>
@@ -482,6 +480,11 @@
                                 Workout.</p>
                         </article>
                     </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            switchRecipe(1); 
+                          });
+                    </script>
                     <script>
                         var targetPanel = document.querySelectorAll('.accordion')[2];
                         targetPanel.addEventListener('click', () => openPanel(2));

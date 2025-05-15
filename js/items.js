@@ -110,12 +110,12 @@ function openPanel(activatedIndex) {
     const acc = document.querySelectorAll('.accordion');
 
     if (activatedIndex == 2) {
-        let selectedButton = document.getElementsByClassName('Brownie')[0];
-        selectedButton.style.display = 'block';
-        let nonSelectedButton1 = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedButton1.style.display = 'none';
-        let nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
-        nonSelectedButton2.style.display = 'none';
+        let selectedRecipe = document.getElementsByClassName('Brownie')[0];
+        selectedRecipe.style.display = 'block';
+        let nonSelectedRecipe1 = document.getElementsByClassName('Milchshake')[0];
+        nonSelectedRecipe1.style.display = 'none';
+        let nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];
+        nonSelectedRecipe2.style.display = 'none';
     }
     const button = acc[activatedIndex];
     const panel = button.nextElementSibling;
@@ -132,31 +132,42 @@ function openPanel(activatedIndex) {
     if (panel.classList.contains('open')) {
         panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    document.getElementById('selectedRecipe').classList.add('active');
 }
 
 
 function switchRecipe(buttonNumber) {
-    let selectedButton;
-    let nonSelectedButton1;
-    let nonSelectedButton2;
+    let selectedRecipe;
+    let nonSelectedRecipe1;
+    let nonSelectedRecipe2;
 
-    if (buttonNumber == 1) {
-        selectedButton = document.getElementsByClassName('Brownie')[0];
-        nonSelectedButton1 = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
+    if (buttonNumber == 1 ) {
+        selectedRecipe = document.getElementsByClassName('Brownie')[0];
+        nonSelectedRecipe1 = document.getElementsByClassName('Milchshake')[0];
+        nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];
     } else if (buttonNumber == 2) {
-        selectedButton = document.getElementsByClassName('Porridge')[0];
-        nonSelectedButton1 = document.getElementsByClassName('Brownie')[0];
-        nonSelectedButton2 = document.getElementsByClassName('Milchshake')[0];
+        selectedRecipe = document.getElementsByClassName('Porridge')[0];
+        nonSelectedRecipe1 = document.getElementsByClassName('Brownie')[0];
+        nonSelectedRecipe2 = document.getElementsByClassName('Milchshake')[0];
     } else if (buttonNumber == 3) {
-        selectedButton = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedButton1 = document.getElementsByClassName('Brownie')[0];
-        nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
+        selectedRecipe = document.getElementsByClassName('Milchshake')[0];
+        nonSelectedRecipe1 = document.getElementsByClassName('Brownie')[0];
+        nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];
     }
 
-    nonSelectedButton1.style.display = 'none';
-    nonSelectedButton2.style.display = 'none';
-    selectedButton.style.display = 'block';
+    nonSelectedRecipe1.style.display = 'none';
+    nonSelectedRecipe2.style.display = 'none';
+    selectedRecipe.style.display = 'block';
+
+    document.querySelectorAll('.btn-group-Rezeptidee button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.btn-group-Rezeptidee button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        });
+    });
 }
 
 function switchProductbild(pictureNumber) {
