@@ -68,6 +68,10 @@ body {
   text-decoration: underline;
 }
 
+.footer-social {
+  display: flex;
+}
+
 .footer-social a img {
   width: 32px;
   height: 32px;

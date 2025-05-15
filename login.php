@@ -9,9 +9,16 @@
     <!-- Einbinden der globalen und seitenbezogenen CSS-Dateien -->
     <link rel="stylesheet" href="./style/global.css">
     <link rel="stylesheet" href="./style/logreg.css">
+    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+    <script src="components/Navbar/navbar.js" defer></script>
+    <script src="js/darkmode.js" defer></script>
+
+
 </head>
 <body>
+        <?php include 'components/Navbar/navbar.php'; ?>
     <!-- Wrapper für das gesamte Formular zur besseren Formatierung -->
+    <main style="padding-top: 40px">
     <div class="form-wrapper">
 
         <!-- Formular zum Einloggen (POST wird an Server gesendet) -->
@@ -38,7 +45,7 @@
             <p class="form-text">Noch kein Konto?</p>
 
             <!-- Button zur Weiterleitung auf die Registrierungsseite -->
-            <button type="button" class="btn-esn" onclick="window.location.href='registration.html'">
+            <button type="button" class="btn-esn" onclick="window.location.href='registration.php'">
                 Registrieren
             </button>
         </form>
@@ -46,5 +53,7 @@
 
     <!-- Einbinden der JavaScript-Datei zur Validierung -->
     <script src="js/validate-login.js"></script>
+    <?php include 'components/Footer/footer.php'; ?>
+</main>
 </body>
 </html>

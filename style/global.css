@@ -11,12 +11,12 @@
 /* ========== BODY ========== */
 body {
   font-family: Arial, sans-serif;
+  padding-top: 100px;
   font-size: clamp(14px, 2vw, 18px);
   line-height: 1.6;
   background-color: var(--color-background-weiß);
   color: var(--color-text);
 }
-
 
 :root {
   --color-text: #1a1a1a;      
@@ -166,6 +166,55 @@ button:hover,
   color: var(--color-button-text);
   cursor: pointer;
 }
+
+
+
+
+/* ========== DARK MODE ========== */
+body.dark-mode {
+  --color-text-darkmode: #e0e0e0;
+  --color-heading: #ffffff;
+  --color-background-darkmode: #121212;
+  --color-button-darkmode: #ffc356;
+  --color-button-text-darkmode: #000000;
+  --color-button-hover-darkmode: #efecec;
+  --color-link-darkmode: #ffc356;
+  --color-border-darkmode: #ccc;
+}
+
+/* Zusätzliche Anpassungen für dark-mode */
+body.dark-mode {
+  background-color: var(--color-background-darkmode);
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: var(--color-heading-darkmode);
+}
+
+body.dark-mode .select-wrapper select {
+  background-color: var(--color-button-darkmode);
+  color: var(--color-button-text-darkmode);
+  border-color: var(--color-border-darkmode);
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+}
+
+body.dark-mode button,
+body.dark-mode .btn {
+  background-color: var(--color-button-darkmode);
+  color: var(--color-button-text-darkmode);
+}
+
+body.dark-mode button:hover,
+body.dark-mode .btn:hover {
+  background-color: var(--color-button-hover-darkmode);
+}
+
 
 
 

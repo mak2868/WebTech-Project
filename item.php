@@ -9,67 +9,23 @@
     <title>XPN | Whey Protein Choco</title>
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/items.css">
-    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-    <link rel="stylesheet" href="components/Footer/footer.css">
-    <script type="module" src="js/items.js"></script>
-    <script src="js/cart.js"></script>
-    <script type="module" src="js/darkMode.js"></script>
     <link rel="stylesheet" href="style/cart-slide.css">
+    <link rel="stylesheet" href="components/Footer/footer.css">
+    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+    <script src="js/items.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="components/Navbar/navbar.js" defer></script>
+    <script src="js/darkmode.js" defer></script>
+
+
 </head>
 
-<header>
-    <!-- NAVBAR -->
+<body>
+    <?php include 'components/Navbar/navbar.php'; ?>
     <div class='topPic'>
         <img src="images/Schokopulver_Top.jpg" alt="">
-    </div>
-    <div class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-brand">
-                <img id="navbarLogo" src="images/Logo_SchriftWeiß.png" alt="Logo" width="120px" height="100px" />
-            </a>
-            <nav role="navigation" class="nav-menu-wrapper">
-                <ul role="list" class="nav-menu">
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-dropdown">
-                        <div class="nav-dropdown-toggle">
-                            <div class="nav-dropdown-icon"></div>
-                            <div>Proteinpulver</div>
-                        </div>
-                        <nav class="nav-dropdown-list">
-                            <a href="ProteinpulverList.html" class="nav-dropdown-link">Whey Protein</a>
-                            <a href="ProteinpulverList.html" class="nav-dropdown-link">Isolat</a>
-                            <a href="ProteinpulverList.html" class="nav-dropdown-link">Vegan</a>
-                        </nav>
-                    </li>
-                    <li class="nav-dropdown">
-                        <div class="nav-dropdown-toggle">
-                            <div class="nav-dropdown-icon"></div>
-                            <div>Proteinriegel</div>
-                        </div>
-                        <nav class="nav-dropdown-list">
-                            <a href="ProteinriegelList.html" class="nav-dropdown-link">Vegan</a>
-                            <a href="ProteinriegelList.html" class="nav-dropdown-link">Low Carb</a>
-                        </nav>
-                    </li>
-                </ul>
-            </nav>
-            <div class="icon-container">
-                <a id="darkmodeBtn" class="navbar-icon"><img src="images/Mond.png" width="32" alt="" /></a>
-                <a id="userBtn" href="login.html" class="navbar-icon"><img src="images/user.png" width="32"
-                        alt="" /></a>
-                <a id="cartBtn" href="cart.html" class="navbar-icon"><img src="images/shopping-cart.png"
-                        width="32" alt="" /></a>
-            </div>
-            <div class="menu-button">
-                <div class="w-icon-nav-menu"></div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<body>
-
-    <main>
+        
+    <main style="padding-top: 80px">
         <div class='top'>
             <div class='top-left'>
                 <div class="ProduktbildAuswahl">
@@ -513,7 +469,7 @@
 
         </div>
     </main>
-
+  <?php include 'components/Footer/footer.php'; ?>
 </body>
 
 </html>
