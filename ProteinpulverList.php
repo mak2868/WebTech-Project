@@ -8,51 +8,14 @@
   <title>XPN | Proteinpulver</title>
   <link rel="stylesheet" href="style/global.css">
   <link rel="stylesheet" href="style/Grid-List.css">
-  <link rel="stylesheet" href="components/Navbar/navbar.css">
+  <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+  <script src="components/Navbar/navbar.js" defer></script>
+  <script src="js/darkmode.js" defer></script>
 </head>
-<body>
-  
-<!-- NAVBAR (Felix Bartel)-->
-<div class="navbar">
-  <div class="navbar-container">
-      <a href="../index.html" class="navbar-brand">
-          <img src="../images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" />
-      </a>
-      <nav role="navigation" class="nav-menu-wrapper">
-          <ul role="list" class="nav-menu">
-              <li><a href="about.html" class="nav-link">About</a></li>
-              <li class="nav-dropdown">
-                  <div class="nav-dropdown-toggle">
-                      <div class="nav-dropdown-icon"></div>
-                      <div>Proteinpulver</div>
-                  </div>
-                  <nav class="nav-dropdown-list">
-                      <a href="ProteinpulverList.html" class="nav-dropdown-link">Whey Protein</a>
-                      <a href="ProteinpulverList.html" class="nav-dropdown-link">Isolat</a>
-                      <a href="ProteinpulverList.html" class="nav-dropdown-link">Vegan</a>
-                  </nav>
-              </li>
-              <li class="nav-dropdown">
-                  <div class="nav-dropdown-toggle">
-                      <div class="nav-dropdown-icon"></div>
-                      <div>Proteinriegel</div>
-                  </div>
-                  <nav class="nav-dropdown-list">
-                      <a href="ProteinriegelList.html" class="nav-dropdown-link">Vegan</a>
-                      <a href="ProteinriegelList.html" class="nav-dropdown-link">Low Carb</a>
-                  </nav>
-              </li>
-          </ul>
-      </nav>
-      <div class="icon-container">
-          <a href="login.html" class="navbar-icon"><img src="images/user.png" width="32" alt="" /></a>
-          <a href="# " class="navbar-icon"><img src="images/shopping-cart.png" width="32" alt="" /></a>
-      </div>
-      <div class="menu-button">
-          <div class="w-icon-nav-menu"></div>
-      </div>
-  </div>
-</div>
+
+
+<body style="padding-top: 80px">
+      <?php include 'components/Navbar/navbar.php'; ?>
 
   <h1>Unser Proteinpulver</h1>
 <main>
@@ -202,6 +165,6 @@
     });
   }
   </script>
-
+  <?php include 'components/Footer/footer.php'; ?>
 </body>
 </html>

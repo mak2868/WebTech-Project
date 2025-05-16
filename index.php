@@ -7,60 +7,18 @@
     <title>Hero Section</title>
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/index.css">
-    <link rel="stylesheet" href="components/Navbar/navbar.css">
+    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
     <link rel="stylesheet" href="components/Footer/footer.css">
+    <script src="components/Navbar/navbar.js" defer></script>
+    <script src="js/darkmode.js" defer></script>
+
+
 </head>
-<body>
-    
-      <!-- NAVBAR -->
-  <div class="navbar">
-    <div class="navbar-container">
-      <a href="index.html" class="navbar-brand">
-        <img src="images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" class="invert-keep"/>
-      </a>
-      <nav role="navigation" class="nav-menu-wrapper">
-        <ul role="list" class="nav-menu">
-          <li><a href="about.html" class="nav-link">About</a></li>
-          <li class="nav-dropdown">
-            <div class="nav-dropdown-toggle">
-              <div class="nav-dropdown-icon"></div>
-              <div>Proteinpulver</div>
-            </div>
-            <nav class="nav-dropdown-list">
-              <a href="ProteinpulverList.html" class="nav-dropdown-link">Whey Protein</a>
-              <a href="ProteinpulverList.html" class="nav-dropdown-link">Isolat</a>
-              <a href="ProteinpulverList.html" class="nav-dropdown-link">Vegan</a>
-            </nav>
-          </li>
-          <li class="nav-dropdown">
-            <div class="nav-dropdown-toggle">
-              <div class="nav-dropdown-icon"></div>
-              <div>Proteinriegel</div>
-            </div>
-            <nav class="nav-dropdown-list">
-              <a href="ProteinriegelList.html" class="nav-dropdown-link">Vegan</a>
-              <a href="ProteinriegelList.html" class="nav-dropdown-link">Low Carb</a>
-            </nav>
-          </li>
-        </ul>
-      </nav>
-      <div class="icon-container">
-<a id="darkmodeBtn" class="navbar-icon" onclick="document.documentElement.classList.toggle('darkmode')">
-  <img src="images/Mond.png" width="32" alt="Darkmode umschalten" class="invert-keep"/>
-</a>
-<a href="login.html" class="navbar-icon">
-  <img src="images/user.png" width="32" alt="" class="invert-keep" />
-</a>
-<a href="cart.html" class="navbar-icon">
-  <img src="images/shopping-cart.png" width="32" alt="" class="invert-keep"/></a>
-      </div>
-      <div class="menu-button">
-        <div class="w-icon-nav-menu"></div>
-      </div>
-    </div>
-  </div>
+<body class="dark-page">
+    <?php include 'components/Navbar/navbar.php'; ?>
 
 
+<main>
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -217,7 +175,9 @@
     </div>
   </div>
 </section>
+</main>
 <script src="js/cart.js"></script>
+  <?php include 'components/Footer/footer.php'; ?>
   </body>
   </html>
   
