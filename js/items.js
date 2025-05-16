@@ -1,3 +1,5 @@
+import { updateDarkmodeState } from './darkMode.js';
+
 window.createStars = createStars;
 window.openPanel = openPanel;
 window.switchRecipe = switchRecipe;
