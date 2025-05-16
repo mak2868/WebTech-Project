@@ -1,10 +1,9 @@
 /* ========== erstellt von: Marvin Kunz ========== */
 
 :root {
-  --color-button1: white;
-  --color-button1border: #ffc356;
-  --color-button1selected: rgba(255, 195, 86, 0.75);
-  --color-button-hover: #efecec;
+  --color-button: white;
+  --color-button-border: #ffc356;
+  --color-button-selected: rgba(255, 195, 86, 0.75);
 }
 
 /* ========== MAIN ========== */
@@ -155,12 +154,12 @@ select option {
 
   display: flex;
   justify-content: center;
-  background-color: var(--color-button1);
-  border: 2px solid var(--color-button1border);
+  background-color: var(--color-button);
+  border: 2px solid var(--color-button-border);
 }
 
 .VerpackungsgrößenButtons .btn.active {
-  background-color: var(--color-button1selected);
+  background-color: var(--color-button-selected);
 }
 
 .VerpackungsgrößenButtons .btn:not(.active):hover {
@@ -328,32 +327,32 @@ select option {
   height: auto;
   float: left;
   border-radius: 0px;
-  background-color: var(--color-button1);
+  background-color: var(--color-button);
 }
 
 .btn-group-Rezeptidee button:first-child {
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
-  border-left: 2px solid var(--color-button1border);
-  border-top: 2px solid var(--color-button1border);
-  border-bottom: 2px solid var(--color-button1border);
+  border-left: 2px solid var(--color-button-border);
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
 }
 
 .btn-group-Rezeptidee button:nth-child(2){
-  border-top: 2px solid var(--color-button1border);
-  border-bottom: 2px solid var(--color-button1border);
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
 }
 
 .btn-group-Rezeptidee button:last-child {
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
-  border-right: 2px solid var(--color-button1border);
-  border-top: 2px solid var(--color-button1border);
-  border-bottom: 2px solid var(--color-button1border);
+  border-right: 2px solid var(--color-button-border);
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
 }
 
 .btn-group-Rezeptidee button.active {
-  background-color: var(--color-button1selected);
+  background-color: var(--color-button-selected);
 }
 
 .btn-group-Rezeptidee button:not(.active):hover {
