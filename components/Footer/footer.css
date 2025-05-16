@@ -21,6 +21,7 @@ body {
 .footer-form-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: var(--color-text); 
 }
 
 .footer-form-block {
