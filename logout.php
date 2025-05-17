@@ -22,8 +22,8 @@
 
     <p>Sie wurden erfolgreich abgemeldet </p>
 
-    <a href="login.html"> Zur Anmeldung</a>
-    <a href="index.html"> Zurück zur Startseite</a>
+    <a href="login.php"> Zur Anmeldung</a>
+    <a href="index.php"> Zurück zur Startseite</a>
     </div>
       <?php include 'components/Footer/footer.php'; ?>
 </main>

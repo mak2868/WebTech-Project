@@ -43,6 +43,21 @@
   width: 100%;                         /* volle Breite innerhalb des Wrappers */
 }
 
+/* Dropdown und Date-Felder im gleichen Stil */
+.form-wrapper select,
+.form-wrapper input[type="date"],
+.form-wrapper input[type="number"] {
+  margin-bottom: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+  background-color: #fff;
+  color: #000;
+}
+
+
 /* Hover-Effekt für .btn (auch für .btn-esn wirksam, wenn gemeinsam genutzt) */
 .form-wrapper .btn:hover {
   background-color: #333;
@@ -125,4 +140,13 @@ body.dark-mode input::placeholder {
 body.dark-mode p,
 body.dark-mode .form-text {
     color: #dddddd;
+}
+
+/* Darkmode-Unterstützung */
+body.dark-mode select,
+body.dark-mode input[type="date"],
+body.dark-mode input[type="number"] {
+  background-color: #333;
+  color: white;
+  border: 1px solid #555;
 }
