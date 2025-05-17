@@ -23,8 +23,10 @@
   <!-- Wrapper zur zentrierten Darstellung des Formulars -->
   <div class="form-wrapper">
 
-    <!-- Logo der Anwendung -->
-    <img src="./images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
+    <!-- Logo der Anwendung mit der Referenzierung auf Homepage -->
+    <a href="index.php">
+        <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
+    </a>
 
     <!-- Hauptüberschrift -->
     <h1>Registrierung</h1>
