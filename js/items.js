@@ -1,29 +1,30 @@
+// import { updateDarkmodeState } from './darkMode.js';
+
 window.createStars = createStars;
 window.openPanel = openPanel;
 window.switchRecipe = switchRecipe;
 window.switchProductbild = switchProductbild;
 window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
-
-
+window.changeSelectedSize = changeSelectedSize;
 
 function createStars(rating) { 
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
-        emptyImg.src = "../images/StarEmpty.svg";
+        emptyImg.src = "/WebTech-Project/images/StarEmpty.svg";
 
         const oneQImg = new Image();
-        oneQImg.src = "../images/StarOneQuarter.svg";
+        oneQImg.src = "/WebTech-Project/images/StarOneQuarter.svg";
 
         const halfImg = new Image();
-        halfImg.src = "../images/StarHalf.svg";
+        halfImg.src = "/WebTech-Project/images/StarHalf.svg";
 
         const threeQImg = new Image();
-        threeQImg.src = "../images/StarThreeQuarter.svg";
+        threeQImg.src = "/WebTech-Project/images/StarThreeQuarter.svg";
 
         const fullImg = new Image();
-        fullImg.src = "../images/StarFull.svg";
+        fullImg.src = "/WebTech-Project/images/StarFull.svg";
 
         const images = [emptyImg, oneQImg, halfImg, threeQImg, fullImg];
 
@@ -131,40 +132,52 @@ function openPanel(activatedIndex) {
     if (panel.classList.contains('open')) {
         panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+     document.getElementById('selectedRecipe').classList.add('active');
 }
 
 
 function switchRecipe(buttonNumber) {
-    let selectedButton;
-    let nonSelectedButton1;
-    let nonSelectedButton2;
+    let selectedRecipe;
+    let nonSelectedRecipe1;
+    let nonSelectedRecipe2;
 
-    if (buttonNumber == 1) {
-        selectedButton = document.getElementsByClassName('Brownie')[0];
-        nonSelectedButton1 = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
+    if (buttonNumber == 1 ) {
+        selectedRecipe = document.getElementsByClassName('Brownie')[0];
+        nonSelectedRecipe1 = document.getElementsByClassName('Milchshake')[0];
+        nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];
     } else if (buttonNumber == 2) {
-        selectedButton = document.getElementsByClassName('Porridge')[0];
-        nonSelectedButton1 = document.getElementsByClassName('Brownie')[0];
-        nonSelectedButton2 = document.getElementsByClassName('Milchshake')[0];
+        selectedRecipe = document.getElementsByClassName('Porridge')[0];
+        nonSelectedRecipe1 = document.getElementsByClassName('Brownie')[0];
+        nonSelectedRecipe2 = document.getElementsByClassName('Milchshake')[0];
     } else if (buttonNumber == 3) {
-        selectedButton = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedButton1 = document.getElementsByClassName('Brownie')[0];
-        nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
+        selectedRecipe = document.getElementsByClassName('Milchshake')[0];
+        nonSelectedRecipe1 = document.getElementsByClassName('Brownie')[0];
+        nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];
     }
 
-    nonSelectedButton1.style.display = 'none';
-    nonSelectedButton2.style.display = 'none';
-    selectedButton.style.display = 'block';
+    nonSelectedRecipe1.style.display = 'none';
+    nonSelectedRecipe2.style.display = 'none';
+    selectedRecipe.style.display = 'block';
+
+    document.querySelectorAll('.btn-group-Rezeptidee button').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.btn-group-Rezeptidee button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        });
+    });
 }
+
 
 function switchProductbild(pictureNumber) {
     const pics = document.querySelectorAll('.ProduktbildAuswahl img');
 
     const picsSrc = [
-        '../images/Choco Whey.webp',
-        '../images/choco_whey.jpeg',
-        '../images/Proteinpulver_Unsplash.jpg'
+        '/WebTech-Project/images/Choco Whey.webp',
+        '/WebTech-Project/images/choco_whey.jpeg',
+        '/WebTech-Project/images/Proteinpulver_Unsplash.jpg'
     ];
 
     let selectedPic;
@@ -209,3 +222,41 @@ function getPricePerKG(price, totalWeight) {
     return returnValue.toFixed(2);
 }
 
+let isFirstCallchangeSelectedSize = true;
+
+function changeSelectedSize() {
+
+    if (isFirstCallchangeSelectedSize) {
+        isFirstCallchangeSelectedSize = false;
+
+        document.getElementById('selectedSize').classList.add('active');
+    }
+    document.querySelectorAll('.VerpackungsgrößenButtons .btn').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.VerpackungsgrößenButtons .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        });
+    });
+}
+
+
+export const scrollBorder = 40;
+
+window.addEventListener('scroll', function () {
+    const scrollY = window.scrollY;
+
+    const linkElement = document.querySelector('link[href*="navbar_transparent.css"], link[href*="navbar_intransparent.css"]');
+
+    if (!linkElement) return;
+
+    if (scrollY > scrollBorder) {
+        linkElement.href = "/WebTech-Project/components/Navbar/navbar_intransparent.css";
+        // updateDarkmodeState();
+    } else {
+        linkElement.href = "/WebTech-Project/components/Navbar/navbar_transparent.css";
+        // updateDarkmodeState();
+    }
+
+});
