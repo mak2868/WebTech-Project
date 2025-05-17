@@ -35,12 +35,17 @@
 .form-wrapper input[type="text"],
 .form-wrapper input[type="password"],
 .form-wrapper input[type="email"] {
-  margin-bottom: 0.5rem;               /* Abstand nach unten */
-  padding: 0.75rem 1rem;               /* Innenabstand (oben/unten & seitlich) */
-  border-radius: 10px;                 /* abgerundete Ecken */
-  border: 1px solid #ccc;              /* hellgrauer Rand */
+  margin-bottom: 0.5rem;
+  /* Abstand nach unten */
+  padding: 0.75rem 1rem;
+  /* Innenabstand (oben/unten & seitlich) */
+  border-radius: 10px;
+  /* abgerundete Ecken */
+  border: 1px solid #ccc;
+  /* hellgrauer Rand */
   font-size: 1rem;
-  width: 100%;                         /* volle Breite innerhalb des Wrappers */
+  width: 100%;
+  /* volle Breite innerhalb des Wrappers */
 }
 
 /* Dropdown und Date-Felder im gleichen Stil */
@@ -75,7 +80,8 @@
   background-color: #000;
   color: white;
   border: none;
-  border-radius: 1.5rem;               /* große, moderne Rundung */
+  border-radius: 1.5rem;
+  /* große, moderne Rundung */
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-bottom: 0;
@@ -98,48 +104,52 @@
 /* ================= BUTTON-ABSTAND NEBENEINANDER ================= */
 /* Sorgt für horizontalen Abstand zwischen Buttons (z. B. Registrieren & Abbrechen) */
 .form-wrapper button:not(:last-child) {
-  margin-right: 5.5rem;  /* relativ großer Abstand zum nächsten Button */
+  margin-right: 5.5rem;
+  /* relativ großer Abstand zum nächsten Button */
 }
 
 .form-Logo {
-  margin: 0 auto;                 /* zentriert */
-  max-width: 200px;            /* kleinere Darstellung als vorher */
+  margin: 0 auto;
+  /* zentriert */
+  max-width: 200px;
+  /* kleinere Darstellung als vorher */
   height: auto;
-  opacity: 0.95;              /* optional: leicht dezenter Look */
+  opacity: 0.95;
+  /* optional: leicht dezenter Look */
 }
 
 /* Nur im Darkmode: Hintergrund und Text anpassen */
 body.dark-mode {
-    background-color: #1e1e1e;
-    color: #ffffff;
+  background-color: #1e1e1e;
+  color: #ffffff;
 }
 
 /* Formular-Bereich */
 body.dark-mode .form-wrapper {
-    background-color: #2a2a2a;
+  background-color: #2a2a2a;
 }
 
 /* Labels dunkel anzeigen */
 body.dark-mode label {
-    color: #dddddd;
+  color: #dddddd;
 }
 
 /* Eingabefelder anpassen */
 body.dark-mode input {
-    background-color: #333333;
-    color: #ffffff;
-    border: 1px solid #555;
+  background-color: #333333;
+  color: #ffffff;
+  border: 1px solid #555;
 }
 
 /* Placeholder (z. B. ausgegrauter Text im Feld) */
 body.dark-mode input::placeholder {
-    color: #aaaaaa;
+  color: #aaaaaa;
 }
 
 /* Texte wie "Noch kein Konto?" sichtbar machen */
 body.dark-mode p,
 body.dark-mode .form-text {
-    color: #dddddd;
+  color: #dddddd;
 }
 
 /* Darkmode-Unterstützung */
@@ -185,4 +195,28 @@ body.dark-mode .hint-error {
   background-color: #3a1e1e;
   color: #ffaaaa;
   border: 1px solid #ff4d4d;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Eingabefelder gleichmäßig */
+.form-grid input,
+.form-grid select {
+  width: 100%;
+}
+
+/* Für schmale Screens wieder 1 Spalte */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
 }
