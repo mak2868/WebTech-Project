@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="style/cart-slide.css">
     <link rel="stylesheet" href="components/Footer/footer.css">
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-    <script src="js/items.js"></script>
-    <script src="js/cart.js"></script>
     <script src="components/Navbar/navbar.js" defer></script>
-    <script src="js/darkmode.js" defer></script>
+    <script type="module" src="js/items.js"></script>
+    <script src="js/cart.js"></script>
+    <script type="module" src="js/darkmode.js" defer></script>
+    <script src="js/wishList.js"></script>
 
 
 </head>
@@ -26,7 +27,7 @@
         <img src="images/Schokopulver_Top.jpg" alt="">
         
     <main style="padding-top: 80px">
-        <div class='top'>
+        <section class='top'>
             <div class='top-left'>
                 <div class="ProduktbildAuswahl">
                     <img src="images/Choco Whey.webp" alt="Bild nicht verfügbar" onclick="switchProductbild(0)">
@@ -41,9 +42,8 @@
 
             <div class='top-rigth'>
                 <!-- Produktüberschrift -->
-                <div class='Produktüberschrift'>
                     <div class='firstLine'>
-                        <h1>Whey Protein Choco</h1>
+                        <h2>Whey Protein Choco</h2>
                         <!-- Bewertungsskala -->
                         <div id="Bewertungsskala">
                             <script>
@@ -64,7 +64,6 @@
                         <p>(4021)</p>
                     </div>
                     <h3>Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat</h3>
-                </div>
 
                 <!-- Sortenauswahl -->
                 <div class="select-wrapper">
@@ -79,60 +78,53 @@
                 <!-- Verpackungsgrößen -->
                 <div class='Verpackungsgrößen'>
                     <p>Verpackungsgrößen</p>
-                    <div class='VerpackungsgrößenButtons'>
-                        <button class="btn">Probe<br>(30g)</button>
-                        <button class="btn">500g</button>
-                        <button class="btn">2000g</button>
-                        <button class="btn">5000g</button>
+                   <div class='VerpackungsgrößenButtons'>
+                        <button class="btn" onclick="changeSelectedSize()">30g</button>
+                        <button class="btn" id="selectedSize" onclick="changeSelectedSize()">500g</button>
+                        <button class="btn" onclick="changeSelectedSize()">2000g</button>
+                        <button class="btn" onclick="changeSelectedSize()">5000g</button>
                     </div>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        changeSelectedSize();
+                    });
+                </script>
 
 
                 <!-- Preis -->
-                <div class='Preis'>
-                    <input type="text" id="Preis" name="Preis ohne Steuern"
-                        placeholder="Hier einen Preis ohne Steuern eingeben!" style="width: 250px;">
+                   <div class='Preis'>
                     <p id="priceWTax"></p>
                     <p id="pricePerKgOutput"></p>
                     <script>
-                        document.getElementById("Preis").addEventListener("keydown", function (event) {
-                            if (event.key === "Enter") {
-                                const priceWOTax = parseFloat(this.value);
-                                const priceWTax = getTotalPrice(priceWOTax);
-                                document.getElementById("priceWTax").textContent = `${priceWTax} €`;
+                        document.addEventListener("DOMContentLoaded", () => {
+                            const priceWOTax = 21;
+                            const priceWTax = getTotalPrice(priceWOTax);
+                            document.getElementById("priceWTax").textContent = `${priceWTax} €`;
 
-                                const result = getPricePerKG(priceWTax, 0.25);
-                                if (result !== undefined) {
-                                    document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
-                                }
+                            const result = getPricePerKG(priceWTax, 0.25);
+                            if (result !== undefined) {
+                                document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
                             }
                         });
-
                     </script>
                 </div>
 
+
                 <!-- Versand + Favoriten-->
                 <div class='VersandFavoriten'>
-                    <button class="VersandButton" onclick="addToCart('Whey Protein Choco', 'images/Choco Whey.webp', 21.00); openCart();">
+                    <button class="VersandButton"
+                        onclick="addToCart('Whey Protein Choco', 'images/Choco Whey.webp', 21.00); openCart();">
                         <img src="images/shopping-cart.png" alt="">
                         <span>In den Warenkorb</span>
                     </button>
-                    <button class="FavoritenButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 90" width="64" height="64" fill="none"
-                            stroke="white" stroke-width="6">
-                            <path d="M50 80 
-                                     L15 45 
-                                     A20 20 0 0 1 50 20 
-                                     A20 20 0 0 1 85 45 
-                                     Z" />
-                        </svg>
-                    </button>
+                    <img class="FavButton"  onclick="changeWishListStatus('Whey Protein Choco', 'images/Choco Whey.webp', 21.00)" src="images/Herz_unausgefüllt.png" alt="">
                     <br>
-                    <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
                 </div>
+                <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
             </div>
 
-        </div>
+        </section>
 
 
         <div class='ProduktinformationKlBild'>
@@ -351,13 +343,13 @@
                         </article>
 
                         <div class="btn-group-Rezeptidee">
-                            <button onclick="switchRecipe(1)">Brownie</button>
+                            <button id='selectedRecipe' onclick="switchRecipe(1)">Brownie</button>
                             <button onclick="switchRecipe(2)">Porridge</button>
                             <button onclick="switchRecipe(3)">Milchshake</button>
                         </div>
 
                         <article class="Brownie">
-                            <h4>Protein Brownies mit XPN Whey Schokolade</h4>
+                            <h4>Protein-Brownies mit XPN Whey Schokolade</h4>
                             <h5>Zutaten (für ca. 6 Stück):</h5>
                             <ul>
                                 <li>2 reife Bananen (zerdrückt)</li>
@@ -442,6 +434,11 @@
                                 Workout.</p>
                         </article>
                     </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            switchRecipe(1); 
+                          });
+                    </script>
                     <script>
                         var targetPanel = document.querySelectorAll('.accordion')[2];
                         targetPanel.addEventListener('click', () => openPanel(2));
