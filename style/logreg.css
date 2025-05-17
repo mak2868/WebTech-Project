@@ -93,3 +93,36 @@
   opacity: 0.95;              /* optional: leicht dezenter Look */
 }
 
+/* Nur im Darkmode: Hintergrund und Text anpassen */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Formular-Bereich */
+body.dark-mode .form-wrapper {
+    background-color: #2a2a2a;
+}
+
+/* Labels dunkel anzeigen */
+body.dark-mode label {
+    color: #dddddd;
+}
+
+/* Eingabefelder anpassen */
+body.dark-mode input {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555;
+}
+
+/* Placeholder (z. B. ausgegrauter Text im Feld) */
+body.dark-mode input::placeholder {
+    color: #aaaaaa;
+}
+
+/* Texte wie "Noch kein Konto?" sichtbar machen */
+body.dark-mode p,
+body.dark-mode .form-text {
+    color: #dddddd;
+}
