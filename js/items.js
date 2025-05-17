@@ -5,25 +5,23 @@ window.switchProductbild = switchProductbild;
 window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
 
-
-
 function createStars(rating) { 
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
-        emptyImg.src = "../images/StarEmpty.svg";
+        emptyImg.src = "/WebTech-Project/images/StarEmpty.svg";
 
         const oneQImg = new Image();
-        oneQImg.src = "../images/StarOneQuarter.svg";
+        oneQImg.src = "/WebTech-Project/images/StarOneQuarter.svg";
 
         const halfImg = new Image();
-        halfImg.src = "../images/StarHalf.svg";
+        halfImg.src = "/WebTech-Project/images/StarHalf.svg";
 
         const threeQImg = new Image();
-        threeQImg.src = "../images/StarThreeQuarter.svg";
+        threeQImg.src = "/WebTech-Project/images/StarThreeQuarter.svg";
 
         const fullImg = new Image();
-        fullImg.src = "../images/StarFull.svg";
+        fullImg.src = "/WebTech-Project/images/StarFull.svg";
 
         const images = [emptyImg, oneQImg, halfImg, threeQImg, fullImg];
 

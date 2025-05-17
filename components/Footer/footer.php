@@ -47,6 +47,6 @@
       </div>
     </div>
   </section>
-  <script src="footer.js"></script>
+  <script src="/WebTech-Project/components/Footer/footer.js"></script>
 </body>
 </html>
