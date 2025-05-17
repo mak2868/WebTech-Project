@@ -150,3 +150,39 @@ body.dark-mode input[type="number"] {
   color: white;
   border: 1px solid #555;
 }
+
+
+/* ================= TEXT UNTER Registration Inputfeldern ================= */
+.form-rule {
+  margin-top: -0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Neutraler Hinweis */
+.hint-neutral {
+  background-color: #f2f2f2;
+  color: #555;
+}
+
+/* Warnung bei Regelverstoß */
+.hint-error {
+  background-color: #ffe0e0;
+  color: #b30000;
+  border: 1px solid #b30000;
+}
+
+/* Darkmode-Support */
+body.dark-mode .hint-neutral {
+  background-color: #2a2a2a;
+  color: #aaa;
+}
+
+body.dark-mode .hint-error {
+  background-color: #3a1e1e;
+  color: #ffaaaa;
+  border: 1px solid #ff4d4d;
+}

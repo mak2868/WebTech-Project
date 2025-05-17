@@ -37,6 +37,9 @@
       <!-- Eingabefeld für den Benutzernamen -->
       <label for="name">Benutzername</label>
       <input type="text" id="name" name="name" required> <!-- Pflichtfeld -->
+      <p id="username-rule" class="form-rule hint neutral">
+          Mindestens 5 Zeichen, mindestens ein Groß- und ein Kleinbuchstabe
+        </p>
 
       <!-- Eingabefeld für das Passwort -->
       <label for="password">Passwort</label>
@@ -45,6 +48,11 @@
       <!-- Eingabefeld zur Wiederholung des Passworts -->
       <label for="confirm">Passwort wiederholen</label>
       <input type="password" id="confirm" name="confirm" required> <!-- Pflichtfeld -->
+      <p id="confirm-rule" class="form-rule hint-neutral">
+       Passwort muss aus mind. 10 Zeichen bestehen und mit der 
+       Passwortwiederholung übereinstimmen
+      </p>
+
 
       <!-- Button-Leiste: Abbrechen & Registrieren -->
       <div style="display: flex; justify-content: space-between;">
