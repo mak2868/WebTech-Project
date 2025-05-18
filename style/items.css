@@ -396,3 +396,114 @@ header img {
   height: 800px;
   margin: 0;
 }
+
+
+
+/* ============================== */
+/*            Darkmode            */
+/* ============================== */
+
+body.dark-mode {
+  --color-button: white;
+  --color-button-border: #ffc356;
+  --color-button-selected: rgba(255, 195, 86, 0.75);
+}
+
+body.dark-mode .top-rigth{
+  background-color: #202020;
+}
+
+body.dark-mode .select-wrapper select {
+  background-color:white; 
+  border: 2px solid var(--color-button-border);
+}
+
+body.dark-mode .select-wrapper select:focus-visible {
+  border: 2px solid var(--color-button-border); 
+}
+
+/* funktioniert nur beschränkt, Browserabhängig */
+body.dark-mode select option {
+  background-color: white;
+  color: var(--color-button-text);
+  border: 2px solid var(--color-button-border);
+}
+
+body.dark-mode .VerpackungsgrößenButtons .btn {
+  background-color: var(--color-button);
+  border: 2px solid var(--color-button-border);
+}
+
+body.dark-mode .VerpackungsgrößenButtons .btn.active {
+  background-color: var(--color-button-selected);
+}
+
+body.dark-mode .VerpackungsgrößenButtons .btn:not(.active):hover {
+  background-color: var(--color-button-hover);
+  border: 2px solid var(--color-button-hover);
+}
+
+body.dark-mode .VersandButton {
+  background-color: var(--color-button-border);
+}
+
+body.dark-mode .FavButton{
+filter: invert(1);
+}
+
+body.dark-mode .accordion {
+  background-color: #121212;
+  color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+body.dark-mode .accordion::after {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+}
+
+body.dark-mode .accordion:hover {
+  background-color:  #121212;
+}
+
+body.dark-mode .panel {
+  background-color: #202020;
+}
+
+body.dark-mode .panel table th,
+body.dark-mode .panel table td {
+  background-color: #121212;
+}
+
+body.dark-mode .panel table thead th {
+  background-color: black;
+}
+
+body.dark-mode .btn-group-Rezeptidee button {
+  background-color: var(--color-button);
+}
+
+body.dark-mode .btn-group-Rezeptidee button:first-child {
+  border-left: 2px solid var(--color-button-border);
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
+}
+
+body.dark-mode .btn-group-Rezeptidee button:nth-child(2) {
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
+}
+
+body.dark-mode .btn-group-Rezeptidee button:last-child {
+  border-right: 2px solid var(--color-button-border);
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
+}
+
+body.dark-mode .btn-group-Rezeptidee button.active {
+  background-color: var(--color-button-selected);
+}
+
+body.dark-mode .btn-group-Rezeptidee button:not(.active):hover {
+  background-color: var(--color-button-hover);
+  border: 2px solid var(--color-button-hover);
+}

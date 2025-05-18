@@ -125,6 +125,7 @@ function openPanel(activatedIndex) {
 
     if (panel.classList.contains('open')) {
         panel.style.maxHeight = panel.scrollHeight + 20 + 'px';
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
         panel.style.maxHeight = '0px';
     }
