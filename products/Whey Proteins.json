@@ -1,0 +1,1472 @@
+{
+    "Whey Proteins": [
+        {
+            "pid": 1,
+            "name": "Whey Protein Choco",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Choco vereint höchste XPN Qualität mit bestem Geschmack – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.\nMit einem hohen Eiweißanteil aus Molkenproteinkonzentrat liefert es deinem Körper schnell verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.\nEgal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte – unser Choco-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.",
+                "Molkenproteinkonzentrat-Pulver mit Schokoladengeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), fettarmes Kakaopulver, Aroma, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Protein-Brownies mit XPN Whey Schokolade",
+                        "portion": 6,
+                        "ingredients": [
+                            "2 reife Bananen (zerdrückt)",
+                            "2 Eier",
+                            "40 g XPN Whey Protein Choco",
+                            "30 g Kakaopulver (ungesüßt)",
+                            "60 g Haferflocken (zart oder gemahlen)",
+                            "1 TL Backpulver",
+                            "1 TL Kokosöl (geschmolzen)",
+                            "1–2 EL Honig oder Ahornsirup (optional)",
+                            "1 Prise Salz",
+                            "Optional: Zartbitterschoko-Stückchen oder Nüsse für extra Crunch"
+                        ],
+                        "preparation": [
+                            "Den Backofen auf 175 °C (Ober-/Unterhitze) vorheizen und eine kleine Form (ca. 20x20 cm) mit Backpapier auslegen oder leicht einfetten.",
+                            "Die Bananen mit einer Gabel zerdrücken und mit den Eiern verrühren.",
+                            "XPN Whey Protein, Kakaopulver, Haferflocken, Backpulver und Salz untermischen.",
+                            "Kokosöl und Süßungsmittel hinzufügen und alles zu einem glatten Teig verrühren. Optional Schokostückchen oder Nüsse unterheben.",
+                            "Den Teig gleichmäßig in die Form geben und ca. 20–25 Minuten backen.",
+                            "Kurz abkühlen lassen, in Stücke schneiden – fertig!"
+                        ]
+                    },
+                    {
+                        "title": "Protein-Porridge mit XPN Whey Choco",
+                        "description": "Ein energiereiches Frühstück mit hochwertigem Eiweiß – ideal für Fitness- und Leistungssport.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken (zart oder kernig)",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Choco",
+                            "1 Prise Salz",
+                            "Optional: Zimt, Vanille, Banane oder Beeren als natürliche Süße",
+                            "Topping: Nüsse, Samen, Chiasamen oder Nussmus"
+                        ],
+                        "preparation": [
+                            "Haferflocken und Milch in einen kleinen Topf geben und bei mittlerer Hitze erhitzen.",
+                            "Salz und optional Zimt hinzufügen.",
+                            "Unter Rühren aufkochen und ca. 5–7 Minuten köcheln lassen, bis ein cremiger Brei entsteht.",
+                            "Topf vom Herd nehmen und das XPN Whey Protein Choco unterrühren (nicht kochen!).",
+                            "Mit Toppings nach Wahl servieren."
+                        ]
+                    },
+                    {
+                        "title": "Protein-Milchshake mit XPN Whey Choco",
+                        "description": "Perfekt als Pre- oder Post-Workout-Drink – schnell gemixt und voller Eiweiß.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml fettarme Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Choco",
+                            "1 gefrorene Banane oder 1 EL Erdnussbutter (optional, für Energie)",
+                            "1 TL Kakaopulver (ungesüßt, optional für mehr Schoko-Geschmack)",
+                            "Optional: etwas Honig oder Datteln zum Süßen"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einen Mixer geben.",
+                            "So lange mixen, bis die Konsistenz cremig und schaumig ist.",
+                            "In ein Glas füllen und direkt genießen."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 2,
+            "name": "Whey Protein Strawberry",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Strawberry vereint höchste XPN Qualität mit fruchtigem Erdbeergeschmack – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.",
+                "Molkenproteinkonzentrat-Pulver mit Erdbeergeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Rote-Bete-Pulver, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Strawberry-Protein-Muffins",
+                        "portion": 6,
+                        "ingredients": [
+                            "2 Eier",
+                            "100 g Magerquark",
+                            "40 g XPN Whey Protein Strawberry",
+                            "50 g Haferflocken",
+                            "1 TL Backpulver",
+                            "50 g frische oder gefrorene Erdbeeren",
+                            "Etwas Honig oder Ahornsirup",
+                            "1 TL Kokosöl"
+                        ],
+                        "preparation": [
+                            "Ofen auf 180 °C vorheizen, Muffinblech vorbereiten.",
+                            "Alle Zutaten (außer Erdbeeren) zu einem glatten Teig verrühren.",
+                            "Erdbeeren vorsichtig unterheben.",
+                            "Teig in Förmchen füllen, ca. 20–25 Min. backen.",
+                            "Abkühlen lassen und genießen."
+                        ]
+                    },
+                    {
+                        "title": "Strawberry-Protein-Oats",
+                        "description": "Cremiger Frühstücksbrei mit fruchtiger Note.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Strawberry",
+                            "1 Handvoll Erdbeeren",
+                            "1 TL Chiasamen",
+                            "Optional: Mandeln oder Nüsse als Topping"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen, leicht köcheln lassen.",
+                            "Vom Herd nehmen, Proteinpulver und Erdbeeren unterrühren.",
+                            "Mit Toppings servieren."
+                        ]
+                    },
+                    {
+                        "title": "Strawberry-Protein-Smoothie",
+                        "description": "Fruchtiger Shake für zwischendurch oder nach dem Training.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Wasser oder Milch",
+                            "1 Messlöffel XPN Whey Protein Strawberry",
+                            "1 Banane",
+                            "1 Handvoll Erdbeeren (frisch oder gefroren)"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einen Mixer geben.",
+                            "Mixen bis cremig.",
+                            "Sofort genießen."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 3,
+            "name": "Whey Protein Vanilla",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Vanilla vereint höchste XPN Qualität mit einem klassischen Vanillegeschmack – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf cremige Süße verzichten möchten.",
+                "Molkenproteinkonzentrat-Pulver mit Vanillegeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin), natürliches Vanillearoma",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Vanilla-Protein-Pancakes",
+                        "portion": 2,
+                        "ingredients": [
+                            "2 Eier",
+                            "1 reife Banane",
+                            "40 g XPN Whey Protein Vanilla",
+                            "30 g Hafermehl",
+                            "1 TL Backpulver",
+                            "Etwas Zimt",
+                            "Etwas Milch nach Bedarf"
+                        ],
+                        "preparation": [
+                            "Banane zerdrücken und mit den Eiern vermengen.",
+                            "Whey Protein, Hafermehl, Backpulver und Zimt hinzufügen.",
+                            "Optional etwas Milch unterrühren, bis ein dickflüssiger Teig entsteht.",
+                            "In einer heißen Pfanne mit etwas Öl kleine Pancakes ausbacken.",
+                            "Mit Früchten oder Nussmus servieren."
+                        ]
+                    },
+                    {
+                        "title": "Vanilla-Protein-Chia-Pudding",
+                        "description": "Perfekter Overnight-Snack mit Eiweiß und gesunden Fetten.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Mandelmilch",
+                            "1 Messlöffel XPN Whey Protein Vanilla",
+                            "3 EL Chiasamen",
+                            "Etwas Vanilleextrakt",
+                            "Topping: Beeren, Nüsse oder Kokosflocken"
+                        ],
+                        "preparation": [
+                            "Whey Protein mit Mandelmilch glatt rühren.",
+                            "Chiasamen und Vanilleextrakt unterrühren.",
+                            "Für mindestens 4 Stunden oder über Nacht im Kühlschrank quellen lassen.",
+                            "Mit Toppings nach Wahl servieren."
+                        ]
+                    },
+                    {
+                        "title": "Vanilla-Protein-Latte",
+                        "description": "Warmer Vanille-Drink mit extra Eiweiß – perfekt für kühle Tage.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml fettarme Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Vanilla",
+                            "1 TL Honig oder Ahornsirup (optional)",
+                            "Zimt oder Muskatnuss zum Verfeinern"
+                        ],
+                        "preparation": [
+                            "Milch erhitzen, aber nicht kochen.",
+                            "Whey Protein einrühren oder mit einem Milchaufschäumer vermixen.",
+                            "Süßen nach Wunsch und mit Zimt verfeinern.",
+                            "Warm genießen."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 4,
+            "name": "Whey Protein Caramel",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Caramel vereint höchste XPN Qualität mit einem unwiderstehlichen Karamellgeschmack – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und es dabei gerne süß mögen.",
+                "Molkenproteinkonzentrat-Pulver mit Karamellgeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin), natürliches Karamellaroma",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Caramel-Protein-Cookies",
+                        "portion": 8,
+                        "ingredients": [
+                            "1 Ei",
+                            "40 g XPN Whey Protein Caramel",
+                            "50 g Haferflocken",
+                            "1 EL Erdnussbutter",
+                            "1 TL Backpulver",
+                            "1 TL Honig oder Ahornsirup",
+                            "1 Prise Salz",
+                            "Etwas Milch bei Bedarf"
+                        ],
+                        "preparation": [
+                            "Backofen auf 180 °C vorheizen, Backpapier bereitlegen.",
+                            "Alle Zutaten zu einem Teig vermengen, ggf. etwas Milch hinzufügen.",
+                            "Teig zu kleinen Kugeln formen, auf dem Blech flach drücken.",
+                            "Ca. 10–12 Minuten backen, abkühlen lassen und genießen."
+                        ]
+                    },
+                    {
+                        "title": "Caramel-Oat-Protein-Bowl",
+                        "description": "Sämiger Frühstücksgenuss mit süßer Karamellnote.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Caramel",
+                            "1 TL Leinsamen",
+                            "Topping: Apfelstücke, Nüsse, Zimt"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen und kurz köcheln lassen.",
+                            "Vom Herd nehmen, Proteinpulver und Leinsamen unterrühren.",
+                            "Mit Apfel, Nüssen und etwas Zimt toppen."
+                        ]
+                    },
+                    {
+                        "title": "Caramel-Banana-Protein-Smoothie",
+                        "description": "Süßer Shake für Power am Morgen oder nach dem Training.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Milch oder Wasser",
+                            "1 Messlöffel XPN Whey Protein Caramel",
+                            "1 Banane",
+                            "1 TL Erdnussbutter",
+                            "Ein paar Eiswürfel"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einen Mixer geben.",
+                            "Gut mixen bis cremig.",
+                            "Kalt servieren."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 5,
+            "name": "Whey Protein Banana",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Banana vereint höchste XPN Qualität mit cremigem Bananengeschmack – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf natürlichen Geschmack verzichten möchten.",
+                "Molkenproteinkonzentrat-Pulver mit Bananengeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin), natürliches Bananenaroma",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Banana-Protein-Pancakes",
+                        "portion": 2,
+                        "ingredients": [
+                            "2 reife Bananen",
+                            "2 Eier",
+                            "40 g XPN Whey Protein Banana",
+                            "50 g Haferflocken",
+                            "1 TL Backpulver",
+                            "Etwas Zimt",
+                            "Kokosöl zum Braten"
+                        ],
+                        "preparation": [
+                            "Bananen zerdrücken und mit Eiern vermengen.",
+                            "Proteinpulver, Haferflocken, Backpulver und Zimt einrühren.",
+                            "Etwas Kokosöl in Pfanne erhitzen, Pancakes ausbacken.",
+                            "Mit frischem Obst oder Joghurt servieren."
+                        ]
+                    },
+                    {
+                        "title": "Banana-Protein-Oats",
+                        "description": "Warmes Frühstück mit süßem Bananenaroma.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Banana",
+                            "1/2 Banane in Scheiben",
+                            "1 TL Leinsamen",
+                            "Topping: Nüsse, Zimt, Kakaonibs"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen, kurz köcheln lassen.",
+                            "Vom Herd nehmen, Proteinpulver und Banane einrühren.",
+                            "Mit Toppings verfeinern und genießen."
+                        ]
+                    },
+                    {
+                        "title": "Banana-Protein-Smoothie",
+                        "description": "Cremiger Bananen-Shake für vor oder nach dem Workout.",
+                        "portion": 1,
+                        "ingredients": [
+                            "250 ml Milch oder Wasser",
+                            "1 Messlöffel XPN Whey Protein Banana",
+                            "1 reife Banane",
+                            "1 TL Mandelmus",
+                            "Optional: Eiswürfel"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in Mixer geben.",
+                            "Gut durchmixen, bis cremig.",
+                            "Kalt servieren."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 6,
+            "name": "Whey Protein Hazelnut",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Hazelnut vereint höchste XPN Qualität mit nussigem Haselnussgeschmack – perfekt für alle, die ihren Muskelaufbau unterstützen und einen vollmundigen Geschmack lieben.",
+                "Molkenproteinkonzentrat-Pulver mit Haselnussgeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin), Haselnussaroma",
+                "allergens": "Enthält Milch, Soja und Haselnüsse. Kann Spuren von Gluten, Ei und anderen Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Haselnuss-Protein-Balls",
+                        "portion": 10,
+                        "ingredients": [
+                            "100 g Haferflocken",
+                            "50 g gemahlene Haselnüsse",
+                            "40 g XPN Whey Protein Hazelnut",
+                            "3 EL Ahornsirup",
+                            "2 EL Mandelmus",
+                            "1 TL Kakaopulver",
+                            "Etwas Wasser"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einer Schüssel vermengen.",
+                            "Nach Bedarf etwas Wasser hinzufügen, bis eine formbare Masse entsteht.",
+                            "Zu kleinen Bällchen rollen und im Kühlschrank fest werden lassen.",
+                            "Ideal als Snack für unterwegs."
+                        ]
+                    },
+                    {
+                        "title": "Haselnuss-Protein-Porridge",
+                        "description": "Herzhaft-nussiger Start in den Tag.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Hazelnut",
+                            "1 EL gehackte Haselnüsse",
+                            "1 TL Kakao",
+                            "Topping: Banane, Zimt"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen.",
+                            "Vom Herd nehmen, Proteinpulver und Kakao einrühren.",
+                            "Mit Toppings servieren – warm genießen."
+                        ]
+                    },
+                    {
+                        "title": "Haselnuss-Schoko-Protein-Shake",
+                        "description": "Cremiger Shake mit Nutella-Vibes.",
+                        "portion": 1,
+                        "ingredients": [
+                            "250 ml Milch",
+                            "1 Messlöffel XPN Whey Protein Hazelnut",
+                            "1 TL ungesüßtes Kakaopulver",
+                            "1 TL Haselnussmus",
+                            "Optional: Eiswürfel oder gefrorene Banane"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einem Mixer cremig pürieren.",
+                            "Nach Geschmack süßen oder kalt servieren.",
+                            "Perfekt nach dem Training oder als Snack."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 7,
+            "name": "Whey Protein Coffee",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Coffee vereint höchste XPN Qualität mit kräftigem Kaffeegeschmack – ideal für alle, die Energie und Eiweiß clever kombinieren möchten.",
+                "Molkenproteinkonzentrat-Pulver mit Kaffeegeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Instantkaffee (1.2%), Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Coffee-Protein-Ice-Cream",
+                        "portion": 2,
+                        "ingredients": [
+                            "2 gefrorene Bananen",
+                            "50 ml Mandelmilch",
+                            "1 Messlöffel XPN Whey Protein Coffee",
+                            "1 TL Instantkaffee (optional für stärkeren Geschmack)",
+                            "1 TL Kakaopulver"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einem leistungsstarken Mixer pürieren.",
+                            "Nach Wunsch mehr Flüssigkeit hinzufügen.",
+                            "Sofort als cremiges Eis servieren oder kurz einfrieren für festere Konsistenz."
+                        ]
+                    },
+                    {
+                        "title": "Coffee-Protein-Porridge",
+                        "description": "Café-Flair am Frühstückstisch.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Coffee",
+                            "1 TL löslicher Kaffee oder Espresso",
+                            "Optional: Zimt, Nüsse, Banane"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch und Kaffee aufkochen.",
+                            "Vom Herd nehmen, Proteinpulver einrühren.",
+                            "Mit Toppings nach Wahl servieren – warm genießen."
+                        ]
+                    },
+                    {
+                        "title": "Coffee-Protein-Shake",
+                        "description": "Eiskalter Koffeinkick nach dem Training.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml kalte Milch oder Wasser",
+                            "1 Messlöffel XPN Whey Protein Coffee",
+                            "4–5 Eiswürfel",
+                            "Optional: 1 TL Kakaopulver oder Vanilleextrakt"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einem Shaker oder Mixer gut vermengen.",
+                            "Kalt servieren – perfekt als Sommerdrink.",
+                            "Auch ideal als Ersatz für Eiskaffee."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 8,
+            "name": "Whey Protein Raspberry",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Raspberry vereint höchste XPN Qualität mit fruchtigem Himbeergeschmack – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.",
+                "Molkenproteinkonzentrat-Pulver mit Himbeergeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Rote-Bete-Pulver, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Raspberry-Protein-Pancakes",
+                        "portion": 2,
+                        "ingredients": [
+                            "2 Eier",
+                            "100 g Magerquark",
+                            "40 g XPN Whey Protein Raspberry",
+                            "50 g Haferflocken (gemahlen)",
+                            "1 TL Backpulver",
+                            "50 g frische oder gefrorene Himbeeren",
+                            "Etwas Kokosöl zum Braten"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten (außer Himbeeren) zu einem glatten Teig verrühren.",
+                            "Himbeeren vorsichtig unterheben.",
+                            "Pfanne erhitzen, mit Kokosöl einfetten.",
+                            "Pancakes portionsweise ausbacken – von beiden Seiten goldbraun.",
+                            "Mit Beeren oder Joghurt servieren."
+                        ]
+                    },
+                    {
+                        "title": "Raspberry-Protein-Chia-Pudding",
+                        "description": "Fruchtiger Pudding mit Extra-Protein.",
+                        "portion": 2,
+                        "ingredients": [
+                            "200 ml Mandelmilch",
+                            "2 EL Chiasamen",
+                            "1 Messlöffel XPN Whey Protein Raspberry",
+                            "1 Handvoll Himbeeren",
+                            "Optional: etwas Honig oder Agavendicksaft"
+                        ],
+                        "preparation": [
+                            "Whey Protein in die Milch einrühren.",
+                            "Chiasamen und Himbeeren dazugeben und gut vermengen.",
+                            "Mindestens 4 Stunden oder über Nacht im Kühlschrank quellen lassen.",
+                            "Vor dem Servieren nochmals umrühren."
+                        ]
+                    },
+                    {
+                        "title": "Raspberry-Protein-Smoothie",
+                        "description": "Fruchtiger Shake mit Power.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Wasser oder Milch",
+                            "1 Messlöffel XPN Whey Protein Raspberry",
+                            "1 Banane",
+                            "1 Handvoll Himbeeren (frisch oder gefroren)"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einen Mixer geben.",
+                            "Mixen bis cremig.",
+                            "Sofort genießen."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 9,
+            "name": "Whey Protein Pistachio",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Pistachio vereint höchste XPN Qualität mit nussigem Pistaziengeschmack – perfekt für alle, die Muskelaufbau mit feinem Genuss verbinden wollen.",
+                "Molkenproteinkonzentrat-Pulver mit Pistaziengeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Farbstoff (Chlorophyllin-Kupfer-Komplexe), Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Pistachio-Protein-Cookies",
+                        "portion": 8,
+                        "ingredients": [
+                            "1 Ei",
+                            "80 g Haferflocken",
+                            "40 g XPN Whey Protein Pistachio",
+                            "30 g gehackte Pistazien",
+                            "2 EL Ahornsirup",
+                            "1 TL Backpulver",
+                            "2 EL Kokosöl"
+                        ],
+                        "preparation": [
+                            "Backofen auf 180 °C vorheizen.",
+                            "Alle Zutaten in einer Schüssel gut vermischen.",
+                            "Teig zu kleinen Kugeln formen, leicht platt drücken.",
+                            "Auf ein Backblech legen und ca. 12–15 Minuten backen.",
+                            "Abkühlen lassen und genießen."
+                        ]
+                    },
+                    {
+                        "title": "Pistachio-Protein-Porridge",
+                        "description": "Nussiger Start in den Tag mit Power.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Pistachio",
+                            "1 TL Pistazienmus",
+                            "Optional: gehackte Pistazien als Topping"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen und leicht köcheln lassen.",
+                            "Vom Herd nehmen, Whey und Pistazienmus einrühren.",
+                            "Mit Pistazienstückchen bestreuen und warm genießen."
+                        ]
+                    },
+                    {
+                        "title": "Pistachio-Protein-Smoothie",
+                        "description": "Cremiger Shake mit nussiger Note.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Mandelmilch",
+                            "1 Messlöffel XPN Whey Protein Pistachio",
+                            "1 reife Banane",
+                            "1 TL Pistazienmus",
+                            "Optional: Eiswürfel für extra Frische"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einen Mixer geben.",
+                            "Mixen bis cremig.",
+                            "Sofort genießen – kalt schmeckt’s am besten."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 10,
+            "name": "Whey Protein Matcha",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Matcha vereint höchste XPN Qualität mit feinem Matcha-Geschmack – ideal für alle, die Muskelaufbau und natürlichen Genuss verbinden möchten.",
+                "Molkenproteinkonzentrat-Pulver mit Matcha-Grünteegeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Matcha-Pulver, Aroma, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Matcha-Protein-Muffins",
+                        "portion": 6,
+                        "ingredients": [
+                            "2 Eier",
+                            "100 g Magerquark",
+                            "40 g XPN Whey Protein Matcha",
+                            "50 g Haferflocken",
+                            "1 TL Backpulver",
+                            "1 TL Matcha-Pulver",
+                            "Etwas Honig oder Ahornsirup",
+                            "1 TL Kokosöl"
+                        ],
+                        "preparation": [
+                            "Ofen auf 180 °C vorheizen, Muffinblech vorbereiten.",
+                            "Alle Zutaten (außer Honig) zu einem glatten Teig verrühren.",
+                            "Honig unterheben.",
+                            "Teig in Förmchen füllen, ca. 20–25 Min. backen.",
+                            "Abkühlen lassen und genießen."
+                        ]
+                    },
+                    {
+                        "title": "Matcha-Protein-Porridge",
+                        "description": "Cremiger Frühstücksbrei mit feiner Matcha-Note.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Matcha",
+                            "1 TL Matcha-Pulver",
+                            "Optional: gehackte Mandeln als Topping"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen und leicht köcheln lassen.",
+                            "Vom Herd nehmen, Proteinpulver und Matcha unterrühren.",
+                            "Mit Mandeln bestreuen und warm genießen."
+                        ]
+                    },
+                    {
+                        "title": "Matcha-Protein-Smoothie",
+                        "description": "Erfrischender Shake mit natürlichem Matcha-Kick.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Wasser oder Milch",
+                            "1 Messlöffel XPN Whey Protein Matcha",
+                            "1 Banane",
+                            "1 TL Matcha-Pulver",
+                            "Optional: Eiswürfel"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einen Mixer geben.",
+                            "Mixen bis cremig.",
+                            "Sofort genießen."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 11,
+            "name": "Whey Protein Gingerbread",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein Gingerbread kombiniert höchste XPN Qualität mit würzigem Lebkuchengeschmack – perfekt für alle, die Muskelaufbau und Genuss verbinden möchten.",
+                "Molkenproteinkonzentrat-Pulver mit Lebkuchengeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Lebkuchengewürz, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "Gingerbread-Protein-Muffins",
+                        "portion": 6,
+                        "ingredients": [
+                            "2 Eier",
+                            "100 g Magerquark",
+                            "40 g XPN Whey Protein Gingerbread",
+                            "50 g Haferflocken",
+                            "1 TL Backpulver",
+                            "1 TL Lebkuchengewürz",
+                            "Etwas Honig oder Ahornsirup",
+                            "1 TL Kokosöl"
+                        ],
+                        "preparation": [
+                            "Ofen auf 180 °C vorheizen, Muffinblech vorbereiten.",
+                            "Alle Zutaten (außer Honig) zu einem glatten Teig verrühren.",
+                            "Honig unterheben.",
+                            "Teig in Förmchen füllen, ca. 20–25 Min. backen.",
+                            "Abkühlen lassen und genießen."
+                        ]
+                    },
+                    {
+                        "title": "Gingerbread-Protein-Porridge",
+                        "description": "Würziger Frühstücksbrei mit Lebkuchengeschmack.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein Gingerbread",
+                            "1 TL Lebkuchengewürz",
+                            "Optional: gehackte Mandeln als Topping"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen und leicht köcheln lassen.",
+                            "Vom Herd nehmen, Proteinpulver und Lebkuchengewürz unterrühren.",
+                            "Mit Mandeln bestreuen und warm genießen."
+                        ]
+                    },
+                    {
+                        "title": "Gingerbread-Protein-Smoothie",
+                        "description": "Würziger Shake für zwischendurch oder nach dem Training.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Wasser oder Milch",
+                            "1 Messlöffel XPN Whey Protein Gingerbread",
+                            "1 Banane",
+                            "1 TL Lebkuchengewürz",
+                            "Optional: Eiswürfel"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in einen Mixer geben.",
+                            "Mixen bis cremig.",
+                            "Sofort genießen."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        },
+        {
+            "pid": 12,
+            "name": "Whey Protein White Choco",
+            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "rating": 4.78,
+            "ratersCount": 4021,
+            "availableSizes": [
+                30,
+                500,
+                2000,
+                5000
+            ],
+            "priceWithoutTax": 21.00,
+            "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+            "descriptionDetails": [
+                "Unser Whey Protein White Choco vereint höchste XPN Qualität mit cremigem weißem Schokoladengeschmack – perfekt für Genießer und Sportler.",
+                "Molkenproteinkonzentrat-Pulver mit weißem Schokoladengeschmack"
+            ],
+            "substance": {
+                "ingredients": "Molkenproteinkonzentrat (Milch), Aroma, Süßungsmittel (Sucralose, Steviolglykoside), Emulgator (Sojalecithin)",
+                "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+                "nutrients": {
+                    "Energy": "1577 kJ / 373 kcal",
+                    "Fat": "5.4 g",
+                    "of which saturates": "2.8 g",
+                    "Carbohydrates": "9.6 g",
+                    "of which sugars": "5.6 g",
+                    "Fibre": "2.3 g",
+                    "Protein": "72 g",
+                    "Salt": "1.1 g"
+                },
+                "aminoAcids": {
+                    "Alanine": "4.6 g",
+                    "Arginine": "2.0 g",
+                    "Aspartic acid": "11 g",
+                    "Cysteine": "2.7 g",
+                    "Glutamic acid": "17 g",
+                    "Glycine": "1.2 g",
+                    "Histidine": "1.5 g",
+                    "Isoleucine": "6.1 g",
+                    "Leucine": "11 g",
+                    "Lysine": "9.4 g",
+                    "Methionine": "1.8 g",
+                    "Phenylalanine": "3.1 g",
+                    "Proline": "5.0 g",
+                    "Serine": "4.7 g",
+                    "Threonine": "7.8 g",
+                    "Tryptophan": "1.7 g",
+                    "Tyrosine": "3.2 g",
+                    "Valine": "6.0 g"
+                }
+            },
+            "usage": {
+                "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch Milch oder einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.",
+                "recommendation": "Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+                "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
+                "recipes": [
+                    {
+                        "title": "White Choco-Protein-Bällchen",
+                        "portion": 12,
+                        "ingredients": [
+                            "100 g Datteln",
+                            "40 g XPN Whey Protein White Choco",
+                            "50 g Haferflocken",
+                            "30 g gemahlene Mandeln",
+                            "1 TL Vanilleextrakt",
+                            "1 EL Kokosöl"
+                        ],
+                        "preparation": [
+                            "Datteln entkernen und in einem Mixer klein hacken.",
+                            "Alle Zutaten vermengen und gut durchkneten.",
+                            "Aus der Masse kleine Bällchen formen.",
+                            "Im Kühlschrank mindestens 1 Stunde fest werden lassen."
+                        ]
+                    },
+                    {
+                        "title": "White Choco-Protein-Porridge",
+                        "description": "Cremiges Frühstück mit weißer Schokolade.",
+                        "portion": 1,
+                        "ingredients": [
+                            "50 g Haferflocken",
+                            "200 ml Milch oder Pflanzendrink",
+                            "1 Messlöffel XPN Whey Protein White Choco",
+                            "1 TL Honig",
+                            "Optional: weiße Schokostückchen als Topping"
+                        ],
+                        "preparation": [
+                            "Haferflocken mit Milch aufkochen und leicht köcheln lassen.",
+                            "Vom Herd nehmen, Proteinpulver und Honig unterrühren.",
+                            "Mit weißen Schokostückchen bestreuen und warm genießen."
+                        ]
+                    },
+                    {
+                        "title": "White Choco-Protein-Smoothie",
+                        "description": "Cremiger Shake für den Energieschub.",
+                        "portion": 1,
+                        "ingredients": [
+                            "200 ml Milch oder Wasser",
+                            "1 Messlöffel XPN Whey Protein White Choco",
+                            "1 Banane",
+                            "1 TL Mandelmus",
+                            "Optional: Eiswürfel"
+                        ],
+                        "preparation": [
+                            "Alle Zutaten in den Mixer geben.",
+                            "Bis zur gewünschten Konsistenz mixen.",
+                            "Sofort genießen."
+                        ]
+                    }
+                ]
+            },
+            "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+            "pics": {
+                "topPic": "images/Schokopulver_Top.jpg",
+                "productPic1": "images/Choco Whey.webp",
+                "productPic2": "images/choco_whey.jpeg",
+                "productPic3": "images/Proteinpulver_Unsplash.jpg",
+                "smallPic": "images/choco_whey.jpeg"
+            }
+        }
+    ]
+}
