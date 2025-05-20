@@ -19,8 +19,30 @@
     <script src="js/wishList.js"></script>
 </head>
 
+<?php include 'components/Navbar/navbar.php';
+$initial = true;
+
+$json = file_get_contents(__DIR__ . '/products/WheyProteins.json');
+$data = json_decode($json, true);
+
+// Fehlerbehandlung
+if ($initial) {
+    $initial = false;
+
+    if (!isset($data["Whey Proteins"][0])) {
+        echo "Produkt nicht gefunden.";
+        exit;
+    } else {
+        $selectedProduct = $data["Whey Proteins"][0];
+        echo "<pre>" . json_encode($selectedProduct, JSON_PRETTY_PRINT) . "</pre>";
+    }
+}
+
+
+
+?>
+
 <body>
-    <?php include 'components/Navbar/navbar.php';?>
     <div class='topPic'>
         <img src="images/Schokopulver_Top.jpg" alt="">
 
@@ -41,7 +63,8 @@
                 <div class='top-rigth'>
                     <!-- Produktüberschrift -->
                     <div class='firstLine'>
-                        <h2>Whey Protein Choco</h2>
+                        <!-- <h2>Whey Protein Choco</h2> -->
+                         <h2><?php echo htmlspecialchars($selectedProduct["name"]); ?></h2>
                         <!-- Bewertungsskala -->
                         <div id="Bewertungsskala">
                             <script>
