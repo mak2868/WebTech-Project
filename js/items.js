@@ -7,8 +7,72 @@ window.switchProductbild = switchProductbild;
 window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
+window.renderItemSite = renderItemSite;
 
-function createStars(rating) { 
+
+function renderItemSite(selectedProduct) {
+
+    console.log("huh");
+
+    if (selectedProduct === undefined) {
+        selectedProduct = "Whey Protein Choco";
+    }
+
+
+    const product = data["Whey Proteins"].find(item => item.name === selectedProduct);
+    console.log(product);
+
+    document.getElementById('name').textContent = product.name;
+
+    const rating = product.rating;
+    const starContainer = document.getElementById("Bewertungsskala");
+
+    createStars(rating).then((canvas) => {
+        if (canvas instanceof HTMLCanvasElement) {
+            starContainer.appendChild(canvas);
+        }
+    });
+
+    document.getElementById('ratersCount').textContent = '(' + product.ratersCount + ')';
+
+
+    document.getElementById('description').innerHTML = product.description;
+
+    const verpackungsgrößenButtonsContainer = document.getElementById('VerpackungsgrößenButtons');
+    for (let i = 0; i < product.availableSizes.length; i++) {
+        let button = document.createElement('button');
+        button.textContent = product.availableSizes[i] + 'g';
+
+        if (product.availableSizes[i] == 500) {
+            button.classList.add('active');
+        }
+        verpackungsgrößenButtonsContainer.appendChild(button);
+    }
+
+
+    const priceWOTax = product.priceWithoutTax;
+    const priceWTax = getTotalPrice(priceWOTax);
+    document.getElementById("priceWTax").textContent = priceWTax + '€';
+
+    const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent.slice(0, -1) / 1000);
+    if (pricePerKG !== undefined) {
+        document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
+    }
+
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+    //    document.getElementById('').textContent = product.;
+
+}
+
+
+function createStars(rating) {
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
@@ -134,7 +198,7 @@ function openPanel(activatedIndex) {
         panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-     document.getElementById('selectedRecipe').classList.add('active');
+    document.getElementById('selectedRecipe').classList.add('active');
 }
 
 
@@ -143,7 +207,7 @@ function switchRecipe(buttonNumber) {
     let nonSelectedRecipe1;
     let nonSelectedRecipe2;
 
-    if (buttonNumber == 1 ) {
+    if (buttonNumber == 1) {
         selectedRecipe = document.getElementsByClassName('Brownie')[0];
         nonSelectedRecipe1 = document.getElementsByClassName('Milchshake')[0];
         nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];

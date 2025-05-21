@@ -3,7 +3,7 @@
         {
             "pid": 1,
             "name": "Whey Protein Choco",
-            "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+            "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
             "rating": 4.78,
             "ratersCount": 4021,
             "availableSizes": [

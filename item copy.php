@@ -19,6 +19,7 @@
     <script src="js/wishList.js"></script>
 </head>
 
+
 <?php include 'components/Navbar/navbar.php';
 $initial = true;
 
@@ -44,7 +45,7 @@ if ($initial) {
 
 <body>
     <div class='topPic'>
-    <img src="<?php echo htmlspecialchars($selectedProduct['pics']['topPic']); ?>" alt="">
+        <img src="<?php echo htmlspecialchars($selectedProduct['pics']['topPic']); ?>" alt="">
 
         <main style="padding-top: 80px">
             <section class='top'>
@@ -64,7 +65,7 @@ if ($initial) {
                     <!-- Produktüberschrift -->
                     <div class='firstLine'>
                         <!-- <h2>Whey Protein Choco</h2> -->
-                         <h2><?php echo htmlspecialchars($selectedProduct["name"]); ?></h2>
+                        <h2><?php echo htmlspecialchars($selectedProduct["name"]); ?></h2>
                         <!-- Bewertungsskala -->
                         <div id="Bewertungsskala">
                             <script>
@@ -84,8 +85,7 @@ if ($initial) {
                         </div>
                         <p><?php echo htmlspecialchars($selectedProduct["ratersCount"]); ?></p>
                     </div>
-                    <h3><?php echo htmlspecialchars($selectedProduct["description"]); ?></h3>
-
+                    <h3><?php echo strip_tags($selectedProduct["description"], '<br>'); ?></h3>
                     <!-- Sortenauswahl -->
                     <div class="select-wrapper">
                         <p>Geschmack</p>
@@ -100,10 +100,10 @@ if ($initial) {
                     <div class='Verpackungsgrößen'>
                         <p>Verpackungsgrößen</p>
                         <div class='VerpackungsgrößenButtons'>
-                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][0]); ?></button>
-                            <button class="btn" id="selectedSize" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][1]); ?></button>
-                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][2]); ?></button>
-                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][3]); ?></button>
+                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][0]); ?>g</button>
+                            <button class="btn" id="selectedSize" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][1]); ?>g</button>
+                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][2]); ?>g</button>
+                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][3]); ?>g</button>
                         </div>
                     </div>
                     <script>
@@ -123,7 +123,7 @@ if ($initial) {
                                 const priceWTax = getTotalPrice(priceWOTax);
                                 document.getElementById("priceWTax").textContent = `${priceWTax} €`;
 
-                                const result = getPricePerKG(priceWTax, document.querySelector('.VerpackungsgrößenButtons .btn.active').textContent);
+                                const result = getPricePerKG(priceWTax, document.querySelector('.VerpackungsgrößenButtons .btn.active').textContent.slice(0, -1) / 1000);
                                 if (result !== undefined) {
                                     document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
                                 }
@@ -179,9 +179,9 @@ if ($initial) {
                             <article>
                                 <h4>Zutaten</h4>
                                 <p><?php echo htmlspecialchars($selectedProduct["substance"]["ingredients"]); ?>
-                            <br>
-                            <?php echo htmlspecialchars($selectedProduct["substance"]["allergens"]);?>
-                            </p>
+                                    <br>
+                                    <?php echo htmlspecialchars($selectedProduct["substance"]["allergens"]); ?>
+                                </p>
                             </article>
 
                             <article>
@@ -197,35 +197,35 @@ if ($initial) {
                                     <tbody>
                                         <tr>
                                             <td>Energie</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Energy"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Energy"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Fett</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Fat"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Fat"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>davon gesättigte Fettsäuren</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["of which saturates"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["of which saturates"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Kohlenhydrate</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Carbohydrates"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Carbohydrates"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>davon Zucker</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["of which sugars"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["of which sugars"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Ballaststoffe</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Fibre"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Fibre"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Eiweiß / Protein</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Protein"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Protein"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Salz</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Salt"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Salt"]); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -244,75 +244,75 @@ if ($initial) {
                                     <tbody>
                                         <tr>
                                             <td>Alanin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Alanine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Alanine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Arginin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Arginine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Arginine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Asparaginsäure</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Aspartic acid"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Aspartic acid"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Cystein</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Cysteine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Cysteine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Glutaminsäure</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Glutamic acid"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Glutamic acid"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Glycin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Glycine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Glycine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Histidin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Histidine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Histidine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Isoleucin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Isoleucine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Isoleucine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Leucin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Leucine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Leucine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Lysin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Lysine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Lysine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Methionin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Methionine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Methionine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Phenylalanin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Phenylalanine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Phenylalanine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Prolin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Proline"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Proline"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Serin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Serine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Serine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Threonin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Threonine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Threonine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Tryptophan</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Tryptophan"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Tryptophan"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Tyrosin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Tyrosine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Tyrosine"]); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Valin</td>
-                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Valine"]);?></td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Valine"]); ?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -330,24 +330,24 @@ if ($initial) {
                         <div class="panel">
                             <article>
                                 <h4>Zubereitung</h4>
-                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["preparation"]);?></p>
+                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["preparation"]); ?></p>
                             </article>
 
                             <article>
                                 <h4>Empfehlung</h4>
-                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["recommendation"]);?></p>
+                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["recommendation"]); ?></p>
                             </article>
 
                             <article>
                                 <h4>Tipp</h4>
-                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["tip"]);?></p>
+                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["tip"]); ?></p>
                             </article>
 
                             <?php $recipeIndex = 0; ?>
                             <div class="btn-group-Rezeptidee">
-                                <button id='selectedRecipe' onclick="switchRecipe(1)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][0]["shortTitle"]);?></button>
-                                <button onclick="switchRecipe(2)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][1]["shortTitle"]);?></button>
-                                <button onclick="switchRecipe(3)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][2]["shortTitle"]);?></button>
+                                <button id='selectedRecipe' onclick="switchRecipe(1)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][0]["shortTitle"]); ?></button>
+                                <button onclick="switchRecipe(2)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][1]["shortTitle"]); ?></button>
+                                <button onclick="switchRecipe(3)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][2]["shortTitle"]); ?></button>
                             </div>
 
                             <article class="Brownie">
@@ -451,7 +451,7 @@ if ($initial) {
                     <section>
                         <button class="accordion">Laboranalysen</button>
                         <div class="panel">
-                            <p><?php echo htmlspecialchars($selectedProduct["laboratory"]);?></p>
+                            <p><?php echo htmlspecialchars($selectedProduct["laboratory"]); ?></p>
                         </div>
                         <script>
                             var targetPanel = document.querySelectorAll('.accordion')[3];
@@ -461,7 +461,7 @@ if ($initial) {
 
                 </div>
                 <div class='klBild'>
-                <img src="<?php echo htmlspecialchars($selectedProduct['pics']['smallPic']); ?>" alt="">
+                    <img src="<?php echo htmlspecialchars($selectedProduct['pics']['smallPic']); ?>" alt="">
                 </div>
 
             </div>
