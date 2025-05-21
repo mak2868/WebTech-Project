@@ -44,19 +44,19 @@ if ($initial) {
 
 <body>
     <div class='topPic'>
-        <img src="images/Schokopulver_Top.jpg" alt="">
+    <img src="<?php echo htmlspecialchars($selectedProduct['pics']['topPic']); ?>" alt="">
 
         <main style="padding-top: 80px">
             <section class='top'>
                 <div class='top-left'>
                     <div class="ProduktbildAuswahl">
-                        <img src="images/Choco Whey.webp" alt="Bild nicht verfügbar" onclick="switchProductbild(0)">
-                        <img src="images/choco_whey.jpeg" alt="" onclick="switchProductbild(1)">
-                        <img src="images/Proteinpulver_Unsplash.jpg" alt="" onclick="switchProductbild(2)">
+                        <img src="<?php echo htmlspecialchars($selectedProduct['pics']['productPic1']); ?>" alt="Bild nicht verfügbar" onclick="switchProductbild(0)">
+                        <img src="<?php echo htmlspecialchars($selectedProduct['pics']['productPic2']); ?>" alt="" onclick="switchProductbild(1)">
+                        <img src="<?php echo htmlspecialchars($selectedProduct['pics']['productPic3']); ?>" alt="" onclick="switchProductbild(2)">
                     </div>
                     <!-- Produktbild -->
                     <div class='Produktbild'>
-                        <img src="images/Choco Whey.webp" alt="Bild nicht verfügbar">
+                        <img src="<?php echo htmlspecialchars($selectedProduct['pics']['productPic1']); ?>" alt="Bild nicht verfügbar">
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@ if ($initial) {
                         <div id="Bewertungsskala">
                             <script>
                                 window.onload = () => {
-                                    const rating = 4.78;
+                                    const rating = <?php echo htmlspecialchars($selectedProduct["rating"]); ?>;
                                     const container = document.getElementById("Bewertungsskala");
 
                                     createStars(rating).then((canvas) => {
@@ -82,9 +82,9 @@ if ($initial) {
                                 };
                             </script>
                         </div>
-                        <p>(4021)</p>
+                        <p><?php echo htmlspecialchars($selectedProduct["ratersCount"]); ?></p>
                     </div>
-                    <h3>Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat</h3>
+                    <h3><?php echo htmlspecialchars($selectedProduct["description"]); ?></h3>
 
                     <!-- Sortenauswahl -->
                     <div class="select-wrapper">
@@ -100,10 +100,10 @@ if ($initial) {
                     <div class='Verpackungsgrößen'>
                         <p>Verpackungsgrößen</p>
                         <div class='VerpackungsgrößenButtons'>
-                            <button class="btn" onclick="changeSelectedSize()">30g</button>
-                            <button class="btn" id="selectedSize" onclick="changeSelectedSize()">500g</button>
-                            <button class="btn" onclick="changeSelectedSize()">2000g</button>
-                            <button class="btn" onclick="changeSelectedSize()">5000g</button>
+                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][0]); ?></button>
+                            <button class="btn" id="selectedSize" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][1]); ?></button>
+                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][2]); ?></button>
+                            <button class="btn" onclick="changeSelectedSize()"><?php echo htmlspecialchars($selectedProduct["availableSizes"][3]); ?></button>
                         </div>
                     </div>
                     <script>
@@ -119,11 +119,11 @@ if ($initial) {
                         <p id="pricePerKgOutput"></p>
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
-                                const priceWOTax = 21;
+                                const priceWOTax = <?php echo htmlspecialchars($selectedProduct["priceWithoutTax"]); ?>;
                                 const priceWTax = getTotalPrice(priceWOTax);
                                 document.getElementById("priceWTax").textContent = `${priceWTax} €`;
 
-                                const result = getPricePerKG(priceWTax, 0.25);
+                                const result = getPricePerKG(priceWTax, document.querySelector('.VerpackungsgrößenButtons .btn.active').textContent);
                                 if (result !== undefined) {
                                     document.getElementById("pricePerKgOutput").textContent = `${result}€/kg, inkl. MwSt. zzgl. Versand`;
                                 }
@@ -142,7 +142,7 @@ if ($initial) {
                         <img class="FavButton" onclick="changeWishListStatus('Whey Protein Choco', 'images/Choco Whey.webp', 21.00)" src="images/Herz_unausgefüllt.png" alt="">
                         <br>
                     </div>
-                    <p>Sofort verfügbar, Lieferzeit 2-4 Werktage</p>
+                    <p><?php echo htmlspecialchars($selectedProduct["statusDistribution"]); ?></p>
                 </div>
 
             </section>
@@ -158,24 +158,12 @@ if ($initial) {
                         <button class="accordion">Beschreibung</button>
                         <div class="panel">
                             <article>
-                                <p>Unser Whey Protein Choco vereint höchste XPN Qualität mit bestem Geschmack – ideal für
-                                    alle,
-                                    die
-                                    ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.
-                                    <br> Mit einem hohen Eiweißanteil aus Molkenproteinkonzentrat liefert es deinem Körper
-                                    schnell
-                                    verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.
-                                    <br> Egal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine
-                                    Fitnessrezepte
-                                    –
-                                    unser Choco-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im
-                                    Geschmack.
-                                </p>
+                                <p><?php echo htmlspecialchars($selectedProduct["descriptionDetails"][0]); ?></p>
                             </article>
 
                             <article>
                                 <h4>Produktbezeichnung</h4>
-                                <p>Molkenproteinkonzentrat-Pulver mit Schokoladengeschmack</p>
+                                <p><?php echo htmlspecialchars($selectedProduct["descriptionDetails"][1]); ?></p>
                             </article>
                         </div>
                         <script>
@@ -190,11 +178,10 @@ if ($initial) {
                         <div class="panel">
                             <article>
                                 <h4>Zutaten</h4>
-                                <p>Molkenproteinkonzentrat (Milch), fettarmes Kakaopulver, Aroma, Süßungsmittel (Sucralose,
-                                    Steviolglykoside), Emulgator (Sojalecithin) <br>
-                                    Allergene: Enthält Milch und Soja. Kann Spuren von Gluten, Ei und Schalenfrüchten
-                                    enthalten.
-                                </p>
+                                <p><?php echo htmlspecialchars($selectedProduct["substance"]["ingredients"]); ?>
+                            <br>
+                            <?php echo htmlspecialchars($selectedProduct["substance"]["allergens"]);?>
+                            </p>
                             </article>
 
                             <article>
@@ -210,35 +197,35 @@ if ($initial) {
                                     <tbody>
                                         <tr>
                                             <td>Energie</td>
-                                            <td>1577 kJ / 373 kcal</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Energy"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Fett</td>
-                                            <td>5,4 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Fat"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>davon gesättigte Fettsäuren</td>
-                                            <td>2,8 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["of which saturates"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Kohlenhydrate</td>
-                                            <td>9,6 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Carbohydrates"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>davon Zucker</td>
-                                            <td>5,6 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["of which sugars"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Ballaststoffe</td>
-                                            <td>2,3 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Fibre"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Eiweiß / Protein</td>
-                                            <td>72 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Protein"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Salz</td>
-                                            <td>1,1 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["nutrients"]["Salt"]);?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -257,75 +244,75 @@ if ($initial) {
                                     <tbody>
                                         <tr>
                                             <td>Alanin</td>
-                                            <td>4,6 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Alanine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Arginin</td>
-                                            <td>2,0 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Arginine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Asparaginsäure</td>
-                                            <td>11 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Aspartic acid"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Cystein</td>
-                                            <td>2,7 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Cysteine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Glutaminsäure</td>
-                                            <td>17 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Glutamic acid"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Glycin</td>
-                                            <td>1,2 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Glycine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Histidin</td>
-                                            <td>1,5 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Histidine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Isoleucin</td>
-                                            <td>6,1 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Isoleucine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Leucin</td>
-                                            <td>11 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Leucine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Lysin</td>
-                                            <td>9,4 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Lysine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Methionin</td>
-                                            <td>1,8 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Methionine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Phenylalanin</td>
-                                            <td>3,1 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Phenylalanine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Prolin</td>
-                                            <td>5,0 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Proline"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Serin</td>
-                                            <td>4,7 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Serine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Threonin</td>
-                                            <td>7,8 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Threonine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Tryptophan</td>
-                                            <td>1,7 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Tryptophan"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Tyrosin</td>
-                                            <td>3,2 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Tyrosine"]);?></td>
                                         </tr>
                                         <tr>
                                             <td>Valin</td>
-                                            <td>6,0 g</td>
+                                            <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Valine"]);?></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -343,30 +330,24 @@ if ($initial) {
                         <div class="panel">
                             <article>
                                 <h4>Zubereitung</h4>
-                                <p>Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker. Du kannst auch
-                                    Milch
-                                    oder
-                                    einen Pflanzendrink verwenden. Beachte, dass sich dann die Nährwerte verändern.</p>
+                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["preparation"]);?></p>
                             </article>
 
                             <article>
                                 <h4>Empfehlung</h4>
-                                <p>Wir empfehlen dir 1–3 Portionen Designer Whey pro Tag, z. B. nach dem Aufstehen, nach dem
-                                    oder
-                                    während des Trainings oder einfach zwischendurch.</p>
+                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["recommendation"]);?></p>
                             </article>
 
                             <article>
                                 <h4>Tipp</h4>
-                                <p>Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge
-                                    nutzen. Hier sind ein paar Inspirationen:
-                                </p>
+                                <p><?php echo htmlspecialchars($selectedProduct["usage"]["tip"]);?></p>
                             </article>
 
+                            <?php $recipeIndex = 0; ?>
                             <div class="btn-group-Rezeptidee">
-                                <button id='selectedRecipe' onclick="switchRecipe(1)">Brownie</button>
-                                <button onclick="switchRecipe(2)">Porridge</button>
-                                <button onclick="switchRecipe(3)">Milchshake</button>
+                                <button id='selectedRecipe' onclick="switchRecipe(1)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][0]["shortTitle"]);?></button>
+                                <button onclick="switchRecipe(2)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][1]["shortTitle"]);?></button>
+                                <button onclick="switchRecipe(3)"><?php echo htmlspecialchars($selectedProduct["usage"]["recipes"][2]["shortTitle"]);?></button>
                             </div>
 
                             <article class="Brownie">
@@ -470,9 +451,7 @@ if ($initial) {
                     <section>
                         <button class="accordion">Laboranalysen</button>
                         <div class="panel">
-                            <p>Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen
-                                Laboren
-                                testen.</p>
+                            <p><?php echo htmlspecialchars($selectedProduct["laboratory"]);?></p>
                         </div>
                         <script>
                             var targetPanel = document.querySelectorAll('.accordion')[3];
@@ -482,7 +461,7 @@ if ($initial) {
 
                 </div>
                 <div class='klBild'>
-                    <img src="images/choco_whey.jpeg" alt="">
+                <img src="<?php echo htmlspecialchars($selectedProduct['pics']['smallPic']); ?>" alt="">
                 </div>
 
             </div>
