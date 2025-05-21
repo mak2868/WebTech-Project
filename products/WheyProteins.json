@@ -59,6 +59,7 @@
                 "recipes": [
                     {
                         "title": "Protein-Brownies mit XPN Whey Schokolade",
+                        "shortTitle": "Brownies",
                         "portion": 6,
                         "ingredients": [
                             "2 reife Bananen (zerdrückt)",
@@ -83,6 +84,7 @@
                     },
                     {
                         "title": "Protein-Porridge mit XPN Whey Choco",
+                        "shortTitle": "Porridge",
                         "description": "Ein energiereiches Frühstück mit hochwertigem Eiweiß – ideal für Fitness- und Leistungssport.",
                         "portion": 1,
                         "ingredients": [
@@ -103,6 +105,7 @@
                     },
                     {
                         "title": "Protein-Milchshake mit XPN Whey Choco",
+                        "shortTitle": "Milchshake",
                         "description": "Perfekt als Pre- oder Post-Workout-Drink – schnell gemixt und voller Eiweiß.",
                         "portion": 1,
                         "ingredients": [
@@ -188,6 +191,7 @@
                 "recipes": [
                     {
                         "title": "Strawberry-Protein-Muffins",
+                        "shortTitle": "Muffins",
                         "portion": 6,
                         "ingredients": [
                             "2 Eier",
@@ -209,6 +213,7 @@
                     },
                     {
                         "title": "Strawberry-Protein-Oats",
+                        "shortTitle": "Oats",
                         "description": "Cremiger Frühstücksbrei mit fruchtiger Note.",
                         "portion": 1,
                         "ingredients": [
@@ -227,6 +232,7 @@
                     },
                     {
                         "title": "Strawberry-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Fruchtiger Shake für zwischendurch oder nach dem Training.",
                         "portion": 1,
                         "ingredients": [
@@ -311,6 +317,7 @@
                 "recipes": [
                     {
                         "title": "Vanilla-Protein-Pancakes",
+                        "shortTitle": "Pancakes",
                         "portion": 2,
                         "ingredients": [
                             "2 Eier",
@@ -331,6 +338,7 @@
                     },
                     {
                         "title": "Vanilla-Protein-Chia-Pudding",
+                        "shortTitle": "Chia-Pudding",
                         "description": "Perfekter Overnight-Snack mit Eiweiß und gesunden Fetten.",
                         "portion": 1,
                         "ingredients": [
@@ -349,6 +357,7 @@
                     },
                     {
                         "title": "Vanilla-Protein-Latte",
+                        "shortTitle": "Latte",
                         "description": "Warmer Vanille-Drink mit extra Eiweiß – perfekt für kühle Tage.",
                         "portion": 1,
                         "ingredients": [
@@ -434,6 +443,7 @@
                 "recipes": [
                     {
                         "title": "Caramel-Protein-Cookies",
+                        "shortTitle": "Cookies",
                         "portion": 8,
                         "ingredients": [
                             "1 Ei",
@@ -454,6 +464,7 @@
                     },
                     {
                         "title": "Caramel-Oat-Protein-Bowl",
+                        "shortTitle": "Oat-Bowl",
                         "description": "Sämiger Frühstücksgenuss mit süßer Karamellnote.",
                         "portion": 1,
                         "ingredients": [
@@ -471,6 +482,7 @@
                     },
                     {
                         "title": "Caramel-Banana-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Süßer Shake für Power am Morgen oder nach dem Training.",
                         "portion": 1,
                         "ingredients": [
@@ -556,6 +568,7 @@
                 "recipes": [
                     {
                         "title": "Banana-Protein-Pancakes",
+                        "shortTitle": "Pancakes",
                         "portion": 2,
                         "ingredients": [
                             "2 reife Bananen",
@@ -575,6 +588,7 @@
                     },
                     {
                         "title": "Banana-Protein-Oats",
+                        "shortTitle": "Oats",
                         "description": "Warmes Frühstück mit süßem Bananenaroma.",
                         "portion": 1,
                         "ingredients": [
@@ -593,6 +607,7 @@
                     },
                     {
                         "title": "Banana-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Cremiger Bananen-Shake für vor oder nach dem Workout.",
                         "portion": 1,
                         "ingredients": [
@@ -678,6 +693,7 @@
                 "recipes": [
                     {
                         "title": "Haselnuss-Protein-Balls",
+                        "shortTitle": "Balls",
                         "portion": 10,
                         "ingredients": [
                             "100 g Haferflocken",
@@ -697,6 +713,7 @@
                     },
                     {
                         "title": "Haselnuss-Protein-Porridge",
+                        "shortTitle": "Porridge",
                         "description": "Herzhaft-nussiger Start in den Tag.",
                         "portion": 1,
                         "ingredients": [
@@ -715,6 +732,7 @@
                     },
                     {
                         "title": "Haselnuss-Schoko-Protein-Shake",
+                        "shortTitle": "Shake",
                         "description": "Cremiger Shake mit Nutella-Vibes.",
                         "portion": 1,
                         "ingredients": [
@@ -800,6 +818,7 @@
                 "recipes": [
                     {
                         "title": "Coffee-Protein-Ice-Cream",
+                        "shortTitle": "Ice-Cream",
                         "portion": 2,
                         "ingredients": [
                             "2 gefrorene Bananen",
@@ -816,6 +835,7 @@
                     },
                     {
                         "title": "Coffee-Protein-Porridge",
+                        "shortTitle": "Porridge",
                         "description": "Café-Flair am Frühstückstisch.",
                         "portion": 1,
                         "ingredients": [
@@ -833,6 +853,7 @@
                     },
                     {
                         "title": "Coffee-Protein-Shake",
+                        "shortTitle": "Shake",
                         "description": "Eiskalter Koffeinkick nach dem Training.",
                         "portion": 1,
                         "ingredients": [
@@ -917,6 +938,7 @@
                 "recipes": [
                     {
                         "title": "Raspberry-Protein-Pancakes",
+                        "shortTitle": "Pancakes",
                         "portion": 2,
                         "ingredients": [
                             "2 Eier",
@@ -937,6 +959,7 @@
                     },
                     {
                         "title": "Raspberry-Protein-Chia-Pudding",
+                        "shortTitle": "Chia-Pudding",
                         "description": "Fruchtiger Pudding mit Extra-Protein.",
                         "portion": 2,
                         "ingredients": [
@@ -955,6 +978,7 @@
                     },
                     {
                         "title": "Raspberry-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Fruchtiger Shake mit Power.",
                         "portion": 1,
                         "ingredients": [
@@ -1039,6 +1063,7 @@
                 "recipes": [
                     {
                         "title": "Pistachio-Protein-Cookies",
+                        "shortTitle": "Cookies",
                         "portion": 8,
                         "ingredients": [
                             "1 Ei",
@@ -1059,6 +1084,7 @@
                     },
                     {
                         "title": "Pistachio-Protein-Porridge",
+                        "shortTitle": "Porridge",
                         "description": "Nussiger Start in den Tag mit Power.",
                         "portion": 1,
                         "ingredients": [
@@ -1076,6 +1102,7 @@
                     },
                     {
                         "title": "Pistachio-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Cremiger Shake mit nussiger Note.",
                         "portion": 1,
                         "ingredients": [
@@ -1161,6 +1188,7 @@
                 "recipes": [
                     {
                         "title": "Matcha-Protein-Muffins",
+                        "shortTitle": "Muffins",
                         "portion": 6,
                         "ingredients": [
                             "2 Eier",
@@ -1182,6 +1210,7 @@
                     },
                     {
                         "title": "Matcha-Protein-Porridge",
+                        "shortTitle": "Porridge",
                         "description": "Cremiger Frühstücksbrei mit feiner Matcha-Note.",
                         "portion": 1,
                         "ingredients": [
@@ -1199,6 +1228,7 @@
                     },
                     {
                         "title": "Matcha-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Erfrischender Shake mit natürlichem Matcha-Kick.",
                         "portion": 1,
                         "ingredients": [
@@ -1284,6 +1314,7 @@
                 "recipes": [
                     {
                         "title": "Gingerbread-Protein-Muffins",
+                        "shortTitle": "Muffins",
                         "portion": 6,
                         "ingredients": [
                             "2 Eier",
@@ -1305,6 +1336,7 @@
                     },
                     {
                         "title": "Gingerbread-Protein-Porridge",
+                        "shortTitle": "Porridge",
                         "description": "Würziger Frühstücksbrei mit Lebkuchengeschmack.",
                         "portion": 1,
                         "ingredients": [
@@ -1322,6 +1354,7 @@
                     },
                     {
                         "title": "Gingerbread-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Würziger Shake für zwischendurch oder nach dem Training.",
                         "portion": 1,
                         "ingredients": [
@@ -1407,6 +1440,7 @@
                 "recipes": [
                     {
                         "title": "White Choco-Protein-Bällchen",
+                        "shortTitle": "Bällchen",
                         "portion": 12,
                         "ingredients": [
                             "100 g Datteln",
@@ -1425,6 +1459,7 @@
                     },
                     {
                         "title": "White Choco-Protein-Porridge",
+                        "shortTitle": "Porridge",
                         "description": "Cremiges Frühstück mit weißer Schokolade.",
                         "portion": 1,
                         "ingredients": [
@@ -1442,6 +1477,7 @@
                     },
                     {
                         "title": "White Choco-Protein-Smoothie",
+                        "shortTitle": "Smoothie",
                         "description": "Cremiger Shake für den Energieschub.",
                         "portion": 1,
                         "ingredients": [
