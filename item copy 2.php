@@ -68,12 +68,7 @@ $data = json_decode($json, true);
                         <p>Verpackungsgrößen</p>
                         <div id='VerpackungsgrößenButtons'></div>
                     </div>
-                    <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            changeSelectedSize();
-                        });
-                    </script>
-
+               
                     <!-- Preis -->
                     <div id='Preis'>
                         <p id="priceWTax"></p>

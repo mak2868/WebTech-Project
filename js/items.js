@@ -25,8 +25,8 @@ function renderItemSite(selectedProduct) {
         const productName = data["Whey Proteins"][i].name;
 
         let productShortName;
-        if(productName.includes("White")){
-            productShortName = "White Choco"; 
+        if (productName.includes("White")) {
+            productShortName = "White Choco";
         } else {
             productShortName = productName.split(" ").pop();
         }
@@ -35,6 +35,15 @@ function renderItemSite(selectedProduct) {
         selectBox.appendChild(selectItem);
     }
 
+    select.addEventListener('change', e => {
+        for (let i = 0; i < data["Whey Proteins"].length; i++) {
+            if (data["Whey Proteins"][i].name.includes(e.target.value)) {
+                renderItemSite(data["Whey Proteins"][i].name);
+            }
+        }
+        // renderItemSite(data["Whey Proteins"][index]);
+    })
+
     product = data["Whey Proteins"].find(item => item.name === selectedProduct);
     console.log(product);
 
@@ -42,9 +51,17 @@ function renderItemSite(selectedProduct) {
 
     const rating = product.rating;
     const starContainer = document.getElementById("Bewertungsskala");
+    //     const oldCanvas = document.querySelector("#Bewertungsskala canvas");
+    // if (oldCanvas) {
+    //   oldCanvas.remove();
+    // }
 
     createStars(rating).then((canvas) => {
         if (canvas instanceof HTMLCanvasElement) {
+            const c = starContainer.querySelector("canvas");
+            if (c) {
+                starContainer.removeChild(c);
+            }
             starContainer.appendChild(canvas);
         }
     });
@@ -54,6 +71,7 @@ function renderItemSite(selectedProduct) {
     document.getElementById('description').innerHTML = product.description;
 
     const verpackungsgrößenButtonsContainer = document.getElementById('VerpackungsgrößenButtons');
+    verpackungsgrößenButtonsContainer.innerHTML = "";
     for (let i = 0; i < product.availableSizes.length; i++) {
         let button = document.createElement('button');
         button.textContent = product.availableSizes[i] + 'g';
@@ -61,6 +79,7 @@ function renderItemSite(selectedProduct) {
         if (product.availableSizes[i] == 500) {
             button.classList.add('active');
         }
+        button.onclick = () => changeSelectedSize(button);
         verpackungsgrößenButtonsContainer.appendChild(button);
     }
 
@@ -115,6 +134,7 @@ function renderItemSite(selectedProduct) {
     document.getElementById('usageTip').textContent = product.usage.tip;
 
     const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
+    recipeButtonsContainer.innerHTML = "";
     for (let i = 0; i < 3; i++) {
         let recipeButton = document.createElement('button');
         recipeButton.textContent = product.usage.recipes[i].shortTitle;
@@ -216,7 +236,6 @@ function createStars(rating) {
         if (halfStarCount) {
             ctx.drawImage(halfImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
-
         }
 
         if (threeQStarCount) {
@@ -228,7 +247,6 @@ function createStars(rating) {
             ctx.drawImage(emptyImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
             canvas.classList.add("invert-keep");
-
         }
 
         ctx.scale(0.15, 0.15);
@@ -357,15 +375,10 @@ function getPricePerKG(price, totalWeight) {
     return returnValue.toFixed(2);
 }
 
-function changeSelectedSize() {
-    document.querySelectorAll('#VerpackungsgrößenButtons button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('#VerpackungsgrößenButtons button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            button.classList.add('active');
-        });
-    });
+function changeSelectedSize(selctedButton) {
+    const allButtons = document.querySelectorAll('#VerpackungsgrößenButtons button');
+    allButtons.forEach(btn => btn.classList.remove('active'));
+    selctedButton.classList.add('active');
 }
 
 
