@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/user.css">
     <link rel="stylesheet" href="style/logreg.css">
-    <script src="js/darkmode.js" defer></script>
+    <link rel="stylesheet" href="style/navbar_transparent.css">
+    <script src="components/Navbar/navbar.js" defer></script>
+
 </head>
 
 

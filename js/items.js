@@ -1,5 +1,3 @@
-// import { updateDarkmodeState } from './darkMode.js';
-
 window.createStars = createStars;
 window.openPanel = openPanel;
 window.switchRecipe = switchRecipe;
@@ -240,23 +238,3 @@ function changeSelectedSize() {
         });
     });
 }
-
-
-export const scrollBorder = 40;
-
-window.addEventListener('scroll', function () {
-    const scrollY = window.scrollY;
-
-    const linkElement = document.querySelector('link[href*="navbar_transparent.css"], link[href*="navbar_intransparent.css"]');
-
-    if (!linkElement) return;
-
-    if (scrollY > scrollBorder) {
-        linkElement.href = "/WebTech-Project/components/Navbar/navbar_intransparent.css";
-        // updateDarkmodeState();
-    } else {
-        linkElement.href = "/WebTech-Project/components/Navbar/navbar_transparent.css";
-        // updateDarkmodeState();
-    }
-
-});

@@ -17,7 +17,7 @@
   top: 0;
   width: 100vw;
   padding: 1rem 2rem;
-  background-color:blue;
+  background-color: transparent;
   color: black;
   z-index: 1000;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -183,21 +183,21 @@
 
 /* ===== DARKMODE ===== */
 
-body.darkmode .navbar {
+body.dark-mode .navbar {
   background-color: transparent;
   color: white;
 }
 
-body.darkmode .navbar a,
-body.darkmode .nav-dropdown-toggle div:nth-child(2) {
+body.dark-mode .navbar a,
+body.dark-mode .nav-dropdown-toggle div:nth-child(2) {
   color: white;
 }
 
-body.darkmode .navbar img {
+body.dark-mode .navbar img {
   filter: invert(1);
 }
 
-body.darkmode .nav-dropdown-list {
+body.dark-mode .nav-dropdown-list {
   background: black;
   border-color: #333; /* etwas dunklerer Rand */
   color: white;
@@ -206,21 +206,21 @@ body.darkmode .nav-dropdown-list {
 
 
 /* Darkmode Hover / Scroll */
-body.darkmode .navbar.hover,
-body.darkmode .navbar.scrolled {
+body.dark-mode .navbar.hover,
+body.dark-mode .navbar.scrolled {
   background-color: black;
   color: white;
 }
 
-body.darkmode .navbar.hover a,
-body.darkmode .navbar.scrolled a,
-body.darkmode .navbar.hover .nav-dropdown-toggle div:nth-child(2),
-body.darkmode .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
+body.dark-mode .navbar.hover a,
+body.dark-mode .navbar.scrolled a,
+body.dark-mode .navbar.hover .nav-dropdown-toggle div:nth-child(2),
+body.dark-mode .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
   color: white;
 }
 
-body.darkmode .navbar.hover img,
-body.darkmode .navbar.scrolled img {
+body.dark-mode .navbar.hover img,
+body.dark-mode .navbar.scrolled img {
   filter: invert(1);
 }
 
@@ -272,37 +272,37 @@ body.dark-page .navbar.scrolled img {
 
 /* ===== Darkmode auf der speziellen Seite (dark-page) ===== */
 
-body.dark-page.darkmode .navbar {
+body.dark-page.dark-mode .navbar {
   background-color: transparent;
   color: white;
 }
 
-body.dark-page.darkmode .navbar a,
-body.dark-page.darkmode .nav-dropdown-toggle div:nth-child(2) {
+body.dark-page.dark-mode .navbar a,
+body.dark-page.dark-mode .nav-dropdown-toggle div:nth-child(2) {
   color: white;
 }
 
-body.dark-page.darkmode .navbar-icon img,
-body.dark-page.darkmode .navbar-brand img {
+body.dark-page.dark-mode .navbar-icon img,
+body.dark-page.dark-mode .navbar-brand img {
   filter: invert(1);
 }
 
 /* Darkmode Hover / Scroll auf dark-page */
-body.dark-page.darkmode .navbar.hover,
-body.dark-page.darkmode .navbar.scrolled {
+body.dark-page.dark-mode .navbar.hover,
+body.dark-page.dark-mode .navbar.scrolled {
   background-color: black;
   color: white;
 }
 
-body.dark-page.darkmode .navbar.hover a,
-body.dark-page.darkmode .navbar.scrolled a,
-body.dark-page.darkmode .navbar.hover .nav-dropdown-toggle div:nth-child(2),
-body.dark-page.darkmode .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
+body.dark-page.dark-mode .navbar.hover a,
+body.dark-page.dark-mode .navbar.scrolled a,
+body.dark-page.dark-mode .navbar.hover .nav-dropdown-toggle div:nth-child(2),
+body.dark-page.dark-mode .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
   color: white;
 }
 
-body.dark-page.darkmode .navbar.hover img,
-body.dark-page.darkmode .navbar.scrolled img {
+body.dark-page.dark-mode .navbar.hover img,
+body.dark-page.dark-mode .navbar.scrolled img {
   filter: invert(1);
 }
 

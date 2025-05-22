@@ -1,27 +1,52 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const navbar = document.querySelector(".navbar");
-  const body = document.body;
-  const darkmodeBtn = document.getElementById("darkmodeBtn");
+document.addEventListener('DOMContentLoaded', () => {
+  const navbar      = document.getElementById('navbar');
+  const darkmodeBtn = document.getElementById('darkmodeBtn');
+  const logoImg     = document.getElementById('navbarLogo');
+  const body        = document.body;
 
-  // === SCROLL-EVENT: transparent → weiß beim echten Scrollen ===
-  const updateNavbarScrollState = () => {
-    if (window.scrollY > 0) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
+  let isDark     = localStorage.getItem('darkMode') === 'true';
+  let isScrolled = false;
+  let isHover    = false;
+
+  function updateNavbar() {
+    // Navbar Klassen setzen
+    navbar.classList.toggle('dark-mode', isDark);
+    navbar.classList.toggle('scrolled', isScrolled);
+    navbar.classList.toggle('hover', isHover);
+
+    // Body Darkmode-Klasse
+    body.classList.toggle('dark-mode', isDark);
+
+    // Logo optional invertieren
+    if (logoImg) {
+      logoImg.style.filter = isDark ? 'invert(1)' : 'invert(0)';
     }
-  };
-  window.addEventListener("scroll", updateNavbarScrollState);
-  updateNavbarScrollState(); // Initial prüfen
 
-  // === HOVER-EVENT: weiß beim Überfahren ===
-  navbar.addEventListener("mouseenter", () => navbar.classList.add("hover"));
-  navbar.addEventListener("mouseleave", () => navbar.classList.remove("hover"));
-
-  // === DARKMODE-TOGGLE: transparent weiß/dunkel-Modus umschalten ===
-  if (darkmodeBtn) {
-    darkmodeBtn.addEventListener("click", () => {
-      body.classList.toggle("darkmode");
+    // Navbar Icons invertieren
+    document.querySelectorAll('.navbar-icon img').forEach(img => {
+      img.style.filter = isDark ? 'invert(1)' : 'invert(0)';
     });
   }
+
+  darkmodeBtn.addEventListener('click', () => {
+    isDark = !isDark;
+    localStorage.setItem('darkMode', isDark);
+    updateNavbar();
+  });
+
+  navbar.addEventListener('mouseenter', () => {
+    isHover = true;
+    updateNavbar();
+  });
+  navbar.addEventListener('mouseleave', () => {
+    isHover = false;
+    updateNavbar();
+  });
+
+  window.addEventListener('scroll', () => {
+    isScrolled = window.scrollY > 0;
+    updateNavbar();
+  });
+
+  updateNavbar();
 });

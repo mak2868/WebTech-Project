@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/items.css">
     <link rel="stylesheet" href="style/cart-slide.css">
-    <link rel="stylesheet" href="components/Footer/footer.css">
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+    <link rel="stylesheet" href="components/Footer/footer.css">
+    <script src="js/items.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/wishList.js" defer></script>
     <script src="components/Navbar/navbar.js" defer></script>
-    <script type="module" src="js/items.js"></script>
-    <script src="js/cart.js"></script>
-    <script type="module" src="js/darkmode.js" defer></script>
-    <script src="js/wishList.js"></script>
+
+
 
 
 </head>
@@ -468,7 +469,6 @@
     </main>
   <?php include 'components/Footer/footer.php'; ?>
 </body>
-
 </html>
 
 
