@@ -32,7 +32,7 @@ $data = json_decode($json, true);
 
 <body>
     <div id='topPic'>
-        <img src="<?php echo htmlspecialchars($selectedProduct['pics']['topPic']); ?>" alt="">
+        <img src="" alt="">
     </div>
 
     <main style="padding-top: 80px">
@@ -58,7 +58,7 @@ $data = json_decode($json, true);
                     </div>
                     <h3 id="description"></h3>
                     <!-- Sortenauswahl -->
-                    <div class="select-wrapper">
+                    <div id="select-wrapper">
                         <p>Geschmack</p>
                         <select id="select"></select>
                     </div>
@@ -114,7 +114,7 @@ $data = json_decode($json, true);
                         </article>
                     </div>
                     <script>
-                        var targetPanel = document.querySelectorAll('.accordion')[0];
+                        var targetPanel = document.querySelectorAll('#accordion')[0];
                         targetPanel.addEventListener('click', () => openPanel(0));
                     </script>
                 </section>
@@ -201,13 +201,11 @@ $data = json_decode($json, true);
                                     </tr>
                                     <tr>
                                         <td>Cystein</td>
-                                        <td><?php echo htmlspecialchars($selectedProduct["substance"]["aminoAcids"]["Cysteine"]); ?></td>
-                                        <td id="substanceAminoAcids"></td>
-
+                                        <td id="substanceAminoAcidsCysteine"></td>
                                     </tr>
                                     <tr>
                                         <td>Glutaminsäure</td>
-                                        <td id="substanceAminoAcidsCysteine"></td>
+                                        <td id="substanceAminoAcidsGlutamicAcid"></td>
                                     </tr>
                                     <tr>
                                         <td>Glycin</td>
@@ -266,7 +264,7 @@ $data = json_decode($json, true);
                         </article>
                     </div>
                     <script>
-                        var targetPanel = document.querySelectorAll('.accordion')[1];
+                        var targetPanel = document.querySelectorAll('#accordion')[1];
                         targetPanel.addEventListener('click', () => openPanel(1));
                     </script>
                 </section>
@@ -291,31 +289,18 @@ $data = json_decode($json, true);
                         </article>
 
                         <?php $recipeIndex = 0; ?>
-                        <div class="btn-group-Rezeptidee">
-                            <!-- Platzhalter: Buttons für die Rezepte -->
-
-
-                            <!-- Platzhalter: Buttons für die Rezepte -->
-
-
-                            <!-- Platzhalter: Buttons für die Rezepte -->
-                        </div>
+                        <div id="btn-group-Rezeptidee"></div>
 
                         <article id="recipe">
-                            <h4 id="recipeName"></h4>
-                            <h5 id="recipeComponentsHeading"></h5>
-                            <ul id="recipeComponents"></ul>
-                            <h5 id="recipePreparationHeading"></h5>
-                            <ol id="recipePreparationHeading" start='1'></ol>
+                            <h4 id="recipeTitle"></h4>
+                            <h5 id="recipeIngredientsHeading"></h5>
+                            <ul id="recipeIngredients"></ul>
+                            <h5 id="recipePreparationHeading">Zubereitung:</h5>
+                            <ol id="recipePreparation" start='1'></ol>
                         </article>
                     </div>
                     <script>
-                        document.addEventListener('DOMContentLoaded', () => {
-                            switchRecipe(1);
-                        });
-                    </script>
-                    <script>
-                        var targetPanel = document.querySelectorAll('.accordion')[2];
+                        var targetPanel = document.querySelectorAll('#accordion')[2];
                         targetPanel.addEventListener('click', () => openPanel(2));
                     </script>
                 </section>
@@ -327,7 +312,7 @@ $data = json_decode($json, true);
                         <p id="laboratory"></p>
                     </div>
                     <script>
-                        var targetPanel = document.querySelectorAll('.accordion')[3];
+                        var targetPanel = document.querySelectorAll('#accordion')[3];
                         targetPanel.addEventListener('click', () => openPanel(3));
                     </script>
                 </section>
