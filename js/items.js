@@ -8,54 +8,64 @@ window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
 window.renderItemSite = renderItemSite;
+window.intermediateStepAddToCart = intermediateStepAddToCart; 
+window.intermediateStepChangeWishListStatus = intermediateStepChangeWishListStatus;
+window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 
 let product;
+let initial = true; 
 
-function renderItemSite(selectedProduct) {
+function intermediateStepRenderItemSite(pid){
+    if(isNaN(pid)){
+        console.error("Parameter error: " + pid); 
+    } else {
+        renderItemSite(data["Whey Proteins"][pid - 1].name, pid);
+    }
+}
 
-    console.log("huh");
-
+function renderItemSite(selectedProduct, pid) {
+     
     if (selectedProduct === undefined) {
         selectedProduct = "Whey Protein Choco";
     }
-
-    let selectBox = document.getElementById('select');
-    for (let i = 0; i < data["Whey Proteins"].length; i++) {
-        const selectItem = document.createElement('option');
-        const productName = data["Whey Proteins"][i].name;
-
-        let productShortName;
-        if (productName.includes("White")) {
-            productShortName = "White Choco";
-        } else {
-            productShortName = productName.split(" ").pop();
-        }
-        selectItem.textContent = productShortName;
-
-        selectBox.appendChild(selectItem);
-    }
-
-    select.addEventListener('change', e => {
-        for (let i = 0; i < data["Whey Proteins"].length; i++) {
-            if (data["Whey Proteins"][i].name.includes(e.target.value)) {
-                renderItemSite(data["Whey Proteins"][i].name);
-            }
-        }
-        // renderItemSite(data["Whey Proteins"][index]);
-    })
-
     product = data["Whey Proteins"].find(item => item.name === selectedProduct);
-    console.log(product);
+
+    history.pushState({ pid: pid }, '', '?pid=' + pid);
+
+    if(initial){
+        initial = false; 
+        let selectBox = document.getElementById('select');
+        for (let i = 0; i < data["Whey Proteins"].length; i++) {
+            const selectItem = document.createElement('option');
+            const productName = data["Whey Proteins"][i].name;
+            
+            let productShortName;
+            if (productName.includes("White")) {
+                productShortName = "White Choco";
+            } else {
+                productShortName = productName.split(" ").pop();
+            }
+            selectItem.textContent = productShortName;
+    
+            selectBox.appendChild(selectItem);
+        }
+
+       selectBox.selectedIndex = (pid - 1);
+        
+        select.addEventListener('change', e => {
+            for (let i = 0; i < data["Whey Proteins"].length; i++) {
+                if (data["Whey Proteins"][i].name.includes(e.target.value)) {
+                    renderItemSite(data["Whey Proteins"][i].name, data["Whey Proteins"][i].pid);
+                }
+            }
+        })
+    }
+   
 
     document.getElementById('name').textContent = product.name;
 
     const rating = product.rating;
     const starContainer = document.getElementById("Bewertungsskala");
-    //     const oldCanvas = document.querySelector("#Bewertungsskala canvas");
-    // if (oldCanvas) {
-    //   oldCanvas.remove();
-    // }
-
     createStars(rating).then((canvas) => {
         if (canvas instanceof HTMLCanvasElement) {
             const c = starContainer.querySelector("canvas");
@@ -65,7 +75,6 @@ function renderItemSite(selectedProduct) {
             starContainer.appendChild(canvas);
         }
     });
-
     document.getElementById('ratersCount').textContent = '(' + product.ratersCount + ')';
 
     document.getElementById('description').innerHTML = product.description;
@@ -83,11 +92,9 @@ function renderItemSite(selectedProduct) {
         verpackungsgrößenButtonsContainer.appendChild(button);
     }
 
-
     const priceWOTax = product.priceWithoutTax;
     const priceWTax = getTotalPrice(priceWOTax);
     document.getElementById("priceWTax").textContent = priceWTax + '€';
-
     const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent.slice(0, -1) / 1000);
     if (pricePerKG !== undefined) {
         document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
@@ -145,7 +152,6 @@ function renderItemSite(selectedProduct) {
     switchRecipe();
 
     document.getElementById('laboratory').textContent = product.laboratory;
-
 
     document.querySelector('#topPic img').src = product.pics.topPic;
 
@@ -381,7 +387,21 @@ function changeSelectedSize(selctedButton) {
     selctedButton.classList.add('active');
 }
 
+function intermediateStepAddToCart(){
+    const name = product.name; 
+    const image = product.pics.productPic1;
+    const price = getTotalPrice(product.priceWithoutTax); 
 
+    addToCart(name, image, price); 
+}
+
+function intermediateStepChangeWishListStatus(){
+    const name = product.name; 
+    const image = product.pics.productPic1;
+    const price = getTotalPrice(product.priceWithoutTax); 
+
+    changeWishListStatus(name, image, price); 
+}
 export const scrollBorder = 40;
 
 window.addEventListener('scroll', function () {
