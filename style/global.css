@@ -19,7 +19,7 @@ body {
 }
 
 :root {
-  --color-text: #1a1a1a;      
+  --color-text: #1a1a1a;
   --color-heading: #111;
   --color-background-weiß: #ffffff;
   --color-background-schwarz: #000000;
@@ -110,7 +110,7 @@ p {
 
 
 /* ========== BUTTONS ========== */
-button, 
+button,
 .btn {
   margin-top: 0.5rem;
   display: block;
@@ -122,7 +122,8 @@ button,
   background-color: var(--color-button);
   color: var(--color-button-text);
   border: none;
-  border-radius: 1.5rem;               /* große, moderne Rundung */
+  border-radius: 1.5rem;
+  /* große, moderne Rundung */
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-bottom: 0;
@@ -139,11 +140,22 @@ button:hover,
   text-align: center;
 }
 
-.mt-1 { margin-top: 1rem; }
-.mt-2 { margin-top: 2rem; }
+.mt-1 {
+  margin-top: 1rem;
+}
 
-.mb-1 { margin-bottom: 1rem; }
-.mb-2 { margin-bottom: 2rem; } 
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
 
 
 /* ========== DARK MODE ========== */
@@ -190,12 +202,29 @@ body.dark-mode .btn:hover {
 /* ========== RESPONSIVE DESIGN ========== */
 
 @media (max-width: 1024px) {
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.5rem; }
-  h4 { font-size: 1.25rem; }
-  h5 { font-size: 1.125rem; }
-  h6 { font-size: 1rem; }
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  h5 {
+    font-size: 1.125rem;
+  }
+
+  h6 {
+    font-size: 1rem;
+  }
 
   button,
   .btn {
@@ -205,9 +234,17 @@ body.dark-mode .btn:hover {
 }
 
 @media (max-width: 768px) {
-  h1 { font-size: 1.75rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.25rem; }
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
 
   button,
   .btn {
@@ -226,9 +263,17 @@ body.dark-mode .btn:hover {
 }
 
 @media (max-width: 480px) {
-  h1 { font-size: 1.5rem; }
-  h2 { font-size: 1.25rem; }
-  h3 { font-size: 1.1rem; }
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
 
   button,
   .btn {
@@ -236,4 +281,3 @@ body.dark-mode .btn:hover {
     padding: 0.6rem;
   }
 }
-
