@@ -64,3 +64,4 @@ function colorize(input, isValid) {
 [usernameInput, passwordInput, confirmInput].forEach(input =>
   input.addEventListener("input", validateForm)
 );
+

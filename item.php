@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
     <script src="components/Navbar/navbar.js" defer></script>
     <script type="module" src="js/items.js"></script>
-    <script src="js/cart.js"></script>
+    <script type="module" src="js/cart.js"></script>
     <script type="module" src="js/darkmode.js" defer></script>
     <script src="js/wishList.js"></script>
 
@@ -467,9 +467,7 @@
         </div>
     </main>
   <?php include 'components/Footer/footer.php'; ?>
-</body>
 
-</html>
 
 
 <!-- ============================= -->
@@ -499,3 +497,7 @@
 
     </div>
 </div>
+
+</body>
+
+</html>

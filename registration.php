@@ -59,43 +59,6 @@
             <input type="email" id="email" name="email" required>
           </div>
 
-          <div class="form-field">
-            <label for="phone">Telefonnummer:</label>
-            <input type="tel" id="phone" name="phone">
-          </div>
-
-          <div class="form-field">
-            <label for="birthdate">Geburtsdatum:</label>
-            <input type="date" id="birthdate" name="birthdate">
-          </div>
-
-          <div class="form-field">
-            <label for="gender">Geschlecht:</label>
-            <select id="gender" name="gender">
-              <option value="">Bitte wählen</option>
-              <option value="m">Männlich</option>
-              <option value="w">Weiblich</option>
-              <option value="d">Divers</option>
-            </select>
-          </div>
-
-          <!-- Straße volle Breite -->
-          <div class="form-field" style="grid-column: span 2;">
-            <label for="street">Straße:</label>
-            <input type="text" id="street" name="street">
-          </div>
-
-          <!-- PLZ & Stadt nebeneinander -->
-          <div class="form-field">
-            <label for="zip">PLZ:</label>
-            <input type="text" id="zip" name="zip">
-          </div>
-
-          <div class="form-field">
-            <label for="city">Stadt:</label>
-            <input type="text" id="city" name="city">
-          </div>
-
           <!-- Eingabefeld für das Passwort -->
           <label for="password">Passwort</label>
           <input type="password" id="password" name="password" required> <!-- Pflichtfeld -->
