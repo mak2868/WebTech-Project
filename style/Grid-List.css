@@ -45,13 +45,65 @@ main {
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   cursor: pointer;
-  overflow: hidden;
   text-align: center;
 }
 
 .grid-item:hover {
   border: 2px solid #000000;
   cursor: pointer;
+}
+
+.image-wrapper {
+  position: relative;
+  margin-bottom: 0.25rem;
+  padding-top: 2rem;
+}
+
+.icons {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 8px;
+  z-index: 1;
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  background-color: #2ecc71;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease;
+}
+
+.icon:hover {
+  background-color: #27ae60;
+}
+
+.icon img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.rating {
+  gap: 0.3rem;
+  font-size: 1rem;
+}
+
+.stars {
+  text-align: center;
+  color: #facc15;
+}
+
+.reviews {
+  color: black;
+  font-size: 1rem;
 }
 
 /*ab hier Darkmode*/

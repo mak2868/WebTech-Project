@@ -6,13 +6,10 @@
 <head>
   <meta charset="UTF-8">
   <title>XPN | Proteinriegel</title>
-  <label class="darkmode-toggle">
-    <input type="checkbox" id="darkmode-toggle">
-    Dark Mode
-  </label>
   <link rel="stylesheet" href="style/global.css">
   <link rel="stylesheet" href="style/Grid-List.css">
   <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+  <link rel="stylesheet" href="components/Footer/footer.css">
   <script src="components/Navbar/navbar.js" defer></script>
 </head>
 
@@ -36,79 +33,183 @@
   </aside>
 
   <div class="grid-container">
-    <div class="grid-item" data-price="1,79" data-vegan="false">
-      <a href="choco_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="220"><br>
-        Choco Bar
+
+    <div class="grid-item" data-price="1.79" data-vegan="false">
+    <div class="image-wrapper">
+      <a href="item.php?pid=20">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Choco Bar', 'images/Proteinriegel_LowCarb.png', 1.79)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Choco Bar </b>
       </a><br>
-      1,79 € je Bar
+      <b> 1,79 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,79" data-vegan="true">
-      <a href="strawberry_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Strawberry" width="220"><br>
-        Strawberry Bar
+    <div class="grid-item" data-price="1.79" data-vegan="true">
+    <div class="image-wrapper">
+      <a href="item.php?pid=21">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Strawberry" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Strawberry Bar', 'images/Proteinriegel_LowCarb.png', 1.79)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Strawberry Bar </b>
       </a><br>
-      1,79 € je Bar
+      <b> 1,79 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,99" data-vegan="false">
-      <a href="caramel_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Caramel" width="220"><br>
-        Caramel Bar
+    <div class="grid-item" data-price="1.99" data-vegan="true">
+    <div class="image-wrapper">
+      <a href="item.php?pid=22">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Vanilla" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Vanilla Bar', 'images/Proteinriegel_LowCarb.png', 1.99)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Vanilla Bar </b>
       </a><br>
-      1,99 € je Bar
+      <b> 1,99 € je Bar </b>
+    </div>
+    
+    <div class="grid-item" data-price="1.99" data-vegan="false">
+    <div class="image-wrapper">
+      <a href="item.php?pid=23">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Caramel" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Caramel Bar', 'images/Proteinriegel_LowCarb.png', 1.99)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Caramel Bar </b>
+      </a><br>
+      <b> 1,99 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,79" data-vegan="false">
-      <a href="choco_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="220"><br>
-        Choco Bar
+    <div class="grid-item" data-price="1.79" data-vegan="true">
+    <div class="image-wrapper">
+      <a href="item.php?pid=24">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Banana" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Banana Bar', 'images/Proteinriegel_LowCarb.png', 1.79)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Banana Bar </b>
       </a><br>
-      1,79 € je Bar
+      <b> 1,79 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,79" data-vegan="false">
-      <a href="choco_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="220"><br>
-        Choco Bar
+    <div class="grid-item" data-price="1.99" data-vegan="true">
+    <div class="image-wrapper">
+      <a href="item.php?pid=25">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Hazelnut" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Hazelnut Bar', 'images/Proteinriegel_LowCarb.png', 1.99)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Hazelnut Bar </b>
       </a><br>
-      1,79 € je Bar
+      <b> 1,99 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,79" data-vegan="false">
-      <a href="choco_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="220"><br>
-        Choco Bar
+    <div class="grid-item" data-price="1.79" data-vegan="false">
+    <div class="image-wrapper">
+      <a href="item.php?pid=26">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Caffee" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Caffe Bar', 'images/Proteinriegel_LowCarb.png', 1.79)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Caffee Bar </b>
       </a><br>
-      1,79 € je Bar
+      <b> 1,79 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,79" data-vegan="false">
-      <a href="choco_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="220"><br>
-        Choco Bar
+    <div class="grid-item" data-price="1.79" data-vegan="true">
+    <div class="image-wrapper">
+      <a href="item.php?pid=27">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Raspberry" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Raspberry Bar', 'images/Proteinriegel_LowCarb.png', 1.79)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Raspberry Bar </b>
       </a><br>
-      1,79 € je Bar
+      <b> 1,79 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,79" data-vegan="false">
-      <a href="choco_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="220"><br>
-        Choco Bar
+    <div class="grid-item" data-price="2.19" data-vegan="true">
+    <div class="image-wrapper">
+      <a href="item.php?pid=28">
+        <img src="images/Proteinriegel_LowCarb.png" alt="Pistachio" width="250"><br>
+      <div class="icons">
+        <div class="icon" onclick="addToCart('Pistachio Bar', 'images/Proteinriegel_LowCarb.png', 2.19)">
+          <img src="images/shopping-cart.png" alt="In den Warenkorb" />
+        </div>
+      </div>
+    </div>
+    <div class="rating">
+          <span class="stars">★★★★☆</span>
+          <span class="reviews">(400)</span>
+        </div>
+        <b> Pistachio Bar </b>
       </a><br>
-      1,79 € je Bar
+      <b> 2,19 € je Bar </b>
     </div>
 
-    <div class="grid-item" data-price="1,79" data-vegan="false">
-      <a href="choco_bar.html">
-        <img src="images/Proteinriegel_LowCarb.png" alt="Choco" width="220"><br>
-        Choco Bar
-      </a><br>
-      1,79 € je Bar
-    </div>
   </div>
 </main>
+
+<script src="js/cart.js"></script>
+
 <script>
   // Aktualisieren der Anzeige des aktuellen Preises, der mit einem Slider eingestellt werden soll
   const priceRange = document.getElementById('price-range');
@@ -143,24 +244,6 @@
   }
   </script>
 
-<script>
-  const toggle = document.getElementById('darkmode-toggle');
-
-  if (localStorage.getItem('dark-mode') === 'true') {
-    document.body.classList.add('dark-mode');
-    toggle.checked = true;
-  }
-
-  toggle.addEventListener('change', () => {
-    if (toggle.checked) {
-      document.body.classList.add('dark-mode');
-      localStorage.setItem('dark-mode', 'true');
-    } else {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('dark-mode', 'false');
-    }
-  });
-</script> 
   <?php include 'components/Footer/footer.php'; ?>
 </body>
 </html>
