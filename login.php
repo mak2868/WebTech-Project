@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="./style/logreg.css">
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
     <script src="components/Navbar/navbar.js" defer></script>
-    <script src="js/darkmode.js" defer></script>
 
 
 </head>

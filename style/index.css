@@ -7,14 +7,16 @@
 
 body {
   font-family: Arial, sans-serif;
-  color: white;
 }
 
 
 h1 {
-  color: rgb(255, 255, 255);
+  color: white;
 }
 
+.hero-paragraph {
+  color: white;
+}
 
 
 /* Hero Section */
@@ -172,11 +174,6 @@ h1 {
 }
 
 
-.bestseller-section p {
-  color: #555;
-  margin-bottom: 2rem;
-}
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -184,15 +181,8 @@ h1 {
 }
 
 .product-card {
-  border: 1px solid #eee;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   position: relative;
-  transition: box-shadow 0.2s ease;
-}
-
-.product-card:hover {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .badge {
@@ -220,7 +210,7 @@ h1 {
 
 .icons {
   position: absolute;
-  top: 0.75rem; /* gleiche Höhe wie .badge */
+  top: 0.75rem;
   right: 0.75rem;
   display: flex;
   gap: 8px;
@@ -253,39 +243,43 @@ h1 {
 
 .flavor {
   font-size: 0.9rem;
-  color: #666;
 }
 
 .title {
   font-weight: bold;
   margin: 0.3rem 0;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .desc {
-  color: #666;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  margin-bottom: 0rem;
 }
 
 .rating {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.9rem;
-  margin-top: -2rem;
+  font-size: 1rem;
 }
 
 .stars {
   color: #facc15;
 }
 
+.reviews {
+  color: black;
+  font-size: 1rem;
+}
+
 .price {
   font-weight: bold;
+  font-size: 1.25rem
 }
 
 .price-kg {
-  color: #777;
   font-size: 0.85rem;
+  font-weight: normal;
 }
 
 
