@@ -28,15 +28,15 @@
 
                 <!-- Logo der Anwendung mit Referenzierung auf Startseite-->
                 <a href="index.php">
-                    <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
+                    <img id="formLogo" src="images/Logo_SchriftWeiß.png" alt="XPN Logo" class="form-Logo">
                 </a>
 
                 <!-- Hauptüberschrift -->
                 <h1>Login</h1>
 
                 <!-- Benutzername-Eingabe -->
-                <label for="username">Benutzername</label>
-                <input type="text" id="username" name="username" required> <!-- Pflichtfeld -->
+                <label for="username">Dein Name</label>
+                <input type="text" id="username" name="username"  placeholder="Vor- und Nachname" required> <!-- Pflichtfeld -->
 
                 <!-- Passwort-Eingabe -->
                 <label for="password">Passwort</label>

@@ -65,3 +65,23 @@ function colorize(input, isValid) {
   input.addEventListener("input", validateForm)
 );
 
+// Zugriff aufs Formular
+const form = document.querySelector("form");
+
+form.addEventListener("submit", function(e) {
+  validateForm(); // Nochmal checken
+  if (submitBtn.disabled) {
+    e.preventDefault(); // Wenn Fehler, abbrechen
+    return;
+  }
+  e.preventDefault(); // Kein echtes Submit
+
+  // Registrierung erfolgreich → wie eingeloggt behandeln:
+  localStorage.setItem('userLoggedIn', 'true');
+  localStorage.setItem('username', usernameInput.value);
+  // Hier kannst du noch weitere Felder speichern (E-Mail, etc.), falls du das später brauchst
+
+  // Weiterleitung, z.B. auf die Startseite:
+  window.location.href = 'index.php';
+});
+

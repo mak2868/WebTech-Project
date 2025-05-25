@@ -1,6 +1,8 @@
 /* ========== FORM PAGES WRAPPER ========== */
 /* ================= FORM LAYOUT WRAPPER ================= */
 /* Begrenzt die Formularbreite, zentriert es auf der Seite, fügt Polsterung, runde Ecken und Schatten hinzu */
+
+
 .form-wrapper {
   max-width: 400px;
   margin: 5rem auto;
@@ -8,6 +10,12 @@
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.form-wrapper.user-wrapper {
+  max-width: 600px;
+  padding: 2rem 3rem;
+  
 }
 
 /* Überschrift: fett, zentriert und mit Abstand nach unten */
@@ -34,7 +42,8 @@
 /* Einheitlicher Stil für Text-, Passwort- und E-Mail-Eingaben */
 .form-wrapper input[type="text"],
 .form-wrapper input[type="password"],
-.form-wrapper input[type="email"] {
+.form-wrapper input[type="email"],
+.form-wrapper input[type="tel"] {
   margin-bottom: 0.5rem;
   /* Abstand nach unten */
   padding: 0.75rem 1rem;
@@ -197,26 +206,36 @@ body.dark-mode .hint-error {
   border: 1px solid #ff4d4d;
 }
 
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem 2rem;
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
 }
-
 .form-field {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
-/* Eingabefelder gleichmäßig */
-.form-grid input,
-.form-grid select {
-  width: 100%;
+/* Bei kleinen Bildschirmen nur eine Spalte */
+@media (max-width: 700px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
 }
 
-/* Für schmale Screens wieder 1 Spalte */
-@media (max-width: 768px) {
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
+
+#formLogo {
+  transition: filter 0.25s;
+}
+
+/* Im Lightmode: Logo schwarz machen */
+body:not(.dark-mode) #formLogo {
+  filter: invert(1) grayscale(1) contrast(5);
+}
+
+/* Im Darkmode: Kein Filter (bleibt weiß) */
+body.dark-mode #formLogo {
+  filter: none;
 }

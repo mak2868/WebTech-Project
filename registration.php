@@ -26,7 +26,7 @@
 
       <!-- Logo der Anwendung mit der Referenzierung auf Homepage -->
       <a href="index.php">
-        <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
+        <img id="formLogo" src="images/Logo_SchriftWeiß.png" alt="XPN Logo" class="form-Logo">
       </a>
 
       <!-- Hauptüberschrift -->
@@ -36,41 +36,28 @@
       <form action="..." method="post">
 
         <!-- Eingabefeld für den Benutzernamen -->
-        <label for="name">Benutzername</label>
-        <input type="text" id="name" name="name" required> <!-- Pflichtfeld -->
+        <label for="name">Dein Name</label>
+        <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required> <!-- Pflichtfeld -->
         <p id="username-rule" class="form-rule hint neutral">
           Mindestens 5 Zeichen, mindestens ein Groß- und ein Kleinbuchstabe
         </p>
 
-        <div class="form-grid">
-          <!-- Eingabefeld für den Vornamen -->
-          <div class="form-field">
-            <label for="firstname">Vorname:</label>
-            <input type="text" id="firstname" name="firstname" required>
-          </div>
+        <label for="email">E-Mail:</label>
+        <input type="email" id="email" name="email" required>
 
-          <div class="form-field">
-            <label for="lastname">Nachname:</label>
-            <input type="text" id="lastname" name="lastname" required>
-          </div>
 
-          <div class="form-field">
-            <label for="email">E-Mail:</label>
-            <input type="email" id="email" name="email" required>
-          </div>
+        <!-- Eingabefeld für das Passwort -->
+        <label for="password">Passwort</label>
+        <input type="password" id="password" name="password" placeholder="mindestens 10 Zeichen" required> <!-- Pflichtfeld -->
 
-          <!-- Eingabefeld für das Passwort -->
-          <label for="password">Passwort</label>
-          <input type="password" id="password" name="password" required> <!-- Pflichtfeld -->
+        <!-- Eingabefeld zur Wiederholung des Passworts -->
+        <label for="confirm">Passwort wiederholen</label>
+        <input type="password" id="confirm" name="confirm" required> <!-- Pflichtfeld -->
+        <p id="confirm-rule" class="form-rule hint-neutral">
+          Passwort muss aus mind. 10 Zeichen bestehen und mit der
+          Passwortwiederholung übereinstimmen
+        </p>
 
-          <!-- Eingabefeld zur Wiederholung des Passworts -->
-          <label for="confirm">Passwort wiederholen</label>
-          <input type="password" id="confirm" name="confirm" required> <!-- Pflichtfeld -->
-          <p id="confirm-rule" class="form-rule hint-neutral">
-            Passwort muss aus mind. 10 Zeichen bestehen und mit der
-            Passwortwiederholung übereinstimmen
-          </p>
-        </div>
 
         <!-- Button-Leiste: Abbrechen & Registrieren -->
         <div style="display: flex; justify-content: space-between;">
