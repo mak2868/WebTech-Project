@@ -1,6 +1,6 @@
 function changeWishListStatus(name, image, price){
 
-    const pic = document.querySelector('.FavButton');
+    const pic = document.getElementById('FavButton');
 
     const picProductNotOnListSrc = "/WebTech-Project//images/Herz_unausgefüllt.png";
     const picProductOnListSrc = "/WebTech-Project//images/Herz_ausgefüllt.png"; 

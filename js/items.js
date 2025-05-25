@@ -7,8 +7,166 @@ window.switchProductbild = switchProductbild;
 window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
+window.renderItemSite = renderItemSite;
+window.intermediateStepAddToCart = intermediateStepAddToCart; 
+window.intermediateStepChangeWishListStatus = intermediateStepChangeWishListStatus;
+window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 
-function createStars(rating) { 
+let product;
+let initial = true; 
+
+function intermediateStepRenderItemSite(pid){
+    if(isNaN(pid)){
+        console.error("Parameter error: " + pid); 
+    } else {
+        renderItemSite(data["Whey Proteins"][pid - 1].name, pid);
+    }
+}
+
+function renderItemSite(selectedProduct, pid) {
+     
+    if (selectedProduct === undefined) {
+        selectedProduct = "Whey Protein Choco";
+    }
+    product = data["Whey Proteins"].find(item => item.name === selectedProduct);
+
+    history.pushState({ pid: pid }, '', '?pid=' + pid);
+
+    if(initial){
+        initial = false; 
+        let selectBox = document.getElementById('select');
+        for (let i = 0; i < data["Whey Proteins"].length; i++) {
+            const selectItem = document.createElement('option');
+            const productName = data["Whey Proteins"][i].name;
+            
+            let productShortName;
+            if (productName.includes("White")) {
+                productShortName = "White Choco";
+            } else {
+                productShortName = productName.split(" ").pop();
+            }
+            selectItem.textContent = productShortName;
+    
+            selectBox.appendChild(selectItem);
+        }
+
+       selectBox.selectedIndex = (pid - 1);
+        
+        select.addEventListener('change', e => {
+            for (let i = 0; i < data["Whey Proteins"].length; i++) {
+                if (data["Whey Proteins"][i].name.includes(e.target.value)) {
+                    renderItemSite(data["Whey Proteins"][i].name, data["Whey Proteins"][i].pid);
+                }
+            }
+        })
+    }
+   
+
+    document.getElementById('name').textContent = product.name;
+
+    const rating = product.rating;
+    const starContainer = document.getElementById("Bewertungsskala");
+    createStars(rating).then((canvas) => {
+        if (canvas instanceof HTMLCanvasElement) {
+            const c = starContainer.querySelector("canvas");
+            if (c) {
+                starContainer.removeChild(c);
+            }
+            starContainer.appendChild(canvas);
+        }
+    });
+    document.getElementById('ratersCount').textContent = '(' + product.ratersCount + ')';
+
+    document.getElementById('description').innerHTML = product.description;
+
+    const verpackungsgrößenButtonsContainer = document.getElementById('VerpackungsgrößenButtons');
+    verpackungsgrößenButtonsContainer.innerHTML = "";
+    for (let i = 0; i < product.availableSizes.length; i++) {
+        let button = document.createElement('button');
+        button.textContent = product.availableSizes[i] + 'g';
+
+        if (product.availableSizes[i] == 500) {
+            button.classList.add('active');
+        }
+        button.onclick = () => changeSelectedSize(button);
+        verpackungsgrößenButtonsContainer.appendChild(button);
+    }
+
+    const priceWOTax = product.priceWithoutTax;
+    const priceWTax = getTotalPrice(priceWOTax);
+    document.getElementById("priceWTax").textContent = priceWTax + '€';
+    const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent.slice(0, -1) / 1000);
+    if (pricePerKG !== undefined) {
+        document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
+    }
+
+    document.getElementById('statusDistribution').textContent = product.statusDistribution;
+
+    document.getElementById('descriptionDetails1').textContent = product.descriptionDetails[0];
+    document.getElementById('descriptionDetails2').textContent = product.descriptionDetails[1];
+
+    document.getElementById('substanceIngredients').textContent = product.substance.ingredients;
+    document.getElementById('substanceAllergens').textContent = product.substance.allergens;
+
+    document.getElementById('substanceNutrientsEnergy').textContent = product.substance.nutrients.Energy;
+    document.getElementById('substanceNutrientsFat').textContent = product.substance.nutrients.Fat;
+    document.getElementById('substanceNutrientsFatOfWhichSaturates').textContent = product.substance.nutrients["of which saturates"];
+    document.getElementById('substanceNutrientsCarbohydrates').textContent = product.substance.nutrients.Carbohydrates;
+    document.getElementById('substanceNutrientsOfWhichSugars').textContent = product.substance.nutrients["of which sugars"];
+    document.getElementById('substanceNutrientsFibre').textContent = product.substance.nutrients.Fibre;
+    document.getElementById('substanceNutrientsProtein').textContent = product.substance.nutrients.Protein;
+    document.getElementById('substanceNutrientsSalt').textContent = product.substance.nutrients.Salt;
+
+    document.getElementById('substanceAminoAcidsAlanine').textContent = product.substance.aminoAcids.Alanine;
+    document.getElementById('substanceAminoAcidsArginine').textContent = product.substance.aminoAcids.Arginine;
+    document.getElementById('substanceAminoAcidsAsparticAcid').textContent = product.substance.aminoAcids["Aspartic acid"];
+    document.getElementById('substanceAminoAcidsCysteine').textContent = product.substance.aminoAcids.Cysteine;
+    document.getElementById('substanceAminoAcidsGlutamicAcid').textContent = product.substance.aminoAcids["Glutamic acid"];
+    document.getElementById('substanceAminoAcidsGlycine').textContent = product.substance.aminoAcids.Glycine;
+    document.getElementById('substanceAminoAcidsHistidine').textContent = product.substance.aminoAcids.Histidine;
+    document.getElementById('substanceAminoAcidsIsoleucine').textContent = product.substance.aminoAcids.Isoleucine;
+    document.getElementById('substanceAminoAcidsLeucine').textContent = product.substance.aminoAcids.Leucine;
+    document.getElementById('substanceAminoAcidsLysine').textContent = product.substance.aminoAcids.Lysine;
+    document.getElementById('substanceAminoAcidsMethionine').textContent = product.substance.aminoAcids.Methionine;
+    document.getElementById('substanceAminoAcidsPhenylalanine').textContent = product.substance.aminoAcids.Phenylalanine;
+    document.getElementById('substanceAminoAcidsProline').textContent = product.substance.aminoAcids.Proline;
+    document.getElementById('substanceAminoAcidsSerine').textContent = product.substance.aminoAcids.Serine;
+    document.getElementById('substanceAminoAcidsThreonine').textContent = product.substance.aminoAcids.Threonine;
+    document.getElementById('substanceAminoAcidsTryptophan').textContent = product.substance.aminoAcids.Tryptophan;
+    document.getElementById('substanceAminoAcidsTyrosine').textContent = product.substance.aminoAcids.Tyrosine;
+    document.getElementById('substanceAminoAcidsValine').textContent = product.substance.aminoAcids.Valine;
+
+    document.getElementById('usagePreparation').textContent = product.usage.preparation;
+    document.getElementById('usageRecommendation').textContent = product.usage.recommendation;
+    document.getElementById('usageTip').textContent = product.usage.tip;
+
+    const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
+    recipeButtonsContainer.innerHTML = "";
+    for (let i = 0; i < 3; i++) {
+        let recipeButton = document.createElement('button');
+        recipeButton.textContent = product.usage.recipes[i].shortTitle;
+
+        recipeButton.onclick = () => switchRecipe(i);
+        recipeButtonsContainer.appendChild(recipeButton);
+    }
+    switchRecipe();
+
+    document.getElementById('laboratory').textContent = product.laboratory;
+
+    document.querySelector('#topPic img').src = product.pics.topPic;
+
+    const produktbildAuswahl = document.getElementById('ProduktbildAuswahl');
+    produktbildAuswahl.getElementsByTagName('img')[0].src = product.pics.productPic1;
+    produktbildAuswahl.getElementsByTagName('img')[1].src = product.pics.productPic2;
+    produktbildAuswahl.getElementsByTagName('img')[2].src = product.pics.productPic3;
+
+    document.querySelector('#Produktbild img').src = product.pics.productPic1;
+
+    document.getElementById('klBild').src = product.pics.smallPic;
+}
+
+
+function createStars(rating) {
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
@@ -84,7 +242,6 @@ function createStars(rating) {
         if (halfStarCount) {
             ctx.drawImage(halfImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
-
         }
 
         if (threeQStarCount) {
@@ -96,7 +253,6 @@ function createStars(rating) {
             ctx.drawImage(emptyImg, currentPosition * 16 + currentPosition * 2, 0);
             currentPosition++;
             canvas.classList.add("invert-keep");
-
         }
 
         ctx.scale(0.15, 0.15);
@@ -107,15 +263,10 @@ function createStars(rating) {
 };
 
 function openPanel(activatedIndex) {
-    const acc = document.querySelectorAll('.accordion');
+    const acc = document.querySelectorAll('#accordion');
 
     if (activatedIndex == 2) {
-        let selectedButton = document.getElementsByClassName('Brownie')[0];
-        selectedButton.style.display = 'block';
-        let nonSelectedButton1 = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedButton1.style.display = 'none';
-        let nonSelectedButton2 = document.getElementsByClassName('Porridge')[0];
-        nonSelectedButton2.style.display = 'none';
+        switchRecipe(0);
     }
     const button = acc[activatedIndex];
     const panel = button.nextElementSibling;
@@ -125,6 +276,7 @@ function openPanel(activatedIndex) {
 
     if (panel.classList.contains('open')) {
         panel.style.maxHeight = panel.scrollHeight + 20 + 'px';
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
         panel.style.maxHeight = '0px';
     }
@@ -133,51 +285,58 @@ function openPanel(activatedIndex) {
         panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-     document.getElementById('selectedRecipe').classList.add('active');
 }
 
 
-function switchRecipe(buttonNumber) {
-    let selectedRecipe;
-    let nonSelectedRecipe1;
-    let nonSelectedRecipe2;
-
-    if (buttonNumber == 1 ) {
-        selectedRecipe = document.getElementsByClassName('Brownie')[0];
-        nonSelectedRecipe1 = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];
-    } else if (buttonNumber == 2) {
-        selectedRecipe = document.getElementsByClassName('Porridge')[0];
-        nonSelectedRecipe1 = document.getElementsByClassName('Brownie')[0];
-        nonSelectedRecipe2 = document.getElementsByClassName('Milchshake')[0];
-    } else if (buttonNumber == 3) {
-        selectedRecipe = document.getElementsByClassName('Milchshake')[0];
-        nonSelectedRecipe1 = document.getElementsByClassName('Brownie')[0];
-        nonSelectedRecipe2 = document.getElementsByClassName('Porridge')[0];
+function switchRecipe(selectedRecipe) {
+    if (selectedRecipe == undefined) {
+        selectedRecipe = 0;
+        document.querySelector('#btn-group-Rezeptidee button:first-child').classList.add('active');
     }
-
-    nonSelectedRecipe1.style.display = 'none';
-    nonSelectedRecipe2.style.display = 'none';
-    selectedRecipe.style.display = 'block';
-
-    document.querySelectorAll('.btn-group-Rezeptidee button').forEach(button => {
+    document.querySelectorAll('#btn-group-Rezeptidee button').forEach(button => {
         button.addEventListener('click', () => {
-            document.querySelectorAll('.btn-group-Rezeptidee button').forEach(btn => {
+            document.querySelectorAll('#btn-group-Rezeptidee button').forEach(btn => {
                 btn.classList.remove('active');
             });
             button.classList.add('active');
         });
     });
+
+    document.getElementById('recipeTitle').textContent = product.usage.recipes[selectedRecipe].title;
+
+    if (product.usage.recipes[selectedRecipe].portion == 1) {
+        document.getElementById('recipeIngredientsHeading').textContent = "Zutaten (für 1 Portion):";
+    } else {
+        document.getElementById('recipeIngredientsHeading').textContent = "Zutaten (für " + product.usage.recipes[selectedRecipe].portion + " Portionen):";
+    }
+
+    const ingredientsList = document.getElementById('recipeIngredients');
+    ingredientsList.innerHTML = "";
+    for (let i = 0; i < product.usage.recipes[selectedRecipe].ingredients.length; i++) {
+        const listElement = document.createElement('li');
+        listElement.textContent = product.usage.recipes[selectedRecipe].ingredients[i];
+
+        ingredientsList.appendChild(listElement);
+    }
+
+    const preparationList = document.getElementById('recipePreparation');
+    preparationList.innerHTML = "";
+    for (let i = 0; i < product.usage.recipes[selectedRecipe].preparation.length; i++) {
+        const listElement = document.createElement('li');
+        listElement.textContent = product.usage.recipes[selectedRecipe].preparation[i];
+
+        preparationList.appendChild(listElement);
+    }
 }
 
 
 function switchProductbild(pictureNumber) {
-    const pics = document.querySelectorAll('.ProduktbildAuswahl img');
+    const pics = document.querySelectorAll('#ProduktbildAuswahl img');
 
     const picsSrc = [
-        '/WebTech-Project/images/Choco Whey.webp',
-        '/WebTech-Project/images/choco_whey.jpeg',
-        '/WebTech-Project/images/Proteinpulver_Unsplash.jpg'
+        product.pics.productPic1,
+        product.pics.productPic2,
+        product.pics.productPic3
     ];
 
     let selectedPic;
@@ -202,7 +361,7 @@ function switchProductbild(pictureNumber) {
     nonSelectedPic1.style.opacity = 0.3;
     nonSelectedPic2.style.opacity = 0.3;
 
-    const productPic = document.querySelector('.Produktbild img');
+    const productPic = document.querySelector('#Produktbild img');
     productPic.src = picsSrc[pictureNumber];
 }
 
@@ -222,26 +381,27 @@ function getPricePerKG(price, totalWeight) {
     return returnValue.toFixed(2);
 }
 
-let isFirstCallchangeSelectedSize = true;
-
-function changeSelectedSize() {
-
-    if (isFirstCallchangeSelectedSize) {
-        isFirstCallchangeSelectedSize = false;
-
-        document.getElementById('selectedSize').classList.add('active');
-    }
-    document.querySelectorAll('.VerpackungsgrößenButtons .btn').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('.VerpackungsgrößenButtons .btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            button.classList.add('active');
-        });
-    });
+function changeSelectedSize(selctedButton) {
+    const allButtons = document.querySelectorAll('#VerpackungsgrößenButtons button');
+    allButtons.forEach(btn => btn.classList.remove('active'));
+    selctedButton.classList.add('active');
 }
 
+function intermediateStepAddToCart(){
+    const name = product.name; 
+    const image = product.pics.productPic1;
+    const price = getTotalPrice(product.priceWithoutTax); 
 
+    addToCart(name, image, price); 
+}
+
+function intermediateStepChangeWishListStatus(){
+    const name = product.name; 
+    const image = product.pics.productPic1;
+    const price = getTotalPrice(product.priceWithoutTax); 
+
+    changeWishListStatus(name, image, price); 
+}
 export const scrollBorder = 40;
 
 window.addEventListener('scroll', function () {

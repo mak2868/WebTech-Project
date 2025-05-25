@@ -20,7 +20,7 @@ section {
 
 
 /* ========== FLEXBOXES (TOP) ========== */
-.top {
+#top {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -29,13 +29,13 @@ section {
   /* align-items: flex-start; */
 }
 
-.top-rigth {
+#top-rigth {
   border-radius: 20px;
   background-color: #f4f3f3;
   padding: 25px;
 }
 
-.top-left {
+#top-left {
   display: flex;
   flex-direction: row;
   gap: 2rem;
@@ -43,12 +43,12 @@ section {
 }
 
 /* ========== PICTURES ========== */
-.ProduktbildAuswahl {
+#ProduktbildAuswahl {
   display: flex;
   flex-direction: column;
 }
 
-.ProduktbildAuswahl img {
+#ProduktbildAuswahl img {
   width: 100px;
   height: 130px;
   border-radius: 6px;
@@ -57,16 +57,16 @@ section {
   opacity: 0.3;
 }
 
-.ProduktbildAuswahl img:first-of-type {
+#ProduktbildAuswahl img:first-of-type {
   opacity: 0.8;
 }
 
-.Produktbild {
+#Produktbild {
   width: 40vw;
   height: auto;
 }
 
-.Produktbild img {
+#Produktbild img {
   width: 100%;
   height: auto;
   border-radius: 15px;
@@ -80,13 +80,13 @@ h2 {
 
 
 /* ========== Bewertungsskala ========== */
-.firstLine {
+#firstLine {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.firstLine p {
+#firstLine p {
   margin-bottom: 0rem;
   font-size: 0.7rem;
 }
@@ -98,21 +98,21 @@ h2 {
 
 
 /* ========== SORTENAUSWAHL ========== */
-.select-wrapper {
+#select-wrapper {
   margin-top: 0vw;
   margin-bottom: 3vw;
 }
 
-.select-wrapper p {
+#select-wrapper p {
   margin: 0vw;
 }
 
-.select-wrapper {
+#select-wrapper {
   position: relative;
   display: inline-block;
 }
 
-.select-wrapper select {
+#select-wrapper select {
   padding: 0.75rem 3rem;
   cursor: pointer;
   font-weight: bold;
@@ -128,7 +128,7 @@ h2 {
   background-size: 1rem;
 }
 
-.select-wrapper select:focus-visible{
+#select-wrapper select:focus-visible{
     border: 2px solid var(--color-button-border);
     outline: none !important; 
 }
@@ -143,18 +143,18 @@ select option {
 
 
 /* ========== VERPACKUNGSGRÖSSEN ========== */
-.Verpackungsgrößen p {
+#Verpackungsgrößen p {
   margin: 0vw;
 }
 
-.VerpackungsgrößenButtons {
+#VerpackungsgrößenButtons {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   width: 90%;
 }
 
-.VerpackungsgrößenButtons .btn {
+#VerpackungsgrößenButtons button {
   margin: 0px;
 
   display: flex;
@@ -163,31 +163,31 @@ select option {
   border: 2px solid var(--color-button-border);
 }
 
-.VerpackungsgrößenButtons .btn.active {
+#VerpackungsgrößenButtons button.active {
   background-color: var(--color-button-selected);
 }
 
-.VerpackungsgrößenButtons .btn:not(.active):hover {
+#VerpackungsgrößenButtons button:not(.active):hover {
   background-color: var(--color-button-hover);
   border: 2px solid var(--color-button-hover);
 }
 
 
 /* ========== PRICES ========== */
-.Preis #priceWTax {
+#Preis #priceWTax {
   margin-top: 3vw;
   margin-bottom: 0vw;
   font-size: 1.75rem;
   font-weight: bold;
 }
 
-.Preis #pricePerKgOutput{
+#Preis #pricePerKgOutput{
   margin-bottom: 3vw;
 }
 
 
 /* ========== VERSAND + FAVORITEN ========== */
-.VersandFavoriten {
+#VersandFavoriten {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -195,7 +195,7 @@ select option {
 }
 
 /* ========== VERSAND ========== */
-.VersandButton {
+#VersandButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -204,17 +204,17 @@ select option {
   margin-top: 0rem;
 }
 
-.VersandButton {
+#VersandButton {
   background-color: var(--color-button-border);
 }
 
-.VersandButton img {
+#VersandButton img {
   width: 20px;
   height: 20px;
 }
 
 /* ========== FAVORITEN ========== */
-.FavoritenButton {
+#FavoritenButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -222,24 +222,24 @@ select option {
   width: 10%;
 }
 
-.FavoritenButton svg {
+#FavoritenButton svg {
   width: 20px;
   height: auto;
 }
 
-.FavButton {
+#FavButton {
   height: 1.85rem;
 }
 
 /* ========== PRODUKTINFORMATIONEN + KLEINES BILD ========== */
-.ProduktinformationKlBild {
+#ProduktinformationKlBild {
   display: flex;
   gap: 2rem;
 }
 
 
 /* ========== PRODUKTINFORMATIONEN (Accordion) ========== */
-.accordion {
+#accordion {
   position: relative;
   padding-right: 2rem;
   background-color: white;
@@ -253,7 +253,7 @@ select option {
   border-bottom: 1px solid #ccc;
 }
 
-.accordion::after {
+#accordion::after {
   content: '';
   position: absolute;
   right: 0.5rem;
@@ -266,17 +266,17 @@ select option {
   transition: transform 0.8s linear;
 }
 
-.accordion.active::after {
+#accordion.active::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
-.accordion:hover {
+#accordion:hover {
   background-color: inherit;
 }
 
 
 /* ========== PRODUKTINFORMATIONEN (Panel) ========== */
-.panel {
+#panel {
   padding: 0 18px;
   background-color: rgba(244, 243, 243, 0.5);
   overflow: hidden;
@@ -288,50 +288,50 @@ select option {
   will-change: max-height;
 }
 
-.panel.open {
+#panel.open {
   padding-top: 1rem;
   padding-bottom: 1rem;
   /* max-height: 2000px; */
 }
 
-.panel table th,
-.panel table td {
+#panel table th,
+#panel table td {
   padding: 0.5rem;
   background-color: #f4f3f3;
 }
 
-.panel table thead th {
+#panel table thead th {
   background-color: lightgray;
 }
 
 
 /* ========== PRODUKTINFORMATIONEN (Article) ========== */
-.ProduktinformationKlBild article:not(:first-of-type) h4 {
+#ProduktinformationKlBild article:not(:first-of-type) h4 {
   margin-top: 2rem;
 }
 
-.ProduktinformationKlBild article h5 {
+#ProduktinformationKlBild article h5 {
   margin-bottom: 0rem;
 }
 
-.ProduktinformationKlBild article h5:nth-of-type(2) {
+#ProduktinformationKlBild article h5:nth-of-type(2) {
   margin-top: 2rem;
 }
 
-.ProduktinformationKlBild article ul,
-.ProduktinformationKlBild article ol {
+#ProduktinformationKlBild article ul,
+#ProduktinformationKlBild article ol {
   margin-left: 2rem;
   padding: 1vw;
 }
 
 
 /* ========== PRODUKTINFORMATIONEN (Rezeptideen) ========== */
-.btn-group-Rezeptidee {
+#btn-group-Rezeptidee {
   width: fit-content;
   margin: 0 auto;
 }
 
-.btn-group-Rezeptidee button {
+#btn-group-Rezeptidee button {
   width: 13vw;
   height: auto;
   float: left;
@@ -339,7 +339,7 @@ select option {
   background-color: var(--color-button);
 }
 
-.btn-group-Rezeptidee button:first-child {
+#btn-group-Rezeptidee button:first-child {
   border-top-left-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
   border-left: 2px solid var(--color-button-border);
@@ -347,12 +347,12 @@ select option {
   border-bottom: 2px solid var(--color-button-border);
 }
 
-.btn-group-Rezeptidee button:nth-child(2){
+#btn-group-Rezeptidee button:nth-child(2){
   border-top: 2px solid var(--color-button-border);
   border-bottom: 2px solid var(--color-button-border);
 }
 
-.btn-group-Rezeptidee button:last-child {
+#btn-group-Rezeptidee button:last-child {
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
   border-right: 2px solid var(--color-button-border);
@@ -360,16 +360,16 @@ select option {
   border-bottom: 2px solid var(--color-button-border);
 }
 
-.btn-group-Rezeptidee button.active {
+#btn-group-Rezeptidee button.active {
   background-color: var(--color-button-selected);
 }
 
-.btn-group-Rezeptidee button:not(.active):hover {
+#btn-group-Rezeptidee button:not(.active):hover {
   background-color: var(--color-button-hover);
   border: 2px solid var(--color-button-hover);
 }
 
-.btn-group-Rezeptidee:after {
+#btn-group-Rezeptidee:after {
   content: "";
   clear: both;
   display: table;
@@ -377,13 +377,13 @@ select option {
 
 
 /* ========== KLEINES BILD ========== */
-.klBild {
+#klBild {
   position: sticky;
   top: 80px;
   align-self: flex-start;
 }
 
-.klBild img {
+#klBild img {
   width: 100%;
   height: auto;
   display: block;
@@ -395,4 +395,115 @@ header img {
   width: 100%;
   height: 800px;
   margin: 0;
+}
+
+
+
+/* ============================== */
+/*            Darkmode            */
+/* ============================== */
+
+body.dark-mode {
+  --color-button: white;
+  --color-button-border: #ffc356;
+  --color-button-selected: rgba(255, 195, 86, 0.75);
+}
+
+body.dark-mode #top-rigth{
+  background-color: #202020;
+}
+
+body.dark-mode #select-wrapper select {
+  background-color:white; 
+  border: 2px solid var(--color-button-border);
+}
+
+body.dark-mode #select-wrapper select:focus-visible {
+  border: 2px solid var(--color-button-border); 
+}
+
+/* funktioniert nur beschränkt, Browserabhängig */
+body.dark-mode select option {
+  background-color: white;
+  color: var(--color-button-text);
+  border: 2px solid var(--color-button-border);
+}
+
+body.dark-mode #VerpackungsgrößenButtons button {
+  background-color: var(--color-button);
+  border: 2px solid var(--color-button-border);
+}
+
+body.dark-mode #VerpackungsgrößenButtons button.active {
+  background-color: var(--color-button-selected);
+}
+
+body.dark-mode #VerpackungsgrößenButtons button:not(.active):hover {
+  background-color: var(--color-button-hover);
+  border: 2px solid var(--color-button-hover);
+}
+
+body.dark-mode #VersandButton {
+  background-color: var(--color-button-border);
+}
+
+body.dark-mode #FavButton{
+filter: invert(1);
+}
+
+body.dark-mode #accordion {
+  background-color: #121212;
+  color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+body.dark-mode #accordion::after {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
+}
+
+body.dark-mode #accordion:hover {
+  background-color:  #121212;
+}
+
+body.dark-mode #panel {
+  background-color: #202020;
+}
+
+body.dark-mode #panel table th,
+body.dark-mode #panel table td {
+  background-color: #121212;
+}
+
+body.dark-mode #panel table thead th {
+  background-color: black;
+}
+
+body.dark-mode #btn-group-Rezeptidee button {
+  background-color: var(--color-button);
+}
+
+body.dark-mode #btn-group-Rezeptidee button:first-child {
+  border-left: 2px solid var(--color-button-border);
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
+}
+
+body.dark-mode #btn-group-Rezeptidee button:nth-child(2) {
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
+}
+
+body.dark-mode #btn-group-Rezeptidee button:last-child {
+  border-right: 2px solid var(--color-button-border);
+  border-top: 2px solid var(--color-button-border);
+  border-bottom: 2px solid var(--color-button-border);
+}
+
+body.dark-mode #btn-group-Rezeptidee button.active {
+  background-color: var(--color-button-selected);
+}
+
+body.dark-mode #btn-group-Rezeptidee button:not(.active):hover {
+  background-color: var(--color-button-hover);
+  border: 2px solid var(--color-button-hover);
 }
