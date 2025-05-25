@@ -19,7 +19,7 @@ const itemHtml = `
     <img src="${image}" alt="${name}" />  <!-- Produktbild -->
     <div>
       <strong>${name}</strong><br>         <!-- Produktname -->
-      <span class="price-new">€${price.toFixed(2)}</span>  <!-- Preis mit zwei Nachkommastellen -->
+      <span class="price-new">€${price}</span>  <!-- Preis mit zwei Nachkommastellen -->
     </div>
   </div>
 `;

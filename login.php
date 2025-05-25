@@ -23,9 +23,11 @@
         <!-- Formular zum Einloggen (POST wird an Server gesendet) -->
         <form action="..." method="post">
             
-            <!-- Logo der Anwendung -->
-            <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
-            
+            <!-- Logo der Anwendung mit Referenzierung auf Startseite-->
+            <a href="index.php">
+                <img src="images/Logo_SchriftSchwarz.png" alt="XPN Logo" class="form-Logo">
+                </a>
+
             <!-- Hauptüberschrift -->
             <h1>Login</h1>
 
