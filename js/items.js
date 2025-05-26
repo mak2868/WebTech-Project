@@ -7,7 +7,6 @@ window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
 window.renderItemSite = renderItemSite;
 window.intermediateStepAddToCart = intermediateStepAddToCart; 
-window.intermediateStepChangeWishListStatus = intermediateStepChangeWishListStatus;
 window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 
 let product;
@@ -58,7 +57,6 @@ function renderItemSite(selectedProduct, pid) {
             }
         })
     }
-   
 
     document.getElementById('name').textContent = product.name;
 
@@ -389,4 +387,4 @@ function intermediateStepAddToCart(){
     const name = product.name; 
     const image = product.pics.productPic1;
     const price = getTotalPrice(product.priceWithoutTax); 
-
+}
