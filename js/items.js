@@ -389,4 +389,4 @@ function intermediateStepAddToCart(){
     const name = product.name; 
     const image = product.pics.productPic1;
     const price = getTotalPrice(product.priceWithoutTax); 
-}
+
