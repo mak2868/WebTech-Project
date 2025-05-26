@@ -7,7 +7,6 @@ window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
 window.renderItemSite = renderItemSite;
 window.intermediateStepAddToCart = intermediateStepAddToCart; 
-window.intermediateStepChangeWishListStatus = intermediateStepChangeWishListStatus;
 window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 
 let product;
@@ -58,7 +57,6 @@ function renderItemSite(selectedProduct, pid) {
             }
         })
     }
-   
 
     document.getElementById('name').textContent = product.name;
 
