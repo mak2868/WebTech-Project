@@ -53,7 +53,6 @@ if (isset($_GET["pid"])) {
 </script>
 
 <body>
-    
     <div id='topPic'>
         <img src="" alt="">
     </div>
@@ -345,10 +344,10 @@ if (isset($_GET["pid"])) {
     <?php include 'components/Footer/footer.php'; ?>
 
     <script defer>
-    window.onload = () => {
-        window.intermediateStepRenderItemSite(<?php echo $pid; ?>);
-    }
-</script>
+        window.onload = () => {
+            window.intermediateStepRenderItemSite(<?php echo $pid; ?>);
+        }
+    </script>
 </body>
 </html>
 
