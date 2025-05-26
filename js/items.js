@@ -17,12 +17,7 @@ function intermediateStepRenderItemSite(pid){
     if(isNaN(pid)){
         console.error("Parameter error: " + pid); 
     } else {
-        const product = data["Whey Proteins"].find(p => p.pid === pid);
-        if(product){
-            renderItemSite(product.name, pid);
-        } else {
-            console.error("Produkt mit PID " + pid + " nicht gefunden.");
-        }
+        renderItemSite(data["Whey Proteins"][pid - 1].name, pid);
     }
 }
 
@@ -56,16 +51,11 @@ function renderItemSite(selectedProduct, pid) {
        selectBox.selectedIndex = (pid - 1);
         
         select.addEventListener('change', e => {
-                const selectedShort = e.target.value;
-                const selectedProduct = data["Whey Proteins"].find(p => {
-                    if (p.name.includes("White") && selectedShort === "White Choco") {
-                        return true;
-                    }
-                    return p.name.endsWith(selectedShort);
-                });
-                if (selectedProduct) {
-                     renderItemSite(selectedProduct.name, selectedProduct.pid);
+            for (let i = 0; i < data["Whey Proteins"].length; i++) {
+                if (data["Whey Proteins"][i].name.includes(e.target.value)) {
+                    renderItemSite(data["Whey Proteins"][i].name, data["Whey Proteins"][i].pid);
                 }
+            }
         })
     }
 

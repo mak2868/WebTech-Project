@@ -1,4 +1,4 @@
-<!--erstellt von: Nick Zetzmann (Navbar von Felix Bartel)-->
+<!--erstellt von: Nick Zetzmann (Navbar von Felix Bartel - Slider von Merzan Köse)-->
 
 <!DOCTYPE html>
 <html lang="de">
@@ -8,9 +8,12 @@
   <title>XPN | Proteinpulver</title>
   <link rel="stylesheet" href="style/global.css">
   <link rel="stylesheet" href="style/Grid-List.css">
+  <link rel="stylesheet" href="style/cart-slide.css">
   <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
   <link rel="stylesheet" href="components/Footer/footer.css">
   <script src="components/Navbar/navbar.js" defer></script>
+  <script src="js/items.js" defer></script>
+  <script src="js/cart.js" defer></script>
 </head>
 
 
@@ -267,7 +270,6 @@
   </div>
 </main>
 
-<script src="js/cart.js"></script>
 
 <script>
   
@@ -307,3 +309,31 @@
   <?php include 'components/Footer/footer.php'; ?>
 </body>
 </html>
+
+<!-- ============================= -->
+<!--         Warenkorb-Slider      -->
+<!-- ============================= -->
+
+<!-- Der gesamte Slider (standardmäßig ausgeblendet per CSS) -->
+<div id="cartSlider" class="cart-slider">
+
+    <!-- Kopfzeile des Sliders mit Titel und Schließen-Button -->
+    <div class="cart-header">
+        <span>🛒 Produkt hinzugefügt</span> <!-- Textanzeige -->
+        <button class="close-btn" onclick="closeCart()">×</button> <!-- Schließen-Symbol -->
+    </div>
+
+    <!-- Hauptinhalt des Sliders -->
+    <div class="cart-content">
+
+        <!-- Hier wird per JavaScript das aktuell hinzugefügte Produkt angezeigt -->
+        <div id="cartItems"></div>
+
+        <!-- Aktions-Buttons unten im Slider -->
+        <div class="cart-actions">
+            <button onclick="closeCart()">Weiter einkaufen</button> <!-- Schließt den Slider -->
+            <button class="go-cart" onclick="window.location.href='cart.php'">Zum Warenkorb</button> <!-- Link zur Warenkorbseite -->
+        </div>
+
+    </div>
+</div>

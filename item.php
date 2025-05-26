@@ -27,21 +27,23 @@ $json = @file_get_contents(__DIR__ . '/products/WheyProteins.json');
 if ($json === false) {
     echo "Error: The file could not be loaded.";
     error_log("Error loading the file: " . __DIR__ . '/products/WheyProteins.json');
-    exit;
-} 
-
-$data = json_decode($json, true);
-if ($data === null) {
-    echo "Error: The JSON data could not be decoded.";
-    error_log("Error decoding JSON from file: " . __DIR__ . '/products/WheyProteins.json');
-    exit;
+} else {
+    $data = json_decode($json, true);
+    
+    if ($data === null) {
+        echo "Error: The JSON data could not be decoded.";
+        error_log("Error decoding JSON from file: " . __DIR__ . '/products/WheyProteins.json');
+    } 
 }
 
-if (isset($_GET["pid"]) && !empty($_GET["pid"])) {
-    $pid = intval($_GET["pid"]); 
+if (isset($_GET["pid"])) {
+    if (empty($_GET["pid"])) {
+        $pid = "No value for the parameter!";
+    } else {
+        $pid = $_GET["pid"];
+    }
 } else {
-    echo "Parameter pid fehlt oder ist leer!";
-    exit;  
+    $pid = "Parameter is missing!";
 }
 
 ?>

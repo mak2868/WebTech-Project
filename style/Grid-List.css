@@ -141,3 +141,7 @@ main {
   border: 2px solid #ded118;
   cursor: pointer;
 }
+
+.dark-mode .reviews {
+  color: #f0f0f0;
+}
