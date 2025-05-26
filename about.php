@@ -10,10 +10,6 @@
   <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
   <link rel="stylesheet" href="components/Footer/footer.css">
   <script src="components/Navbar/navbar.js" defer></script>
-  <script src="js/darkmode.js" defer></script>
-
-
-
 </head>
 
 <body>

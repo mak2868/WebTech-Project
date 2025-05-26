@@ -1,4 +1,4 @@
-<div class="navbar">
+<div id="navbar" class="navbar">
   <div class="navbar-container">
     <a href="index.php" class="navbar-brand">
       <img id="navbarLogo" src="images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" />
@@ -30,8 +30,10 @@
       </ul>
     </nav>
     <div class="icon-container">
-      <a id="darkmodeBtn" class="navbar-icon"><img src="images/Mond.png" width="32" alt="" /></a>
-     
+<a id="darkmodeBtn" class="navbar-icon">
+        <img src="images/Mond.png" width="32" alt="Darkmode umschalten" />
+      </a>
+
       <!-- USER ICON MIT DROPDOWN-MENÜ     -->
       <div class="user-menu-container" style="position:relative; display:inline-block;">
   <a id="userBtn" class="navbar-icon" href="#"><img src="images/user.png" width="32" alt="User" /></a>
@@ -42,8 +44,9 @@
 </div>
 
 </div>
-    <a id="cartBtn" href="cart.php" class="navbar-icon"><img src="images/shopping-cart.png" width="32" alt="" /></a>
-    </div>
+  <a id="cartBtn" href="cart.php" class="navbar-icon">
+        <img src="images/shopping-cart.png" width="32" alt="Warenkorb" />
+      </a>    </div>
     <div class="menu-button">
       <div class="w-icon-nav-menu"></div>
     </div>
