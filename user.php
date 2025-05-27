@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/user.css">
     <link rel="stylesheet" href="style/logreg.css">
+    <link rel="stylesheet" href="style/cookieBanner.css">
+    <script src="js/cookieBanner.js" defer></script>
+
 
 </head>
 
@@ -61,6 +64,7 @@
 </div>
 
     <script src="js/validate-user.js"></script>
+    <?php include 'cookieBanner.php'; ?>
     <?php include 'components/Footer/footer.php'; ?>
 </main>
 </body>

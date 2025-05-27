@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/logreg.css">
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+    <link rel="stylesheet" href="style/cookieBanner.css">
     <script src="components/Navbar/navbar.js" defer></script>
+    <script src="js/cookieBanner.js" defer></script>
+
 
 </head>
 <body>
@@ -24,6 +27,7 @@
     <a href="login.php"> Zur Anmeldung</a>
     <a href="index.php"> Zurück zur Startseite</a>
     </div>
+      <?php include 'cookieBanner.php'; ?>
       <?php include 'components/Footer/footer.php'; ?>
 </main>
 </body>
