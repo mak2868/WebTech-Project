@@ -13,7 +13,7 @@
 <body onload="renderCart()">
   <?php include 'components/Navbar/navbar.php'; ?>
 
-<main style="padding-top: 80px">
+<main style="padding-top: 80px" class="container">
   <div class="cart-header">
     <h2>Warenkorb</h2>
     <button class="checkout-btn">Zur Kasse</button>
