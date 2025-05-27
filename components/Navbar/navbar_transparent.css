@@ -1,5 +1,5 @@
 /* ===================== */
-/* Navbar CSS - komplett eigenständig */
+/* Navbar CSS */
 /* ===================== */
 
 /* Reset nur für Navbar-Elemente */
@@ -28,7 +28,6 @@
   justify-content: space-between;
 }
 
-/* Container für Navigationselemente */
 .navbar-container {
   display: flex;
   align-items: center;
@@ -49,7 +48,6 @@
   transition: filter 0.3s ease;
 }
 
-/* Navigation Menü */
 .nav-menu-wrapper {
   flex-grow: 1;
   display: flex;
@@ -72,7 +70,6 @@
   transition: color 0.3s ease;
 }
 
-/* Dropdown */
 .nav-dropdown {
   position: relative;
 }
@@ -93,7 +90,6 @@
   color: inherit;
 }
 
-/* Dropdown Menü */
 .nav-dropdown-list {
   position: absolute;
   top: 100%;
@@ -110,12 +106,10 @@
   color: black;
 }
 
-/* Dropdown öffnen bei Hover */
 .nav-dropdown:hover .nav-dropdown-list {
   display: flex;
 }
 
-/* Dropdown Links */
 .nav-dropdown-link {
   display: flex;
   gap: 1rem;
@@ -127,7 +121,6 @@
 }
 
 
-/* Icons rechts */
 .icon-container {
   display: flex;
   gap: 2rem;
@@ -161,7 +154,7 @@
   filter: none;
 }
 
-/* Hover oder Scroll */
+/* Hover / Scroll */
 .navbar.hover,
 .navbar.scrolled {
   background-color: white;
@@ -198,9 +191,9 @@ body.dark-mode .navbar img {
 
 body.dark-mode .nav-dropdown-list {
   background: black;
-  border-color: #333; /* etwas dunklerer Rand */
+  border-color: #333;
   color: white;
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1); /* leichter heller Schatten */
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
 }
 
 
