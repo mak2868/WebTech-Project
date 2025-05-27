@@ -232,7 +232,7 @@ body.dark-mode .hint-error {
 
 /* Im Lightmode: Logo schwarz machen */
 body:not(.dark-mode) #formLogo {
-  filter: invert(1) grayscale(1) contrast(5);
+  filter: invert(1) grayscale(1) contrast(15) brightness(0.9);
 }
 
 /* Im Darkmode: Kein Filter (bleibt weiß) */
