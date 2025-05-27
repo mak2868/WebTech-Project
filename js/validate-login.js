@@ -8,8 +8,8 @@ const form = document.querySelector("form");           // Das Login-Formular
 function validateLogin() {
   // Benutzername ist gültig, wenn er mind. 5 Zeichen hat UND Groß- UND Kleinbuchstaben enthält
   const userValid = username.value.length >= 5 &&
-    /[A-Z]/.test(username.value) &&  // prüft auf Großbuchstaben
-    /[a-z]/.test(username.value);    // prüft auf Kleinbuchstaben
+                    /[A-Z]/.test(username.value) &&  // prüft auf Großbuchstaben
+                    /[a-z]/.test(username.value);    // prüft auf Kleinbuchstaben
 
   // Passwort ist gültig, wenn es mind. 10 Zeichen lang ist
   const passValid = password.value.length >= 10;
@@ -35,7 +35,6 @@ function colorize(input, valid) {
 });
 
 // Formular-Submit abfangen
-
 form.addEventListener("submit", function (e) {
   validateLogin(); // Sicherheitshalber nochmal prüfen
   if (loginBtn.disabled) {
@@ -44,7 +43,7 @@ form.addEventListener("submit", function (e) {
 
   }
 
-  // ==== Hier LocalStorage & Weiterleitung erst bei erfolgreichem Login: ====
+ // ==== Hier LocalStorage & Weiterleitung erst bei erfolgreichem Login: ====
   e.preventDefault(); // Standard-Formular-Submit verhindern (wenn du KEIN echtes Backend hast)
 
   localStorage.setItem('userLoggedIn', 'true');

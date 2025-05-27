@@ -224,3 +224,18 @@ body.dark-mode .hint-error {
         grid-template-columns: 1fr;
     }
 }
+
+
+#formLogo {
+  transition: filter 0.25s;
+}
+
+/* Im Lightmode: Logo schwarz machen */
+body:not(.dark-mode) #formLogo {
+  filter: invert(1) grayscale(1) contrast(5);
+}
+
+/* Im Darkmode: Kein Filter (bleibt weiß) */
+body.dark-mode #formLogo {
+  filter: none;
+}

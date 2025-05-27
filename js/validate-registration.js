@@ -84,5 +84,3 @@ form.addEventListener("submit", function(e) {
   // Weiterleitung, z.B. auf die Startseite:
   window.location.href = 'index.php';
 });
-
-
