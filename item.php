@@ -16,6 +16,11 @@
     <script src="js/cart.js" defer></script>
     <script src="js/wishList.js" defer></script>
     <script src="components/Navbar/navbar.js" defer></script>
+    <script type="module" src="js/items.js"></script>
+    <script type="module" src="js/cart.js"></script>
+    <script type="module" src="js/darkmode.js" defer></script>
+    <script src="js/wishList.js"></script>
+
 
 </head>
 
@@ -379,3 +384,7 @@ if (isset($_GET["pid"])) {
 
     </div>
 </div>
+
+</body>
+
+</html>
