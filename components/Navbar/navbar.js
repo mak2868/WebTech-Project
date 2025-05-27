@@ -17,23 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Body Darkmode-Klasse
     body.classList.toggle('dark-mode', isDark);
 
-    // Logo optional invertieren
-    if (logoImg) {
-      logoImg.style.filter = isDark ? 'invert(1)' : 'invert(0)';
-    }
-
-    // Navbar Icons invertieren
-    document.querySelectorAll('.navbar-icon img').forEach(img => {
-      img.style.filter = isDark ? 'invert(1)' : 'invert(0)';
-    });
+    // WICHTIG: Keine Inline-Filter mehr setzen! Alles über CSS regeln
   }
 
+  // Darkmode-Button: Toggle Darkmode
   darkmodeBtn.addEventListener('click', () => {
     isDark = !isDark;
     localStorage.setItem('darkMode', isDark);
     updateNavbar();
   });
 
+  // Navbar Hover-Events
   navbar.addEventListener('mouseenter', () => {
     isHover = true;
     updateNavbar();
@@ -43,10 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbar();
   });
 
+  // Scroll-Event
   window.addEventListener('scroll', () => {
     isScrolled = window.scrollY > 0;
     updateNavbar();
   });
 
+  // Initialer Aufruf
   updateNavbar();
 });

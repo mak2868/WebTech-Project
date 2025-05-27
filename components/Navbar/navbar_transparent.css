@@ -46,7 +46,6 @@
 
 .navbar-brand img {
   height: 40px;
-  filter: none;
   transition: filter 0.3s ease;
 }
 
@@ -231,7 +230,7 @@ body.dark-mode .navbar.scrolled img {
 
 
 /* ================================================= */
-/* Ausnahme: auf einer „dark-page“ (z.B. About-Seite) */
+/* Ausnahme: auf einer „dark-page“ (z.B. index.php) */
 /* ================================================= */
 
 /* 1) Grundzustand auf dark-page: weißer Text + invertierte Bilder */
