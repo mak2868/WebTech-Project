@@ -177,6 +177,7 @@
 </section>
 </main>
 <script src="js/cart.js"></script>
+  <?php include 'cartSlider.php'; ?>
   <?php include 'components/Footer/footer.php'; ?>
   </body>
   </html>
