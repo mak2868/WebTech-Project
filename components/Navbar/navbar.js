@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Body Darkmode-Klasse
     body.classList.toggle('dark-mode', isDark);
 
-    // WICHTIG: Keine Inline-Filter mehr setzen! Alles über CSS regeln
   }
 
   // Darkmode-Button: Toggle Darkmode
@@ -43,6 +42,5 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbar();
   });
 
-  // Initialer Aufruf
   updateNavbar();
 });
