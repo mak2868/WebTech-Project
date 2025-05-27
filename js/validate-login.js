@@ -41,6 +41,7 @@ form.addEventListener("submit", function (e) {
   if (loginBtn.disabled) {
     e.preventDefault(); // Wenn Eingaben ungültig → Formular wird NICHT abgeschickt
     return;
+
   }
 
   // ==== Hier LocalStorage & Weiterleitung erst bei erfolgreichem Login: ====
@@ -50,4 +51,3 @@ form.addEventListener("submit", function (e) {
   localStorage.setItem('username', username.value); // Das Feld heißt bei dir oben "username"
   window.location.href = 'index.php'; // Weiterleitung zur Startseite
 });
-

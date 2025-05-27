@@ -4,33 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzerbereich</title>
-    <link rel="stylesheet" href="style/global.css">
-    <link rel="stylesheet" href="style/user.css">
-    <link rel="stylesheet" href="style/logreg.css">
+@@ -10,58 +11,86 @@
 
 </head>
 
 <body>
     <?php include 'components/Navbar/navbar.php'; ?>
 
-    <main style="padding-top: 40px">
-        <!-- Userbereich: breites Formular -->
-        <div class="form-wrapper user-wrapper">
-            <form action="..." method="post">
-                <h2>Benutzerbereich</h2>
+<main style="padding-top: 40px">
+    <div class="form-wrapper">
+    <form action="..." method="post">
+    <h2>Benutzerbereich</h2>
+    
 
-                <!-- Vorname & Nachname nebeneinander -->
-                <div class="form-row">
-                    <div class="form-field">
-                        <label for="firstname">Vorname:</label>
-                        <input type="text" id="firstname" name="firstname" required>
-                    </div>
-                    <div class="form-field">
-                        <label for="lastname">Nachname:</label>
-                        <input type="text" id="lastname" name="lastname" required>
-                    </div>
-                </div>
+<form>
+  <label for="firstname">Vorname:</label>
+  <input type="text" id="firstname" name="firstname" required>
+
+  <label for="lastname">Nachname:</label>
+  <input type="text" id="lastname" name="lastname" required>
 
                 <!-- E-Mail & Telefonnummer nebeneinander -->
                 <div class="form-row">
@@ -85,12 +77,13 @@
                 <button type="submit" class="btn-esn">Speichern</button>
             </form>
 
-            <!-- Link zurück zur Startseite -->
-            <a href="index.php" class="form-text">Zurück zur Homepage</a>
-        </div>
+<a href="index.php" class="form-text">Zurück zur Homepage</a>
+
+</div>
 
         <script src="js/validate-user.js"></script>
         <?php include 'components/Footer/footer.php'; ?>
     </main>
 </body>
+</html>
 </html>

@@ -9,25 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
   let isHover    = false;
 
   function updateNavbar() {
-    // Navbar Klassen setzen
     navbar.classList.toggle('dark-mode', isDark);
     navbar.classList.toggle('scrolled', isScrolled);
     navbar.classList.toggle('hover', isHover);
-
-    // Body Darkmode-Klasse
     body.classList.toggle('dark-mode', isDark);
-
-    // WICHTIG: Keine Inline-Filter mehr setzen! Alles über CSS regeln
   }
 
-  // Darkmode-Button: Toggle Darkmode
   darkmodeBtn.addEventListener('click', () => {
     isDark = !isDark;
     localStorage.setItem('darkMode', isDark);
     updateNavbar();
   });
 
-  // Navbar Hover-Events
   navbar.addEventListener('mouseenter', () => {
     isHover = true;
     updateNavbar();
@@ -37,12 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateNavbar();
   });
 
-  // Scroll-Event
   window.addEventListener('scroll', () => {
     isScrolled = window.scrollY > 0;
     updateNavbar();
   });
 
-  // Initialer Aufruf
   updateNavbar();
 });
