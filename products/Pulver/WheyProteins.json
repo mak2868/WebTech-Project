@@ -1,5 +1,4 @@
-{
-    "Whey Proteins": [
+[
         {
             "pid": 1,
             "name": "Whey Protein Choco",
@@ -58,7 +57,7 @@
                 "tip": "Du kannst unser Designer Whey auch zum Backen, Verfeinern oder für deinen Porridge nutzen. Hier sind ein paar Inspirationen:",
                 "recipes": [
                     {
-                        "title": "Protein-Brownies mit XPN Whey Schokolade",
+                        "title": "Protein-Brownies",
                         "shortTitle": "Brownies",
                         "portion": 6,
                         "ingredients": [
@@ -83,7 +82,7 @@
                         ]
                     },
                     {
-                        "title": "Protein-Porridge mit XPN Whey Choco",
+                        "title": "Protein-Porridge",
                         "shortTitle": "Porridge",
                         "description": "Ein energiereiches Frühstück mit hochwertigem Eiweiß – ideal für Fitness- und Leistungssport.",
                         "portion": 1,
@@ -104,7 +103,7 @@
                         ]
                     },
                     {
-                        "title": "Protein-Milchshake mit XPN Whey Choco",
+                        "title": "Protein-Milchshake",
                         "shortTitle": "Milchshake",
                         "description": "Perfekt als Pre- oder Post-Workout-Drink – schnell gemixt und voller Eiweiß.",
                         "portion": 1,
@@ -136,8 +135,8 @@
             "pid": 2,
             "name": "Whey Protein Strawberry",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.23,
+            "ratersCount": 2147,
             "availableSizes": [
                 30,
                 500,
@@ -262,8 +261,8 @@
             "pid": 3,
             "name": "Whey Protein Vanilla",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 1.78,
-            "ratersCount": 4021,
+            "rating": 3.78,
+            "ratersCount": 1745,
             "availableSizes": [
                 30,
                 500,
@@ -388,8 +387,8 @@
             "pid": 4,
             "name": "Whey Protein Caramel",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.87,
+            "ratersCount": 3140,
             "availableSizes": [
                 30,
                 500,
@@ -513,8 +512,8 @@
             "pid": 5,
             "name": "Whey Protein Banana",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 3.78,
+            "ratersCount": 1478,
             "availableSizes": [
                 30,
                 500,
@@ -638,8 +637,8 @@
             "pid": 6,
             "name": "Whey Protein Hazelnut",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.01,
+            "ratersCount": 875,
             "availableSizes": [
                 30,
                 500,
@@ -763,8 +762,8 @@
             "pid": 7,
             "name": "Whey Protein Coffee",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.81,
+            "ratersCount": 1120,
             "availableSizes": [
                 30,
                 500,
@@ -883,8 +882,8 @@
             "pid": 8,
             "name": "Whey Protein Raspberry",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.68,
+            "ratersCount": 978,
             "availableSizes": [
                 30,
                 500,
@@ -1008,8 +1007,8 @@
             "pid": 9,
             "name": "Whey Protein Pistachio",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 3.81,
+            "ratersCount": 845,
             "availableSizes": [
                 30,
                 500,
@@ -1133,8 +1132,8 @@
             "pid": 10,
             "name": "Whey Protein Matcha",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.99,
+            "ratersCount": 541,
             "availableSizes": [
                 30,
                 500,
@@ -1259,8 +1258,8 @@
             "pid": 11,
             "name": "Whey Protein Gingerbread",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.22,
+            "ratersCount": 1047,
             "availableSizes": [
                 30,
                 500,
@@ -1385,8 +1384,8 @@
             "pid": 12,
             "name": "Whey Protein White Choco",
             "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
-            "rating": 4.78,
-            "ratersCount": 4021,
+            "rating": 4.47,
+            "ratersCount": 941,
             "availableSizes": [
                 30,
                 500,
@@ -1505,4 +1504,3 @@
             }
         }
     ]
-}

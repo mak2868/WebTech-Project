@@ -1,0 +1,131 @@
+[
+    {
+        "pid": 1,
+        "name": "Proteinriegel Berry",
+        "description": "Frucht trifft Fitness: <br> der Low-Carb-Riegel mit echten Beerenstückchen",
+        "rating": 4.79,
+        "ratersCount": 4217,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Fruchtiger Beerengeschmack mit echter Himbeere und Blaubeere – kombiniert mit zartbitterer Schokolade, wenig Zucker, viel Protein.",
+            "Low-Carb-Proteinriegel mit Beeren und Zartbitterschokoladenüberzug"
+        ],
+        "substance": {
+            "ingredients": "Zartbitterschokoladenüberzug mit Süßungsmittel 25% (Kakaomasse, Süßungsmittel (Maltit), Kakaobutter, Emulgator (Lecithine (Sonnenblume)), natürliches Aroma), Milchprotein, gefriergetrocknete Beeren 5% (Himbeeren, Blaubeeren), Polydextrose, pflanzliche Öle (Kokos, Raps), Kollagenpeptide (Rind), Inulin, Feuchthaltemittel (Glycerin), Aroma (Beere, Vanille), färbendes Lebensmittel (Rote-Bete-Saftkonzentrat, Karottenkonzentrat), Salz, Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Milch. Kann Spuren von Soja, Gluten, Ei und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1695 kJ / 406 kcal",
+                "Fat": "19 g",
+                "of which saturates": "7.8 g",
+                "Carbohydrates": "9 g",
+                "of which sugars": "1.5 g",
+                "Fibre": "11 g",
+                "Protein": "30 g",
+                "Salt": "0.54 g"
+            }
+        },
+        "usage": {
+            "preparation": "Packung auf, fruchtig snacken.",
+            "recommendation": "Ideal für alle, die Low Carb leben, aber auf fruchtigen Geschmack nicht verzichten wollen."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 2,
+        "name": "Proteinriegel Hazelnut",
+        "description": "Knusprig, nussig, Low Carb  <br> – der Riegel mit gerösteten Haselnüssen",
+        "rating": 4.76,
+        "ratersCount": 3125,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Geröstete Haselnüsse, umhüllt von zartbitterer Schokolade – mit wenig Zucker, dafür viel Geschmack und Protein.",
+            "Low-Carb-Proteinriegel mit Haselnuss-Schoko-Geschmack"
+        ],
+        "substance": {
+            "ingredients": "Zartbitterschokoladenüberzug mit Süßungsmittel 25% (Kakaomasse, Süßungsmittel (Maltit), Kakaobutter, Emulgator (Lecithine (Sonnenblume)), natürliches Vanillearoma), Milchprotein, geröstete Haselnüsse 10%, Polydextrose, pflanzliche Öle (Kokos, Raps), Kollagenpeptide (Rind), Inulin, Feuchthaltemittel (Glycerin), Aroma (Haselnuss, Vanille), Salz, Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Haselnüsse und Milch. Kann Spuren von Soja, Gluten und Ei enthalten.",
+            "nutrients": {
+                "Energy": "1723 kJ / 411 kcal",
+                "Fat": "21 g",
+                "of which saturates": "8.7 g",
+                "Carbohydrates": "9 g",
+                "of which sugars": "1.6 g",
+                "Fibre": "11 g",
+                "Protein": "30 g",
+                "Salt": "0.55 g"
+            }
+        },
+        "usage": {
+            "preparation": "Kühlen Kopf bewahren, Riegel öffnen, snacken.",
+            "recommendation": "Als Pre-Workout-Begleiter oder für den Nachmittagshunger – Low-Carb und vollwertig."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 3,
+        "name": "Proteinriegel Nougat",
+        "description": "Low Carb, High Taste – der cremige Nougatrausch <br> ohne Zuckerzusatz",
+        "rating": 4.81,
+        "ratersCount": 3879,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Intensiver Nougatgeschmack, knusprige Textur und fast kein Zucker: Der ideale Low-Carb-Proteinriegel für den süßen Moment ohne Reue.",
+            "Low-Carb-Proteinriegel mit Nougatfüllung und Milchschokoladenüberzug"
+        ],
+        "substance": {
+            "ingredients": "Milchschokoladenüberzug mit Süßungsmittel 26% (Süßungsmittel (Maltit), Kakaobutter, Vollmilchpulver, Kakaomasse, Emulgator (Lecithine (Sonnenblume, Soja)), natürliches Aroma), Milchprotein, Cremefüllung 12% (pflanzliche Öle (Kokos, Raps), Süßungsmittel (Maltit), Magermilchpulver, Emulgator (Lecithine), Aroma), Polydextrose, Inulin, Haselnussmehl, Kollagenpeptide (Rind), Feuchthaltemittel (Glycerin), Kakaopulver, Aroma (Nougat), Salz, Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Milch, Soja und Haselnüsse. Kann Spuren von Gluten, Ei und Erdnüssen enthalten.",
+            "nutrients": {
+                "Energy": "1679 kJ / 402 kcal",
+                "Fat": "22 g",
+                "of which saturates": "9.5 g",
+                "Carbohydrates": "10 g",
+                "of which sugars": "1.4 g",
+                "Fibre": "12 g",
+                "Protein": "32 g",
+                "Salt": "0.53 g"
+            }
+        },
+        "usage": {
+            "preparation": "Aufreißen. Genießen.",
+            "recommendation": "Der perfekte Snack für Low-Carb-Fans und alle, die nach dem Training clever naschen möchten."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    }
+]

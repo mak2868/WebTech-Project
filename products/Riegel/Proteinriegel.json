@@ -1,0 +1,260 @@
+[
+    {
+        "pid": 1,
+        "name": "Proteinriegel Choco",
+        "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
+        "rating": 4.78,
+        "ratersCount": 4021,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
+            "Proteinriegel mit Schokoladengeschmack"
+        ],
+        "substance": {
+            "ingredients": "Weiße Schokolade mit Süßungsmittel 29% (Süßungsmittel (Maltit), Kakaobutter, Vollmilchpulver, Emulgator (Lecithine (Sonnenblume, Raps, Soja)*), natürliches Vanille-Aroma), Milchprotein, Creme 12% (pflanzliche Öle (Kokosnuss, Palm, Sonnenblume), Süßungsmittel (Maltit), Vollmilchpulver, Molkenpulver, Emulgator (Lecithine (Sonnenblume, Raps), natürliches Vanille-Aroma),Kollagenpeptide (Rind), Feuchthaltemittel (Glycerin), Keksstücke 4,5% (Stärke (Kartoffel, Tapioka), Süßungsmittel (Maltit, Erythrit, Isomalt), Mehl (Mais, Reis), pflanzliches Fett(Palmfett), Kakaopulver (stark entölt), modifizierte Stärke, Inulin, Backtriebmittel (Natriumhydrogencarbonat), Bourbon Vanille-Extrakt, Salz, Emulgator (Lecithine (Soja))), Polydextrose, Calciumcaseinat, Kakaopulver (stark entölt) 2,2%, Sonnenblumenöl, Aroma, Salz, färbendes Lebensmittel (Gerstenmalzextrakt (glutenfrei)), Säureregulator (Calciumcarbonat), Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten und Ei enthalten.",
+            "nutrients": {
+                "Energy": "1757 kJ / 419 kcal",
+                "Fat": "20 g",
+                "of which saturates": "9.8 g",
+                "Carbohydrates": "36 g",
+                "of which sugars": "3.5 g",
+                "Fibre": "3.5 g",
+                "Protein": "29 g",
+                "Salt": "0.62 g"
+            }
+        },
+        "usage": {
+            "preparation": "Packung öfnnen und der Genuss beginnt!",
+            "recommendation": "Wann immer du schnell Proteine oder einen Snack brauchst – zum Beispiel direkt nach dem Aufstehen, nach oder während des Trainings oder einfach zwischendurch – ist ein leckerer Riegel die perfekte Wahl."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 2,
+        "name": "Proteinriegel Oreo",
+        "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
+        "rating": 4.81,
+        "ratersCount": 2874,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
+            "Proteinriegel mit Schokoladengeschmack"
+        ],
+        "substance": {
+            "ingredients": "Milchprotein, weiße Schokolade mit Süßungsmittel 25% (Süßungsmittel (Maltit), Kakaobutter, Vollmilchpulver, Emulgator (Lecithine (Sonnenblume, Soja)), natürliches Vanille-Aroma), Keksstücke 6% (Weizenmehl, Zucker, Kakaopulver, Palmöl, Backtriebmittel), Creme 10% (pflanzliche Öle (Kokosnuss, Palm, Sonnenblume), Süßungsmittel (Maltit), Molkenpulver, Emulgator (Lecithine (Sonnenblume, Raps)), natürliches Vanille-Aroma), Polydextrose, Calciumcaseinat, Kakaopulver (stark entölt) 2%, Sonnenblumenöl, Aroma, Salz, Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten und Ei enthalten.",
+            "nutrients": {
+                "Energy": "1757 kJ / 419 kcal",
+                "Fat": "20 g",
+                "of which saturates": "9.8 g",
+                "Carbohydrates": "36 g",
+                "of which sugars": "3.5 g",
+                "Fibre": "3.5 g",
+                "Protein": "29 g",
+                "Salt": "0.62 g"
+            }
+        },
+        "usage": {
+            "preparation": "Packung öfnnen und der Genuss beginnt!",
+            "recommendation": "Wann immer du schnell Proteine oder einen Snack brauchst – zum Beispiel direkt nach dem Aufstehen, nach oder während des Trainings oder einfach zwischendurch – ist ein leckerer Riegel die perfekte Wahl."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 3,
+        "name": "Proteinriegel Brownie",
+        "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
+        "rating": 4.18,
+        "ratersCount": 721,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
+            "Proteinriegel mit Schokoladengeschmack"
+        ],
+        "substance": {
+            "ingredients": "Zartbitterschokoladenüberzug 24% (Kakaomasse, Süßungsmittel (Maltit), Kakaobutter, Emulgator (Lecithine (Sonnenblume)), natürliches Vanille-Aroma), Molkenproteinisolat, Mandelmehl, Hafermehl, Kakaopulver (stark entölt) 6%, Süßungsmittel (Erythrit), pflanzliches Öl (Kokosöl), Feuchthaltemittel (Glycerin), Wasser, Inulin, Kollagenpeptide (Rind), Aroma (Schokolade, Vanille), Emulgator (Lecithine (Sonnenblume, Raps)), Salz, Backtriebmittel (Natriumhydrogencarbonat)",
+            "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten und Ei enthalten.",
+            "nutrients": {
+                "Energy": "1757 kJ / 419 kcal",
+                "Fat": "20 g",
+                "of which saturates": "9.8 g",
+                "Carbohydrates": "36 g",
+                "of which sugars": "3.5 g",
+                "Fibre": "3.5 g",
+                "Protein": "29 g",
+                "Salt": "0.62 g"
+            }
+        },
+        "usage": {
+            "preparation": "Packung öfnnen und der Genuss beginnt!",
+            "recommendation": "Wann immer du schnell Proteine oder einen Snack brauchst – zum Beispiel direkt nach dem Aufstehen, nach oder während des Trainings oder einfach zwischendurch – ist ein leckerer Riegel die perfekte Wahl."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 4,
+        "name": "Proteinriegel Coconut",
+        "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
+        "rating": 4.78,
+        "ratersCount": 4021,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
+            "Proteinriegel mit Schokoladengeschmack"
+        ],
+        "substance": {
+            "ingredients": "Zartbitterschokoladenüberzug 25 % (Kakaomasse, Süßungsmittel (Maltit), Kakaobutter, Emulgator (Lecithine (Sonnenblume)), natürliches Vanille-Aroma), Molkenproteinisolat, Kokosraspeln 12 %, Hafermehl, Mandelmehl, Süßungsmittel (Erythrit), pflanzliches Öl (Kokosöl), Feuchthaltemittel (Glycerin), Inulin, Wasser, Aroma (Kokos, Vanille), Emulgator (Lecithine (Sonnenblume, Raps)), Salz",
+            "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten und Ei enthalten.",
+            "nutrients": {
+                "Energy": "1757 kJ / 419 kcal",
+                "Fat": "20 g",
+                "of which saturates": "9.8 g",
+                "Carbohydrates": "36 g",
+                "of which sugars": "3.5 g",
+                "Fibre": "3.5 g",
+                "Protein": "29 g",
+                "Salt": "0.62 g"
+            }
+        },
+        "usage": {
+            "preparation": "Packung öfnnen und der Genuss beginnt!",
+            "recommendation": "Wann immer du schnell Proteine oder einen Snack brauchst – zum Beispiel direkt nach dem Aufstehen, nach oder während des Trainings oder einfach zwischendurch – ist ein leckerer Riegel die perfekte Wahl."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 5,
+        "name": "Proteinriegel Snickers",
+        "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
+        "rating": 4.78,
+        "ratersCount": 4021,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
+            "Proteinriegel mit Schokoladengeschmack"
+        ],
+        "substance": {
+            "ingredients": "Zartbitterschokoladenüberzug 26% (Kakaomasse, Süßungsmittel (Maltit), Kakaobutter, Emulgator (Lecithine (Sonnenblume)), natürliches Vanille-Aroma), Milchprotein, Füllung 18% (Süßungsmittel (Maltit), pflanzliche Öle (Palm, Sonnenblume), Molkenpulver, Vollmilchpulver, Emulgator (Lecithine (Sonnenblume, Raps)), natürliches Aroma), Erdnüsse 12% (geröstet), Polydextrose, Feuchthaltemittel (Glycerin), Inulin, Kollagenpeptide (Rind), Hafermehl, Salz, Aroma (Karamell, Vanille), Kakaopulver (stark entölt), Emulgator (Lecithine (Soja)), Backtriebmittel (Natriumhydrogencarbonat), Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten und Ei enthalten.",
+            "nutrients": {
+                "Energy": "1757 kJ / 419 kcal",
+                "Fat": "20 g",
+                "of which saturates": "9.8 g",
+                "Carbohydrates": "36 g",
+                "of which sugars": "3.5 g",
+                "Fibre": "3.5 g",
+                "Protein": "29 g",
+                "Salt": "0.62 g"
+            }
+        },
+        "usage": {
+            "preparation": "Packung öfnnen und der Genuss beginnt!",
+            "recommendation": "Wann immer du schnell Proteine oder einen Snack brauchst – zum Beispiel direkt nach dem Aufstehen, nach oder während des Trainings oder einfach zwischendurch – ist ein leckerer Riegel die perfekte Wahl."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 6,
+        "name": "Proteinriegel Blueberry",
+        "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
+        "rating": 4.78,
+        "ratersCount": 4021,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithoutTax": 2.00,
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
+            "Proteinriegel mit Schokoladengeschmack"
+        ],
+        "substance": {
+            "ingredients": "Weiße Schokolade mit Süßungsmittel 25% (Süßungsmittel (Maltit), Kakaobutter, Vollmilchpulver, Emulgator (Lecithine (Sonnenblume, Raps)), natürliches Vanille-Aroma), Milchprotein, Hafermehl, Füllung 10% (Süßungsmittel (Maltit), pflanzliche Öle (Kokosnuss, Sonnenblume), Vollmilchpulver, Molkenpulver, Emulgator (Lecithine (Sonnenblume, Raps)), Aroma), gefriergetrocknete Blaubeeren 4%, Polydextrose, Feuchthaltemittel (Glycerin), Inulin, Mandelmehl, Kollagenpeptide (Rind), Kakaobutter, Aroma (Vanille, Blaubeere), Salz, Backtriebmittel (Natriumhydrogencarbonat), färbendes Lebensmittel (Karottensaftkonzentrat, Spirulina-Konzentrat), Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Milch und Soja. Kann Spuren von Gluten und Ei enthalten.",
+            "nutrients": {
+                "Energy": "1757 kJ / 419 kcal",
+                "Fat": "20 g",
+                "of which saturates": "9.8 g",
+                "Carbohydrates": "36 g",
+                "of which sugars": "3.5 g",
+                "Fibre": "3.5 g",
+                "Protein": "29 g",
+                "Salt": "0.62 g"
+            }
+        },
+        "usage": {
+            "preparation": "Packung öfnnen und der Genuss beginnt!",
+            "recommendation": "Wann immer du schnell Proteine oder einen Snack brauchst – zum Beispiel direkt nach dem Aufstehen, nach oder während des Trainings oder einfach zwischendurch – ist ein leckerer Riegel die perfekte Wahl."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    }
+]
