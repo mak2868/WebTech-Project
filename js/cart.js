@@ -12,7 +12,6 @@ function addToCart(name, image, price) {
     localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${name} wurde dem Warenkorb hinzugefügt.`);
   
-  
 // → zusätzlich für Slider: Zeigt das zuletzt hinzugefügte Produkt direkt im Warenkorb-Slider an
 const itemHtml = `
   <div class="cart-item">
@@ -102,5 +101,7 @@ function closeCart() {
   if (slider) slider.classList.remove("open");          // entfernt die Klasse "open" → versteckt den Slider
 }
 
-
+function intermediateStepAddToCart(){
+ addToCart(product.name,  product.pics.productPic1, getTotalPrice(product.priceWithoutTax));
+}
   
