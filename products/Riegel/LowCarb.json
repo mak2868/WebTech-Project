@@ -9,7 +9,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.59,
+            27.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Fruchtiger Beerengeschmack mit echter Himbeere und Blaubeere – kombiniert mit zartbitterer Schokolade, wenig Zucker, viel Protein.",
@@ -52,7 +55,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.59,
+            27.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Geröstete Haselnüsse, umhüllt von zartbitterer Schokolade – mit wenig Zucker, dafür viel Geschmack und Protein.",
@@ -95,7 +101,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.59,
+            27.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Intensiver Nougatgeschmack, knusprige Textur und fast kein Zucker: Der ideale Low-Carb-Proteinriegel für den süßen Moment ohne Reue.",

@@ -9,7 +9,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.49,
+            26.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
@@ -52,7 +55,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.49,
+            26.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
@@ -95,7 +101,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.49,
+            26.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
@@ -138,7 +147,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.49,
+            26.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
@@ -181,7 +193,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.49,
+            26.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",
@@ -224,7 +239,10 @@
             45,
             "12x45"
         ],
-        "priceWithoutTax": 2.00,
+        "priceWithTax": [
+            2.49,
+            26.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Protein power in every bite: Designer Protein Bar. Mit diesem Proteinriegel haben wir das Riegel-Game neu definiert: Mit unwiderstehlichem Geschmack, voller Protein-Power und ganz ohne den Zusatz von Zucker wird unser Protein Bar zum perfekten Protein Snack für Athletes, Ernährungsbewusste und alle, die Schokoriegel lieben.",

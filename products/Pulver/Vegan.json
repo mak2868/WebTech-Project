@@ -1,15 +1,18 @@
 [
     {
         "pid": 1,
-        "name": "Vegan Whey Protein Choco",
-        "description": "Deutschlands bestes veganes Whey-Proteinpulver <br> mit Soja-Protein aus biologischem Anbau",
+        "name": "Vegan Whey Choco",
+        "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
         "ratersCount": 178,
         "availableSizes": [
             500,
             2000
         ],
-        "priceWithoutTax": 23.00,
+        "priceWithTax": [
+            26.99,
+            84.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Unser Vegan Whey Protein Choco vereint höchste XPN Qualität mit bestem Geschmack und Veganismus – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.\nMit einem hohen Eiweißanteil aus Soja-Protein liefert es deinem Körper schnell verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.\nEgal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte – unser Choco-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.",
@@ -131,15 +134,18 @@
     },
     {
         "pid": 2,
-        "name": "Vegan Whey Protein Vanilla",
-        "description": "Deutschlands bestes veganes Whey-Proteinpulver <br> mit Soja-Protein aus biologischem Anbau",
+        "name": "Vegan Whey Vanilla",
+        "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
         "ratersCount": 178,
         "availableSizes": [
             500,
             2000
         ],
-        "priceWithoutTax": 23.00,
+        "priceWithTax": [
+            26.99,
+            84.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Unser Vegan Whey Protein Vanilla vereint höchste XPN Qualität mit bestem Geschmack und Veganismus – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.\nMit einem hohen Eiweißanteil aus Soja-Protein liefert es deinem Körper schnell verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.\nEgal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte – unser Vanilla-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.",
@@ -250,24 +256,27 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Vanillepulver_Top.jpg",
-            "productPic1": "images/Vanilla_Whey.webp",
-            "productPic2": "images/vanilla_whey.jpeg",
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
             "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/vanilla_whey.jpeg"
+            "smallPic": "images/choco_whey.jpeg"
         }
     },
     {
         "pid": 3,
-        "name": "Vegan Whey Protein Banana",
-        "description": "Deutschlands bestes veganes Whey-Proteinpulver <br> mit Soja-Protein aus biologischem Anbau",
+        "name": "Vegan Whey Banana",
+        "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
         "ratersCount": 178,
         "availableSizes": [
             500,
             2000
         ],
-        "priceWithoutTax": 23.00,
+        "priceWithTax": [
+            26.99,
+            84.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Unser Vegan Whey Protein Banana vereint höchste XPN Qualität mit bestem Geschmack und Veganismus – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.\nMit einem hohen Eiweißanteil aus Soja-Protein liefert es deinem Körper schnell verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.\nEgal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte – unser Banana-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.",
@@ -374,24 +383,27 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Bananapulver_Top.jpg",
-            "productPic1": "images/Banana_Whey.webp",
-            "productPic2": "images/banana_whey.jpeg",
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
             "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/banana_whey.jpeg"
+            "smallPic": "images/choco_whey.jpeg"
         }
     },
     {
         "pid": 4,
-        "name": "Vegan Whey Protein Strawberry",
-        "description": "Deutschlands bestes veganes Whey-Proteinpulver <br> mit Soja-Protein aus biologischem Anbau",
+        "name": "Vegan Whey Strawberry",
+        "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
         "ratersCount": 178,
         "availableSizes": [
             500,
             2000
         ],
-        "priceWithoutTax": 23.00,
+        "priceWithTax": [
+            26.99,
+            84.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Unser Vegan Whey Protein Strawberry vereint höchste XPN Qualität mit bestem Geschmack und Veganismus – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.\nMit einem hohen Eiweißanteil aus Soja-Protein liefert es deinem Körper schnell verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.\nEgal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte – unser Strawberry-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.",
@@ -501,24 +513,27 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Strawberrypulver_Top.jpg",
-            "productPic1": "images/Strawberry_Whey.webp",
-            "productPic2": "images/strawberry_whey.jpeg",
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
             "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/strawberry_whey.jpeg"
+            "smallPic": "images/choco_whey.jpeg"
         }
     },
     {
         "pid": 5,
-        "name": "Vegan Whey Protein Caramel",
-        "description": "Deutschlands bestes veganes Whey-Proteinpulver <br> mit Soja-Protein aus biologischem Anbau",
+        "name": "Vegan Whey Caramel",
+        "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
         "ratersCount": 178,
         "availableSizes": [
             500,
             2000
         ],
-        "priceWithoutTax": 23.00,
+        "priceWithTax": [
+            26.99,
+            84.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Unser Vegan Whey Protein Caramel vereint höchste XPN Qualität mit bestem Geschmack und Veganismus – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.\nMit einem hohen Eiweißanteil aus Soja-Protein liefert es deinem Körper schnell verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.\nEgal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte – unser Caramel-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.",
@@ -629,24 +644,27 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Caramelpulver_Top.jpg",
-            "productPic1": "images/Caramel_Whey.webp",
-            "productPic2": "images/caramel_whey.jpeg",
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
             "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/caramel_whey.jpeg"
+            "smallPic": "images/choco_whey.jpeg"
         }
     },
     {
         "pid": 6,
-        "name": "Vegan Whey Protein Hazelnut",
-        "description": "Deutschlands bestes veganes Whey-Proteinpulver <br> mit Soja-Protein aus biologischem Anbau",
+        "name": "Vegan Whey Hazelnut",
+        "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
         "ratersCount": 178,
         "availableSizes": [
             500,
             2000
         ],
-        "priceWithoutTax": 23.00,
+        "priceWithTax": [
+            26.99,
+            84.99
+        ],
         "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
         "descriptionDetails": [
             "Unser Vegan Whey Protein Hazelnut vereint höchste XPN Qualität mit bestem Geschmack und Veganismus – ideal für alle, die ihren Muskelaufbau effektiv unterstützen und dabei nicht auf Genuss verzichten möchten.\nMit einem hohen Eiweißanteil aus Soja-Protein liefert es deinem Körper schnell verwertbare Proteine, die zur Erhaltung und Zunahme von Muskelmasse beitragen.\nEgal ob als Shake nach dem Training, zum Frühstück oder als Zutat für deine Fitnessrezepte – unser Haselnuss-Whey ist vielseitig einsetzbar, leicht löslich und angenehm cremig im Geschmack.",
@@ -757,11 +775,11 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Hazelnutpulver_Top.jpg",
-            "productPic1": "images/Hazelnut_Whey.webp",
-            "productPic2": "images/hazelnut_whey.jpeg",
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
             "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/hazelnut_whey.jpeg"
+            "smallPic": "images/choco_whey.jpeg"
         }
     }
 ]
