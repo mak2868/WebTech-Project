@@ -35,14 +35,18 @@ function colorize(input, valid) {
 });
 
 // Formular-Submit abfangen
-form.addEventListener("submit", function(e) {
+form.addEventListener("submit", function (e) {
   validateLogin(); // Sicherheitshalber nochmal prüfen
   if (loginBtn.disabled) {
     e.preventDefault(); // Wenn Eingaben ungültig → Formular wird NICHT abgeschickt
-  }
-});
+    return;
 
-// Nach dem Laden der Seite: Anmelde-Button zunächst deaktivieren
-window.addEventListener("DOMContentLoaded", () => {
-  loginBtn.disabled = true;
+  }
+
+ // ==== Hier LocalStorage & Weiterleitung erst bei erfolgreichem Login: ====
+  e.preventDefault(); // Standard-Formular-Submit verhindern (wenn du KEIN echtes Backend hast)
+
+  localStorage.setItem('userLoggedIn', 'true');
+  localStorage.setItem('username', username.value); // Das Feld heißt bei dir oben "username"
+  window.location.href = 'index.php'; // Weiterleitung zur Startseite
 });

@@ -1,7 +1,10 @@
 <!--Erstellt von Merzan Köse-->
 
 <!DOCTYPE html>
-<html lang="de"></html>
+<html lang="de">
+
+</html>
+
 <head>
     <meta charset="UTF-8">
     <title>Logout</title>
@@ -11,20 +14,22 @@
     <script src="components/Navbar/navbar.js" defer></script>
 
 </head>
+
 <body>
-        <?php include 'components/Navbar/navbar.php'; ?>
+    <?php include 'components/Navbar/navbar.php'; ?>
     <main style="padding-top: 40px">
-    <div class="form-wrapper">
-    <h1>Logout</h1>
-    <form action="..." method="post"></form>
+        <div class="form-wrapper">
+            <h1>Logout</h1>
+            <form action="..." method="post"></form>
 
 
-    <p>Sie wurden erfolgreich abgemeldet </p>
+            <p>Sie wurden erfolgreich abgemeldet </p>
 
-    <a href="login.php"> Zur Anmeldung</a>
-    <a href="index.php"> Zurück zur Startseite</a>
-    </div>
-      <?php include 'components/Footer/footer.php'; ?>
-</main>
+            <a href="login.php"> Zur Anmeldung</a>
+            <a href="index.php"> Zurück zur Startseite</a>
+        </div>
+        <?php include 'components/Footer/footer.php'; ?>
+    </main>
 </body>
+
 </html>
