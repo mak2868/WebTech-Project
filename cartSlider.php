@@ -1,26 +1,25 @@
 <!--         Warenkorb-Slider      -->
 <!-- ============================= -->
-
-<!-- Der gesamte Slider (standardmäßig ausgeblendet per CSS) -->
 <div id="cartSlider" class="cart-slider">
+  <div class="cart-header">
+    <span>🛒 Warenkorb</span>
+    <button class="close-btn" onclick="closeCart()">×</button>
+  </div>
 
-    <!-- Kopfzeile des Sliders mit Titel und Schließen-Button -->
-    <div class="cart-header">
-        <span>🛒 Produkt hinzugefügt</span> <!-- Textanzeige -->
-        <button class="close-btn" onclick="closeCart()">×</button> <!-- Schließen-Symbol -->
+  <div class="cart-content">
+    <!-- Rabattcode -->
+    <div class="cart-promo">
+      <input type="text" id="promoCode" placeholder="Gutscheincode" />
+      <button onclick="applyPromo()">Anwenden</button>
     </div>
 
-    <!-- Hauptinhalt des Sliders -->
-    <div class="cart-content">
+    <!-- Cart-Items -->
+    <div id="cartItems"></div>
+  </div>
 
-        <!-- Hier wird per JavaScript das aktuell hinzugefügte Produkt angezeigt -->
-        <div id="cartItems"></div>
-
-        <!-- Aktions-Buttons unten im Slider -->
-        <div class="cart-actions">
-            <button onclick="closeCart()">Weiter einkaufen</button> <!-- Schließt den Slider -->
-            <button class="go-cart" onclick="window.location.href='cart.html'">Zum Warenkorb</button> <!-- Link zur Warenkorbseite -->
-        </div>
-
-    </div>
+  <div class="cart-summary">
+    <div class="summary-row">Du sparst: <span id="cartSavings">0,00 €</span></div>
+    <div class="summary-row total"><b>Gesamt:</b> <span id="cartTotal">0,00 €</span></div>
+    <button class="checkout-btn">Jetzt kaufen</button>
+  </div>
 </div>

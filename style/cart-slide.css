@@ -70,3 +70,87 @@
   background-color: #d00;
   color: white;
 }
+
+.cart-promo {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cart-promo input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.cart-promo button {
+  padding: 0.5rem 1rem;
+  background: #0cce6b; /* ESN-Grün */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cart-summary {
+  border-top: 1px solid #eee;
+  background: #fafafa;
+  padding: 1rem;
+}
+.cart-summary .total {
+  font-size: 1.2em;
+  margin-top: 0.5em;
+}
+.checkout-btn {
+  width: 100%;
+  padding: 1rem;
+  background: #0cce6b;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.cart-item {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+.cart-item img {
+  width: 60px;
+  border-radius: 8px;
+}
+.cart-item-details {
+  flex: 1;
+}
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.3em;
+}
+.qty-btn {
+  width: 24px;
+  height: 24px;
+  background: #eee;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+.remove-btn {
+  background: none;
+  border: none;
+  color: #d00;
+  font-size: 1.3em;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}

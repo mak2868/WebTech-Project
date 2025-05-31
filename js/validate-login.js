@@ -44,9 +44,9 @@ form.addEventListener("submit", function (e) {
   }
 
  // ==== Hier LocalStorage & Weiterleitung erst bei erfolgreichem Login: ====
-  e.preventDefault(); // Standard-Formular-Submit verhindern (wenn du KEIN echtes Backend hast)
+  e.preventDefault(); // Standard-Formular-Submit verhindern 
 
   localStorage.setItem('userLoggedIn', 'true');
-  localStorage.setItem('username', username.value); // Das Feld heißt bei dir oben "username"
+  localStorage.setItem('username', username.value); 
   window.location.href = 'index.php'; // Weiterleitung zur Startseite
 });
