@@ -1,156 +1,226 @@
-/*   WARENKORB-SLIDER STYLING   */
-/* ============================= */
-
-/* Der gesamte Warenkorb-Slider – versteckt sich rechts außerhalb des Bildschirms */
 .cart-slider {
-  position: fixed;                  /* Bleibt immer an Ort und Stelle */
+  position: fixed;
   top: 0;
-  right: -100%;                     /* Anfangs komplett außerhalb sichtbar */
-  width: 360px;                     /* Breite des Sliders */
-  height: 100%;                     /* Volle Höhe */
-  background: #fff;                 /* Weißer Hintergrund */
-  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2); /* Schöner Schlagschatten von links */
-  transition: right 0.4s ease;      /* Animation beim Einblenden */
-  z-index: 9999;                    /* Ganz oben anzeigen */
+  right: -100%;
+  width: 370px;
+  max-width: 95vw;
+  height: 100%;
+  background: #fff;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.16);
+  border-radius: 18px 0 0 18px;
+  transition: right 0.3s cubic-bezier(.4,1.6,.6,1);
+  z-index: 9999;
   display: flex;
   flex-direction: column;
+  font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* Wird diese Klasse ergänzt, fährt der Slider ins Bild */
 .cart-slider.open {
   right: 0;
 }
 
-/* Kopfzeile des Sliders (mit Text und Schließen-Button) */
 .cart-header {
   display: flex;
-  justify-content: space-between;  /* Text links, Button rechts */
+  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1.1rem 1.2rem;
+  font-size: 1.18rem;
   font-weight: bold;
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #ddd;
+  background: #fff;
+  border-bottom: 1px solid #ececec;
 }
 
-/* Schließen-X oben rechts */
 .close-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   cursor: pointer;
+  color: #222;
+  border-radius: 50%;
+  padding: 3px 9px 3px 9px;
+  transition: background 0.2s;
+}
+.close-btn:hover {
+  background: #f1f1f1;
 }
 
-/* Der Inhaltsbereich für Produktanzeige etc. */
 .cart-content {
-  padding: 1rem;
-  flex: 1;                          /* nimmt restlichen Platz ein */
-  overflow-y: auto;                /* scrollbar bei viel Inhalt */
-}
-
-/* Unterer Bereich mit Buttons */
-.cart-actions {
-  margin-top: auto;                /* immer unten platzieren */
-  display: flex;
-  gap: 1rem;                       /* Abstand zwischen Buttons */
-  padding: 1rem;
-}
-
-/* Beide Buttons im unteren Bereich */
-.cart-actions button {
+  padding: 1rem 1.2rem 0.5rem 1.2rem;
   flex: 1;
-  padding: 0.75rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* Der "Zum Warenkorb"-Button in Rot */
-.cart-actions .go-cart {
-  background-color: #d00;
-  color: white;
+  overflow-y: auto;
 }
 
 .cart-promo {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 
 .cart-promo input {
   flex: 1;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  font-size: 1em;
 }
 
 .cart-promo button {
-  padding: 0.5rem 1rem;
-  background: #0cce6b; /* ESN-Grün */
+  padding: 0.45rem 1.1rem;
+  background: #222;
   color: #fff;
   border: none;
-  border-radius: 6px;
-  font-weight: bold;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1em;
   cursor: pointer;
+  transition: background 0.2s;
+}
+.cart-promo button:hover {
+  background: #111;
+}
+
+/* Dynamische Cart-Items – das wird per JS gerendert! */
+.cart-item {
+  display: flex;
+  gap: 0.8em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid #f1f1f1;
+  padding-bottom: 1em;
+}
+
+.cart-item-image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px #eee;
+}
+
+.cart-item-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-item-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cart-item-title {
+  font-weight: bold;
+  font-size: 1.08em;
+  color: #222;
+  margin-right: 0.4em;
+}
+
+.cart-item-desc {
+  color: #555;
+  font-size: 0.93em;
+  margin: 0.15em 0 0.25em 0;
+}
+
+.cart-item-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4em;
+}
+
+.qty-row {
+  display: flex;
+  align-items: center;
+  gap: 0.22em;
+}
+
+.qty-btn {
+  width: 27px;
+  height: 27px;
+  background: #f5f5f5;
+  border: 1px solid #bbb;
+  border-radius: 50%;
+  font-size: 1em;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.16s;
+}
+
+.qty-btn:hover {
+  background: #ececec;
+}
+
+.qty {
+  font-size: 1em;
+  padding: 0 0.6em;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #d00;
+  font-size: 1em;
+  margin-left: 0.3em;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.14s;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.remove-btn:hover {
+  background: #ffd6d6;
+}
+
+.item-total {
+  font-weight: 600;
+  color: #212121;
+  font-size: 1.05em;
+  min-width: 62px;
+  text-align: right;
 }
 
 .cart-summary {
   border-top: 1px solid #eee;
   background: #fafafa;
-  padding: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 0 0 18px 0;
 }
+
+.cart-summary .summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1em;
+  margin-bottom: 0.2em;
+}
+
 .cart-summary .total {
-  font-size: 1.2em;
-  margin-top: 0.5em;
+  font-size: 1.18em;
+  margin-top: 0.3em;
+  font-weight: bold;
 }
+
 .checkout-btn {
   width: 100%;
   padding: 1rem;
-  background: #0cce6b;
+  background: #111;
   color: #fff;
   border: none;
-  border-radius: 10px;
-  font-size: 1.1em;
+  border-radius: 11px;
+  font-size: 1.12em;
   font-weight: bold;
-  margin-top: 1rem;
+  margin-top: 0.7rem;
   cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.18s;
+  box-shadow: 0 4px 16px -8px #2222;
 }
-.cart-item {
-  display: flex;
-  gap: 0.8rem;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #eee;
-}
-.cart-item img {
-  width: 60px;
-  border-radius: 8px;
-}
-.cart-item-details {
-  flex: 1;
-}
-.qty-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.3em;
-}
-.qty-btn {
-  width: 24px;
-  height: 24px;
-  background: #eee;
-  border: none;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 1.1em;
-  cursor: pointer;
-}
-.remove-btn {
-  background: none;
-  border: none;
-  color: #d00;
-  font-size: 1.3em;
-  cursor: pointer;
-  margin-left: 0.5rem;
+.checkout-btn:hover {
+  background: #000;
 }

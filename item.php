@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPN | Whey Protein Choco</title>
+    <link rel="stylesheet" href="style/cart-slide.css">
     <link rel="stylesheet" href="style/global.css">
     <link rel="stylesheet" href="style/items.css">
     <link rel="stylesheet" href="style/cart-slide.css">

@@ -1,8 +1,6 @@
 // cart.js
 
 // Füge ein Produkt zum Warenkorb hinzu
-alert("cart.js LOADED!");
-
 function addToCart(name, image, price) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   let existing = cart.find(item => item.name === name);
@@ -84,28 +82,36 @@ function renderCart() {
 function renderCartSlider() {
   const cart = getCart();
   const cartItems = document.getElementById('cartItems');
-  const cartTotalSlider = document.getElementById('cartTotalSlider'); // optional für Gesamtsumme
-
-  if (!cartItems) return;
-
   cartItems.innerHTML = '';
-
-  let total = 0;
 
   cart.forEach((item, index) => {
     const itemTotal = item.price * item.quantity;
-    total += itemTotal;
     cartItems.innerHTML += `
       <div class="cart-item">
-        <img src="${item.image}" alt="${item.name}" width="60" />
-        <span>${item.name}</span>
-        <div>
-          <button onclick="updateQuantity(${index}, ${item.quantity - 1}, true)">-</button>
-          <span>${item.quantity}</span>
-          <button onclick="updateQuantity(${index}, ${item.quantity + 1}, true)">+</button>
-          <button onclick="removeFromCart(${index}, true)">Entfernen</button>
+        <div class="cart-item-image">
+          <img src="${item.image}" alt="${item.name}" />
         </div>
-        <span>${itemTotal.toFixed(2)} €</span>
+        <div class="cart-item-main">
+          <div class="cart-item-title-row">
+            <span class="cart-item-title">${item.name}</span>
+            <button class="remove-btn" onclick="removeFromCart(${index}, true)" title="Entfernen">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+          <div class="cart-item-desc">${item.flavor || ''}</div>
+          <div class="cart-item-bottom-row">
+            <div class="qty-row">
+              <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity - 1}, true)">
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <span class="qty">${item.quantity}</span>
+              <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity + 1}, true)">
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <div class="item-total">${itemTotal.toFixed(2)} €</div>
+          </div>
+        </div>
       </div>
     `;
   });
