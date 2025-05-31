@@ -19,7 +19,7 @@
         <!-- Aktions-Buttons unten im Slider -->
         <div class="cart-actions">
             <button onclick="closeCart()">Weiter einkaufen</button> <!-- Schließt den Slider -->
-            <button class="go-cart" onclick="window.location.href='cart.html'">Zum Warenkorb</button> <!-- Link zur Warenkorbseite -->
+            <button class="go-cart" onclick="window.location.href='cart.php'">Zum Warenkorb</button> <!-- Link zur Warenkorbseite -->
         </div>
 
     </div>
