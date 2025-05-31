@@ -6,7 +6,6 @@ window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
 window.renderItemSite = renderItemSite;
-window.intermediateStepAddToCart = intermediateStepAddToCart;
 window.intermediateStepChangeWishListStatus = intermediateStepChangeWishListStatus;
 window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 
@@ -15,9 +14,6 @@ let cid;
 let initial = true;
 
 function intermediateStepRenderItemSite(cid, pid) {
-    console.log(pid);
-    console.log(cid);
-
     if (isNaN(cid) && isNaN(pid) || cid == null && pid == null) {
         console.error("Parameter error (cat + pid): " + cid + ", " + pid);
     } else if (isNaN(cid) || cid == null) {
