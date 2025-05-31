@@ -1,7 +1,7 @@
 [
     {
         "pid": 1,
-        "name": "Proteinriegel Berry",
+        "name": "LowCarb Riegel Berry",
         "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.79,
         "ratersCount": 4217,
@@ -47,7 +47,7 @@
     },
     {
         "pid": 2,
-        "name": "Proteinriegel Hazelnut",
+        "name": "LowCarb Riegel Hazelnut",
         "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.76,
         "ratersCount": 3125,
@@ -93,7 +93,7 @@
     },
     {
         "pid": 3,
-        "name": "Proteinriegel Nougat",
+        "name": "LowCarb Riegel Nougat",
         "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.81,
         "ratersCount": 3879,
