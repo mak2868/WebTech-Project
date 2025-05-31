@@ -120,7 +120,7 @@ h2 {
 
   border: 2px solid var(--color-button-border);
   border-radius: 1.5rem;
-  
+
   appearance: none;
   background-image: url('data:image/svg+xml;utf8,<svg fill="black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3.793 8.293a1 1 0 0 1 1.414 0L12 15.086l6.793-6.793a1 1 0 1 1 1.414 1.414l-7.5 7.5a1 1 0 0 1-1.414 0l-7.5-7.5a1 1 0 0 1 0-1.414Z"/></svg>');
   background-repeat: no-repeat;
@@ -128,9 +128,9 @@ h2 {
   background-size: 1rem;
 }
 
-#select-wrapper select:focus-visible{
-    border: 2px solid var(--color-button-border);
-    outline: none !important; 
+#select-wrapper select:focus-visible {
+  border: 2px solid var(--color-button-border);
+  outline: none !important;
 }
 
 /* funktioniert nur beschränkt, Browserabhängig*/
@@ -181,7 +181,7 @@ select option {
   font-weight: bold;
 }
 
-#Preis #pricePerKgOutput{
+#Preis #pricePerKgOutput {
   margin-bottom: 3vw;
 }
 
@@ -229,6 +229,7 @@ select option {
 
 #FavButton {
   height: 1.85rem;
+  cursor: pointer;
 }
 
 /* ========== PRODUKTINFORMATIONEN + KLEINES BILD ========== */
@@ -347,7 +348,7 @@ select option {
   border-bottom: 2px solid var(--color-button-border);
 }
 
-#btn-group-Rezeptidee button:nth-child(2){
+#btn-group-Rezeptidee button:nth-child(2) {
   border-top: 2px solid var(--color-button-border);
   border-bottom: 2px solid var(--color-button-border);
 }
@@ -409,17 +410,17 @@ body.dark-mode {
   --color-button-selected: rgba(255, 195, 86, 0.75);
 }
 
-body.dark-mode #top-rigth{
+body.dark-mode #top-rigth {
   background-color: #202020;
 }
 
 body.dark-mode #select-wrapper select {
-  background-color:white; 
+  background-color: white;
   border: 2px solid var(--color-button-border);
 }
 
 body.dark-mode #select-wrapper select:focus-visible {
-  border: 2px solid var(--color-button-border); 
+  border: 2px solid var(--color-button-border);
 }
 
 /* funktioniert nur beschränkt, Browserabhängig */
@@ -447,8 +448,8 @@ body.dark-mode #VersandButton {
   background-color: var(--color-button-border);
 }
 
-body.dark-mode #FavButton{
-filter: invert(1);
+body.dark-mode #FavButton {
+  filter: invert(1);
 }
 
 body.dark-mode #accordion {
@@ -462,7 +463,7 @@ body.dark-mode #accordion::after {
 }
 
 body.dark-mode #accordion:hover {
-  background-color:  #121212;
+  background-color: #121212;
 }
 
 body.dark-mode #panel {

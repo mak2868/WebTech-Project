@@ -1,7 +1,7 @@
 // cart.js
 
 // Füge ein Produkt zum Warenkorb hinzu
-function addToCart(name, image, price) {
+function addToCart(name, image, price, size) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let existing = cart.find(item => item.name === name);
     if (existing) {
@@ -17,7 +17,7 @@ const itemHtml = `
   <div class="cart-item">
     <img src="${image}" alt="${name}" />  <!-- Produktbild -->
     <div>
-      <strong>${name}</strong><br>         <!-- Produktname -->
+      <strong>${name} (${size}g)</strong><br>         <!-- Produktname -->
       <span class="price-new">€${price}</span>  <!-- Preis mit zwei Nachkommastellen -->
     </div>
   </div>
@@ -102,6 +102,16 @@ function closeCart() {
 }
 
 function intermediateStepAddToCart(){
- addToCart(product.name,  product.pics.productPic1, getTotalPrice(product.priceWithoutTax));
+ let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
+    let buttonContent = selectedButton.textContent.slice(0, -1);
+    let index;
+    for (let i = 0; i < product.availableSizes.length; i++) {
+        if (buttonContent == product.availableSizes[i]) {
+            index = i;
+            break;
+        }
+    }
+ 
+  addToCart(product.name,  product.pics.productPic1, getTotalPrice(product.priceWithoutTax), product.availableSizes[index]);
 }
   

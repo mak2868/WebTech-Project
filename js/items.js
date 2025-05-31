@@ -6,36 +6,39 @@ window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
 window.renderItemSite = renderItemSite;
-window.intermediateStepAddToCart = intermediateStepAddToCart; 
+window.intermediateStepChangeWishListStatus = intermediateStepChangeWishListStatus;
 window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 
 let product;
-let initial = true; 
+let cid;
+let initial = true;
 
-function intermediateStepRenderItemSite(pid){
-    if(isNaN(pid)){
-        console.error("Parameter error: " + pid); 
+function intermediateStepRenderItemSite(cid, pid) {
+    if (isNaN(cid) && isNaN(pid) || cid == null && pid == null) {
+        console.error("Parameter error (cat + pid): " + cid + ", " + pid);
+    } else if (isNaN(cid) || cid == null) {
+        console.error("Parameter error: " + cid);
+    } else if (isNaN(pid) || pid == null) {
+        console.error("Parameter error: " + pid);
     } else {
-        renderItemSite(data["Whey Proteins"][pid - 1].name, pid);
+        renderItemSite(data[pid - 1], cid, pid);
     }
 }
 
-function renderItemSite(selectedProduct, pid) {
-     
-    if (selectedProduct === undefined) {
-        selectedProduct = "Whey Protein Choco";
-    }
-    product = data["Whey Proteins"].find(item => item.name === selectedProduct);
+function renderItemSite(prod, lcid, pid) {
 
-    history.pushState({ pid: pid }, '', '?pid=' + pid);
+    product = prod;
+    cid = lcid;
 
-    if(initial){
-        initial = false; 
+    history.pushState({ cid: cid, pid: pid }, '', '?cid=' + encodeURIComponent(cid) + '&pid=' + encodeURIComponent(pid));
+
+    if (initial) {
+        initial = false;
         let selectBox = document.getElementById('select');
-        for (let i = 0; i < data["Whey Proteins"].length; i++) {
+        for (let i = 0; i < data.length; i++) {
             const selectItem = document.createElement('option');
-            const productName = data["Whey Proteins"][i].name;
-            
+            const productName = data[i].name;
+
             let productShortName;
             if (productName.includes("White")) {
                 productShortName = "White Choco";
@@ -43,16 +46,22 @@ function renderItemSite(selectedProduct, pid) {
                 productShortName = productName.split(" ").pop();
             }
             selectItem.textContent = productShortName;
-    
+
             selectBox.appendChild(selectItem);
         }
 
-       selectBox.selectedIndex = (pid - 1);
-        
+        selectBox.selectedIndex = (pid - 1);
+
         select.addEventListener('change', e => {
-            for (let i = 0; i < data["Whey Proteins"].length; i++) {
-                if (data["Whey Proteins"][i].name.includes(e.target.value)) {
-                    renderItemSite(data["Whey Proteins"][i].name, data["Whey Proteins"][i].pid);
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].name.includes(e.target.value)) {
+                    if (e.target.value == "Choco") {
+                        renderItemSite(data[0], cid, data[0].pid);
+                    } else if (e.target.value == "White Choco") {
+                        renderItemSite(data[11], cid, data[11].pid);
+                    } else {
+                        renderItemSite(data[i], cid, data[i].pid);
+                    }
                 }
             }
         })
@@ -81,17 +90,16 @@ function renderItemSite(selectedProduct, pid) {
         let button = document.createElement('button');
         button.textContent = product.availableSizes[i] + 'g';
 
-        if (product.availableSizes[i] == 500) {
+        if (product.availableSizes[i] == 500 || product.availableSizes[i] == 45) {
             button.classList.add('active');
         }
         button.onclick = () => changeSelectedSize(button);
         verpackungsgrößenButtonsContainer.appendChild(button);
     }
 
-    const priceWOTax = product.priceWithoutTax;
-    const priceWTax = getTotalPrice(priceWOTax);
+    const priceWTax = getTotalPrice();
     document.getElementById("priceWTax").textContent = priceWTax + '€';
-    const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent.slice(0, -1) / 1000);
+    const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent);
     if (pricePerKG !== undefined) {
         document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
     }
@@ -113,39 +121,57 @@ function renderItemSite(selectedProduct, pid) {
     document.getElementById('substanceNutrientsProtein').textContent = product.substance.nutrients.Protein;
     document.getElementById('substanceNutrientsSalt').textContent = product.substance.nutrients.Salt;
 
-    document.getElementById('substanceAminoAcidsAlanine').textContent = product.substance.aminoAcids.Alanine;
-    document.getElementById('substanceAminoAcidsArginine').textContent = product.substance.aminoAcids.Arginine;
-    document.getElementById('substanceAminoAcidsAsparticAcid').textContent = product.substance.aminoAcids["Aspartic acid"];
-    document.getElementById('substanceAminoAcidsCysteine').textContent = product.substance.aminoAcids.Cysteine;
-    document.getElementById('substanceAminoAcidsGlutamicAcid').textContent = product.substance.aminoAcids["Glutamic acid"];
-    document.getElementById('substanceAminoAcidsGlycine').textContent = product.substance.aminoAcids.Glycine;
-    document.getElementById('substanceAminoAcidsHistidine').textContent = product.substance.aminoAcids.Histidine;
-    document.getElementById('substanceAminoAcidsIsoleucine').textContent = product.substance.aminoAcids.Isoleucine;
-    document.getElementById('substanceAminoAcidsLeucine').textContent = product.substance.aminoAcids.Leucine;
-    document.getElementById('substanceAminoAcidsLysine').textContent = product.substance.aminoAcids.Lysine;
-    document.getElementById('substanceAminoAcidsMethionine').textContent = product.substance.aminoAcids.Methionine;
-    document.getElementById('substanceAminoAcidsPhenylalanine').textContent = product.substance.aminoAcids.Phenylalanine;
-    document.getElementById('substanceAminoAcidsProline').textContent = product.substance.aminoAcids.Proline;
-    document.getElementById('substanceAminoAcidsSerine').textContent = product.substance.aminoAcids.Serine;
-    document.getElementById('substanceAminoAcidsThreonine').textContent = product.substance.aminoAcids.Threonine;
-    document.getElementById('substanceAminoAcidsTryptophan').textContent = product.substance.aminoAcids.Tryptophan;
-    document.getElementById('substanceAminoAcidsTyrosine').textContent = product.substance.aminoAcids.Tyrosine;
-    document.getElementById('substanceAminoAcidsValine').textContent = product.substance.aminoAcids.Valine;
+    if (cid < 4) {
+        document.getElementById('substanceAminoAcidsAlanine').textContent = product.substance.aminoAcids.Alanine;
+        document.getElementById('substanceAminoAcidsArginine').textContent = product.substance.aminoAcids.Arginine;
+        document.getElementById('substanceAminoAcidsAsparticAcid').textContent = product.substance.aminoAcids["Aspartic acid"];
+        document.getElementById('substanceAminoAcidsCysteine').textContent = product.substance.aminoAcids.Cysteine;
+        document.getElementById('substanceAminoAcidsGlutamicAcid').textContent = product.substance.aminoAcids["Glutamic acid"];
+        document.getElementById('substanceAminoAcidsGlycine').textContent = product.substance.aminoAcids.Glycine;
+        document.getElementById('substanceAminoAcidsHistidine').textContent = product.substance.aminoAcids.Histidine;
+        document.getElementById('substanceAminoAcidsIsoleucine').textContent = product.substance.aminoAcids.Isoleucine;
+        document.getElementById('substanceAminoAcidsLeucine').textContent = product.substance.aminoAcids.Leucine;
+        document.getElementById('substanceAminoAcidsLysine').textContent = product.substance.aminoAcids.Lysine;
+        document.getElementById('substanceAminoAcidsMethionine').textContent = product.substance.aminoAcids.Methionine;
+        document.getElementById('substanceAminoAcidsPhenylalanine').textContent = product.substance.aminoAcids.Phenylalanine;
+        document.getElementById('substanceAminoAcidsProline').textContent = product.substance.aminoAcids.Proline;
+        document.getElementById('substanceAminoAcidsSerine').textContent = product.substance.aminoAcids.Serine;
+        document.getElementById('substanceAminoAcidsThreonine').textContent = product.substance.aminoAcids.Threonine;
+        document.getElementById('substanceAminoAcidsTryptophan').textContent = product.substance.aminoAcids.Tryptophan;
+        document.getElementById('substanceAminoAcidsTyrosine').textContent = product.substance.aminoAcids.Tyrosine;
+        document.getElementById('substanceAminoAcidsValine').textContent = product.substance.aminoAcids.Valine;
+    } else {
+        document.getElementById('aminoAcidProfile').style.display = 'none';
+    }
 
     document.getElementById('usagePreparation').textContent = product.usage.preparation;
     document.getElementById('usageRecommendation').textContent = product.usage.recommendation;
-    document.getElementById('usageTip').textContent = product.usage.tip;
+    if (cid < 4) {
+        document.getElementById('usageTip').textContent = product.usage.tip;
+        if (cid != 2) {
+            const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
+            recipeButtonsContainer.innerHTML = "";
+            for (let i = 0; i < 3; i++) {
+                let recipeButton = document.createElement('button');
+                recipeButton.textContent = product.usage.recipes[i].shortTitle;
 
-    const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
-    recipeButtonsContainer.innerHTML = "";
-    for (let i = 0; i < 3; i++) {
-        let recipeButton = document.createElement('button');
-        recipeButton.textContent = product.usage.recipes[i].shortTitle;
-
-        recipeButton.onclick = () => switchRecipe(i);
-        recipeButtonsContainer.appendChild(recipeButton);
+                recipeButton.onclick = () => switchRecipe(i);
+                recipeButtonsContainer.appendChild(recipeButton);
+            }
+            switchRecipe();
+        } else {
+            document.getElementById('recipePreparationHeading').style.display = 'none';
+            document.getElementById('recipePreparation').style.display = 'none';
+            document.getElementById('recipeIngredients').style.display = 'none';
+            document.getElementById('tipHeading').style.display = 'none';
+            document.getElementById('tipHeading').style.marginTop = '0rem';
+        }
+    } else {
+        document.getElementById('recipePreparationHeading').style.display = 'none';
+        document.getElementById('recipePreparation').style.display = 'none';
+        document.getElementById('recipeIngredients').style.display = 'none';
+        document.getElementById('tipHeading').style.display = 'none';
     }
-    switchRecipe();
 
     document.getElementById('laboratory').textContent = product.laboratory;
 
@@ -285,43 +311,45 @@ function openPanel(activatedIndex) {
 
 
 function switchRecipe(selectedRecipe) {
-    if (selectedRecipe == undefined) {
-        selectedRecipe = 0;
-        document.querySelector('#btn-group-Rezeptidee button:first-child').classList.add('active');
-    }
-    document.querySelectorAll('#btn-group-Rezeptidee button').forEach(button => {
-        button.addEventListener('click', () => {
-            document.querySelectorAll('#btn-group-Rezeptidee button').forEach(btn => {
-                btn.classList.remove('active');
+    if (cid == 1 || cid == 3) {
+        if (selectedRecipe == undefined) {
+            selectedRecipe = 0;
+            document.querySelector('#btn-group-Rezeptidee button:first-child').classList.add('active');
+        }
+        document.querySelectorAll('#btn-group-Rezeptidee button').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('#btn-group-Rezeptidee button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
             });
-            button.classList.add('active');
         });
-    });
 
-    document.getElementById('recipeTitle').textContent = product.usage.recipes[selectedRecipe].title;
+        document.getElementById('recipeTitle').textContent = product.usage.recipes[selectedRecipe].title;
 
-    if (product.usage.recipes[selectedRecipe].portion == 1) {
-        document.getElementById('recipeIngredientsHeading').textContent = "Zutaten (für 1 Portion):";
-    } else {
-        document.getElementById('recipeIngredientsHeading').textContent = "Zutaten (für " + product.usage.recipes[selectedRecipe].portion + " Portionen):";
-    }
+        if (product.usage.recipes[selectedRecipe].portion == 1) {
+            document.getElementById('recipeIngredientsHeading').textContent = "Zutaten (für 1 Portion):";
+        } else {
+            document.getElementById('recipeIngredientsHeading').textContent = "Zutaten (für " + product.usage.recipes[selectedRecipe].portion + " Portionen):";
+        }
 
-    const ingredientsList = document.getElementById('recipeIngredients');
-    ingredientsList.innerHTML = "";
-    for (let i = 0; i < product.usage.recipes[selectedRecipe].ingredients.length; i++) {
-        const listElement = document.createElement('li');
-        listElement.textContent = product.usage.recipes[selectedRecipe].ingredients[i];
+        const ingredientsList = document.getElementById('recipeIngredients');
+        ingredientsList.innerHTML = "";
+        for (let i = 0; i < product.usage.recipes[selectedRecipe].ingredients.length; i++) {
+            const listElement = document.createElement('li');
+            listElement.textContent = product.usage.recipes[selectedRecipe].ingredients[i];
 
-        ingredientsList.appendChild(listElement);
-    }
+            ingredientsList.appendChild(listElement);
+        }
 
-    const preparationList = document.getElementById('recipePreparation');
-    preparationList.innerHTML = "";
-    for (let i = 0; i < product.usage.recipes[selectedRecipe].preparation.length; i++) {
-        const listElement = document.createElement('li');
-        listElement.textContent = product.usage.recipes[selectedRecipe].preparation[i];
+        const preparationList = document.getElementById('recipePreparation');
+        preparationList.innerHTML = "";
+        for (let i = 0; i < product.usage.recipes[selectedRecipe].preparation.length; i++) {
+            const listElement = document.createElement('li');
+            listElement.textContent = product.usage.recipes[selectedRecipe].preparation[i];
 
-        preparationList.appendChild(listElement);
+            preparationList.appendChild(listElement);
+        }
     }
 }
 
@@ -361,18 +389,31 @@ function switchProductbild(pictureNumber) {
     productPic.src = picsSrc[pictureNumber];
 }
 
-function getTotalPrice(priceWOTax) {
-    let returnValue = priceWOTax * 1.19;
+function getTotalPrice() {
+    let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
+    let buttonContent = selectedButton.textContent.slice(0, -1);
+    let index;
+    for (let i = 0; i < product.availableSizes.length; i++) {
+        if (buttonContent == product.availableSizes[i]) {
+            index = i;
+            break;
+        }
+    }
+    let returnValue = product.priceWithTax[index];
 
-    return returnValue.toFixed(2);
+    return returnValue;
 }
 
 function getPricePerKG(price, totalWeight) {
-    if (isNaN(price) || isNaN(totalWeight) || price <= 0 || totalWeight <= 0) {
+    totalWeight = String(totalWeight).slice(0, -1);
+    if (totalWeight == "12x45") {
+        price = price / 12;
+        totalWeight = 45;
+    } else if (isNaN(price) || isNaN(totalWeight) || price <= 0 || totalWeight <= 0) {
         return console.error("Preis oder Gewicht der Packung sind unzulässig!");
     }
 
-    let returnValue = price / totalWeight
+    let returnValue = price / (totalWeight / 1000);
 
     return returnValue.toFixed(2);
 }
@@ -381,10 +422,19 @@ function changeSelectedSize(selctedButton) {
     const allButtons = document.querySelectorAll('#VerpackungsgrößenButtons button');
     allButtons.forEach(btn => btn.classList.remove('active'));
     selctedButton.classList.add('active');
+
+    const priceWTax = getTotalPrice();
+    document.getElementById("priceWTax").textContent = priceWTax + '€';
+    const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent);
+    if (pricePerKG !== undefined) {
+        document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
+    }
 }
 
-function intermediateStepAddToCart(){
-    const name = product.name; 
+function intermediateStepChangeWishListStatus() {
+    const name = product.name;
     const image = product.pics.productPic1;
-    const price = getTotalPrice(product.priceWithoutTax); 
+    const price = getTotalPrice(product.priceWithoutTax);
+
+    changeWishListStatus(name, image, price);
 }

@@ -1,0 +1,140 @@
+[
+    {
+        "pid": 1,
+        "name": "Vegan Riegel Berry",
+        "description": "Deutschlands bester veganer Proteinriegel <br> mit fruchtigem Berry-Geschmack",
+        "rating": 4.69,
+        "ratersCount": 3368,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithTax": [
+            2.59,
+            27.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Cremiger Riegel mit echten Beerenstückchen und kräftigem Kakao. 100% vegan, 100% Geschmack.",
+            "Veganer Proteinriegel mit Beeren-Schoko-Geschmack"
+        ],
+        "substance": {
+            "ingredients": "Zartbitterschokoladenüberzug 23% (Kakaomasse, Süßungsmittel (Maltit), Kakaobutter, Emulgator (Lecithine (Sonnenblume)), natürliches Aroma), Erbsenprotein, Hafermehl, gefriergetrocknete Himbeeren 5%, Reissirup, Polydextrose, Sonnenblumenöl, Feuchthaltemittel (Glycerin), Inulin, Mandelmehl, Aroma (Himbeere, Vanille), Salz, färbendes Lebensmittel (Rote-Bete-Pulver), Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Mandeln. Kann Spuren von Soja, Erdnüssen und Gluten enthalten.",
+            "nutrients": {
+                "Energy": "1702 kJ / 405 kcal",
+                "Fat": "18 g",
+                "of which saturates": "6.4 g",
+                "Carbohydrates": "32 g",
+                "of which sugars": "3.4 g",
+                "Fibre": "5.6 g",
+                "Protein": "26 g",
+                "Salt": "0.61 g"
+            }
+        },
+        "usage": {
+            "preparation": "Auspacken, reinbeißen, Beerenfreude genießen.",
+            "recommendation": "Perfekt als Snack zwischendurch oder fruchtiger Protein-Kick nach dem Training."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 2,
+        "name": "Vegan Riegel Lemon",
+        "description": "Deutschlands bester veganer Proteinriegel <br> mit einzigartigem Geschmack",
+        "rating": 4.61,
+        "ratersCount": 2517,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithTax": [
+            2.59,
+            27.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Zitronig frisch mit pflanzlichem Protein: Der Lemon-Riegel ist perfekt für alle, die einen leichten, frischen Snack suchen.",
+            "Veganer Proteinriegel mit Zitronen-Vanille-Geschmack"
+        ],
+        "substance": {
+            "ingredients": "Weiße Schokolade mit Süßungsmittel 24% (Süßungsmittel (Maltit), Kakaobutter, Reismilchpulver, Emulgator (Lecithine (Sonnenblume)), natürliches Zitronenaroma), Erbsenprotein, Hafermehl, Mandelmehl, Reissirup, Feuchthaltemittel (Glycerin), Inulin, Zitronenzeste 1%, Aroma (Zitrone, Vanille), Sonnenblumenöl, Backtriebmittel (Natriumhydrogencarbonat), färbendes Lebensmittel (Kurkumaextrakt), Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Mandeln. Kann Spuren von Soja und Gluten enthalten.",
+            "nutrients": {
+                "Energy": "1712 kJ / 409 kcal",
+                "Fat": "17 g",
+                "of which saturates": "7.3 g",
+                "Carbohydrates": "34 g",
+                "of which sugars": "3.1 g",
+                "Fibre": "5.0 g",
+                "Protein": "25 g",
+                "Salt": "0.58 g"
+            }
+        },
+        "usage": {
+            "preparation": "Riegel auspacken, zurücklehnen und den Frischekick genießen.",
+            "recommendation": "Ideal für unterwegs, beim Sport oder einfach als fruchtige Pause."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "pid": 3,
+        "name": "Vegan Riegel Peanut",
+        "description": "Deutschlands bester veganer Proteinriegel <br> mit einzigartigem Geschmack",
+        "rating": 4.75,
+        "ratersCount": 4211,
+        "availableSizes": [
+            45,
+            "12x45"
+        ],
+        "priceWithTax": [
+            2.59,
+            27.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Cremig, nussig, vollgepackt mit pflanzlichem Protein. Unser Peanut-Riegel ist ein echtes Must-have für Erdnuss-Fans.",
+            "Veganer Proteinriegel mit Erdnuss-Schoko-Geschmack"
+        ],
+        "substance": {
+            "ingredients": "Zartbitterschokoladenüberzug 24% (Kakaomasse, Süßungsmittel (Maltit), Kakaobutter, Emulgator (Lecithine (Sonnenblume)), natürliches Aroma), Erbsenprotein, Hafermehl, geröstete Erdnüsse 10%, Reissirup, Polydextrose, Feuchthaltemittel (Glycerin), Sonnenblumenöl, Inulin, Kakaopulver (stark entölt), Aroma (Erdnuss), Salz, Süßungsmittel (Sucralose)",
+            "allergens": "Enthält Erdnüsse. Kann Spuren von Soja, Gluten und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1763 kJ / 422 kcal",
+                "Fat": "20 g",
+                "of which saturates": "4.8 g",
+                "Carbohydrates": "32 g",
+                "of which sugars": "3.2 g",
+                "Fibre": "4.1 g",
+                "Protein": "27 g",
+                "Salt": "0.64 g"
+            }
+        },
+        "usage": {
+            "preparation": "Einfach auspacken und genießen.",
+            "recommendation": "Perfekt nach dem Workout oder als kräftiger Snack unterwegs."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    }
+]
