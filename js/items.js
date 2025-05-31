@@ -59,7 +59,13 @@ function renderItemSite(prod, lcid, pid) {
         select.addEventListener('change', e => {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].name.includes(e.target.value)) {
-                    renderItemSite(data[i], cid, data[i].pid);
+                    if (e.target.value == "Choco") {
+                        renderItemSite(data[0], cid, data[0].pid);
+                    } else if (e.target.value == "White Choco") {
+                        renderItemSite(data[11], cid, data[11].pid);
+                    } else {
+                        renderItemSite(data[i], cid, data[i].pid);
+                    }
                 }
             }
         })
@@ -440,5 +446,5 @@ function intermediateStepChangeWishListStatus() {
     const image = product.pics.productPic1;
     const price = getTotalPrice(product.priceWithoutTax);
 
-    changeWishListStatus(name, image, price); 
+    changeWishListStatus(name, image, price);
 }

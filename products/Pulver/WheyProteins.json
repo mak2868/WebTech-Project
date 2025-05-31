@@ -139,7 +139,7 @@
     {
         "pid": 2,
         "name": "Whey Protein Strawberry",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.23,
         "ratersCount": 2147,
         "availableSizes": [
@@ -270,7 +270,7 @@
     {
         "pid": 3,
         "name": "Whey Protein Vanilla",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 3.78,
         "ratersCount": 1745,
         "availableSizes": [
@@ -401,7 +401,7 @@
     {
         "pid": 4,
         "name": "Whey Protein Caramel",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.87,
         "ratersCount": 3140,
         "availableSizes": [
@@ -531,7 +531,7 @@
     {
         "pid": 5,
         "name": "Whey Protein Banana",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 3.78,
         "ratersCount": 1478,
         "availableSizes": [
@@ -661,7 +661,7 @@
     {
         "pid": 6,
         "name": "Whey Protein Hazelnut",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.01,
         "ratersCount": 875,
         "availableSizes": [
@@ -791,7 +791,7 @@
     {
         "pid": 7,
         "name": "Whey Protein Coffee",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.81,
         "ratersCount": 1120,
         "availableSizes": [
@@ -916,7 +916,7 @@
     {
         "pid": 8,
         "name": "Whey Protein Raspberry",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.68,
         "ratersCount": 978,
         "availableSizes": [
@@ -1046,7 +1046,7 @@
     {
         "pid": 9,
         "name": "Whey Protein Pistachio",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 3.81,
         "ratersCount": 845,
         "availableSizes": [
@@ -1176,7 +1176,7 @@
     {
         "pid": 10,
         "name": "Whey Protein Matcha",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.99,
         "ratersCount": 541,
         "availableSizes": [
@@ -1307,7 +1307,7 @@
     {
         "pid": 11,
         "name": "Whey Protein Gingerbread",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.22,
         "ratersCount": 1047,
         "availableSizes": [
@@ -1438,7 +1438,7 @@
     {
         "pid": 12,
         "name": "Whey Protein White Choco",
-        "description": "Deutschlands bestes Whey-Proteinpulver mit Whey-Konzentrat und Whey-Isolat",
+        "description": "Deutschlands bestes Whey-Proteinpulver <br> mit Whey-Konzentrat und Whey-Isolat",
         "rating": 4.47,
         "ratersCount": 941,
         "availableSizes": [

@@ -2,7 +2,7 @@
     {
         "pid": 1,
         "name": "Proteinriegel Berry",
-        "description": "Frucht trifft Fitness: <br> der Low-Carb-Riegel mit echten Beerenstückchen",
+        "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.79,
         "ratersCount": 4217,
         "availableSizes": [
@@ -48,7 +48,7 @@
     {
         "pid": 2,
         "name": "Proteinriegel Hazelnut",
-        "description": "Knusprig, nussig, Low Carb  <br> – der Riegel mit gerösteten Haselnüssen",
+        "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.76,
         "ratersCount": 3125,
         "availableSizes": [
@@ -94,7 +94,7 @@
     {
         "pid": 3,
         "name": "Proteinriegel Nougat",
-        "description": "Low Carb, High Taste – der cremige Nougatrausch <br> ohne Zuckerzusatz",
+        "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.81,
         "ratersCount": 3879,
         "availableSizes": [
