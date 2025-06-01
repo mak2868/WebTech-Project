@@ -6,9 +6,10 @@
 <!-- Im <body> -->
 <div id="cartSlider" class="cart-slider">
   <div class="cart-header">
-    <span>🛒 Warenkorb</span>
-    <button class="close-btn" onclick="closeCart()" aria-label="Schließen"><i class="fa-solid fa-xmark"></i></button>
-  </div>
+    <span class="header-title">Warenkorb</span>
+  <i class="fa-solid fa-xmark close-icon" onclick="closeCart()" aria-label="Schließen"></i>
+</div>
+
   <div class="cart-content">
     <div class="cart-promo">
       <input type="text" id="promoCode" placeholder="Gutscheincode" />
