@@ -1,7 +1,6 @@
 // cart.js
 
 // Füge ein Produkt zum Warenkorb hinzu
-
 function addToCart(name, image, price) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   let existing = cart.find(item => item.name === name);
@@ -11,32 +10,6 @@ function addToCart(name, image, price) {
     cart.push({ name, image, price, quantity: 1 });
   }
   localStorage.setItem('cart', JSON.stringify(cart));
-=======
-function addToCart(name, image, price, size) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let existing = cart.find(item => item.name === name);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ name, image, price, quantity: 1 });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${name} wurde dem Warenkorb hinzugefügt.`);
-  
-// → zusätzlich für Slider: Zeigt das zuletzt hinzugefügte Produkt direkt im Warenkorb-Slider an
-const itemHtml = `
-  <div class="cart-item">
-    <img src="${image}" alt="${name}" />  <!-- Produktbild -->
-    <div>
-      <strong>${name} (${size}g)</strong><br>         <!-- Produktname -->
-      <span class="price-new">€${price}</span>  <!-- Preis mit zwei Nachkommastellen -->
-    </div>
-  </div>
-`;
-
-// Holt das div, in dem die Slider-Inhalte (Produkte) angezeigt werden
-const cartItems = document.getElementById("cartItems");
-
 
   // Öffnet den Slider (führt openCart() aus)
   openCart();
@@ -161,23 +134,8 @@ function closeCart() {
   if (slider) slider.classList.remove("open");          // entfernt die Klasse "open" → versteckt den Slider
 }
 
-
 function intermediateStepAddToCart() {
   addToCart(product.name, product.pics.productPic1, getTotalPrice(product.priceWithoutTax));
-=======
-function intermediateStepAddToCart(){
- let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
-    let buttonContent = selectedButton.textContent.slice(0, -1);
-    let index;
-    for (let i = 0; i < product.availableSizes.length; i++) {
-        if (buttonContent == product.availableSizes[i]) {
-            index = i;
-            break;
-        }
-    }
- 
-  addToCart(product.name,  product.pics.productPic1, getTotalPrice(product.priceWithoutTax), product.availableSizes[index]);
-
 }
 
 //Bei geöffneten Warenkorbslider lässt sich der slider durch einen CLick auf Icon schließen
