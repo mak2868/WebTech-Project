@@ -22,35 +22,127 @@
 <?php
 include 'components/Navbar/navbar.php';
 
-$json = @file_get_contents(__DIR__ . '/products/WheyProteins.json');
-
-if ($json === false) {
-    echo "Error: The file could not be loaded.";
-    error_log("Error loading the file: " . __DIR__ . '/products/WheyProteins.json');
-} else {
-    $data = json_decode($json, true);
-    
-    if ($data === null) {
-        echo "Error: The JSON data could not be decoded.";
-        error_log("Error decoding JSON from file: " . __DIR__ . '/products/WheyProteins.json');
-    } 
-}
+$messages = [];
+$pid = null;
+$cid = null;
+$json = null;
+$path = null;
+$hasError = false;
 
 if (isset($_GET["pid"])) {
-    if (empty($_GET["pid"])) {
-        $pid = "No value for the parameter!";
+    if (trim($_GET["pid"]) === '') {
+        $messages[] = 'Der Parameter "pid" wurde übergeben, ist aber leer.';
     } else {
         $pid = $_GET["pid"];
     }
 } else {
-    $pid = "Parameter is missing!";
+    $messages[] = 'Der Parameter "pid" fehlt vollständig.';
 }
+
+if (isset($_GET["cid"])) {
+    if (trim($_GET["cid"]) === '') {
+        $messages[] = 'Der Parameter "cid" wurde übergeben, ist aber leer.';
+    } else {
+        $cid = $_GET["cid"];
+    }
+} else {
+    $messages[] = 'Der Parameter "cid" fehlt vollständig.';
+}
+
+if (!empty($messages)) {
+    $hasError = true;
+    foreach ($messages as $msg) {
+        echo '<script>console.log(' . json_encode($msg) . ');</script>';
+    }
+} else {
+    switch ($cid) {
+        case 1:
+            if ($pid >= 1 && $pid <= 12) {
+                $json = @file_get_contents(__DIR__ . '/products/Pulver/WheyProteins.json');
+                $path = "/products/Pulver/WheyProteins.json";
+            } else {
+                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 1 (WheyProteins)") . ");</script>";
+            }
+            break;
+
+        case 2:
+            if ($pid >= 1 && $pid <= 6) {
+                $json = @file_get_contents(__DIR__ . '/products/Pulver/Isolat.json');
+                $path = "/products/Pulver/Isolat.json";
+            } else {
+                $hasError = true;
+                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 2 (Isolat).") . ");</script>";
+            }
+            break;
+
+        case 3:
+            if ($pid >= 1 && $pid <= 6) {
+                $json = @file_get_contents(__DIR__ . '/products/Pulver/Vegan.json');
+                $path = "/products/Pulver/Vegan.json";
+            } else {
+                $hasError = true;
+                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 3 (Vegan Pulver).") . ");</script>";
+            }
+            break;
+
+        case 4:
+            if ($pid >= 1 && $pid <= 6) {
+                $json = @file_get_contents(__DIR__ . '/products/Riegel/Proteinriegel.json');
+                $path = "/products/Riegel/Proteinriegel.json";
+            } else {
+                $hasError = true;
+                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 4 (Proteinriegel).") . ");</script>";
+            }
+            break;
+
+        case 5:
+            if ($pid >= 1 && $pid <= 3) {
+                $json = @file_get_contents(__DIR__ . '/products/Riegel/LowCarb.json');
+                $path = "/products/Riegel/LowCarb.json";
+            } else {
+                $hasError = true;
+                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 5 (LowCarb).") . ");</script>";
+            }
+            break;
+
+        case 6:
+            if ($pid >= 1 && $pid <= 3) {
+                $json = @file_get_contents(__DIR__ . '/products/Riegel/Vegan.json');
+                $path = "/products/Riegel/Vegan.json";
+            } else {
+                $hasError = true;
+                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 6 (Riegel Vegan).") . ");</script>";
+            }
+            break;
+
+        default:
+            $json = false;
+            echo "<script>console.log(" . json_encode("Ungültige Kategorie.") . ");</script>";
+    }
+}
+
+if (!$hasError) {
+    if ($json === false) {
+        echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
+    } else {
+        $data = json_decode($json, true);
+
+        if ($data === null) {
+            echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
+        }
+    }
+}
+
 
 ?>
 
-<script>
-    const data = <?php echo json_encode($data); ?>;
-</script>
+<?php if ($data !== null): ?>
+    <script>
+        const data = <?php echo json_encode($data); ?>;
+    </script>
+<?php endif; ?>
+
+
 
 <body>
     <div id='topPic'>
@@ -78,7 +170,7 @@ if (isset($_GET["pid"])) {
                         <div id="Bewertungsskala"></div>
                         <p id="ratersCount"></p>
                     </div>
-                    <h3 id="description"></h3>
+                    <h4 id="description"></h4>
                     <!-- Sortenauswahl -->
                     <div id="select-wrapper">
                         <p>Geschmack</p>
@@ -193,7 +285,7 @@ if (isset($_GET["pid"])) {
                             </table>
                         </article>
 
-                        <article>
+                        <article id="aminoAcidProfile">
                             <h4>Aminosäureprofil</h4>
                             <table>
                                 <caption>Aminosäureprofil (pro 100g)</caption>
@@ -301,7 +393,7 @@ if (isset($_GET["pid"])) {
                         </article>
 
                         <article>
-                            <h4>Tipp</h4>
+                            <h4 id="tipHeading">Tipp</h4>
                             <p id="usageTip"></p>
                         </article>
 
@@ -345,7 +437,7 @@ if (isset($_GET["pid"])) {
     
     <script defer>
         window.onload = () => {
-            window.intermediateStepRenderItemSite(<?php echo $pid; ?>);
+            window.intermediateStepRenderItemSite(<?php echo json_encode($cid); ?>, <?php echo json_encode($pid); ?>);
         }
     </script>
      <?php include 'cartSlider.php'; ?>
