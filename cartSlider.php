@@ -9,11 +9,6 @@
     <span class="header-title">Warenkorb</span>
   <i class="fa-solid fa-xmark close-icon" aria-label="Schließen"></i>
 </div>
-
-  <div class="cart-content">
-    <div class="cart-promo">
-      <input type="text" id="promoCode" placeholder="Gutscheincode" />
-      <button onclick="applyPromo()">Anwenden</button>
     </div>
     <div id="cartItems"></div>
   </div>
