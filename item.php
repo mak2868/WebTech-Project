@@ -1,4 +1,4 @@
-<!-- erstellt von: Marvin Kunz (außer Navbar) Slider erstellt von Merzan Köse-->
+<!-- erstellt von: Marvin Kunz (außer Navbar) -->
 
 <!DOCTYPE html>
 <html lang="de">
