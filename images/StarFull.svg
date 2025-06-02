@@ -1,3 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" id="Star">
-  <path fill="#f0ee06" d="M5.75766517,5.41369089 L7.55163196,1.77871714 C7.73503881,1.40709429 8.26496119,1.40709429 8.44836804,1.77871714 L10.2423348,5.41369089 L14.2537665,5.99658603 C14.6638767,6.05617853 14.8276317,6.56016466 14.5308732,6.84943272 L11.628174,9.67886518 L12.3134083,13.6740879 C12.3834635,14.082541 11.9547473,14.3940215 11.5879336,14.2011762 L8,12.3148879 L4.41206642,14.2011762 C4.04525273,14.3940215 3.61653652,14.082541 3.6865917,13.6740879 L4.37182604,9.67886518 L1.4691268,6.84943272 C1.17236829,6.56016466 1.33612331,6.05617853 1.74623349,5.99658603 L5.75766517,5.41369089 Z" class="color212121 svgShape"></path>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 16 16"
+   id="Star"
+   version="1.1"
+   sodipodi:docname="StarFull.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs972" />
+  <sodipodi:namedview
+     id="namedview970"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="51.9375"
+     inkscape:cx="7.990373"
+     inkscape:cy="8"
+     inkscape:window-width="1920"
+     inkscape:window-height="1018"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Star" />
+  <path
+     fill="#f0ee06"
+     d="M5.75766517,5.41369089 L7.55163196,1.77871714 C7.73503881,1.40709429 8.26496119,1.40709429 8.44836804,1.77871714 L10.2423348,5.41369089 L14.2537665,5.99658603 C14.6638767,6.05617853 14.8276317,6.56016466 14.5308732,6.84943272 L11.628174,9.67886518 L12.3134083,13.6740879 C12.3834635,14.082541 11.9547473,14.3940215 11.5879336,14.2011762 L8,12.3148879 L4.41206642,14.2011762 C4.04525273,14.3940215 3.61653652,14.082541 3.6865917,13.6740879 L4.37182604,9.67886518 L1.4691268,6.84943272 C1.17236829,6.56016466 1.33612331,6.05617853 1.74623349,5.99658603 L5.75766517,5.41369089 Z"
+     class="color212121 svgShape"
+     id="path967"
+     style="fill:#ffc356;fill-opacity:1" />
 </svg>
