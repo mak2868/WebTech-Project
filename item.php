@@ -12,10 +12,13 @@
     <link rel="stylesheet" href="style/cart-slide.css">
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
     <link rel="stylesheet" href="components/Footer/footer.css">
+    <link rel="stylesheet" href="style/cookieBanner.css">
     <script src="js/items.js" defer></script>
     <script src="js/cart.js" defer></script>
     <script src="js/wishList.js" defer></script>
     <script src="components/Navbar/navbar.js" defer></script>
+    <script src="js/cookieBanner.js" defer></script>
+
 
 </head>
 
@@ -433,6 +436,7 @@ if (!$hasError) {
 
         </div>
     </main>
+    <?php include 'cookieBanner.php'; ?>
     <?php include 'components/Footer/footer.php'; ?>
     
     <script defer>

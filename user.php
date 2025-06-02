@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Einbinden der globalen und seitenbezogenen CSS-Dateien -->
     <link rel="stylesheet" href="./style/global.css">
+    <link rel="stylesheet" href="style/user.css">
     <link rel="stylesheet" href="./style/logreg.css">
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+    <link rel="stylesheet" href="components/Footer/footer.css">
+    <link rel="stylesheet" href="style/cookieBanner.css">
     <script src="components/Navbar/navbar.js" defer></script>
+    <script src="js/cookieBanner.js" defer></script>
+
 
     <title>Benutzerbereich</title>
+  
+
 </head>
 <body>
     <?php include 'components/Navbar/navbar.php'; ?>
@@ -87,8 +93,9 @@
             <a href="index.php" class="form-text">Zurück zur Homepage</a>
         </div>
 
-        <script src="js/validate-user.js"></script>
-        <?php include 'components/Footer/footer.php'; ?>
-    </main>
+    <script src="js/validate-user.js"></script>
+    <?php include 'cookieBanner.php'; ?>
+    <?php include 'components/Footer/footer.php'; ?>
+</main>
 </body>
 </html>
