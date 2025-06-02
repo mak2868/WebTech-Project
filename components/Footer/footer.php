@@ -41,8 +41,8 @@
       <div class="footer-bottom">
         <div class="footer-copyright">© 2025 EXTREM PERFORMANCE NUTRITION. All rights reserved</div>
         <div class="footer-legal">
-          <a href="#">Datenschutz</a>
-          <a href="#">Impressum</a>
+          <a href="datenschutzerklärung.php">Datenschutz</a>
+          <a href="impressum.php">Impressum</a>
         </div>
       </div>
     </div>

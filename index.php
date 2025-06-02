@@ -2,16 +2,22 @@
 <html lang="de">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hero Section</title>
-  <link rel="stylesheet" href="style/global.css">
-  <link rel="stylesheet" href="style/index.css">
-  <link rel="stylesheet" href="style/index-darkmode.css">
-  <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-  <link rel="stylesheet" href="components/Footer/footer.css">
-  <link rel="stylesheet" href="style/cart-slide.css">
-  <script src="components/Navbar/navbar.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Section</title>
+    <link rel="stylesheet" href="style/global.css">
+    <link rel="stylesheet" href="style/index.css">
+    <link rel="stylesheet" href="style/index-darkmode.css">
+    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
+    <link rel="stylesheet" href="components/Footer/footer.css">
+    <link rel="stylesheet" href="style/cart-slide.css">
+    <link rel="stylesheet" href="style/cookieBanner.css">
+    <script src="components/Navbar/navbar.js" defer></script>
+    <script src="js/cookieBanner.js" defer></script>
+
+    
+
+
 </head>
 
 <body class="dark-page">
@@ -152,33 +158,33 @@
 
 
 
-          <!-- Produktkarte 4 -->
-          <div class="product-card">
-            <div class="badge">Bestseller</div>
-            <div class="image-wrapper">
-              <img src="images/Proteinriegel_LowCarb.png" alt="Produkt">
-              <div class="icons">
-                <div class="icon" onclick="addToCart('Proteinriegel Low Carb', 'images/Proteinriegel_LowCarb.png', 23.90)">
-                  <img src="images/shopping-cart.png" alt="In den Warenkorb" />
-                </div>
-              </div>
-            </div>
-            <p class="flavor">Peach Iced Tea</p>
-            <h3 class="title">Proteinriegel Low Carb</h3>
-            <p class="desc">Erfrischend klarer Protein-Drink</p>
-            <div class="rating">
-              <span class="stars">★★★★☆</span>
-              <span class="reviews">(5800)</span>
-            </div>
-            <p class="price">€49,90 <span class="price-kg">(€54,96/kg)</span></p>
-          </div>
-        </div>
+<!-- Produktkarte 4 -->
+<div class="product-card">
+  <div class="badge">Bestseller</div>
+  <div class="image-wrapper">
+    <img src="images/Proteinriegel_LowCarb.png" alt="Produkt">
+    <div class="icons">
+      <div class="icon" onclick="addToCart('Proteinriegel Low Carb', 'images/Proteinriegel_LowCarb.png', 23.90)">
+        <img src="images/shopping-cart.png" alt="In den Warenkorb" />
       </div>
-    </section>
-  </main>
-  <script src="js/cart.js"></script>
+    </div>
+  </div>
+  <p class="flavor">Peach Iced Tea</p>
+  <h3 class="title">Proteinriegel Low Carb</h3>
+  <p class="desc">Erfrischend klarer Protein-Drink</p>
+  <div class="rating">
+    <span class="stars">★★★★☆</span>
+    <span class="reviews">(5800)</span>
+  </div>
+  <p class="price">€49,90 <span class="price-kg">(€54,96/kg)</span></p>
+</div>
+    </div>
+  </div>
+</section>
+</main>
+<script src="js/cart.js"></script>
   <?php include 'cartSlider.php'; ?>
+  <?php include 'cookieBanner.php'; ?>
   <?php include 'components/Footer/footer.php'; ?>
 </body>
-
 </html>

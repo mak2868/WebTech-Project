@@ -1,0 +1,336 @@
+:root {
+  --primary-color: #0f1825;
+  --button-color: #ffc356;
+  --light-color: #fff;
+  --dark-color: #333;
+  --color-text-darkmode: #e0e0e0;
+  --background-overlay: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  background: #f8f8f8;
+}
+
+.hidden {
+display: none;
+}
+
+/* Cookie Banner Styles */
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 800px;
+  width: 90%;
+  background: var(--light-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  padding: 1.5em;
+  z-index: 9998;
+}
+
+.cookie-banner.hidden {
+  display: none;
+}
+
+.cookie-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.cookie-banner__text {
+  text-align: left;
+}
+
+.cookie-banner__text p {
+  color: var(--dark-color);
+  margin: 0.5em 0;
+  line-height: 1.4;
+  font-size: 0.8rem;
+}
+
+.cookie-banner__text a {
+  color: #61d180;
+  text-decoration: none;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+.cookie-banner button {
+  padding: 0.9em 2.4em;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+  font-family: 'Lato', sans-serif;
+}
+
+.btn-settings {
+  background: var(--light-color);
+  border: 2px solid var(--dark-color);
+  color: #000000;
+}
+.btn-settings:hover {
+  background: var(--button-color);
+}
+
+.btn-accept {
+  background: #ffd175;
+  color: var(--dark-color);
+  border: 2px solid;
+}
+.btn-accept:hover {
+  background: #ffd175;
+  border-color: #000000;
+}
+
+.btn-decline {
+  background: none;
+  border: none;
+  color: var(--dark-color);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.8rem;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Cookie Settings Modal Styles */
+.cookie-settings {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.cookie-settings.hidden {
+  display: none;
+}
+
+.cookie-settings__modal {
+  background: var(--light-color);
+  padding: 2em;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.cookie-settings__modal h2 {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.cookie-settings__modal p {
+  margin-bottom: 1em;
+  line-height: 1.4;
+  font-size: 1rem;
+}
+
+.cookie-settings__options {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.cookie-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cookie-settings__actions {
+  margin-top: 1em;
+}
+
+.cookie-settings button {
+  padding: 0.7em 1.5em;
+  border: none;
+  border-radius: 25px;
+  background: var(--button-color);
+  color: var(--dark-color);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.9rem;
+  font-family: 'Lato', sans-serif;
+}
+
+.cookie-settings button:hover {
+  background: var(--color-text-darkmode);
+  color: var(--dark-color);
+}
+
+.cookie-einstellungen {
+color: #000000;
+}
+
+.paragraph-einstellungen {
+color: #000000;
+}
+
+/* Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--button-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
+
+
+/* ================================================= */
+/* Darkmode - Cookie Banner */
+/* ================================================= */
+
+body.dark-mode .cookie-banner {
+  background-color: var(--dark-color);
+  color: var(--light-color)
+}
+
+body.dark-mode .cookie-banner__text p {
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .btn-settings {
+  background-color: transparent;
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .btn-settings:hover {
+  background: var(--button-color);
+  color: var(--dark-color);
+}
+
+body.dark-mode .btn-accept {
+  background: #ffd175;
+  color: var(--dark-color);
+  border: 2px solid;
+}
+
+body.dark-mode .btn-accept:hover {
+  background: #ffd175;
+  border-color: var(--dark-color);
+}
+
+body.dark-mode .btn-decline {
+  background: transparent;
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .btn-decline:hover {
+  background-color: var(--color-text-darkmode);
+  color: var(--dark-color)
+}
+
+
+body.dark-mode .cookie-settings__modal {
+  background-color: var(--dark-color);
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .cookie-settings__modal h2 {
+  color: var(--light-color);
+  border-bottom-color: var(--light-color)
+}
+
+body.dark-mode .cookie-settings__modal p {
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .cookie-option {
+  border-bottom: 1px solid #555;
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .cookie-einstellungen {
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .paragraph-einstellungen {
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .cookie-settings button {
+  background: var(--button-color);
+  color: var(--dark-color);
+}
+
+body.dark-mode .cookie-settings button:hover {
+  background: #e6b14f;
+  color: var(--dark-color);
+}
+
+
+
+
+
+/* ================================================= */
+/* Responsivnes - Cookie Banner */
+/* ================================================= */
+
+
+@media (max-width: 600px) {
+  .cookie-banner__actions {
+    gap: 5px;
+  }
+  .cookie-banner button {
+    padding: 0.6em 1.2em;
+    font-size: 0.7rem;
+  }
+}
