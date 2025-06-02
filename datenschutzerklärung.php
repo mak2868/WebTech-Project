@@ -17,7 +17,7 @@
 <body>
     <?php include 'components/Navbar/navbar.php'; ?>
 
-  <main style="padding-top: 120px" class="container">
+  <main class="container content-wrapper">
     <h2>Datenschutzerklärung</h2>
 
     <p>Wir freuen uns sehr über Ihr Interesse an unserem Webshop. Der Schutz Ihrer personenbezogenen Daten ist uns ein

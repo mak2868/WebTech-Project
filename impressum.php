@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum</title>
     <link rel="stylesheet" href="style/global.css">
+    <link rel="stylesheet" href="style/impressum.css">
     <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
     <link rel="stylesheet" href="components/Footer/footer.css">
     <link rel="stylesheet" href="style/cookieBanner.css">
@@ -15,7 +16,7 @@
 <body>
     <?php include 'components/Navbar/navbar.php'; ?>
 
-    <main style="padding-top: 120px" class="container">
+    <main class="container content-wrapper">
   <h2>Impressum</h2>
 
   <h3>Angaben gemäß § 5 TMG</h3>

@@ -101,3 +101,59 @@ body {
   font-size: 0.9rem;
   color: #555;
 }
+
+
+
+/* ================================================= */
+/* Darkmode - Footer mit CSS-Variablen */
+/* ================================================= */
+
+body.dark-mode .footer-subscribe {
+  background-color: var(--color-background-darkmode);
+  border-top: 1px solid var(--color-border-darkmode);
+}
+
+body.dark-mode .footer-form-title {
+  color: var(--color-heading);
+}
+
+body.dark-mode .footer-form-input {
+  background-color: var(--color-background-darkmode);
+  border: 1px solid var(--color-border-darkmode);
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .footer-form-input::placeholder {
+  color: var(--color-text-darkmode);
+  opacity: 0.6;
+}
+
+body.dark-mode .footer-form-button {
+  background-color: var(--color-button-darkmode);
+  color: var(--color-button-text-darkmode);
+}
+
+body.dark-mode .footer-form-button:hover {
+  background-color: var(--color-button-hover-darkmode);
+}
+
+body.dark-mode .footer-links a,
+body.dark-mode .footer-legal a {
+  color: var(--color-text-darkmode);
+}
+
+
+
+body.dark-mode .footer-divider {
+  border-top: 1px solid var(--color-border-darkmode);
+}
+
+body.dark-mode .footer-bottom {
+  color: var(--color-text-darkmode);
+}
+
+body.dark-mode .footer-social a img {
+  filter: brightness(0) invert(1);
+}
+
+
