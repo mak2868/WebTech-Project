@@ -1,26 +1,27 @@
-<!--         Warenkorb-Slider      -->
-<!-- ============================= -->
+<!-- Im <head> -->
+<link rel="stylesheet" href="style/cart-slide.css">
+<!-- Optional für Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Der gesamte Slider (standardmäßig ausgeblendet per CSS) -->
+<!-- Im <body> -->
 <div id="cartSlider" class="cart-slider">
+  <div class="cart-header">
+    <span class="header-title">Warenkorb</span>
+    <i class="fa-solid fa-xmark close-icon" aria-label="Schließen"></i>
+  </div>
 
-    <!-- Kopfzeile des Sliders mit Titel und Schließen-Button -->
-    <div class="cart-header">
-        <span>🛒 Produkt hinzugefügt</span> <!-- Textanzeige -->
-        <button class="close-btn" onclick="closeCart()">×</button> <!-- Schließen-Symbol -->
-    </div>
+  <div class="cart-promo">
+    <input type="text" id="promoCode" placeholder="Gutscheincode" />
+    <button onclick="applyPromo()">Anwenden</button>
+  </div>
+  
 
-    <!-- Hauptinhalt des Sliders -->
-    <div class="cart-content">
-
-        <!-- Hier wird per JavaScript das aktuell hinzugefügte Produkt angezeigt -->
-        <div id="cartItems"></div>
-
-        <!-- Aktions-Buttons unten im Slider -->
-        <div class="cart-actions">
-            <button onclick="closeCart()">Weiter einkaufen</button> <!-- Schließt den Slider -->
-            <button class="go-cart" onclick="window.location.href='cart.php'">Zum Warenkorb</button> <!-- Link zur Warenkorbseite -->
-        </div>
-
-    </div>
+  <div class="cart-content">
+    <div id="cartItems"></div>
+  </div>
+  <div class="cart-summary">
+    <div class="summary-row">Du sparst: <span id="cartSavings">0,00 €</span></div>
+    <div class="summary-row total"><b>Gesamt:</b> <span id="cartTotal">0,00 €</span></div>
+    <button class="checkout-btn">Jetzt kaufen</button>
+  </div>
 </div>
