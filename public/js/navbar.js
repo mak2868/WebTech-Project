@@ -1,3 +1,6 @@
+// bleibt hier Author Felix
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const navbar      = document.getElementById('navbar');
   const darkmodeBtn = document.getElementById('darkmodeBtn');

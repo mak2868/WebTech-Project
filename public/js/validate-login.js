@@ -1,3 +1,9 @@
+// Author: Merzan
+// das meiste Controller
+
+
+
+
 // Referenzen auf die relevanten DOM-Elemente holen
 const username = document.getElementById("username");  // Eingabefeld für Benutzername
 const password = document.getElementById("password");  // Eingabefeld für Passwort
@@ -29,6 +35,7 @@ function colorize(input, valid) {
 }
 
 // Event Listener für Eingaben: Sobald Nutzer etwas eingibt oder ändert → neu validieren
+//view
 [username, password].forEach(input => {
   input.addEventListener("input", validateLogin);   // bei jedem Tastendruck
   input.addEventListener("change", validateLogin);  // beim Verlassen des Felds

@@ -1,3 +1,10 @@
+// Author: Merzan
+// Meiste Controller
+// Datenbankzugriffe in Model
+
+
+
+
 // Zugriff auf die relevanten DOM-Elemente (Eingabefelder & Button)
 const usernameInput = document.getElementById("username");  // Eingabefeld für Benutzername
 const passwordInput = document.getElementById("password");  // Eingabefeld für Passwort
