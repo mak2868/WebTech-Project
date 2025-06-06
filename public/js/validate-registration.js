@@ -1,3 +1,8 @@
+// Author: Merzan
+// das meiste Controller
+// Datenbankzugriffe in Model
+
+
 // Zugriff auf die Formularfelder und den Absende-Button
 const usernameInput = document.getElementById("name");
 const passwordInput = document.getElementById("password");

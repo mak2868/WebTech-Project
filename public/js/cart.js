@@ -1,6 +1,6 @@
 // cart.js
 
-// Füge ein Produkt zum Warenkorb hinzu
+// Füge ein Produkt zum Warenkorb hinzu (-- Felix)
 function addToCart(name, image, price) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
   let existing = cart.find(item => item.name === name);
@@ -11,17 +11,17 @@ function addToCart(name, image, price) {
   }
   localStorage.setItem('cart', JSON.stringify(cart));
 
-  // Öffnet den Slider (führt openCart() aus)
+  // Öffnet den Slider (führt openCart() aus) (kommt in /views)
   openCart();
   renderCartSlider();
 }
 
-// Lese den Warenkorb aus dem localStorage
+// Lese den Warenkorb aus dem localStorage (/controller)
 function getCart() {
   return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
-// Entferne ein Produkt aus dem Warenkorb (per Index)
+// Entferne ein Produkt aus dem Warenkorb (per Index) (/controller)
 function removeFromCart(index, isSlider) {
   let cart = getCart();
   cart.splice(index, 1);
@@ -33,7 +33,7 @@ function removeFromCart(index, isSlider) {
   }
 }
 
-// Ändere die Menge eines Produkts
+// Ändere die Menge eines Produkts (/controller)
 function updateQuantity(index, newQuantity, isSlider) {
   let cart = getCart();
   if (newQuantity <= 0) {
@@ -49,7 +49,7 @@ function updateQuantity(index, newQuantity, isSlider) {
   }
 }
 
-// Render-Funktion für cart.html
+// Render-Funktion für cart.html (/controller)
 function renderCart() {
   const cart = getCart();
   const container = document.getElementById('cart-items');
@@ -79,7 +79,7 @@ function renderCart() {
   totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
 }
 
-//Renderfunktion für cartSlider.php
+//Renderfunktion für cartSlider.php (/controller)
 function renderCartSlider() {
   const cart = getCart();
   const cartItems = document.getElementById('cartItems');
@@ -122,13 +122,13 @@ function renderCartSlider() {
   }
 }
 
-// Öffnet den Warenkorb-Slider, indem die CSS-Klasse "open" hinzugefügt wird
+// Öffnet den Warenkorb-Slider, indem die CSS-Klasse "open" hinzugefügt wird (/controller)
 function openCart() {
   const slider = document.getElementById("cartSlider"); // Referenz auf das Slider-Element
   if (slider) slider.classList.add("open");             // fügt die Klasse "open" hinzu → macht den Slider sichtbar
 }
 
-// Schließt den Warenkorb-Slider, indem die CSS-Klasse "open" entfernt wird
+// Schließt den Warenkorb-Slider, indem die CSS-Klasse "open" entfernt wird (/controller)
 function closeCart() {
   const slider = document.getElementById("cartSlider"); // Referenz auf das Slider-Element
   if (slider) slider.classList.remove("open");          // entfernt die Klasse "open" → versteckt den Slider
@@ -138,7 +138,7 @@ function intermediateStepAddToCart() {
   addToCart(product.name, product.pics.productPic1, getTotalPrice(product.priceWithoutTax));
 }
 
-//Bei geöffneten Warenkorbslider lässt sich der slider durch einen CLick auf Icon schließen
+//Bei geöffneten Warenkorbslider lässt sich der slider durch einen CLick auf Icon schließen (/views)
 window.addEventListener("DOMContentLoaded", () => {
   closeCart();
   document.querySelector('.close-icon').addEventListener('click', closeCart);

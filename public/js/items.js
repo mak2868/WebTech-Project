@@ -1,3 +1,6 @@
+// Author: Marvin
+
+
 window.createStars = createStars;
 window.openPanel = openPanel;
 window.switchRecipe = switchRecipe;
@@ -12,6 +15,11 @@ window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 let product;
 let cid;
 let initial = true;
+
+
+  // Alles /controller
+
+
 
 function intermediateStepRenderItemSite(cid, pid) {
     if (isNaN(cid) && isNaN(pid) || cid == null && pid == null) {
@@ -389,6 +397,8 @@ function switchProductbild(pictureNumber) {
     productPic.src = picsSrc[pictureNumber];
 }
 
+
+// Model: Woher Daten?
 function getTotalPrice() {
     let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
     let buttonContent = selectedButton.textContent.slice(0, -1);
@@ -431,6 +441,7 @@ function changeSelectedSize(selctedButton) {
     }
 }
 
+// Model, ist halt so ein Daten bums
 function intermediateStepChangeWishListStatus() {
     const name = product.name;
     const image = product.pics.productPic1;
