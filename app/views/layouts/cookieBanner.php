@@ -9,7 +9,7 @@
         um Informationen darüber zu sammeln, wie Sie mit unserer Website interagieren. Wir verwenden diese Informationen, 
         um Ihre Browser-Erfahrung zu verbessern und anzupassen, sowie für Analysen und Messungen,
         zu unseren Besuchern auf dieser Website und anderen Medien. Weitere Informationen zu den von uns verwendeten Cookies
-        finden Sie in unseren <a href="datenschutzerklärung.php">Datenschutzbestimmungen</a>.
+        finden Sie in unseren <a href="<?= BASE_URL ?>/?page=datenschutzerklaerung">Datenschutzbestimmungen</a>.
 
       </p>
       <p>

@@ -1,21 +1,25 @@
+<?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datenschutzerklärung</title>
-    <link rel="stylesheet" href="style/global.css">
-    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-    <link rel="stylesheet" href="components/Footer/footer.css">
-    <link rel="stylesheet" href="style/cookieBanner.css">
-    <link rel="stylesheet" href="style/datenschutzerklärung.css">
-    <script src="components/Navbar/navbar.js" defer></script>
-    <script src="js/cookieBanner.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung</title>
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css" />
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css" />
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css" />
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css" />
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/datenschutzerklaerung.css" />
 
+  <!-- JS -->
+  <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+  <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
 </head>
+
 <body>
-    <?php include 'components/Navbar/navbar.php'; ?>
+  <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 
   <main class="container content-wrapper">
     <h2>Datenschutzerklärung</h2>
@@ -108,7 +112,7 @@
       und Angebote darüber oder aufgrund geänderter gesetzlicher beziehungsweise behördlicher Vorgaben kann es notwendig
       werden, diese Datenschutzerklärung zu ändern.</p>
   </main>
-<?php include 'cookieBanner.php'; ?>
-<?php include 'components/Footer/footer.php'; ?>
+  <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
+  <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 </html>
