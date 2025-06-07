@@ -60,7 +60,7 @@ h1 {
   margin-right: auto;
 }
 
- .logo-section {
+.logo-section {
   height: 30vh;
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ h1 {
 }
 
 .logo-slider {
-  display: flex;
+  position: relative;
   width: 100%;
   overflow: hidden;
 }
@@ -76,7 +76,8 @@ h1 {
 .logos {
   display: flex;
   gap: 7.5rem;
-  animation: scroll-logos 20s linear infinite;
+  width: max-content;
+  animation: scroll-logos 40s linear infinite;
 }
 
 .logo {
@@ -93,12 +94,13 @@ h1 {
 
 @keyframes scroll-logos {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
+
 
 
 
