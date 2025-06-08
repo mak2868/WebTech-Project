@@ -69,24 +69,16 @@ function renderCart() {
         arrSeveralSizes.push(item.name);
       }
     }
-  })
-
-  console.log(arrSeveralSizes);
+  });
 
   let arrSeveralProductSizeQuantity = [];
   arrSeveralSizes.forEach((_, index) => {
-    // console.log("index " + index);
     let itemName = arrSeveralSizes[index];
     let newProduct = {};
     let firstLoop = true;
 
-    console.log(cart);
     cart.forEach(item => {
-      // console.log("ja die for each");
-      // console.log("item.name " + item.name);
-      // console.log("itemName " + itemName);
       if (item.name === itemName && firstLoop) {
-        // console.log("1 if"); 
         firstLoop = false;
 
         newProduct = {
@@ -98,16 +90,13 @@ function renderCart() {
         arrSeveralProductSizeQuantity.push(newProduct);
 
       } else if (item.name === itemName && !firstLoop) {
-        // console.log("2 if"); 
         newProduct[item.size] = {
           quantity: item.quantity,
           price: item.price
-        }
+        };
       }
     });
-    console.log(arrSeveralProductSizeQuantity);
   });
-
 
   let total = 0;
   let counterArrSeveralSizes = 0;
@@ -117,9 +106,7 @@ function renderCart() {
     total += itemTotal;
 
     let row;
-
     if (arrSeveralSizes.indexOf(item.name) == counterArrSeveralSizes) {
-      // console.log("ja: " , arrSeveralProductSizeQuantity[counterArrSeveralSizes]); 
       row = createMultiItemRow(item, arrSeveralProductSizeQuantity[counterArrSeveralSizes]);
       counterArrSeveralSizes++;
     } else if (!arrSeveralSizes.includes(item.name)) {
@@ -129,133 +116,131 @@ function renderCart() {
     if (row != undefined) {
       container.appendChild(row);
     }
-
-  })
-
-  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
-
-}
-
-function createMultiItemRow(item, allItemsOfThisType) {
-
-  let sumPriceOfProductType = 0;
-
-  const productView = document.createElement('div');
-  productView.className = 'cart-item-product-view';
-
-
-  Object.entries(allItemsOfThisType).forEach((item) => {
-    console.log("CT: ", item);
-    let firstLoop = true;
-    let secondLoop = true;
-
-    let itemSize;
-    let itemQuantity;
-    let itemPrice;
-
-
-    Object.entries(item).forEach(([_, details]) => {
-      let singleSizeRow = document.createElement('div');
-      if (firstLoop) {
-        itemSize = item[0];
-        console.log("Size: " + itemSize);
-        firstLoop = false;
-      } else if (secondLoop) {
-        itemQuantity = details.quantity;
-        console.log("Quantity: " + itemQuantity);
-        itemPrice = details.price;
-        console.log("Preis: " + itemPrice);
-
-        sumPriceOfProductType = sumPriceOfProductType + itemQuantity * itemPrice;
-        secondLoop = false;
-
-      }
-
-      if (!secondLoop) {
-
-        singleSizeRow.textContent = `${itemQuantity} x ${itemSize}g: ${itemPrice * itemQuantity}€`;
-        productView.appendChild(singleSizeRow);
-      }
-
-
-    });
   });
 
+  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+}
+
+
+
+function createMultiItemRow(item, allItemsOfThisType) {
+  let totalSum = 0;
 
   const row = document.createElement('div');
   row.className = 'cart-item';
-  row.id = item.name;
-  row.style.display = "flex";
-  row.style.alignItems = "center";
-  row.style.flexWrap = "wrap";
-  row.style.gap = "0.5rem";
-  row.style.marginBottom = "0.5rem";
 
   const img = document.createElement('img');
-  img.className = 'cart-item-img'
+  img.className = 'cart-item-img';
   img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
   const firstLineItemBlock = document.createElement('div');
-  firstLineItemBlock.className = 'cart-item-first-line-item-block';
+  firstLineItemBlock.className = 'cart-item-first-line-item-block-multi';
 
+  // Name (einmalig in Zeile 1, Spalte 1)
   const nameSpan = document.createElement('span');
-  nameSpan.textContent = `${item.name}`;
-  nameSpan.style.fontWeight = "bold";
-  nameSpan.style.flex = "0 0 auto";
+  nameSpan.textContent = item.name;
+  nameSpan.style.fontWeight = 'bold';
+  nameSpan.style.gridColumn = '1 / 2';
+  nameSpan.style.gridRow = '1 / 2';
+  firstLineItemBlock.appendChild(nameSpan);
 
-  const sumPriceOfProductTypeSpan = document.createElement('span');
-  sumPriceOfProductTypeSpan.textContent = sumPriceOfProductType + "€";
+  let rowIndex = 1;
 
-  const removeAllButton = document.createElement('button');
-  removeAllButton.textContent = "Alle Entfernen";
-  // removeButton.onclick = () => removeFromCart(index);
+  Object.entries(allItemsOfThisType).forEach(([size, details]) => {
+    const rowStr = `${details.quantity} x ${size}g`;
+    const rowPrice = details.quantity * details.price;
+    totalSum += rowPrice;
 
-  const rightSide = document.createElement('div');
+    // Spalte 2: productView (Text)
+    const sizeText = document.createElement('div');
+    sizeText.textContent = `${rowStr}: ${rowPrice.toFixed(2)}€`;
+    sizeText.style.gridColumn = '2 / 3';
+    sizeText.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
+    firstLineItemBlock.appendChild(sizeText);
 
-  const removeButton = document.createElement('button');
-  removeButton.textContent = "Entfernen";
-  removeButton.onclick = () => removeFromCart(index);
+    // Spalte 3: Quantity-Buttons
+    const quantityContainer = document.createElement('div');
+    quantityContainer.className = 'cart-item-quantity-container';
+    quantityContainer.style.gridColumn = '3 / 4';
+    quantityContainer.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
+
+    const minusButton = document.createElement('button');
+    const minusIcon = document.createElement('img');
+    minusIcon.src = 'images/minusBlack.svg';
+    minusIcon.alt = '–';
+
+    const quantitySpan = document.createElement('span');
+    quantitySpan.textContent = details.quantity;
+
+    const plusButton = document.createElement('button');
+    const plusIcon = document.createElement('img');
+    plusIcon.src = 'images/plusBlack.svg';
+    plusIcon.alt = '+';
+
+    minusButton.appendChild(minusIcon);
+    plusButton.appendChild(plusIcon);
+    quantityContainer.appendChild(minusButton);
+    quantityContainer.appendChild(quantitySpan);
+    quantityContainer.appendChild(plusButton);
+    firstLineItemBlock.appendChild(quantityContainer);
+
+    // Spalte 4: Einzelpreis nochmal (optional, falls gewünscht extra statt in Spalte 2)
+    const totalSpan = document.createElement('span');
+    totalSpan.textContent = `${rowPrice.toFixed(2)}€`;
+    totalSpan.style.gridColumn = '4 / 5';
+    totalSpan.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
+    firstLineItemBlock.appendChild(totalSpan);
+
+    // Spalte 5: Einzel-Entfernen Button
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'cart-item-removeAll-btn';
+    removeBtn.style.gridColumn = '5 / 6';
+    removeBtn.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
+    const removeIcon = document.createElement('img');
+    removeIcon.src = 'images/removeIcon.svg';
+    removeIcon.alt = 'Entfernen';
+    removeBtn.appendChild(removeIcon);
+    firstLineItemBlock.appendChild(removeBtn);
+
+    // Eventlistener hier noch optional einbauen
+    // removeBtn.onclick = () => { ... };
+
+    rowIndex++;
+  });
 
   row.appendChild(img);
-  row.appendChild(rightSide);
-
-  rightSide.appendChild(firstLineItemBlock);
-  rightSide.appendChild(productView);
-
-  firstLineItemBlock.appendChild(nameSpan);
-  firstLineItemBlock.appendChild(sumPriceOfProductTypeSpan);
-  firstLineItemBlock.appendChild(removeAllButton);
-
+  row.appendChild(firstLineItemBlock);
   return row;
 }
 
 
-function createSingleItemRow(item, index, itemTotal) {
 
+
+
+
+
+
+
+
+function createSingleItemRow(item, index, itemTotal) {
   const row = document.createElement('div');
   row.className = 'cart-item';
-  row.id = item.name;
-  row.style.display = "flex";
-  row.style.alignItems = "center";
-  row.style.flexWrap = "nowrap";
-  row.style.gap = "0.5rem";
-  row.style.marginBottom = "0.5rem";
-
+  
   const img = document.createElement('img');
-  img.className = 'cart-item-img'
+  img.className = 'cart-item-img';
   img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
+  // Grid für den "firstLineItemBlock" anwenden
   const firstLineItemBlock = document.createElement('div');
-  firstLineItemBlock.className = 'cart-item-first-line-item-block';
+  firstLineItemBlock.className = 'cart-item-first-line-item-block'; // Hier wird Grid verwendet
 
   const nameSpan = document.createElement('span');
   nameSpan.textContent = `${item.name}`;
-  nameSpan.style.fontWeight = "bold";
-  nameSpan.style.flex = "0 0 auto";
+  nameSpan.style.fontWeight = 'bold';
 
   const sizeSpan = document.createElement('span');
   sizeSpan.textContent = `(${item.size}g)`;
@@ -264,57 +249,44 @@ function createSingleItemRow(item, index, itemTotal) {
   quantityContainer.className = 'cart-item-quantity-container';
 
   const minusButton = document.createElement('button');
-  // plusButton.className = 'cart-item-removeAll-btn';
-  // removeButton.onclick = () => removeFromCart(index);
-
   const minusButtonIcon = document.createElement('img');
   minusButtonIcon.src = 'images/minusBlack.svg';
-  minusButtonIcon.alt = 'Alle Entfernen';
 
   const quantitySpan = document.createElement('span');
   quantitySpan.textContent = `${item.quantity}`;
 
   const plusButton = document.createElement('button');
-  // plusButton.className = 'cart-item-removeAll-btn';
-  // removeButton.onclick = () => removeFromCart(index);
-
   const plusButtonIcon = document.createElement('img');
   plusButtonIcon.src = 'images/plusBlack.svg';
-  plusButtonIcon.alt = 'Alle Entfernen';
 
   const sumPriceOfProductTypeSpan = document.createElement('span');
   sumPriceOfProductTypeSpan.textContent = `${itemTotal.toFixed(2)} €`;
 
   const removeAllButton = document.createElement('button');
   removeAllButton.className = 'cart-item-removeAll-btn';
-  // removeButton.onclick = () => removeFromCart(index);
-
   const removeIcon = document.createElement('img');
   removeIcon.src = 'images/removeIcon.svg';
-  removeIcon.alt = 'Alle Entfernen';
-
-  row.appendChild(img);
+  removeAllButton.appendChild(removeIcon);
 
   row.appendChild(img);
   row.appendChild(firstLineItemBlock);
 
   firstLineItemBlock.appendChild(nameSpan);
   firstLineItemBlock.appendChild(sizeSpan);
+  firstLineItemBlock.appendChild(quantityContainer);
+  firstLineItemBlock.appendChild(sumPriceOfProductTypeSpan);
+  firstLineItemBlock.appendChild(removeAllButton);
 
   quantityContainer.appendChild(minusButton);
   quantityContainer.appendChild(quantitySpan);
   quantityContainer.appendChild(plusButton);
-  firstLineItemBlock.appendChild(quantityContainer);
-
-  firstLineItemBlock.appendChild(sumPriceOfProductTypeSpan);
-  firstLineItemBlock.appendChild(removeAllButton);
-
-  removeAllButton.appendChild(removeIcon);
 
   plusButton.appendChild(plusButtonIcon);
-  minusButton.appendChild(minusButtonIcon); 
+  minusButton.appendChild(minusButtonIcon);
+
   return row;
 }
+
 
 
 //Renderfunktion für cartSlider.php

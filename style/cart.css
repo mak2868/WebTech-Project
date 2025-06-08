@@ -1,32 +1,16 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 2rem;
-  background-color: #f8f8f8;
-  color: #333;
-}
-
 .cart-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content:space-between;
   margin-bottom: 2rem;
 }
 
-.cart-header h2 {
-  font-size: 2rem;
-  margin: 0;
+h2 {
+  margin-bottom: 0;
 }
 
 .checkout-btn {
-  width: 9rem;
-}
+  width: 30%;
 
-.cart-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
 }
 
 .cart-item {
@@ -35,9 +19,8 @@ body {
   background-color: #fff;
   border-radius: 8px;
   padding: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   width: 100%;
-  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .cart-item-img {
@@ -57,16 +40,29 @@ body {
 }
 
 .cart-item-first-line-item-block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* 4 Spalten: Bild (1fr), Name (1fr), Size (1fr), Preis (1fr), Entfernen-Button (1fr) */
+  grid-gap: 1rem; /* Abstand zwischen den Spalten */
+  width: 100%;
+  align-items: center; /* Vertikale Ausrichtung der Items */
+  padding: 0.25rem 0.75rem 0.25rem 1rem; /* top right bottom left */
+
+}
+
+.cart-item-first-line-item-block-multi {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Name / Size-Text / Quantity */
   gap: 0.5rem;
   width: 100%;
-  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.25rem 0.75rem 0.25rem 1rem; /* top right bottom left */
+
 }
+
 
 .cart-item-first-line-item-block span {
   font-weight: 500;
+  overflow-wrap: break-word; /* Falls der Name zu lang ist, wird er umgebrochen */
 }
 
 .cart-item-removeAll-btn {
@@ -76,7 +72,8 @@ body {
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: right;
+  width: 100%; /* Vollständige Breite innerhalb der Spalte */
 }
 
 .cart-item-removeAll-btn img {
@@ -97,8 +94,6 @@ body {
   height: 32px;
   padding: 0;
   margin: 0;
-  background: none;
-  border: none;
   cursor: pointer;
 }
 
@@ -108,8 +103,6 @@ body {
 }
 
 .cart-item-quantity-container span {
-  font-size: 1rem;
-  min-width: 2ch;
   text-align: center;
   display: inline-block;
 }
@@ -136,4 +129,16 @@ body {
   text-align: right;
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+.cart-item-product-view {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cart-item-product-view div {
+  display: flex;
+  justify-content: space-between;
 }
