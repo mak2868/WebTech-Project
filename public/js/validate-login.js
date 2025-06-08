@@ -55,5 +55,5 @@ form.addEventListener("submit", function (e) {
 
   localStorage.setItem('userLoggedIn', 'true');
   localStorage.setItem('username', username.value); 
-  window.location.href = 'index.php'; // Weiterleitung zur Startseite
+  window.location.href = 'index.php?page=home'; // Weiterleitung zur Startseite
 });

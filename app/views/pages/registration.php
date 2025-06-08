@@ -1,5 +1,6 @@
 <!-- Erstellt von Merzan Köse -->
 
+<?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de"> <!-- Sprache des Dokuments ist Deutsch -->
 
@@ -7,19 +8,23 @@
   <meta charset="UTF-8"> <!-- Zeichencodierung UTF-8 für Sonderzeichen -->
   <title>Registrierung</title> <!-- Titel, der im Browser-Tab angezeigt wird -->
 
+
   <!-- Einbindung globaler und registrierungsbezogener CSS-Dateien -->
-  <link rel="stylesheet" href="./style/global.css">
-  <link rel="stylesheet" href="./style/logreg.css">
-  <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-  <link rel="stylesheet" href="style/cookieBanner.css">
-  <script src="components/Navbar/navbar.js" defer></script>
-  <script src="js/cookieBanner.js" defer></script>
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/logreg.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
+
+  <!-- JS -->
+  <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+  <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
 
 </head>
 
 
 <body>
-  <?php include 'components/Navbar/navbar.php'; ?>
+  <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 
 
   <main style="padding-top: 40px">
@@ -27,7 +32,7 @@
     <div class="form-wrapper">
 
       <!-- Logo der Anwendung mit der Referenzierung auf Homepage -->
-      <a href="index.php">
+      <a href="index.php?page=home">
         <img id="formLogo" src="images/Logo_SchriftWeiß.png" alt="XPN Logo" class="form-Logo">
       </a>
 
@@ -50,7 +55,8 @@
 
         <!-- Eingabefeld für das Passwort -->
         <label for="password">Passwort</label>
-        <input type="password" id="password" name="password" placeholder="mindestens 10 Zeichen" required> <!-- Pflichtfeld -->
+        <input type="password" id="password" name="password" placeholder="mindestens 10 Zeichen" required>
+        <!-- Pflichtfeld -->
 
         <!-- Eingabefeld zur Wiederholung des Passworts -->
         <label for="confirm">Passwort wiederholen</label>
@@ -64,7 +70,7 @@
         <!-- Button-Leiste: Abbrechen & Registrieren -->
         <div style="display: flex; justify-content: space-between;">
           <!-- Button, um zur Login-Seite zurückzukehren -->
-          <button type="button" onclick="window.location.href='login.php'" class="btn-esn">
+          <button type="button" onclick="window.location.href='index.php?page=login' " class="btn-esn">
             abbrechen
           </button>
 
@@ -79,9 +85,9 @@
     </div>
 
     <!-- Einbinden der JavaScript-Datei zur Validierung -->
-    <script src="js/validate-registration.js"></script>
-    <?php include 'cookieBanner.php'; ?>
-    <?php include 'components/Footer/footer.php'; ?>
+    <script src="<?= BASE_URL ?>/js/validate-registration.js"></script>
+    <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
+    <?php include __DIR__ . '/../layouts/footer.php'; ?>
   </main>
 </body>
 

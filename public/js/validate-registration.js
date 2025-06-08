@@ -87,5 +87,5 @@ form.addEventListener("submit", function(e) {
   // Hier kannst du noch weitere Felder speichern (E-Mail, etc.), falls du das später brauchst
 
   // Weiterleitung, z.B. auf die Startseite:
-  window.location.href = 'index.php';
+  window.location.href = 'index.php?page=home';
 });

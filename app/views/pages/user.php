@@ -1,16 +1,24 @@
+<?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/global.css">
-    <link rel="stylesheet" href="style/user.css">
-    <link rel="stylesheet" href="./style/logreg.css">
-    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-    <link rel="stylesheet" href="components/Footer/footer.css">
-    <link rel="stylesheet" href="style/cookieBanner.css">
-    <script src="components/Navbar/navbar.js" defer></script>
-    <script src="js/cookieBanner.js" defer></script>
+   
+
+
+  <!-- Einbindung globaler und registrierungsbezogener CSS-Dateien -->
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/user.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/logreg.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
+
+
+   <!-- JS -->
+  <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+  <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
 
 
     <title>Benutzerbereich</title>
@@ -18,7 +26,7 @@
 
 </head>
 <body>
-    <?php include 'components/Navbar/navbar.php'; ?>
+      <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 
     <main style="padding-top: 40px">
         <!-- Userbereich: breites Formular -->
@@ -90,12 +98,13 @@
                 <button type="submit" class="btn-esn">Speichern</button>
             </form>
 
-            <a href="index.php" class="form-text">Zurück zur Homepage</a>
+            <a href="index.php?page=home" class="form-text">Zurück zur Homepage</a>
         </div>
 
-    <script src="js/validate-user.js"></script>
-    <?php include 'cookieBanner.php'; ?>
-    <?php include 'components/Footer/footer.php'; ?>
+   <script src="<?= BASE_URL ?>/js/validate-user.js"></script>
+    <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
+    <?php include __DIR__ . '/../layouts/footer.php'; ?>
+    
 </main>
 </body>
 </html>
