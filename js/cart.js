@@ -2,14 +2,22 @@
 
 // Füge ein Produkt zum Warenkorb hinzu
 function addToCart(name, image, price, size) {
-  console.error(size);
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Setze bei allen vorhandenen Produkten lastChanged auf false
+  cart.forEach(item => item.lastAdded = false);
+
   let existing = cart.find(item => item.name === name && item.size === size);
+
   if (existing) {
     existing.quantity += 1;
+    existing.lastAdded = true; // aktualisiertes Produkt markieren
   } else {
-    cart.push({ name, image, price, quantity: 1, size });
+    cart.push({ name, image, price, quantity: 1, size, lastAdded: true });
   }
+
+  cart = sortCart(cart); // Warenkorb sortieren
+
   localStorage.setItem('cart', JSON.stringify(cart));
 
   // Öffnet den Slider (führt openCart() aus)
@@ -17,14 +25,47 @@ function addToCart(name, image, price, size) {
   renderCartSlider();
 }
 
+
+function sortCart(cart) {
+  return cart.sort((a, b) => {
+    // 0. Zuletzt hinzugefügtes Produkt soll ganz oben stehen
+    if (a.lastAdded && !b.lastAdded) return -1;
+    if (!a.lastAdded && b.lastAdded) return 1;
+
+    // 1. Nach Name alphabetisch (deutsch, case-insensitive)
+    const nameCompare = a.name.localeCompare(b.name, 'de', { sensitivity: 'base' });
+    if (nameCompare !== 0) return nameCompare;
+
+    // 2. Danach nach Size sortieren:
+    const aHasX = a.size.toString().includes('x');
+    const bHasX = b.size.toString().includes('x');
+
+    if (aHasX && !bHasX) return 1;   // '12x45' nach '45'
+    if (!aHasX && bHasX) return -1;
+
+    // 3. Wenn beide gleichartig, numerisch vergleichen
+    const sizeA = parseInt(a.size, 10);
+    const sizeB = parseInt(b.size, 10);
+    return sizeA - sizeB;
+  });
+}
+
+
+
 // Lese den Warenkorb aus dem localStorage
 function getCart() {
   return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
 // Entferne ein Produkt aus dem Warenkorb (per Index)
+function removeFromCartMultiRow(name, indexFromButtons, isSlider) {
+  let indexInCart = getIndexInCart(name, indexFromButtons);
+  removeFromCart(indexInCart, isSlider);
+}
+
 function removeFromCart(index, isSlider) {
   let cart = getCart();
+
   cart.splice(index, 1);
   localStorage.setItem('cart', JSON.stringify(cart));
   if (isSlider) {
@@ -34,11 +75,24 @@ function removeFromCart(index, isSlider) {
   }
 }
 
+function removeAllItemsFromCart() {
+  let cart = [];
+  localStorage.setItem('cart', JSON.stringify(cart));
+  renderCart();
+}
+
 // Ändere die Menge eines Produkts
+function updateQuantityMultiRow(name, indexFromButtons, newQuantity, isSlider) {
+  let indexInCart = getIndexInCart(name, indexFromButtons);
+  updateQuantity(indexInCart, newQuantity, isSlider);
+}
+
+
 function updateQuantity(index, newQuantity, isSlider) {
   let cart = getCart();
+
   if (newQuantity <= 0) {
-    removeFromCart(index, isSlider);
+    removeFromCartMultiRow(index, isSlider);
     return;
   }
   cart[index].quantity = newQuantity;
@@ -48,6 +102,26 @@ function updateQuantity(index, newQuantity, isSlider) {
   } else {
     renderCart(); // nur auf cart.html nötig
   }
+}
+
+function getIndexInCart(name, indexFromButtons) {
+  let cart = getCart();
+
+  let countItemWithName = 0;
+  let returnValue;
+
+  for (let i = 0; i < cart.length; i++) {
+    const item = cart[i];
+    if (item.name === name) {
+      countItemWithName++;
+      if (countItemWithName - 1 === indexFromButtons) {
+        returnValue = i;
+        break;
+      }
+    }
+  }
+
+  return returnValue;
 }
 
 // Render-Funktion für cart.html
@@ -140,6 +214,7 @@ function createMultiItemRow(item, allItemsOfThisType) {
 
   // Name (einmalig in Zeile 1, Spalte 1)
   const nameSpan = document.createElement('span');
+  nameSpan.className = 'cart-item-name';
   nameSpan.textContent = item.name;
   nameSpan.style.fontWeight = 'bold';
   nameSpan.style.gridColumn = '1 / 2';
@@ -167,14 +242,40 @@ function createMultiItemRow(item, allItemsOfThisType) {
     quantityContainer.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
 
     const minusButton = document.createElement('button');
+    minusButton.classList.add('button', 'minus');
+
+    minusButton.addEventListener("click", function (event) {
+      const currentContainerM = event.currentTarget.closest('.cart-item');
+      const buttonsInContainerM = currentContainerM.querySelectorAll("button.minus");
+      const clickedButtonM = event.currentTarget;
+
+      const quantitySpansInContainerM = currentContainerM.querySelectorAll('.cart-item-quantity-span');
+
+      const iM = Array.from(buttonsInContainerM).indexOf(clickedButtonM);
+      updateQuantityMultiRow(currentContainerM.querySelector('.cart-item-name').textContent, iM, Number(quantitySpansInContainerM[iM].textContent) - 1, false);
+    });
+
     const minusIcon = document.createElement('img');
     minusIcon.src = 'images/minusBlack.svg';
     minusIcon.alt = '–';
 
     const quantitySpan = document.createElement('span');
+    quantitySpan.className = 'cart-item-quantity-span';
     quantitySpan.textContent = details.quantity;
 
     const plusButton = document.createElement('button');
+    plusButton.classList.add('button', 'plus');
+
+    plusButton.addEventListener("click", function (event) {
+      const currentContainerP = event.currentTarget.closest('.cart-item');
+      const buttonsInContainerP = currentContainerP.querySelectorAll("button.plus");
+      const clickedButtonP = event.currentTarget;
+
+      const quantitySpansInContainerP = currentContainerP.querySelectorAll('.cart-item-quantity-span');
+
+      const iP = Array.from(buttonsInContainerP).indexOf(clickedButtonP);
+      updateQuantityMultiRow(currentContainerP.querySelector('.cart-item-name').textContent, iP, parseInt(quantitySpansInContainerP[iP].textContent) + 1, false);
+    });
     const plusIcon = document.createElement('img');
     plusIcon.src = 'images/plusBlack.svg';
     plusIcon.alt = '+';
@@ -195,17 +296,24 @@ function createMultiItemRow(item, allItemsOfThisType) {
 
     // Spalte 5: Einzel-Entfernen Button
     const removeBtn = document.createElement('button');
-    removeBtn.className = 'cart-item-removeAll-btn';
+    removeBtn.className = 'cart-item-remove-btn';
     removeBtn.style.gridColumn = '5 / 6';
     removeBtn.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
+
+    removeBtn.addEventListener("click", function (event) {
+      const currentContainerRB = event.currentTarget.closest('.cart-item');
+      const buttonsInContainerRB = currentContainerRB.querySelectorAll("button.plus");
+      const clickedButtonRB = event.currentTarget;
+
+      const iRB = Array.from(buttonsInContainerRB).indexOf(clickedButtonRB);
+      removeFromCartMultiRow(currentContainerRB.querySelector('.cart-item-name').textContent, iRB, false);
+    });
+
     const removeIcon = document.createElement('img');
     removeIcon.src = 'images/removeIcon.svg';
     removeIcon.alt = 'Entfernen';
     removeBtn.appendChild(removeIcon);
     firstLineItemBlock.appendChild(removeBtn);
-
-    // Eventlistener hier noch optional einbauen
-    // removeBtn.onclick = () => { ... };
 
     rowIndex++;
   });
@@ -227,7 +335,7 @@ function createMultiItemRow(item, allItemsOfThisType) {
 function createSingleItemRow(item, index, itemTotal) {
   const row = document.createElement('div');
   row.className = 'cart-item';
-  
+
   const img = document.createElement('img');
   img.className = 'cart-item-img';
   img.src = item.image;
@@ -249,6 +357,9 @@ function createSingleItemRow(item, index, itemTotal) {
   quantityContainer.className = 'cart-item-quantity-container';
 
   const minusButton = document.createElement('button');
+  minusButton.addEventListener("click", () => {
+    updateQuantity(index, Number(item.quantity) - 1, false);
+  });
   const minusButtonIcon = document.createElement('img');
   minusButtonIcon.src = 'images/minusBlack.svg';
 
@@ -256,17 +367,23 @@ function createSingleItemRow(item, index, itemTotal) {
   quantitySpan.textContent = `${item.quantity}`;
 
   const plusButton = document.createElement('button');
+  plusButton.addEventListener("click", () => {
+    updateQuantity(index, parseInt(item.quantity) + 1, false);
+  });
   const plusButtonIcon = document.createElement('img');
   plusButtonIcon.src = 'images/plusBlack.svg';
 
   const sumPriceOfProductTypeSpan = document.createElement('span');
   sumPriceOfProductTypeSpan.textContent = `${itemTotal.toFixed(2)} €`;
 
-  const removeAllButton = document.createElement('button');
-  removeAllButton.className = 'cart-item-removeAll-btn';
+  const removeButton = document.createElement('button');
+  removeButton.className = 'cart-item-remove-btn';
+  removeButton.addEventListener("click", () => {
+    removeFromCart(index, false);
+  });
   const removeIcon = document.createElement('img');
   removeIcon.src = 'images/removeIcon.svg';
-  removeAllButton.appendChild(removeIcon);
+  removeButton.appendChild(removeIcon);
 
   row.appendChild(img);
   row.appendChild(firstLineItemBlock);
@@ -275,7 +392,7 @@ function createSingleItemRow(item, index, itemTotal) {
   firstLineItemBlock.appendChild(sizeSpan);
   firstLineItemBlock.appendChild(quantityContainer);
   firstLineItemBlock.appendChild(sumPriceOfProductTypeSpan);
-  firstLineItemBlock.appendChild(removeAllButton);
+  firstLineItemBlock.appendChild(removeButton);
 
   quantityContainer.appendChild(minusButton);
   quantityContainer.appendChild(quantitySpan);

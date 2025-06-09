@@ -1,7 +1,11 @@
 .cart-header {
-  display: flex;
-  justify-content:space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  grid-gap: 1rem;
+  width: 100%;
   margin-bottom: 2rem;
+  align-items: center;
 }
 
 h2 {
@@ -9,9 +13,28 @@ h2 {
 }
 
 .checkout-btn {
-  width: 30%;
+  width: 100%;
+  height: 80%;
+  margin: 0;
+}
+
+.removeAllBtn {
+  padding: 0.3rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  justify-self: end;
+  width: 48px;
+  margin: 0;
+}
+
+.removeAllBtn img {
+  width: auto;
+  height: 56px;
+  justify-content: right;
 
 }
+
 
 .cart-item {
   display: flex;
@@ -41,31 +64,38 @@ h2 {
 
 .cart-item-first-line-item-block {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* 4 Spalten: Bild (1fr), Name (1fr), Size (1fr), Preis (1fr), Entfernen-Button (1fr) */
-  grid-gap: 1rem; /* Abstand zwischen den Spalten */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* 4 Spalten: Bild (1fr), Name (1fr), Size (1fr), Preis (1fr), Entfernen-Button (1fr) */
+  grid-gap: 1rem;
+  /* Abstand zwischen den Spalten */
   width: 100%;
-  align-items: center; /* Vertikale Ausrichtung der Items */
-  padding: 0.25rem 0.75rem 0.25rem 1rem; /* top right bottom left */
+  align-items: center;
+  /* Vertikale Ausrichtung der Items */
+  padding: 0.25rem 0.75rem 0.25rem 1rem;
+  /* top right bottom left */
 
 }
 
 .cart-item-first-line-item-block-multi {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr; /* Name / Size-Text / Quantity */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* Name / Size-Text / Quantity */
   gap: 0.5rem;
   width: 100%;
   align-items: center;
-  padding: 0.25rem 0.75rem 0.25rem 1rem; /* top right bottom left */
+  padding: 0.25rem 0.75rem 0.25rem 1rem;
+  /* top right bottom left */
 
 }
 
 
 .cart-item-first-line-item-block span {
   font-weight: 500;
-  overflow-wrap: break-word; /* Falls der Name zu lang ist, wird er umgebrochen */
+  overflow-wrap: break-word;
+  /* Falls der Name zu lang ist, wird er umgebrochen */
 }
 
-.cart-item-removeAll-btn {
+.cart-item-remove-btn {
   padding: 0.3rem;
   background-color: transparent;
   border: none;
@@ -73,10 +103,11 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: right;
-  width: 100%; /* Vollständige Breite innerhalb der Spalte */
+  width: 100%;
+  /* Vollständige Breite innerhalb der Spalte */
 }
 
-.cart-item-removeAll-btn img {
+.cart-item-remove-btn img {
   width: 32px;
   height: 32px;
 }
