@@ -2,6 +2,7 @@
 
 // Füge ein Produkt zum Warenkorb hinzu
 function addToCart(name, image, price, size) {
+  console.log("addtc");
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   // Setze bei allen vorhandenen Produkten lastChanged auf false
@@ -11,18 +12,33 @@ function addToCart(name, image, price, size) {
 
   if (existing) {
     existing.quantity += 1;
-    existing.lastAdded = true; // aktualisiertes Produkt markieren
+    existing.lastAdded = true;
+    cart.forEach(item => {
+      if (item.name == name) {
+        console.log("ja1");
+        item.lastAdded = true;
+      }
+    });
   } else {
     cart.push({ name, image, price, quantity: 1, size, lastAdded: true });
+    cart.forEach(item => {
+      if (item.name == name) {
+        console.log("ja2");
+        item.lastAdded = true;
+      }
+    });
   }
 
   cart = sortCart(cart); // Warenkorb sortieren
+  console.log(cart);
 
   localStorage.setItem('cart', JSON.stringify(cart));
 
   // Öffnet den Slider (führt openCart() aus)
   // openCart();
   renderCartSlider();
+
+  startTimer();
 }
 
 
@@ -67,6 +83,9 @@ function removeFromCart(index, isSlider) {
   let cart = getCart();
 
   cart.splice(index, 1);
+  if (cart.length === 0) {
+    stopTimer();
+  }
   localStorage.setItem('cart', JSON.stringify(cart));
   if (isSlider) {
     renderCartSlider(); //nur auf cartslider.html nötig
@@ -79,16 +98,24 @@ function removeAllItemsFromCart() {
   let cart = [];
   localStorage.setItem('cart', JSON.stringify(cart));
   renderCart();
+  stopTimer();
 }
 
 // Ändere die Menge eines Produkts
 function updateQuantityMultiRow(name, indexFromButtons, newQuantity, isSlider) {
+  // console.log("name", name);
+  console.log("iB", indexFromButtons);
   let indexInCart = getIndexInCart(name, indexFromButtons);
+  console.log("indexincart", indexInCart);
   updateQuantity(indexInCart, newQuantity, isSlider);
+  let cart = getCart();
+  console.log(cart);
 }
 
 
 function updateQuantity(index, newQuantity, isSlider) {
+  console.log(newQuantity);
+  console.log(index);
   let cart = getCart();
 
   if (newQuantity <= 0) {
@@ -127,6 +154,7 @@ function getIndexInCart(name, indexFromButtons) {
 // Render-Funktion für cart.html
 function renderCart() {
   const cart = getCart();
+  console.log(cart);
   const container = document.getElementById('cart-items');
   const totalDisplay = document.getElementById('cart-total');
 
@@ -249,19 +277,37 @@ function createMultiItemRow(item, allItemsOfThisType) {
       const buttonsInContainerM = currentContainerM.querySelectorAll("button.minus");
       const clickedButtonM = event.currentTarget;
 
-      const quantitySpansInContainerM = currentContainerM.querySelectorAll('.cart-item-quantity-span');
+      const quantityInputInContainerM = currentContainerM.querySelectorAll('.cart-item-quantity-input');
 
       const iM = Array.from(buttonsInContainerM).indexOf(clickedButtonM);
-      updateQuantityMultiRow(currentContainerM.querySelector('.cart-item-name').textContent, iM, Number(quantitySpansInContainerM[iM].textContent) - 1, false);
+      updateQuantityMultiRow(currentContainerM.querySelector('.cart-item-name').textContent, iM, Number(quantityInputInContainerM[iM].value) - 1, false);
     });
 
     const minusIcon = document.createElement('img');
     minusIcon.src = 'images/minusBlack.svg';
     minusIcon.alt = '–';
 
-    const quantitySpan = document.createElement('span');
-    quantitySpan.className = 'cart-item-quantity-span';
-    quantitySpan.textContent = details.quantity;
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.min = 1;
+    quantityInput.value = details.quantity;
+    quantityInput.className = 'cart-item-quantity-input';
+
+    quantityInput.addEventListener('change', (event) => {
+      const newQuantity = parseInt(event.target.value, 10);
+
+      const currentContainerQS = event.currentTarget.closest('.cart-item');
+      const buttonsInContainerQS = currentContainerQS.querySelectorAll(".cart-item-quantity-input");
+      const clickedButtonQS = event.currentTarget;
+
+      const iQS = Array.from(buttonsInContainerQS).indexOf(clickedButtonQS);
+
+      if (newQuantity >= 1 && Number.isInteger(newQuantity)) {
+        updateQuantityMultiRow(currentContainerQS.querySelector('.cart-item-name').textContent, iQS, newQuantity, false);
+      } else {
+        event.target.value = details.quantity;
+      }
+    });
 
     const plusButton = document.createElement('button');
     plusButton.classList.add('button', 'plus');
@@ -271,10 +317,11 @@ function createMultiItemRow(item, allItemsOfThisType) {
       const buttonsInContainerP = currentContainerP.querySelectorAll("button.plus");
       const clickedButtonP = event.currentTarget;
 
-      const quantitySpansInContainerP = currentContainerP.querySelectorAll('.cart-item-quantity-span');
+      const quantityInputInContainerP = currentContainerP.querySelectorAll('.cart-item-quantity-input');
 
       const iP = Array.from(buttonsInContainerP).indexOf(clickedButtonP);
-      updateQuantityMultiRow(currentContainerP.querySelector('.cart-item-name').textContent, iP, parseInt(quantitySpansInContainerP[iP].textContent) + 1, false);
+      console.log("hehe", parseInt(quantityInputInContainerP[iP].value), iP);
+      updateQuantityMultiRow(currentContainerP.querySelector('.cart-item-name').textContent, iP, parseInt(quantityInputInContainerP[iP].value) + 1, false);
     });
     const plusIcon = document.createElement('img');
     plusIcon.src = 'images/plusBlack.svg';
@@ -283,7 +330,7 @@ function createMultiItemRow(item, allItemsOfThisType) {
     minusButton.appendChild(minusIcon);
     plusButton.appendChild(plusIcon);
     quantityContainer.appendChild(minusButton);
-    quantityContainer.appendChild(quantitySpan);
+    quantityContainer.appendChild(quantityInput);
     quantityContainer.appendChild(plusButton);
     firstLineItemBlock.appendChild(quantityContainer);
 
@@ -324,14 +371,6 @@ function createMultiItemRow(item, allItemsOfThisType) {
 }
 
 
-
-
-
-
-
-
-
-
 function createSingleItemRow(item, index, itemTotal) {
   const row = document.createElement('div');
   row.className = 'cart-item';
@@ -363,8 +402,23 @@ function createSingleItemRow(item, index, itemTotal) {
   const minusButtonIcon = document.createElement('img');
   minusButtonIcon.src = 'images/minusBlack.svg';
 
-  const quantitySpan = document.createElement('span');
-  quantitySpan.textContent = `${item.quantity}`;
+  // const quantitySpan = document.createElement('span');
+  // quantitySpan.textContent = `${item.quantity}`;
+  const quantityInput = document.createElement('input');
+  quantityInput.type = 'number';
+  quantityInput.min = 1;
+  quantityInput.value = item.quantity;
+  quantityInput.className = 'cart-item-quantity-input';
+
+  quantityInput.addEventListener('change', (event) => {
+    const newQuantity = parseInt(event.target.value, 10);
+    if (newQuantity >= 1 && Number.isInteger(newQuantity)) {
+      updateQuantity(index, newQuantity);
+    } else {
+      event.target.value = item.quantity;
+    }
+  });
+
 
   const plusButton = document.createElement('button');
   plusButton.addEventListener("click", () => {
@@ -395,7 +449,7 @@ function createSingleItemRow(item, index, itemTotal) {
   firstLineItemBlock.appendChild(removeButton);
 
   quantityContainer.appendChild(minusButton);
-  quantityContainer.appendChild(quantitySpan);
+  quantityContainer.appendChild(quantityInput);
   quantityContainer.appendChild(plusButton);
 
   plusButton.appendChild(plusButtonIcon);
@@ -482,4 +536,93 @@ window.addEventListener("DOMContentLoaded", () => {
   closeCart();
   // document.querySelector('.close-icon').addEventListener('click', closeCart);
 });
+
+var time = 0; // Timer-Variable (wird später aus localStorage geladen)
+var runningTimer; // Referenz für den laufenden Timer
+
+// Diese Funktion zeigt den Timer im HTML-Element an
+function updateTimerDisplay() {
+  console.log("display");
+
+  if(document.querySelector(".timerText") != null){
+    document.querySelector(".timerText").style.visibility = 'visible';
+    document.querySelector(".time").style.visibility = 'visible';
+  }
+
+  var m = Math.floor(time / 60); // Minuten berechnen
+  var s = time % 60; // Sekunden berechnen
+  if (m < 10) m = "0" + m;
+  if (s < 10) s = "0" + s;
+
+  // Nur auf der cart.php-Seite den Timer anzeigen
+  if (window.location.pathname.endsWith("/cart.php")) {
+    var timerElement = document.querySelector(".time");
+    if (timerElement) {
+      timerElement.innerText = m + ":" + s; // Anzeige des Timers
+    }
+  }
+}
+
+// Beim Laden der Seite die gespeicherte Zeit im localStorage holen
+window.addEventListener('load', function () {
+  if (window.location.pathname.endsWith("/cart.php")) {
+    // Wenn Zeit im localStorage gespeichert ist, benutze diese
+    if (localStorage.getItem('timerTime')) {
+      time = parseInt(localStorage.getItem('timerTime'), 10);
+      updateTimerDisplay();  // Timer anzeigen
+      startTimer(); // Timer fortsetzen
+    } else {
+      // Wenn keine Zeit im localStorage ist, zeige 00:00
+      time = 0;
+      updateTimerDisplay();
+    }
+  }
+});
+
+// Timer-Funktion in regelmäßigen Abständen aufrufen
+function timer() {
+  console.log("timer");
+
+  if (time > 0) {
+    time--; // Timer dekrementieren
+    updateTimerDisplay(); // Timer im HTML-Element aktualisieren
+    // Speichere die verbleibende Zeit im localStorage
+    localStorage.setItem('timerTime', time);
+  } else {
+    stopTimer(); // Stoppe den Timer, wenn er abgelaufen ist
+  }
+}
+
+// Stoppen des Timers
+function stopTimer() {
+  console.log("stopp");
+  if (runningTimer) {
+    clearInterval(runningTimer); // Timer stoppen
+    runningTimer = null;
+    localStorage.removeItem('timerTime'); // Lösche die gespeicherte Zeit im localStorage
+  }
+  let cart = getCart();
+  if (cart.length === 0) {
+    document.querySelector(".timerText").style.visibility = 'hidden';
+    document.querySelector(".time").style.visibility = 'hidden';
+  } else {
+    document.querySelector(".timerText").innerHTML = "Produktreservierung ist abgelaufen";
+    document.querySelector(".time").style.visibility = 'hidden';
+  }
+}
+
+// Funktion zum Starten des Timers
+function startTimer() {
+  console.log("starten");
+  if (!runningTimer) {  // Stelle sicher, dass der Timer nicht doppelt läuft
+    // Hier definierst du die Startzeit des Timers
+
+    time = 20; // Wenn keine Zeit im localStorage ist, setze 20 Minuten als Startzeit
+
+
+    runningTimer = setInterval(timer, 1000); // Intervall für Timer
+    timer(); // Direkt beim Start den Timer aufrufen
+  }
+}
+
 

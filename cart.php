@@ -26,6 +26,14 @@
       </button>
       <button class="checkout-btn">Zur Kasse</button>
     </div>
+    <div class = "timerSection">
+      <div class = "timerText">Produktreservierung läuft ab in:</div>
+      <div class="time">00:00</div>
+    </div>
+    <div class="cart-promo">
+    <input type="text" id="promoCode" placeholder="Gutscheincode" />
+    <button onclick="applyPromo()">Anwenden</button>
+  </div>
     <div class="cart-container" id="cart-items">
       <!-- Produkte werden dynamisch eingefügt -->
     </div>
