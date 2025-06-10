@@ -40,11 +40,11 @@
       <h1>Registrierung</h1>
 
       <!-- Formularbeginn: sendet Daten per POST an den Server -->
-      <form action="..." method="post">
+      <form id="registerForm" action="/WebTech-Project/public/index.php?page=register" method="post">
 
         <!-- Eingabefeld für den Benutzernamen -->
-        <label for="name">Dein Name</label>
-        <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required> <!-- Pflichtfeld -->
+        <label for="username">Dein Name</label>
+        <input type="text" id="username" name="username" placeholder="Vor- und Nachname" required> <!-- Pflichtfeld -->
         <p id="username-rule" class="form-rule hint neutral">
           Mindestens 5 Zeichen, mindestens ein Groß- und ein Kleinbuchstabe
         </p>
@@ -55,12 +55,12 @@
 
         <!-- Eingabefeld für das Passwort -->
         <label for="password">Passwort</label>
-        <input type="password" id="password" name="password" placeholder="mindestens 10 Zeichen" required>
+        <input type="password" id="password" name="password" autocomplete="new-password" placeholder="mindestens 10 Zeichen" required>
         <!-- Pflichtfeld -->
 
         <!-- Eingabefeld zur Wiederholung des Passworts -->
         <label for="confirm">Passwort wiederholen</label>
-        <input type="password" id="confirm" name="confirm" required> <!-- Pflichtfeld -->
+        <input type="password" id="confirm" name="confirm" autocomplete="new-password" required> <!-- Pflichtfeld -->
         <p id="confirm-rule" class="form-rule hint-neutral">
           Passwort muss aus mind. 10 Zeichen bestehen und mit der
           Passwortwiederholung übereinstimmen
@@ -75,17 +75,18 @@
           </button>
 
           <!-- Button zum Absenden des Formulars (initial deaktiviert) -->
-          <button type="submit" id="submit" class="btn-esn" disabled>
+          <button type="submit" id="submit" class="btn-esn" >
             registrieren
           </button>
         </div>
       </form>
       <!-- Formularende -->
 
+
     </div>
 
     <!-- Einbinden der JavaScript-Datei zur Validierung -->
-    <script src="<?= BASE_URL ?>/js/validate-registration.js"></script>
+     <script src="<?= BASE_URL ?>/js/validate-registration.js"></script>
     <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
     <?php include __DIR__ . '/../layouts/footer.php'; ?>
   </main>

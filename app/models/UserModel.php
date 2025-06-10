@@ -1,4 +1,3 @@
-// app/models/UserModel.php
 <?php
 require_once '../app/lib/DB.php';
 
@@ -7,7 +6,7 @@ class UserModel
     public static function authenticate($username, $password)
     {
         $db = DB::getConnection();
-
+        
         // User anhand des Namens holen
         $stmt = $db->prepare("SELECT * FROM users WHERE username = :username");
         $stmt->execute(['username' => $username]);
@@ -15,7 +14,7 @@ class UserModel
 
         // Prüfen, ob User existiert und Passwort stimmt
         if ($user && password_verify($password, $user['password_hash'])) {
-            return $user; // User-Array zurückgeben (kannst du in die Session legen)
+            return $user; // User-Array zurückgeben (Login erfolgreich)
         }
         return false; // Login fehlgeschlagen
     }
@@ -84,6 +83,4 @@ class UserModel
             'username' => $username
         ]);
     }
-
-
 }

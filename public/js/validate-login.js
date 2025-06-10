@@ -50,10 +50,5 @@ form.addEventListener("submit", function (e) {
 
   }
 
- // ==== Hier LocalStorage & Weiterleitung erst bei erfolgreichem Login: ====
-  e.preventDefault(); // Standard-Formular-Submit verhindern 
-
-  localStorage.setItem('userLoggedIn', 'true');
-  localStorage.setItem('username', username.value); 
-  window.location.href = 'index.php?page=home'; // Weiterleitung zur Startseite
+ 
 });
