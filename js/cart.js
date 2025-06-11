@@ -1,36 +1,64 @@
 // cart.js
 
-// Füge ein Produkt zum Warenkorb hinzu
+/**
+ * Funktion, die den Aufruf der Funktion addToCart() mit geeigneten Parametern vorbereitet
+ * @author Marvin Kunz
+ */
+function intermediateStepAddToCart() {
+  let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active'); // sucht den aktivierten Größenbutton auf der item.php Seite
+  let buttonContent = selectedButton.textContent.slice(0, -1); // speichert die ausgewählte Größe ab
+  // let index;
+
+
+  // for (let i = 0; i < product.availableSizes.length; i++) {
+  //   if (buttonContent == product.availableSizes[i]) {
+  //     index = i;
+  //     break;
+  //   }
+  // }
+
+  // addToCart(product.name, product.pics.productPic1, getTotalPrice(product.priceWithoutTax), product.availableSizes[index]);
+  addToCart(product.name, product.pics.productPic1, getTotalPrice(product.priceWithoutTax), buttonContent);
+}
+
+/**
+ * Funktion, die ein Produkt zum Warenkorb hinzufügt, dabei wird in der Vorgehensweise unterschieden,
+ * ob es eine neues Produkt im Warenkorb ist oder dieses bereits existiert.
+ * @param {Name des Produkts} name 
+ * @param {Das zum Produkt passende Bild, welches angezeigt werden soll} image 
+ * @param {Preis des Produkts} price 
+ * @param {Größe des Produktes} size
+ * @author Felix Bartel, Marvin Kunz (Anpassung für verschiedene Größen)
+ */
 function addToCart(name, image, price, size) {
-  console.log("addtc");
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
   // Setze bei allen vorhandenen Produkten lastChanged auf false
   cart.forEach(item => item.lastAdded = false);
 
+  // sucht, ob das Produkt in der gewünschten Größe bereits im Warenkorb liegt und speichert dieses ggf. ab
   let existing = cart.find(item => item.name === name && item.size === size);
 
+  // Vorgehensweise abhängig davon, ob das Produkt bereits teil des Warenkorbs ist oder nicht
   if (existing) {
-    existing.quantity += 1;
+    existing.quantity += 1; // erhöht die Anzahl 
     existing.lastAdded = true;
     cart.forEach(item => {
       if (item.name == name) {
-        console.log("ja1");
-        item.lastAdded = true;
+        item.lastAdded = true; // das zuletzt hinzugefügte Produkt wird markiert (unabhängig von deren Größe, geht auf den Namen zurück)
       }
     });
   } else {
-    cart.push({ name, image, price, quantity: 1, size, lastAdded: true });
+    cart.push({ name, image, price, quantity: 1, size, lastAdded: true }); // fügt das Produkt dem Warenkorb hinzu
     cart.forEach(item => {
       if (item.name == name) {
-        console.log("ja2");
-        item.lastAdded = true;
+        item.lastAdded = true; // das zuletzt hinzugefügte Produkt wird markiert (unabhängig von deren Größe, geht auf den Namen zurück)
       }
     });
   }
 
-  cart = sortCart(cart); // Warenkorb sortieren
-  console.log(cart);
+  // Warenkorb sortieren
+  cart = sortCart(cart);
 
   localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -38,10 +66,16 @@ function addToCart(name, image, price, size) {
   // openCart();
   renderCartSlider();
 
+  // startet den Timer, der runterzählt, wie lange das Produkt noch reserviert ist
   startTimer();
 }
 
-
+/**
+ * Sortiert den Warenkorb nach: Name und Größe de Produktes, zsätzlich stehen alle Größen des zuletzt hinzugefügten Produktes ganz vorne
+ * @param {Warenkorb, der zuvor geladen wurde} cart 
+ * @returns nach festgelegten Regeln sortierten Warenkorb
+ * @author Marvin Kunz
+ */
 function sortCart(cart) {
   return cart.sort((a, b) => {
     // 0. Zuletzt hinzugefügtes Produkt soll ganz oben stehen
@@ -66,34 +100,57 @@ function sortCart(cart) {
   });
 }
 
-
-
-// Lese den Warenkorb aus dem localStorage
+/**
+ * Liest den Warenkorb aus dem localStorage
+ * @returns Warenkorb
+ * @author Felix Bartel
+ */
 function getCart() {
   return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
-// Entferne ein Produkt aus dem Warenkorb (per Index)
+/**
+ * Ruft die Funktion removeFromCart() mit geeigneten Parametern auf: Hierzu muss aus dem Namen des Produktes und des Index des Buttons der Index des Produktes im Warenkorb bestimmt werden.
+ * @param {Name des Produkts} name 
+ * @param {Angabe des Index der Positionszeile innerhalb einer Produktdarstellung im Warenkorb anhand des Buttons} indexFromButtons 
+ * @param {boolsche Angabe, ob der Aufuruf der Funktion durch den Warenkorb-Slider geschieht oder nicht} isSlider 
+ * @author Marvin Kunz
+ */
 function removeFromCartMultiRow(name, indexFromButtons, isSlider) {
   let indexInCart = getIndexInCart(name, indexFromButtons);
   removeFromCart(indexInCart, isSlider);
 }
 
+/**
+ * Entferne ein Produkt aus dem Warenkorb (per Index)
+ * @param {Index an welcher Stelle im Warenkorb sich das zu entfernende Produkt befindet} index 
+ * @param {boolsche Angabe, ob der Aufuruf der Funktion durch den Warenkorb-Slider geschieht oder nicht} isSlider 
+ * @author Felix Bartel, Marvin Kunz (Anpassung: Timer)
+ */
 function removeFromCart(index, isSlider) {
   let cart = getCart();
+  cart.splice(index, 1); // entfernt das Produkt
 
-  cart.splice(index, 1);
+  // stoppt den Timer, falls der Warenkorb leer ist
   if (cart.length === 0) {
     stopTimer();
   }
+
+  // fügt den Warenkorb dem localStorage hinzu
   localStorage.setItem('cart', JSON.stringify(cart));
+
+  // ruft entsprechend der aufrufenden Seite die passende Visualisierung auf 
   if (isSlider) {
-    renderCartSlider(); //nur auf cartslider.html nötig
+    renderCartSlider(); //nur auf cartslider.php nötig
   } else {
-    renderCart(); // nur auf cart.html nötig
+    renderCart(); // nur auf cart.php nötig
   }
 }
 
+/**
+ * entfernt alle Produkte aus dem Warenkorb
+ * @author Marvin Kunz
+ */
 function removeAllItemsFromCart() {
   let cart = [];
   localStorage.setItem('cart', JSON.stringify(cart));
@@ -101,88 +158,118 @@ function removeAllItemsFromCart() {
   stopTimer();
 }
 
-// Ändere die Menge eines Produkts
+/**
+ * Ruft die Funktion updateQuantity() mit geeigneten Parametern auf: Hierzu muss aus dem Namen des Produktes und des Index des Buttons der Index des Produktes im Warenkorb bestimmt werden.
+ * @param {Name des Produkts} name 
+ * @param {Angabe des Index der Positionszeile innerhalb einer Produktdarstellung im Warenkorb anhand des Buttons} indexFromButtons 
+ * @param {Neue Anzahl der zum Warenkorb hinzugefügten Produkte dieses Produkttyps} newQuantity 
+ * @param {boolsche Angabe, ob der Aufuruf der Funktion durch den Warenkorb-Slider geschieht oder nicht} isSlider 
+ * @author Marvin Kunz
+ */
 function updateQuantityMultiRow(name, indexFromButtons, newQuantity, isSlider) {
-  // console.log("name", name);
-  console.log("iB", indexFromButtons);
   let indexInCart = getIndexInCart(name, indexFromButtons);
-  console.log("indexincart", indexInCart);
   updateQuantity(indexInCart, newQuantity, isSlider);
-  let cart = getCart();
-  console.log(cart);
 }
 
-
+// Ändere die Menge eines Produkts (per Index)
+/**
+ * Ändere die Menge eines Produkts
+ * @param {Index an welcher Stelle im Warenkorb sich das zu entfernende Produkt befindet} index 
+ * @param {Neue Anzahl der zum Warenkorb hinzugefügten Produkte dieses Produkttyps} newQuantity 
+ * @param {boolsche Angabe, ob der Aufuruf der Funktion durch den Warenkorb-Slider geschieht oder nicht} isSlider 
+ * @author Felix Bartel
+ */
 function updateQuantity(index, newQuantity, isSlider) {
-  console.log(newQuantity);
-  console.log(index);
   let cart = getCart();
 
+  // entfernt das Produkt aus dem Warenkorb, falls die Anzahl = 0
   if (newQuantity <= 0) {
     removeFromCartMultiRow(index, isSlider);
     return;
   }
+
+  // Anpassung der Anzahl des übergebenen Produktes auf den übergebenen Wert
   cart[index].quantity = newQuantity;
+
+  // fügt den Warenkorb dem localStorage hinzu
   localStorage.setItem('cart', JSON.stringify(cart));
+
+  // ruft entsprechend der aufrufenden Seite die passende Visualisierung auf 
   if (isSlider) {
-    renderCartSlider(); //nur auf cartslider nutzbar
+    renderCartSlider(); //nur auf cartslider.php nutzbar
   } else {
-    renderCart(); // nur auf cart.html nötig
+    renderCart(); // nur auf cart.php nötig
   }
 }
 
+/**
+ * Berechnet anhand der übergebene Parameter den Index im Warenkorb (möglich dank der einheitlichen Sortierung anhand von fest definierten Regeln)
+ * @param {Name des Produktes} name 
+ * @param {Angabe, der wie vielte Button eines Containers betätigt wurde (-> entspricht der Positionszeile in der Visualisierung = x-tes Auftreten des Produktes mit diesem Namen)} indexFromButtons 
+ * @returns Index des Produktes im Warenkorb
+ * @author Marvin Kunz
+ */
 function getIndexInCart(name, indexFromButtons) {
   let cart = getCart();
 
+  // Variable, die das Auftreten der unterschiedlichen Größen eines Produktes zählt
   let countItemWithName = 0;
   let returnValue;
 
+  // Schleife, die den Warenkorb durchläuft
   for (let i = 0; i < cart.length; i++) {
     const item = cart[i];
+    //Vergleich, ob der übergebene Name dem Namen des aktuellen Produktes entspricht
     if (item.name === name) {
-      countItemWithName++;
+      countItemWithName++; // Counter wird erhöht, sobald auf ein Produkt mit dem gleichen Namen getroffen wird
+      // wenn Counter und Index gleich sind, ist das gewünschte Produkt gefunden
       if (countItemWithName - 1 === indexFromButtons) {
-        returnValue = i;
-        break;
+        return i; // Rückgabe des Indexes des gesuchten Produktes (entspricht dem Counter i der for-Schleife)
+        ;
       }
     }
   }
-
-  return returnValue;
 }
 
-// Render-Funktion für cart.html
+/**
+ * zuständig für die Visualisierug der cart.php Seite (Render-Funktion)
+ * @returns null (nur im Fehlerfall)
+ * @author Marvin Kunz
+ */
 function renderCart() {
   const cart = getCart();
-  console.log(cart);
   const container = document.getElementById('cart-items');
   const totalDisplay = document.getElementById('cart-total');
 
   if (!container || !totalDisplay) return;
 
   container.innerHTML = '';
-  let arrSeveralSizes = [];
+  let arrSeveralSizes = []; // speichert Produktnamen aller Produkte, von welchem doppelte Größen im Warenkorb liegen
 
+  // iteriert durch den Warenkorb
   cart.forEach((item, index) => {
-    let single = true;
+    // sucht für jedes Item nach Items mit dem gleichen Namen (-> verschiedene Größen einer Sorte wurden in den Warenkorb gelegt)
     for (let i = index + 1; i < cart.length; i++) {
-      if ((item.name === cart[i].name) && !arrSeveralSizes.includes(item.name)) {
-        single = false;
+      if ((item.name === cart[i].name) && !arrSeveralSizes.includes(item.name)) { // legt den Namen nur dann ab, wenn er noch nicht Teil des Arrays ist
         arrSeveralSizes.push(item.name);
       }
     }
   });
 
-  let arrSeveralProductSizeQuantity = [];
+  let arrSeveralProductSizeQuantity = []; // speichert für jedes Produkt aus arrSeveralSizes alle Größen mit ihrer Anzahl und dessen Stückpreis ab
+
+  // durchläuft das Array, das alle Produktnamen beinhaltet
   arrSeveralSizes.forEach((_, index) => {
     let itemName = arrSeveralSizes[index];
     let newProduct = {};
     let firstLoop = true;
 
+    // durchläuft den Warenkorb, um für die relevanten Produkte die Informationen abspeichern zu können
     cart.forEach(item => {
       if (item.name === itemName && firstLoop) {
         firstLoop = false;
 
+        // bei erstmaligem Auftreten eines Produktes wird ein neues Produkt dem Array hinzugefügt + Informationen abgespeichert
         newProduct = {
           [item.size]: {
             quantity: item.quantity,
@@ -192,6 +279,7 @@ function renderCart() {
         arrSeveralProductSizeQuantity.push(newProduct);
 
       } else if (item.name === itemName && !firstLoop) {
+        // nachfolgend werden nur noch die neuen Informationen für verschiedene Größen hinterlegt
         newProduct[item.size] = {
           quantity: item.quantity,
           price: item.price
@@ -201,22 +289,23 @@ function renderCart() {
   });
 
   let total = 0;
-  let counterArrSeveralSizes = 0;
+  let counterArrSeveralSizes = 0; // Variable die mitzählt, wie viele Produkte aus dem Array der Produkte mit mehreren hinzugefügten Größen bereits dargestellt wurden
 
+  // Warenkorb wird durchlaufen, um die entsprechenden Visualisierungs-Funktionen für jedes Produkt aufzurufen
   cart.forEach((item, index) => {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
     let row;
     if (arrSeveralSizes.indexOf(item.name) == counterArrSeveralSizes) {
-      row = createMultiItemRow(item, arrSeveralProductSizeQuantity[counterArrSeveralSizes]);
+      row = createMultiItemRow(item, arrSeveralProductSizeQuantity[counterArrSeveralSizes]); // Aufruf der Darstellung mit Positionszeilen
       counterArrSeveralSizes++;
     } else if (!arrSeveralSizes.includes(item.name)) {
-      row = createSingleItemRow(item, index, itemTotal);
+      row = createSingleItemRow(item, index, itemTotal); // Aufruf der Darstellung ohne Positionszeilen
     }
 
     if (row != undefined) {
-      container.appendChild(row);
+      container.appendChild(row); // erstellte Visualisierung wird dem Container, der alle Produkte des Warenkorbs darstellt, übergeben
     }
   });
 
@@ -224,13 +313,21 @@ function renderCart() {
 }
 
 
-
+/**
+ * erstellt die Visualisierung der "zusammenfassenden Box" für alle Größen eines Produktes, wenn mehr als eine Größe eines Produktes im Warenkorb liegt
+ * @param {übergibt das Produkt mit allen Werten, welche im Warenkorb gespeichert werden} item 
+ * @param {übergibt alle Produkte mit dem gleichen Namen als Objekt mit dynamischem Key-Mapping, dabei wird jeweils nur die Größe mit Anzahl und Stückpreis übergeben} allItemsOfThisType 
+ * @returns Box / Reihe (optische Darstellung des Produktes im Warenkorb)
+ * @author Logik: Marvin Kunz, optische Darstellung / Anordnung: Felix Bartel
+ */
 function createMultiItemRow(item, allItemsOfThisType) {
   let totalSum = 0;
 
+  // die Reihe, welche nachfolgend mit Produktinhalten befüllt wird
   const row = document.createElement('div');
   row.className = 'cart-item';
 
+  // Produktbild
   const img = document.createElement('img');
   img.className = 'cart-item-img';
   img.src = item.image;
@@ -251,6 +348,7 @@ function createMultiItemRow(item, allItemsOfThisType) {
 
   let rowIndex = 1;
 
+  // iteriert über das übergebene Objekt mit dynamischem Key-Mapping und erstellt dann für jede Größe eine Positionszeile
   Object.entries(allItemsOfThisType).forEach(([size, details]) => {
     const rowStr = `${details.quantity} x ${size}g`;
     const rowPrice = details.quantity * details.price;
@@ -320,7 +418,6 @@ function createMultiItemRow(item, allItemsOfThisType) {
       const quantityInputInContainerP = currentContainerP.querySelectorAll('.cart-item-quantity-input');
 
       const iP = Array.from(buttonsInContainerP).indexOf(clickedButtonP);
-      console.log("hehe", parseInt(quantityInputInContainerP[iP].value), iP);
       updateQuantityMultiRow(currentContainerP.querySelector('.cart-item-name').textContent, iP, parseInt(quantityInputInContainerP[iP].value) + 1, false);
     });
     const plusIcon = document.createElement('img');
@@ -370,11 +467,19 @@ function createMultiItemRow(item, allItemsOfThisType) {
   return row;
 }
 
-
+/**
+ * erstellt die Visualisierung der "Box" für Produkte, die nur mit einer Größe eines Produktes im Warenkorb liegen
+ * @param {übergibt das Produkt mit allen Werten, welche im Warenkorb gespeichert werden} item 
+ * @param {Indes des Produktes im Warenkorb} index 
+ * @param {Gesamtpreis für dieses Produkt} itemTotal 
+ * @returns Box / Reihe (optische Darstellung des Produktes im Warenkorb)
+ * @author Logik: Marvin Kunz, optische Darstellung / Anordnung: Felix Bartel
+ */
 function createSingleItemRow(item, index, itemTotal) {
   const row = document.createElement('div');
   row.className = 'cart-item';
 
+  // Produktbild
   const img = document.createElement('img');
   img.className = 'cart-item-img';
   img.src = item.image;
@@ -385,13 +490,16 @@ function createSingleItemRow(item, index, itemTotal) {
   const firstLineItemBlock = document.createElement('div');
   firstLineItemBlock.className = 'cart-item-first-line-item-block'; // Hier wird Grid verwendet
 
+  // Produktname
   const nameSpan = document.createElement('span');
   nameSpan.textContent = `${item.name}`;
   nameSpan.style.fontWeight = 'bold';
 
+  // Produktgröße
   const sizeSpan = document.createElement('span');
   sizeSpan.textContent = `(${item.size}g)`;
 
+  // Anpassung + Anzeige der Anzahl
   const quantityContainer = document.createElement('div');
   quantityContainer.className = 'cart-item-quantity-container';
 
@@ -402,8 +510,6 @@ function createSingleItemRow(item, index, itemTotal) {
   const minusButtonIcon = document.createElement('img');
   minusButtonIcon.src = 'images/minusBlack.svg';
 
-  // const quantitySpan = document.createElement('span');
-  // quantitySpan.textContent = `${item.quantity}`;
   const quantityInput = document.createElement('input');
   quantityInput.type = 'number';
   quantityInput.min = 1;
@@ -419,7 +525,6 @@ function createSingleItemRow(item, index, itemTotal) {
     }
   });
 
-
   const plusButton = document.createElement('button');
   plusButton.addEventListener("click", () => {
     updateQuantity(index, parseInt(item.quantity) + 1, false);
@@ -427,9 +532,11 @@ function createSingleItemRow(item, index, itemTotal) {
   const plusButtonIcon = document.createElement('img');
   plusButtonIcon.src = 'images/plusBlack.svg';
 
+  // Preis
   const sumPriceOfProductTypeSpan = document.createElement('span');
   sumPriceOfProductTypeSpan.textContent = `${itemTotal.toFixed(2)} €`;
 
+  // Entfernen-Button
   const removeButton = document.createElement('button');
   removeButton.className = 'cart-item-remove-btn';
   removeButton.addEventListener("click", () => {
@@ -515,22 +622,6 @@ function closeCart() {
   if (slider) slider.classList.remove("open");          // entfernt die Klasse "open" → versteckt den Slider
 }
 
-function intermediateStepAddToCart() {
-  let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
-  let buttonContent = selectedButton.textContent.slice(0, -1);
-  let index;
-  for (let i = 0; i < product.availableSizes.length; i++) {
-    if (buttonContent == product.availableSizes[i]) {
-      index = i;
-      break;
-    }
-  }
-
-  console.log(product.availableSizes[index]);
-
-  addToCart(product.name, product.pics.productPic1, getTotalPrice(product.priceWithoutTax), product.availableSizes[index]);
-}
-
 //Bei geöffneten Warenkorbslider lässt sich der slider durch einen CLick auf Icon schließen
 window.addEventListener("DOMContentLoaded", () => {
   closeCart();
@@ -540,11 +631,12 @@ window.addEventListener("DOMContentLoaded", () => {
 var time = 0; // Timer-Variable (wird später aus localStorage geladen)
 var runningTimer; // Referenz für den laufenden Timer
 
-// Diese Funktion zeigt den Timer im HTML-Element an
+/**
+ * Stellt den Timer otpisch auf der cart.php Seite dar
+ * @author Marvin Kunz
+ */
 function updateTimerDisplay() {
-  console.log("display");
-
-  if(document.querySelector(".timerText") != null){
+  if (document.querySelector(".timerText") != null) {
     document.querySelector(".timerText").style.visibility = 'visible';
     document.querySelector(".time").style.visibility = 'visible';
   }
@@ -563,7 +655,10 @@ function updateTimerDisplay() {
   }
 }
 
-// Beim Laden der Seite die gespeicherte Zeit im localStorage holen
+/**
+ * Beim Laden der cart.php Seite die gespeicherte Zeit im localStorage holen
+ * @author Marvin Kunz
+ */
 window.addEventListener('load', function () {
   if (window.location.pathname.endsWith("/cart.php")) {
     // Wenn Zeit im localStorage gespeichert ist, benutze diese
@@ -579,10 +674,11 @@ window.addEventListener('load', function () {
   }
 });
 
-// Timer-Funktion in regelmäßigen Abständen aufrufen
+/**
+ * Funktion, die sekündlich aufgerufen wrd, um die Restzeit des Timer anzupassen (-> Implementierung der Timer-Funktionalität)
+ * @author Marvin Kunz
+ */
 function timer() {
-  console.log("timer");
-
   if (time > 0) {
     time--; // Timer dekrementieren
     updateTimerDisplay(); // Timer im HTML-Element aktualisieren
@@ -593,9 +689,11 @@ function timer() {
   }
 }
 
-// Stoppen des Timers
+/**
+ * Funktion zum Stoppen des Timers
+ * @author Marvin Kunz
+ */
 function stopTimer() {
-  console.log("stopp");
   if (runningTimer) {
     clearInterval(runningTimer); // Timer stoppen
     runningTimer = null;
@@ -611,9 +709,11 @@ function stopTimer() {
   }
 }
 
-// Funktion zum Starten des Timers
+/**
+ * Funktion zum Starten des Timers
+ * @author Marvin Kunz
+ */
 function startTimer() {
-  console.log("starten");
   if (!runningTimer) {  // Stelle sicher, dass der Timer nicht doppelt läuft
     // Hier definierst du die Startzeit des Timers
 

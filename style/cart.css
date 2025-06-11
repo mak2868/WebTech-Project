@@ -1,3 +1,8 @@
+/**
+@author: Felix Bartel, Marzan Köse (Cart-Promo), Marvin Kunz (Timer, Darkmode)
+**/
+
+
 .cart-header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -96,20 +101,24 @@ h2 {
 }
 
 .cart-item-remove-btn {
-  padding: 0.3rem;
   background-color: transparent;
   border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: right;
-  width: 100%;
-  /* Vollständige Breite innerhalb der Spalte */
+  justify-content: center;
+  width: 100%; /* Vollständige Breite innerhalb der Spalte */
+  width: 48px;
+  height: 48px;
+  margin: 0;
+  padding: 0;
+  justify-self: end;
 }
 
 .cart-item-remove-btn img {
   width: 32px;
   height: 32px;
+  justify-content: center;
 }
 
 .cart-item-quantity-container {
@@ -184,7 +193,6 @@ h2 {
   justify-content: space-between;
 }
 
-/* Code von Merzan, angepasst von Marvin */
 .cart-promo {
   display: flex;
   align-items: center;
@@ -214,13 +222,41 @@ h2 {
   border: 2px solid #ffc356;
 }
 
-.timerSection{
+.timerSection {
   margin-bottom: 32px;
   display: flex;
   flex-direction: row;
   gap: 0.3rem;
 }
 
-.timerSection div{
-    visibility: hidden;
+.timerSection div {
+  visibility: hidden;
+}
+
+/* ============================== */
+/*            Darkmode            */
+/* ============================== */
+body.dark-mode .cart-item {
+  background-color: #202020;
+}
+
+body.dark-mode .removeAllBtn,
+body.dark-mode .cart-item-remove-btn,
+body.dark-mode .cart-item-quantity-container button {
+  background-color: transparent;
+}
+
+body.dark-mode .cart-item-quantity-container img {
+  filter: invert(1);
+}
+
+body.dark-mode .cart-promo button {
+  background-color: white;
+  border: 2px solid #ffc356;
+}
+
+.cart-item input[type="number"] {
+  border: 1px solid #ccc;
+  background-color: transparent;
+  color: white;
 }
