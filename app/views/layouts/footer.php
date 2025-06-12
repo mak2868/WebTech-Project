@@ -2,7 +2,7 @@
 <section class="footer-subscribe">
   <div class="container">
     <div class="footer-form">
-      <form class="footer-form-container" method="get">
+      <form id="newsletterForm" class="footer-form-container" method="get">
         <div class="footer-form-title">Jetzt Newsletter abonnieren</div>
         <div class="footer-form-block">
           <input class="footer-form-input" type="email" placeholder="E-Mail eingeben" required />

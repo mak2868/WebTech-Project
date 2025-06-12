@@ -1,5 +1,5 @@
 // Optional: Feedback handling for form submission (without backend)
-document.querySelector("form").addEventListener("submit", function (e) {
+document.querySelector("newsletterForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const success = document.querySelector(".form-success");
   const error = document.querySelector(".form-error");

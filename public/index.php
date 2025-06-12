@@ -49,6 +49,11 @@ switch ($page) {
         $controller->register();
         break;
 
+    case 'profile':
+        $controller = new UserController();
+        $controller->profile();
+        break;
+
     case 'impressum':
         $controller = new StaticController();
         $controller->impressum();

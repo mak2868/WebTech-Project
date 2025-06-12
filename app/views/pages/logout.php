@@ -1,5 +1,5 @@
 <!--Erstellt von Merzan Köse-->
-
+<?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -8,18 +8,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Logout</title>
-    <link rel="stylesheet" href="style/global.css">
-    <link rel="stylesheet" href="style/logreg.css">
-    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-    <link rel="stylesheet" href="style/cookieBanner.css">
-    <script src="components/Navbar/navbar.js" defer></script>
-    <script src="js/cookieBanner.js" defer></script>
+
+    <!-- CSS -->
+    <!-- Einbinden der globalen und seitenbezogenen CSS-Dateien -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/logreg.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
+
+    <!-- JS -->
+    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
 
 
 </head>
 
 <body>
-    <?php include 'components/Navbar/navbar.php'; ?>
+    <?php include __DIR__ . '/../layouts/navbar.php'; ?>
     <main style="padding-top: 40px">
         <div class="form-wrapper">
             <h1>Logout</h1>
@@ -28,12 +34,12 @@
 
             <p>Sie wurden erfolgreich abgemeldet </p>
 
-    <a href="login.php"> Zur Anmeldung</a>
-    <a href="index.php"> Zurück zur Startseite</a>
-    </div>
-    <?php include 'cookieBanner.php'; ?>
-    <?php include 'components/Footer/footer.php'; ?>
-</main>
+            <a href="index.php?page=login"> Zur Anmeldung</a>
+            <a href="index.php?page=home"> Zurück zur Startseite</a>
+        </div>
+        <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
+        <?php include __DIR__ . '/../layouts/footer.php'; ?>
+    </main>
 </body>
 
 </html>
