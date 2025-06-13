@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Isolat Cola",
+        "price": 26.99,
+        "rating": 4.85,
+        "reviews": 2145,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 2,
+        "name": "Isolat Berry",
+        "price": 26.99,
+        "rating": 4.68,
+        "reviews": 1780,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 3,
+        "name": "Isolat Citrus",
+        "price": 26.99,
+        "rating": 4.73,
+        "reviews": 1560,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 4,
+        "name": "Isolat Beer",
+        "price": 26.99,
+        "rating": 4.33,
+        "reviews": 987,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 5,
+        "name": "Isolat Tropic",
+        "price": 26.99,
+        "rating": 4.50,
+        "reviews": 875,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 6,
+        "name": "Isolat Cherry",
+        "price": 26.99,
+        "rating": 4.40,
+        "reviews": 910,
+        "image": "images/Proteinpulver_Isoclear.png"
+    }
+]

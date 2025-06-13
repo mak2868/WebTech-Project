@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "PowerBar Choco",
+        "price": 2.49,
+        "rating": 4.78,
+        "reviews": 4021,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 2,
+        "name": "PowerBar Oreo",
+        "price": 2.49,
+        "rating": 4.81,
+        "reviews": 2874,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 3,
+        "name": "PowerBar Brownie",
+        "price": 2.49,
+        "rating": 4.18,
+        "reviews": 721,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 4,
+        "name": "PowerBar Coconut",
+        "price": 2.49,
+        "rating": 4.78,
+        "reviews": 4021,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 5,
+        "name": "PowerBar Snickers",
+        "price": 2.49,
+        "rating": 4.78,
+        "reviews": 4021,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 6,
+        "name": "PowerBar Blueberry",
+        "price": 2.49,
+        "rating": 4.78,
+        "reviews": 4021,
+        "image": "images/Proteinriegel_LowCarb.png"
+    }
+]

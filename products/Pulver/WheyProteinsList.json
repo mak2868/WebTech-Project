@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": "Whey Protein Choco",
+        "price": 24.99,
+        "rating": 4.78,
+        "reviews": 4021,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 2,
+        "name": "Whey Protein Strawberry",
+        "price": 24.99,
+        "rating": 4.23,
+        "reviews": 2147,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 3,
+        "name": "Whey Protein Vanilla",
+        "price": 24.99,
+        "rating": 3.78,
+        "reviews": 1745,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 4,
+        "name": "Whey Protein Caramel",
+        "price": 24.99,
+        "rating": 4.87,
+        "reviews": 3140,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 5,
+        "name": "Whey Protein Banana",
+        "price": 24.99,
+        "rating": 3.78,
+        "reviews": 1478,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 6,
+        "name": "Whey Protein Hazelnut",
+        "price": 24.99,
+        "rating": 4.01,
+        "reviews": 875,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 7,
+        "name": "Whey Protein Coffee",
+        "price": 24.99,
+        "rating": 4.81,
+        "reviews": 1120,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 8,
+        "name": "Whey Protein Raspberry",
+        "price": 24.99,
+        "rating": 4.68,
+        "reviews": 978,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 9,
+        "name": "Whey Protein Pistachio",
+        "price": 24.99,
+        "rating": 3.81,
+        "reviews": 845,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 10,
+        "name": "Whey Protein Matcha",
+        "price": 24.99,
+        "rating": 4.99,
+        "reviews": 541,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 11,
+        "name": "Whey Protein Gingerbread",
+        "price": 24.99,
+        "rating": 4.22,
+        "reviews": 1047,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 12,
+        "name": "Whey Protein White Choco",
+        "price": 24.99,
+        "rating": 4.47,
+        "reviews": 941,
+        "image": "images/Proteinpulver_Isoclear.png"
+    }
+]

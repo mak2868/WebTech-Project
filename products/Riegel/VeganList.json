@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Vegan PowerBar Berry",
+        "price": 2.59,
+        "rating": 4.69,
+        "reviews": 3368,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 2,
+        "name": "Vegan PowerBar Lemon",
+        "price": 2.59,
+        "rating": 4.61,
+        "reviews": 2517,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 3,
+        "name": "Vegan PowerBar Peanut",
+        "price": 2.59,
+        "rating": 4.75,
+        "reviews": 4211,
+        "image": "images/Proteinriegel_LowCarb.png"
+    }
+]

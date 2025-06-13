@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Vegan Whey Choco",
+        "price": 26.99,
+        "rating": 4.28,
+        "reviews": 178,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 2,
+        "name": "Vegan Whey Vanilla",
+        "price": 26.99,
+        "rating": 4.28,
+        "reviews": 178,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 3,
+        "name": "Vegan Whey Banana",
+        "price": 26.99,
+        "rating": 4.28,
+        "reviews": 178,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 4,
+        "name": "Vegan Whey Strawberry",
+        "price": 26.99,
+        "rating": 4.28,
+        "reviews": 178,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 5,
+        "name": "Vegan Whey Caramel",
+        "price": 26.99,
+        "rating": 4.28,
+        "reviews": 178,
+        "image": "images/Proteinpulver_Isoclear.png"
+    },
+    {
+        "id": 6,
+        "name": "Vegan Whey Hazelnut",
+        "price": 26.99,
+        "rating": 4.28,
+        "reviews": 178,
+        "image": "images/Proteinpulver_Isoclear.png"
+    }
+]

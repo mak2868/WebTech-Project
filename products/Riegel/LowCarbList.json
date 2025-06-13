@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "LowCarb PowerBar Berry",
+        "price": 2.59,
+        "rating": 4.79,
+        "reviews": 4217,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 2,
+        "name": "LowCarb PowerBar Hazelnut",
+        "price": 2.59,
+        "rating": 4.76,
+        "reviews": 3125,
+        "image": "images/Proteinriegel_LowCarb.png"
+    },
+    {
+        "id": 3,
+        "name": "LowCarb PowerBar Nougat",
+        "price": 2.59,
+        "rating": 4.81,
+        "reviews": 3879,
+        "image": "images/Proteinriegel_LowCarb.png"
+    }
+]
