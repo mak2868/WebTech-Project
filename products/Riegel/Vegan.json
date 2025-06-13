@@ -1,6 +1,7 @@
 [
     {
-        "pid": 1,
+        "cid": 5,
+        "pid": 31,
         "name": "Vegan Riegel Berry",
         "description": "Deutschlands bester veganer Proteinriegel <br> mit fruchtigem Berry-Geschmack",
         "rating": 4.69,
@@ -46,7 +47,8 @@
         }
     },
     {
-        "pid": 2,
+        "cid": 5,
+        "pid": 32,
         "name": "Vegan Riegel Lemon",
         "description": "Deutschlands bester veganer Proteinriegel <br> mit einzigartigem Geschmack",
         "rating": 4.61,
@@ -92,7 +94,8 @@
         }
     },
     {
-        "pid": 3,
+        "cid": 5,
+        "pid": 33,
         "name": "Vegan Riegel Peanut",
         "description": "Deutschlands bester veganer Proteinriegel <br> mit einzigartigem Geschmack",
         "rating": 4.75,
