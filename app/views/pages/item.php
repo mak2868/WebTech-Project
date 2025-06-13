@@ -1,5 +1,6 @@
 <!-- erstellt von: Marvin Kunz (außer Navbar) -->
 
+<?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -7,24 +8,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPN | Whey Protein Choco</title>
-    <link rel="stylesheet" href="style/cart-slide.css">
-    <link rel="stylesheet" href="style/global.css">
-    <link rel="stylesheet" href="style/items.css">
-    <link rel="stylesheet" href="style/cart-slide.css">
-    <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
-    <link rel="stylesheet" href="components/Footer/footer.css">
-    <link rel="stylesheet" href="style/cookieBanner.css">
-    <script src="js/items.js" defer></script>
-    <script src="js/cart.js" defer></script>
-    <script src="js/wishList.js" defer></script>
-    <script src="components/Navbar/navbar.js" defer></script>
-    <script src="js/cookieBanner.js" defer></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/items.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
+
+    <!-- JS -->
+    <script src="<?= BASE_URL ?>/js/items.js" defer></script>
+    <!-- <script src="<?= BASE_URL ?>/js/cart.js" defer></script> -->
+    <script src="<?= BASE_URL ?>/js/wishList.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
 
 
 </head>
 
 <?php
-include 'components/Navbar/navbar.php';
+include '../layouts/navbar.php';
+require_once '../../models/ProductModel.php';
 
 $messages = [];
 $pid = null;
@@ -62,7 +68,8 @@ if (!empty($messages)) {
     switch ($cid) {
         case 1:
             if ($pid >= 1 && $pid <= 12) {
-                $json = @file_get_contents(__DIR__ . '/products/Pulver/WheyProteins.json');
+                // $json = @file_get_contents(__DIR__ . '/products/Pulver/WheyProteins.json');
+                $json = ProductModel::getAllItemsOfKategory($cid);
                 $path = "/products/Pulver/WheyProteins.json";
             } else {
                 echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 1 (WheyProteins)") . ");</script>";
@@ -129,7 +136,9 @@ if (!$hasError) {
     if ($json === false) {
         echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
     } else {
-        $data = json_decode($json, true);
+        // $data = json_decode($json, true);
+        $data = json_encode($json); 
+     
 
         if ($data === null) {
             echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
@@ -196,10 +205,10 @@ if (!$hasError) {
                     <!-- Versand + Favoriten-->
                     <div id='VersandFavoriten'>
                         <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
-                            <img src="images/shopping-cart.png" alt="">
+                            <img src="../../../public/images/shopping-cart.png" alt="">
                             <span>In den Warenkorb</span>
                         </button>
-                        <img id="FavButton" onclick="intermediateStepChangeWishListStatus()" src="images/Herz_unausgefüllt.png" alt="">
+                        <img id="FavButton" onclick="intermediateStepChangeWishListStatus()" src="../../../public/images/Herz_unausgefüllt.png" alt="">
                         <br>
                     </div>
                     <p id="statusDistribution"></p>
@@ -439,14 +448,13 @@ if (!$hasError) {
     </main>
     <?php include 'cookieBanner.php'; ?>
     <?php include 'components/Footer/footer.php'; ?>
-    
+
     <script defer>
         window.onload = () => {
             window.intermediateStepRenderItemSite(<?php echo json_encode($cid); ?>, <?php echo json_encode($pid); ?>);
         }
     </script>
-     <?php include 'cartSlider.php'; ?>
+    <?php include 'cartSlider.php'; ?>
 </body>
+
 </html>
-
-

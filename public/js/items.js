@@ -35,6 +35,7 @@ function intermediateStepRenderItemSite(cid, pid) {
 
 function renderItemSite(prod, lcid, pid) {
 
+    console.log(data[0]);
     product = prod;
     cid = lcid;
 
@@ -45,6 +46,7 @@ function renderItemSite(prod, lcid, pid) {
         let selectBox = document.getElementById('select');
         for (let i = 0; i < data.length; i++) {
             const selectItem = document.createElement('option');
+            console.log(data);
             const productName = data[i].name;
 
             let productShortName;

@@ -1,5 +1,5 @@
 <?php
-require_once '../lib/DB.php';
+require_once '../../lib/DB.php';
 
 class ProductModel
 {
@@ -209,7 +209,7 @@ class ProductModel
     }
 }
 
-$products = ProductModel::getAllItemsOfKategory(3); // z. B. Kategorie "Vegan Whey"
-echo '<pre>';
-print_r($products);
-echo '</pre>';
+// $products = ProductModel::getAllItemsOfKategory(3); // z. B. Kategorie "Vegan Whey"
+// echo '<pre>';
+// print_r($products);
+// echo '</pre>';

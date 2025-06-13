@@ -1,5 +1,10 @@
 <?php
 
-class ProductController {
+class ProductController
+{
 
+    public function renderItemSite($categoryID)
+    {
+        $produkte = ProductModel::getAllItemsOfKategory($categoryID);
+    }
 }
