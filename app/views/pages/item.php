@@ -195,7 +195,9 @@ if (!$hasError) {
 
                     <!-- Versand + Favoriten-->
                     <div id='VersandFavoriten'>
-                        <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
+                        <button id="VersandButton" onclick="intermediateStepAddToCart();
+                        // openCart();
+                        ">
                             <img src="images/shopping-cart.png" alt="">
                             <span>In den Warenkorb</span>
                         </button>
