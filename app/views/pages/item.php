@@ -68,8 +68,7 @@ if (!empty($messages)) {
     switch ($cid) {
         case 1:
             if ($pid >= 1 && $pid <= 12) {
-                // $json = @file_get_contents(__DIR__ . '/products/Pulver/WheyProteins.json');
-                $json = ProductModel::getAllItemsOfKategory($cid);
+                $data = ProductModel::getAllItemsOfKategory($cid);
                 $path = "/products/Pulver/WheyProteins.json";
             } else {
                 echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 1 (WheyProteins)") . ");</script>";
@@ -78,7 +77,7 @@ if (!empty($messages)) {
 
         case 2:
             if ($pid >= 1 && $pid <= 6) {
-                $json = @file_get_contents(__DIR__ . '/products/Pulver/Isolat.json');
+                $data = ProductModel::getAllItemsOfKategory($cid);
                 $path = "/products/Pulver/Isolat.json";
             } else {
                 $hasError = true;
@@ -88,7 +87,7 @@ if (!empty($messages)) {
 
         case 3:
             if ($pid >= 1 && $pid <= 6) {
-                $json = @file_get_contents(__DIR__ . '/products/Pulver/Vegan.json');
+                $data = ProductModel::getAllItemsOfKategory($cid);
                 $path = "/products/Pulver/Vegan.json";
             } else {
                 $hasError = true;
@@ -98,7 +97,7 @@ if (!empty($messages)) {
 
         case 4:
             if ($pid >= 1 && $pid <= 6) {
-                $json = @file_get_contents(__DIR__ . '/products/Riegel/Proteinriegel.json');
+                $data = ProductModel::getAllItemsOfKategory($cid);
                 $path = "/products/Riegel/Proteinriegel.json";
             } else {
                 $hasError = true;
@@ -108,7 +107,7 @@ if (!empty($messages)) {
 
         case 5:
             if ($pid >= 1 && $pid <= 3) {
-                $json = @file_get_contents(__DIR__ . '/products/Riegel/LowCarb.json');
+                $data = ProductModel::getAllItemsOfKategory($cid);
                 $path = "/products/Riegel/LowCarb.json";
             } else {
                 $hasError = true;
@@ -118,7 +117,7 @@ if (!empty($messages)) {
 
         case 6:
             if ($pid >= 1 && $pid <= 3) {
-                $json = @file_get_contents(__DIR__ . '/products/Riegel/Vegan.json');
+                $data = ProductModel::getAllItemsOfKategory($cid);
                 $path = "/products/Riegel/Vegan.json";
             } else {
                 $hasError = true;
@@ -132,28 +131,33 @@ if (!empty($messages)) {
     }
 }
 
-if (!$hasError) {
-    if ($json === false) {
-        echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-    } else {
-        // $data = json_decode($json, true);
-        $data = json_encode($json); 
-     
+                // if (!$hasError) {
+                //     if ($json === false) {
+                //         echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
+                //     } else {
+                //         // $data = json_decode($json, true);
+                //         $data = json_decode($json, true);                    
 
-        if ($data === null) {
-            echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-        }
-    }
-}
+                //         if ($data === null) {
+                //             echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
+                //         }
+                //     }
+                // }
 
 
-?>
+                ?>
 
-<?php if ($data !== null): ?>
+              <?php if (!empty($data)): ?>
     <script>
-        const data = <?php echo json_encode($data); ?>;
+        const data = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE); ?>;
+        console.log("Daten geladen:", data);
+    </script>
+<?php else: ?>
+    <script>
+        console.error("Keine Produktdaten vorhanden.");
     </script>
 <?php endif; ?>
+
 
 
 
@@ -446,8 +450,8 @@ if (!$hasError) {
 
         </div>
     </main>
-    <?php include 'cookieBanner.php'; ?>
-    <?php include 'components/Footer/footer.php'; ?>
+    <?php include '../layouts/cookieBanner.php'; ?>
+    <?php include '../layouts/footer.php'; ?>
 
     <script defer>
         window.onload = () => {

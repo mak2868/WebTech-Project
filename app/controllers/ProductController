@@ -6,5 +6,8 @@ class ProductController
     public function renderItemSite($categoryID)
     {
         $produkte = ProductModel::getAllItemsOfKategory($categoryID);
+
+        // View laden und Daten übergeben
+        include '../app/views/pages/item.php';
     }
 }
