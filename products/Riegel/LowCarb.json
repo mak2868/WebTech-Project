@@ -1,6 +1,7 @@
 [
     {
-        "pid": 1,
+        "cid": 6,
+        "pid": 34,
         "name": "LowCarb Riegel Berry",
         "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.79,
@@ -46,7 +47,8 @@
         }
     },
     {
-        "pid": 2,
+        "cid": 6,
+        "pid": 35,
         "name": "LowCarb Riegel Hazelnut",
         "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.76,
@@ -92,7 +94,8 @@
         }
     },
     {
-        "pid": 3,
+        "cid": 6,
+        "pid": 36,
         "name": "LowCarb Riegel Nougat",
         "description": "Low Carb, High Taste – cremiger Riegel ohne Zuckerzusatz",
         "rating": 4.81,
