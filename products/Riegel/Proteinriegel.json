@@ -1,6 +1,7 @@
 [
     {
-        "pid": 1,
+        "cid": 4,
+        "pid": 25,
         "name": "Proteinriegel Choco",
         "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
         "rating": 4.78,
@@ -46,7 +47,8 @@
         }
     },
     {
-        "pid": 2,
+        "cid": 4,
+        "pid": 26,
         "name": "Proteinriegel Oreo",
         "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
         "rating": 4.81,
@@ -92,7 +94,8 @@
         }
     },
     {
-        "pid": 3,
+        "cid": 4,
+        "pid": 27,
         "name": "Proteinriegel Brownie",
         "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
         "rating": 4.18,
@@ -138,7 +141,8 @@
         }
     },
     {
-        "pid": 4,
+        "cid": 4,
+        "pid": 28,
         "name": "Proteinriegel Coconut",
         "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
         "rating": 4.78,
@@ -184,7 +188,8 @@
         }
     },
     {
-        "pid": 5,
+        "cid": 4,
+        "pid": 29,
         "name": "Proteinriegel Snickers",
         "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
         "rating": 4.78,
@@ -230,7 +235,8 @@
         }
     },
     {
-        "pid": 6,
+        "cid": 4,
+        "pid": 30,
         "name": "Proteinriegel Blueberry",
         "description": "Deutschlands bester Proteinriegel  <br> mit einzigartigem Geschmack",
         "rating": 4.78,

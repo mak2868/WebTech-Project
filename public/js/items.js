@@ -17,11 +17,12 @@ let cid;
 let initial = true;
 
 
-  // Alles /controller
+// Alles /controller
 
 
 
 function intermediateStepRenderItemSite(cid, pid) {
+    console.log("cid: ", cid, "pid: ", pid);
     if (isNaN(cid) && isNaN(pid) || cid == null && pid == null) {
         console.error("Parameter error (cat + pid): " + cid + ", " + pid);
     } else if (isNaN(cid) || cid == null) {
@@ -35,6 +36,10 @@ function intermediateStepRenderItemSite(cid, pid) {
 
 function renderItemSite(prod, lcid, pid) {
 
+    console.log(prod);
+    console.log(lcid);
+    console.log(pid);
+
     product = prod;
     cid = lcid;
 
@@ -45,6 +50,7 @@ function renderItemSite(prod, lcid, pid) {
         let selectBox = document.getElementById('select');
         for (let i = 0; i < data.length; i++) {
             const selectItem = document.createElement('option');
+            console.log(data);
             const productName = data[i].name;
 
             let productShortName;
@@ -90,7 +96,7 @@ function renderItemSite(prod, lcid, pid) {
     });
     document.getElementById('ratersCount').textContent = '(' + product.ratersCount + ')';
 
-    document.getElementById('description').innerHTML = product.description;
+    // document.getElementById('description').innerHTML = product.description;
 
     const verpackungsgrößenButtonsContainer = document.getElementById('VerpackungsgrößenButtons');
     verpackungsgrößenButtonsContainer.innerHTML = "";
@@ -114,85 +120,90 @@ function renderItemSite(prod, lcid, pid) {
 
     document.getElementById('statusDistribution').textContent = product.statusDistribution;
 
-    document.getElementById('descriptionDetails1').textContent = product.descriptionDetails[0];
-    document.getElementById('descriptionDetails2').textContent = product.descriptionDetails[1];
+    // document.getElementById('descriptionDetails1').textContent = product.descriptionDetails[0];
+    // document.getElementById('descriptionDetails2').textContent = product.descriptionDetails[1];
 
     document.getElementById('substanceIngredients').textContent = product.substance.ingredients;
     document.getElementById('substanceAllergens').textContent = product.substance.allergens;
 
-    document.getElementById('substanceNutrientsEnergy').textContent = product.substance.nutrients.Energy;
-    document.getElementById('substanceNutrientsFat').textContent = product.substance.nutrients.Fat;
-    document.getElementById('substanceNutrientsFatOfWhichSaturates').textContent = product.substance.nutrients["of which saturates"];
-    document.getElementById('substanceNutrientsCarbohydrates').textContent = product.substance.nutrients.Carbohydrates;
-    document.getElementById('substanceNutrientsOfWhichSugars').textContent = product.substance.nutrients["of which sugars"];
-    document.getElementById('substanceNutrientsFibre').textContent = product.substance.nutrients.Fibre;
-    document.getElementById('substanceNutrientsProtein').textContent = product.substance.nutrients.Protein;
-    document.getElementById('substanceNutrientsSalt').textContent = product.substance.nutrients.Salt;
+    document.getElementById('substanceNutrientsEnergy').textContent = product.substance.nutrients.energy;
+    document.getElementById('substanceNutrientsFat').textContent = product.substance.nutrients.fat;
+    document.getElementById('substanceNutrientsFatOfWhichSaturates').textContent = product.substance.nutrients.saturates;
+    document.getElementById('substanceNutrientsCarbohydrates').textContent = product.substance.nutrients.carbohydrates;
+    document.getElementById('substanceNutrientsOfWhichSugars').textContent = product.substance.nutrients.sugars;
+    document.getElementById('substanceNutrientsFibre').textContent = product.substance.nutrients.fibre;
+    document.getElementById('substanceNutrientsProtein').textContent = product.substance.nutrients.protein;
+    document.getElementById('substanceNutrientsSalt').textContent = product.substance.nutrients.salt;
 
     if (cid < 4) {
-        document.getElementById('substanceAminoAcidsAlanine').textContent = product.substance.aminoAcids.Alanine;
-        document.getElementById('substanceAminoAcidsArginine').textContent = product.substance.aminoAcids.Arginine;
-        document.getElementById('substanceAminoAcidsAsparticAcid').textContent = product.substance.aminoAcids["Aspartic acid"];
-        document.getElementById('substanceAminoAcidsCysteine').textContent = product.substance.aminoAcids.Cysteine;
-        document.getElementById('substanceAminoAcidsGlutamicAcid').textContent = product.substance.aminoAcids["Glutamic acid"];
-        document.getElementById('substanceAminoAcidsGlycine').textContent = product.substance.aminoAcids.Glycine;
-        document.getElementById('substanceAminoAcidsHistidine').textContent = product.substance.aminoAcids.Histidine;
-        document.getElementById('substanceAminoAcidsIsoleucine').textContent = product.substance.aminoAcids.Isoleucine;
-        document.getElementById('substanceAminoAcidsLeucine').textContent = product.substance.aminoAcids.Leucine;
-        document.getElementById('substanceAminoAcidsLysine').textContent = product.substance.aminoAcids.Lysine;
-        document.getElementById('substanceAminoAcidsMethionine').textContent = product.substance.aminoAcids.Methionine;
-        document.getElementById('substanceAminoAcidsPhenylalanine').textContent = product.substance.aminoAcids.Phenylalanine;
-        document.getElementById('substanceAminoAcidsProline').textContent = product.substance.aminoAcids.Proline;
-        document.getElementById('substanceAminoAcidsSerine').textContent = product.substance.aminoAcids.Serine;
-        document.getElementById('substanceAminoAcidsThreonine').textContent = product.substance.aminoAcids.Threonine;
-        document.getElementById('substanceAminoAcidsTryptophan').textContent = product.substance.aminoAcids.Tryptophan;
-        document.getElementById('substanceAminoAcidsTyrosine').textContent = product.substance.aminoAcids.Tyrosine;
-        document.getElementById('substanceAminoAcidsValine').textContent = product.substance.aminoAcids.Valine;
+        document.getElementById('substanceAminoAcidsAlanine').textContent = product.substance.aminoAcids.alanine;
+        document.getElementById('substanceAminoAcidsArginine').textContent = product.substance.aminoAcids.arginine;
+        document.getElementById('substanceAminoAcidsAsparticAcid').textContent = product.substance.aminoAcids.aspartic_acid;
+        document.getElementById('substanceAminoAcidsCysteine').textContent = product.substance.aminoAcids.cysteine;
+        document.getElementById('substanceAminoAcidsGlutamicAcid').textContent = product.substance.aminoAcids.glutamic_acid;
+        document.getElementById('substanceAminoAcidsGlycine').textContent = product.substance.aminoAcids.glycine;
+        document.getElementById('substanceAminoAcidsHistidine').textContent = product.substance.aminoAcids.histidine;
+        document.getElementById('substanceAminoAcidsIsoleucine').textContent = product.substance.aminoAcids.isoleucine;
+        document.getElementById('substanceAminoAcidsLeucine').textContent = product.substance.aminoAcids.leucine;
+        document.getElementById('substanceAminoAcidsLysine').textContent = product.substance.aminoAcids.lysine;
+        document.getElementById('substanceAminoAcidsMethionine').textContent = product.substance.aminoAcids.methionine;
+        document.getElementById('substanceAminoAcidsPhenylalanine').textContent = product.substance.aminoAcids.phenylalanine;
+        document.getElementById('substanceAminoAcidsProline').textContent = product.substance.aminoAcids.proline;
+        document.getElementById('substanceAminoAcidsSerine').textContent = product.substance.aminoAcids.serine;
+        document.getElementById('substanceAminoAcidsThreonine').textContent = product.substance.aminoAcids.threonine;
+        document.getElementById('substanceAminoAcidsTryptophan').textContent = product.substance.aminoAcids.tryptophan;
+        document.getElementById('substanceAminoAcidsTyrosine').textContent = product.substance.aminoAcids.tyrosine;
+        document.getElementById('substanceAminoAcidsValine').textContent = product.substance.aminoAcids.valine;
     } else {
         document.getElementById('aminoAcidProfile').style.display = 'none';
     }
 
     document.getElementById('usagePreparation').textContent = product.usage.preparation;
     document.getElementById('usageRecommendation').textContent = product.usage.recommendation;
-    if (cid < 4) {
-        document.getElementById('usageTip').textContent = product.usage.tip;
-        if (cid != 2) {
-            const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
-            recipeButtonsContainer.innerHTML = "";
-            for (let i = 0; i < 3; i++) {
-                let recipeButton = document.createElement('button');
-                recipeButton.textContent = product.usage.recipes[i].shortTitle;
+    // if (cid < 4) {
+    //     document.getElementById('usageTip').textContent = product.usage.tip;
+    //     if (cid != 2) {
+    //         const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
+    //         recipeButtonsContainer.innerHTML = "";
+    //         for (let i = 0; i < 3; i++) {
+    //             let recipeButton = document.createElement('button');
+    //             recipeButton.textContent = product.usage.recipes[i].shortTitle;
 
-                recipeButton.onclick = () => switchRecipe(i);
-                recipeButtonsContainer.appendChild(recipeButton);
-            }
-            switchRecipe();
-        } else {
-            document.getElementById('recipePreparationHeading').style.display = 'none';
-            document.getElementById('recipePreparation').style.display = 'none';
-            document.getElementById('recipeIngredients').style.display = 'none';
-            document.getElementById('tipHeading').style.display = 'none';
-            document.getElementById('tipHeading').style.marginTop = '0rem';
-        }
-    } else {
-        document.getElementById('recipePreparationHeading').style.display = 'none';
-        document.getElementById('recipePreparation').style.display = 'none';
-        document.getElementById('recipeIngredients').style.display = 'none';
-        document.getElementById('tipHeading').style.display = 'none';
-    }
+    //             recipeButton.onclick = () => switchRecipe(i);
+    //             recipeButtonsContainer.appendChild(recipeButton);
+    //         }
+    //         switchRecipe();
+    //     } else {
+    //         document.getElementById('recipePreparationHeading').style.display = 'none';
+    //         document.getElementById('recipePreparation').style.display = 'none';
+    //         document.getElementById('recipeIngredients').style.display = 'none';
+    //         document.getElementById('tipHeading').style.display = 'none';
+    //         document.getElementById('tipHeading').style.marginTop = '0rem';
+    //     }
+    // } else {
+    //     document.getElementById('recipePreparationHeading').style.display = 'none';
+    //     document.getElementById('recipePreparation').style.display = 'none';
+    //     document.getElementById('recipeIngredients').style.display = 'none';
+    //     document.getElementById('tipHeading').style.display = 'none';
+    // }
 
     document.getElementById('laboratory').textContent = product.laboratory;
 
-    document.querySelector('#topPic img').src = product.pics.topPic;
+    // document.querySelector('#topPic img').src = product.topPic;
+    document.querySelector('#topPic img').src = '/WebTech-Project/public/images/Schokopulver_Top.jpg';
+
 
     const produktbildAuswahl = document.getElementById('ProduktbildAuswahl');
-    produktbildAuswahl.getElementsByTagName('img')[0].src = product.pics.productPic1;
-    produktbildAuswahl.getElementsByTagName('img')[1].src = product.pics.productPic2;
-    produktbildAuswahl.getElementsByTagName('img')[2].src = product.pics.productPic3;
+    // produktbildAuswahl.getElementsByTagName('img')[0].src = product.productPic1;
+    // produktbildAuswahl.getElementsByTagName('img')[1].src = product.productPic2;
+    // produktbildAuswahl.getElementsByTagName('img')[2].src = product.productPic3;
+    produktbildAuswahl.getElementsByTagName('img')[0].src = '/WebTech-Project/public/images/Choco Whey.webp';
+    produktbildAuswahl.getElementsByTagName('img')[1].src = '/WebTech-Project/public/images/choco_whey.jpeg';
+    produktbildAuswahl.getElementsByTagName('img')[2].src = '/WebTech-Project/public/images/Choco Whey.webp';
 
-    document.querySelector('#Produktbild img').src = product.pics.productPic1;
+    document.querySelector('#Produktbild img').src = '/WebTech-Project/public/images/Choco Whey.webp';
 
-    document.getElementById('klBild').src = product.pics.smallPic;
+    document.getElementById('klBild').src = '/WebTech-Project/public/images/choco_whey.jpeg';
 }
 
 
@@ -200,19 +211,19 @@ function createStars(rating) {
     return new Promise((resolve, reject) => {
 
         const emptyImg = new Image();
-        emptyImg.src = "/WebTech-Project/images/StarEmpty.svg";
+        emptyImg.src = "/WebTech-Project/public/images/StarEmpty.svg";
 
         const oneQImg = new Image();
-        oneQImg.src = "/WebTech-Project/images/StarOneQuarter.svg";
+        oneQImg.src = "/WebTech-Project/public/images/StarOneQuarter.svg";
 
         const halfImg = new Image();
-        halfImg.src = "/WebTech-Project/images/StarHalf.svg";
+        halfImg.src = "/WebTech-Project/public/images/StarHalf.svg";
 
         const threeQImg = new Image();
-        threeQImg.src = "/WebTech-Project/images/StarThreeQuarter.svg";
+        threeQImg.src = "/WebTech-Project/public/images/StarThreeQuarter.svg";
 
         const fullImg = new Image();
-        fullImg.src = "/WebTech-Project/images/StarFull.svg";
+        fullImg.src = "/WebTech-Project/public/images/StarFull.svg";
 
         const images = [emptyImg, oneQImg, halfImg, threeQImg, fullImg];
 
@@ -296,7 +307,7 @@ function openPanel(activatedIndex) {
     const acc = document.querySelectorAll('#accordion');
 
     if (activatedIndex == 2) {
-        switchRecipe(0);
+        // switchRecipe(0);
     }
     const button = acc[activatedIndex];
     const panel = button.nextElementSibling;
@@ -366,9 +377,9 @@ function switchProductbild(pictureNumber) {
     const pics = document.querySelectorAll('#ProduktbildAuswahl img');
 
     const picsSrc = [
-        product.pics.productPic1,
-        product.pics.productPic2,
-        product.pics.productPic3
+        '/WebTech-Project/public/images/Choco Whey.webp',
+        '/WebTech-Project/public/images/choco_whey.jpeg',
+        '/WebTech-Project/public/images/Choco Whey.webp'
     ];
 
     let selectedPic;
@@ -444,7 +455,7 @@ function changeSelectedSize(selctedButton) {
 // Model, ist halt so ein Daten bums
 function intermediateStepChangeWishListStatus() {
     const name = product.name;
-    const image = product.pics.productPic1;
+    const image = '/WebTech-Project/public/images/Choco Whey.webp';
     const price = getTotalPrice(product.priceWithoutTax);
 
     changeWishListStatus(name, image, price);

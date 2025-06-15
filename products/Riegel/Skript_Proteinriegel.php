@@ -20,31 +20,32 @@ try {
 }
 
 // Hilfsfunktion zum Laden und Einfügen von Riegeln
-function importBars($pdo, $filename, $barType) {
+function importBars($pdo, $filename, $barType)
+{
     $json = file_get_contents($filename);
     $bars = json_decode($json, true);
 
     foreach ($bars as $bar) {
         // Hauptprodukt einfügen
         $stmt = $pdo->prepare("INSERT INTO proteinriegel_products
-            (pid, name, description, rating, raters_count, status_distribution,
-             bar_type, preparation, recommendation, laboratory)
+            (cid, pid, name, description, rating, raters_count, status_distribution,
+            preparation, recommendation, laboratory)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $stmt->execute([
+            $bar['cid'],
             $bar['pid'],
             $bar['name'] ?? null,
             $bar['description'] ?? null,
             $bar['rating'] ?? null,
             $bar['ratersCount'] ?? null,
             $bar['statusDistribution'] ?? null,
-            $barType,
             $bar['usage']['preparation'] ?? null,
             $bar['usage']['recommendation'] ?? null,
             $bar['laboratory'] ?? null
         ]);
 
-        $productId = $pdo->lastInsertId();
+        $productId = $bar['pid'];
 
         // Preis & Größen
         foreach ($bar['availableSizes'] as $i => $size) {
@@ -106,4 +107,3 @@ importBars($pdo, 'Vegan.json', 'vegan');
 importBars($pdo, 'LowCarb.json', 'lowcarb');
 
 echo "Proteinriegel-Import abgeschlossen.";
-?>
