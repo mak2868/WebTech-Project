@@ -1,6 +1,7 @@
 [
     {
-        "pid": 1,
+        "cid": 3,
+        "pid": 19,
         "name": "Vegan Whey Choco",
         "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
@@ -133,7 +134,8 @@
         }
     },
     {
-        "pid": 2,
+        "cid": 3,
+        "pid": 20,
         "name": "Vegan Whey Vanilla",
         "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
@@ -264,7 +266,8 @@
         }
     },
     {
-        "pid": 3,
+        "cid": 3,
+        "pid": 21,
         "name": "Vegan Whey Banana",
         "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
@@ -391,7 +394,8 @@
         }
     },
     {
-        "pid": 4,
+        "cid": 3,
+        "pid": 22,
         "name": "Vegan Whey Strawberry",
         "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
@@ -521,7 +525,8 @@
         }
     },
     {
-        "pid": 5,
+        "cid": 3,
+        "pid": 23,
         "name": "Vegan Whey Caramel",
         "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,
@@ -652,7 +657,8 @@
         }
     },
     {
-        "pid": 6,
+        "cid": 3,
+        "pid": 24,
         "name": "Vegan Whey Hazelnut",
         "description": "Deutschlands bestes veganes Proteinpulver <br> auf Basis von Bio-Sojaprotein",
         "rating": 4.28,

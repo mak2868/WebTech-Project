@@ -20,32 +20,33 @@ try {
 }
 
 // Hilfsfunktion zum Laden und Einfügen von Produkten
-function importProducts($pdo, $filename, $proteinType) {
+function importProducts($pdo, $filename, $proteinType)
+{
     $json = file_get_contents($filename);
     $products = json_decode($json, true);
 
     foreach ($products as $product) {
         // Hauptprodukt einfügen
         $stmt = $pdo->prepare("INSERT INTO proteinpulver_products
-            (pid, name, description, rating, raters_count, status_distribution,
-             protein_type, preparation, recommendation, tip, laboratory)
+            (cid, pid, name, description, rating, raters_count, status_distribution,
+            preparation, recommendation, tip, laboratory)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         $stmt->execute([
+            $product['cid'],
             $product['pid'],
             $product['name'] ?? null,
             $product['description'] ?? null,
             $product['rating'] ?? null,
             $product['ratersCount'] ?? null,
             $product['statusDistribution'] ?? null,
-            $proteinType,
             $product['usage']['preparation'] ?? null,
             $product['usage']['recommendation'] ?? null,
             $product['usage']['tip'] ?? null,
             $product['laboratory'] ?? null
         ]);
 
-        $productId = $pdo->lastInsertId();
+        $productId =  $product['pid'];
 
         // Preis & Größen
         foreach ($product['availableSizes'] as $i => $size) {
