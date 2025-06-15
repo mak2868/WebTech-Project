@@ -111,6 +111,48 @@ function importProducts($pdo, $filename, $proteinType)
             $product['substance']['allergens'] ?? null
         ]);
 
+        // BeschreibungDetails
+        if (!empty($product['descriptionDetails'])) {
+            $detail1 = $product['descriptionDetails'][0] ?? null;
+            $detail2 = $product['descriptionDetails'][1] ?? null;
+            $stmt = $pdo->prepare("INSERT INTO proteinpulver_descriptions (product_id, detail1, detail2) VALUES (?, ?, ?)");
+            $stmt->execute([$productId, $detail1, $detail2]);
+        }
+
+        // Rezepte
+        if (!empty($product['usage']['recipes'])) {
+        foreach ($product['usage']['recipes'] as $recipe) {
+        // Rezeptdaten einfügen
+        $stmt = $pdo->prepare("INSERT INTO proteinpulver_recipes (product_id, title, short_title, portion) VALUES (?, ?, ?, ?)");
+        $stmt->execute([
+            $productId,
+            $recipe['title'] ?? null,
+            $recipe['shortTitle'] ?? null,
+            $recipe['portion'] ?? null
+        ]);
+
+        $recipeId = $pdo->lastInsertId();
+
+        // Zutaten einfügen
+        if (!empty($recipe['ingredients'])) {
+            $stmtIng = $pdo->prepare("INSERT INTO proteinpulver_recipe_ingredients (recipe_id, ingredient) VALUES (?, ?)");
+            foreach ($recipe['ingredients'] as $ingredient) {
+                $stmtIng->execute([$recipeId, $ingredient]);
+            }
+        }
+
+        // Zubereitungsschritte einfügen
+        if (!empty($recipe['preparation'])) {
+            $stmtPrep = $pdo->prepare("INSERT INTO proteinpulver_recipe_steps (recipe_id, step_number, instruction) VALUES (?, ?, ?)");
+            foreach ($recipe['preparation'] as $index => $step) {
+                $stmtPrep->execute([$recipeId, $index + 1, $step]);
+            }
+        }
+    }
+}
+
+
+
         // Bilder
         $pics = $product['pics'] ?? [];
         $stmt = $pdo->prepare("INSERT INTO proteinpulver_pictures (product_id, top_pic, product_pic1, product_pic2, product_pic3, small_pic) VALUES (?, ?, ?, ?, ?, ?)");
