@@ -8,6 +8,6 @@ class ProductController
         $produkte = ProductModel::getAllItemsOfKategory($categoryID);
 
         // View laden und Daten übergeben
-        include '../app/views/pages/item.php';
+        require_once '../app/views/pages/item.php';
     }
 }
