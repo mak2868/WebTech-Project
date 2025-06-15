@@ -29,7 +29,7 @@
 </head>
 
 <?php
-include __DIR__.'/layouts/navbar.php';
+include __DIR__ . '/../layouts/navbar.php';
 require_once '../../models/ProductModel.php';
 
 $messages = [];
