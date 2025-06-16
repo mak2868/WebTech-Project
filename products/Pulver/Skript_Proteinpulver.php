@@ -50,10 +50,14 @@ function importProducts($pdo, $filename, $proteinType)
 
         // Preis & Größen
         foreach ($product['availableSizes'] as $i => $size) {
-            $price = $product['priceWithTax'][$i];
-            $stmt = $pdo->prepare("INSERT INTO proteinpulver_sizes_prices (product_id, size, price_with_tax) VALUES (?, ?, ?)");
-            $stmt->execute([$productId, (int)$size, $price]);
+        $price = $product['priceWithTax'][$i];
+        $quantityAvailable = rand(0, 50); // zufälliger Wert zwischen 0 und 50
+
+        $stmt = $pdo->prepare("INSERT INTO proteinpulver_sizes_prices (product_id, size, price_with_tax, quantity_available) VALUES (?, ?, ?, ?)");
+    
+        $stmt->execute([$productId, (int)$size, $price, $quantityAvailable]);
         }
+
 
         // Nährwerte
         $nutrients = $product['substance']['nutrients'] ?? [];
@@ -123,7 +127,7 @@ function importProducts($pdo, $filename, $proteinType)
         if (!empty($product['usage']['recipes'])) {
         foreach ($product['usage']['recipes'] as $recipe) {
         // Rezeptdaten einfügen
-        $stmt = $pdo->prepare("INSERT INTO proteinpulver_recipes (product_id, title, short_title, portion) VALUES (?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO proteinpulver_recipes (product_id, title, short_title, `portion`) VALUES (?, ?, ?, ?)");
         $stmt->execute([
             $productId,
             $recipe['title'] ?? null,
