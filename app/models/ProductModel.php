@@ -77,7 +77,7 @@ class ProductModel
             $ingredrientTable = 'proteinpulver_ingredients';
             $aminoTable = 'proteinpulver_amino_acids';
             $sizesPricesTable = 'proteinpulver_sizes_prices';
-            $descriptionTable = null;
+            $descriptionTable = 'proteinpulver_descriptions';
         } elseif ($parentName === 'proteinriegel') {
             $productTable = 'proteinriegel_products';
             $pictureTable = 'proteinriegel_pictures';
@@ -179,28 +179,53 @@ class ProductModel
                         ];
                     }
 
-                    //     // 6. Optional: Rezepte (wenn vorhanden)
-                    //     $stmtRec = $pdo->prepare("
-                    //     SELECT title, short_title, portion, ingredients, preparation 
-                    //     FROM proteinpulver_recipes 
-                    //     WHERE product_id = ?
-                    // ");
-                    // $stmtRec->execute([$productId]);
-                    // $recipes = [];
-                    // while ($r = $stmtRec->fetch(PDO::FETCH_ASSOC)) {
-                    //     $r['ingredients'] = json_decode($r['ingredients'], true);
-                    //     $r['preparation'] = json_decode($r['preparation'], true);
-                    //     $recipes[] = $r;
-                    // }
+                     // 7. Optional: Rezepte (wenn vorhanden)
+                    $stmtRec = $pdo->prepare("
+                        SELECT id, title, short_title, `portion`
+                        FROM proteinpulver_recipes 
+                        WHERE product_id = ?
+                    ");
+                    $stmtRec->execute([$productId]);
+
+                    $recipes = [];
+
+                    while ($r = $stmtRec->fetch(PDO::FETCH_ASSOC)) {
+                        $recipeId = $r['id'];
+
+                        // Zutaten (Ingredients) abrufen
+                        $stmtIngr = $pdo->prepare("
+                            SELECT ingredient 
+                            FROM proteinpulver_recipe_ingredients 
+                            WHERE recipe_id = ?
+                            ORDER BY id ASC
+                        ");
+                        $stmtIngr->execute([$recipeId]);
+                        $r['ingredients'] = $stmtIngr->fetchAll(PDO::FETCH_COLUMN); // array of ingredients
+
+                        // Zubereitungsschritte (Preparation) abrufen
+                        $stmtPrep = $pdo->prepare("
+                            SELECT instruction 
+                            FROM proteinpulver_recipe_steps 
+                            WHERE recipe_id = ?
+                            ORDER BY step_number ASC
+                        ");
+                        $stmtPrep->execute([$recipeId]);
+                        $r['preparation'] = $stmtPrep->fetchAll(PDO::FETCH_COLUMN); // array of steps
+
+                        $recipes[] = $r;
+                    }
+
+                    // Zuweisung ans Produkt
                     $product['usage'] = [
                         'preparation' => $product['preparation'],
                         'recommendation' => $product['recommendation'],
-                        // 'recipes' => $recipes
+                        'recipes' => $recipes
                     ];
 
                     if (isset($product['tip'])) {
                         $product['usage']['tip'] = $product['tip'];
                     }
+
                 }
             }
         }

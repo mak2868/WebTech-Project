@@ -94,9 +94,9 @@ function renderItemSite(prod, lcid, pid) {
             starContainer.appendChild(canvas);
         }
     });
-    document.getElementById('ratersCount').textContent = '(' + product.ratersCount + ')';
+    document.getElementById('ratersCount').textContent = '(' + product.raters_count + ')';
 
-    // document.getElementById('description').innerHTML = product.description;
+    document.getElementById('description').innerHTML = product.description;
 
     const verpackungsgrößenButtonsContainer = document.getElementById('VerpackungsgrößenButtons');
     verpackungsgrößenButtonsContainer.innerHTML = "";
@@ -120,8 +120,8 @@ function renderItemSite(prod, lcid, pid) {
 
     document.getElementById('statusDistribution').textContent = product.statusDistribution;
 
-    // document.getElementById('descriptionDetails1').textContent = product.descriptionDetails[0];
-    // document.getElementById('descriptionDetails2').textContent = product.descriptionDetails[1];
+    document.getElementById('descriptionDetails1').textContent = product.descriptionDetails[0];
+    document.getElementById('descriptionDetails2').textContent = product.descriptionDetails[1];
 
     document.getElementById('substanceIngredients').textContent = product.substance.ingredients;
     document.getElementById('substanceAllergens').textContent = product.substance.allergens;
@@ -160,32 +160,32 @@ function renderItemSite(prod, lcid, pid) {
 
     document.getElementById('usagePreparation').textContent = product.usage.preparation;
     document.getElementById('usageRecommendation').textContent = product.usage.recommendation;
-    // if (cid < 4) {
-    //     document.getElementById('usageTip').textContent = product.usage.tip;
-    //     if (cid != 2) {
-    //         const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
-    //         recipeButtonsContainer.innerHTML = "";
-    //         for (let i = 0; i < 3; i++) {
-    //             let recipeButton = document.createElement('button');
-    //             recipeButton.textContent = product.usage.recipes[i].shortTitle;
+    if (cid < 4) {
+        document.getElementById('usageTip').textContent = product.usage.tip;
+        if (cid != 2) {
+            const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
+            recipeButtonsContainer.innerHTML = "";
+            for (let i = 0; i < 3; i++) {
+                let recipeButton = document.createElement('button');
+                recipeButton.textContent = product.usage.recipes[i].short_title;
 
-    //             recipeButton.onclick = () => switchRecipe(i);
-    //             recipeButtonsContainer.appendChild(recipeButton);
-    //         }
-    //         switchRecipe();
-    //     } else {
-    //         document.getElementById('recipePreparationHeading').style.display = 'none';
-    //         document.getElementById('recipePreparation').style.display = 'none';
-    //         document.getElementById('recipeIngredients').style.display = 'none';
-    //         document.getElementById('tipHeading').style.display = 'none';
-    //         document.getElementById('tipHeading').style.marginTop = '0rem';
-    //     }
-    // } else {
-    //     document.getElementById('recipePreparationHeading').style.display = 'none';
-    //     document.getElementById('recipePreparation').style.display = 'none';
-    //     document.getElementById('recipeIngredients').style.display = 'none';
-    //     document.getElementById('tipHeading').style.display = 'none';
-    // }
+                recipeButton.onclick = () => switchRecipe(i);
+                recipeButtonsContainer.appendChild(recipeButton);
+            }
+            switchRecipe();
+        } else {
+            document.getElementById('recipePreparationHeading').style.display = 'none';
+            document.getElementById('recipePreparation').style.display = 'none';
+            document.getElementById('recipeIngredients').style.display = 'none';
+            document.getElementById('tipHeading').style.display = 'none';
+            document.getElementById('tipHeading').style.marginTop = '0rem';
+        }
+    } else {
+        document.getElementById('recipePreparationHeading').style.display = 'none';
+        document.getElementById('recipePreparation').style.display = 'none';
+        document.getElementById('recipeIngredients').style.display = 'none';
+        document.getElementById('tipHeading').style.display = 'none';
+    }
 
     document.getElementById('laboratory').textContent = product.laboratory;
 

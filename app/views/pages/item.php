@@ -22,14 +22,14 @@
     <script src="<?= BASE_URL ?>/js/items.js" defer></script>
     <!-- <script src="<?= BASE_URL ?>/js/cart.js" defer></script> -->
     <script src="<?= BASE_URL ?>/js/wishList.js" defer></script>
-    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+    <!-- <script src="<?= BASE_URL ?>/js/navbar.js" defer></script> -->
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
 
 
 </head>
 
 <?php
-include __DIR__ . '/../layouts/navbar.php';
+// include __DIR__ . '/../layouts/navbar.php';
 require_once '../../models/ProductModel.php';
 
 $messages = [];
