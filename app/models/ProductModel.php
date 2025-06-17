@@ -4,7 +4,6 @@ require_once '../../lib/DB.php';
 class ProductModel
 {
 
-
     public static function getBestseller()
     {
         $pdo = DB::getConnection();
@@ -206,6 +205,25 @@ class ProductModel
         }
 
         return $products;
+    }
+
+    public function getProductsByType($type, $category = null) {
+
+        $pdo = DB::getConnection();
+
+        $table = $type === 'proteinriegel' ? 'proteinriegel_products' : 'proteinpulver_products';
+
+        $sql = "SELECT * FROM $table";
+        $params = [];
+
+        if ($category) {
+            $sql .= " WHERE cid = (SELECT id FROM product_categories WHERE name = ?)";
+            $params[] = $category;
+        }
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

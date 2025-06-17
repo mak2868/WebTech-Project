@@ -69,6 +69,11 @@ switch ($page) {
         $controller->about();
         break;
 
+    case 'productList':
+        $controller = new ProductController();
+        $controller->showProducts();
+        break;
+
     default:
         echo "Seite nicht gefunden.";
 }

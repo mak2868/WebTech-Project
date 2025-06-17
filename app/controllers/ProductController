@@ -11,3 +11,14 @@ class ProductController
         require_once '../app/views/pages/item.php';
     }
 }
+
+ public function showProducts() {
+        $type = $_GET['type'] ?? 'proteinpulver'; 
+        $category = $_GET['category'] ?? null;  
+
+        $model = new ProductModel();
+        $produkte = $model->getProductsByType($type, $category);
+
+        require_once '../app/views/productList.php';
+    }
+}

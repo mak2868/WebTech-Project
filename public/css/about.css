@@ -1,0 +1,23 @@
+.team-member {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 1.5rem;
+}
+
+.team-member:nth-child(even) {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5%;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+.team-member-text {
+  max-width: 600px;
+}

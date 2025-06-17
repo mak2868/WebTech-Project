@@ -15,9 +15,9 @@
             <div>Proteinpulver</div>
           </div>
           <nav class="nav-dropdown-list">
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinpulverList" class="nav-dropdown-link">Whey Protein</a>
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinpulverList" class="nav-dropdown-link">Isolat</a>
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinpulverList" class="nav-dropdown-link">Vegan</a>
+            <a href="<?= BASE_URL ?>/index.php?page=productList&type=proteinpulver&category=wheyprotein" class="nav-dropdown-link">Whey Protein</a>
+            <a href="<?= BASE_URL ?>/index.php?page=productList&type=proteinpulver&category=isolat" class="nav-dropdown-link">Isolat</a>
+            <a href="<?= BASE_URL ?>/index.php?page=productList&type=proteinpulver&category=vegan" class="nav-dropdown-link">Vegan</a>
           </nav>
         </li>
 
@@ -27,8 +27,8 @@
             <div>Proteinriegel</div>
           </div>
           <nav class="nav-dropdown-list">
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinriegelList" class="nav-dropdown-link">Vegan</a>
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinriegelList" class="nav-dropdown-link">Low Carb</a>
+            <a href="<?= BASE_URL ?>/index.php?page=productList&type=proteinriegel&category=vegan" class="nav-dropdown-link">Vegan</a>
+            <a href="<?= BASE_URL ?>/index.php?page=productList&type=proteinriegel&category=lowcarb" class="nav-dropdown-link">Low Carb</a>
           </nav>
         </li>
       </ul>
