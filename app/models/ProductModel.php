@@ -1,57 +1,57 @@
 <?php
-require_once '../../lib/DB.php';
-
+require_once __DIR__ . '/../lib/DB.php';
 class ProductModel
 {
 
 
-    public static function getBestseller()
-    {
-        $pdo = DB::getConnection();
+  public static function getBestseller()
+{
+    $pdo = DB::getConnection();
 
-        // 2 Bestseller aus Proteinpulver mit Bild und Preis
-        $stmt1 = $pdo->prepare("
-            SELECT 
-                p.id, p.name, p.description,
-                (SELECT pp.top_pic 
-                 FROM proteinpulver_pictures pp 
-                 WHERE pp.product_id = p.id 
-                 LIMIT 1) AS bild,
-                (SELECT sp.price_with_tax 
-                 FROM proteinpulver_sizes_prices sp 
-                 WHERE sp.product_id = p.id 
-                 ORDER BY sp.price_with_tax ASC 
-                 LIMIT 1) AS preis
-            FROM proteinpulver_products p
-            WHERE p.bestseller = 1
-            LIMIT 2
-        ");
-        $stmt1->execute();
-        $pulver = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+    // 2 Bestseller aus Proteinpulver
+    $stmt1 = $pdo->prepare("
+        SELECT 
+            p.pid, p.name, p.description, p.raters_count, p.rating,
+            (SELECT pp.top_pic 
+             FROM proteinpulver_pictures pp 
+             WHERE pp.product_id = p.pid 
+             LIMIT 1) AS bild,
+            sp.price_with_tax AS preis,
+            sp.size AS size
+        FROM proteinpulver_products p
+        INNER JOIN proteinpulver_sizes_prices sp ON sp.product_id = p.pid
+        WHERE sp.bestseller = 1
+        GROUP BY p.pid
+        ORDER BY sp.price_with_tax ASC
+        LIMIT 2
+    ");
+    $stmt1->execute();
+    $pulver = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-        // 2 Bestseller aus Proteinriegel mit Bild und Preis
-        $stmt2 = $pdo->prepare("
-            SELECT 
-                p.id, p.name, p.description,
-                (SELECT pp.top_pic 
-                 FROM proteinriegel_pictures pp 
-                 WHERE pp.product_id = p.id 
-                 LIMIT 1) AS bild,
-                (SELECT sp.price_with_tax 
-                 FROM proteinriegel_sizes_prices sp 
-                 WHERE sp.product_id = p.id 
-                 ORDER BY sp.price_with_tax ASC 
-                 LIMIT 1) AS preis
-            FROM proteinriegel_products p
-            WHERE p.bestseller = 1
-            LIMIT 2
-        ");
-        $stmt2->execute();
-        $riegel = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    // 2 Bestseller aus Proteinriegel
+    $stmt2 = $pdo->prepare("
+        SELECT 
+            p.pid, p.name, p.description, p.raters_count, p.rating,
+            (SELECT pp.top_pic 
+             FROM proteinriegel_pictures pp 
+             WHERE pp.product_id = p.pid 
+             LIMIT 1) AS bild,
+            sp.price_with_tax AS preis,
+            sp.size AS size
+        FROM proteinriegel_products p
+        INNER JOIN proteinriegel_sizes_prices sp ON sp.product_id = p.pid
+        WHERE sp.bestseller = 1
+        GROUP BY p.pid
+        ORDER BY sp.price_with_tax ASC
+        LIMIT 2
+    ");
+    $stmt2->execute();
+    $riegel = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-        // Zusammenführen
-        return array_merge($pulver, $riegel);
-    }
+    return array_merge($pulver, $riegel);
+}
+
+
 
     public static function getAllItemsOfKategory($categoryID)
     {

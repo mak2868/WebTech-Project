@@ -136,6 +136,13 @@
 }
 
 
+.dropdown-left-align {
+  right: 0;
+  transform: translateX(-80%);
+}
+
+
+
 /* ===== Zustände: transparent / hover / scrolled ===== */
 
 /* Normal: transparent, schwarze Schrift */
@@ -194,6 +201,11 @@ body.dark-mode .nav-dropdown-list {
   border-color: #333;
   color: white;
   box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .user-icon.logged-in::after {
+  border-color: black;
+  box-shadow: 0 0 0 1px white;
 }
 
 
@@ -259,6 +271,11 @@ body.dark-page .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
 body.dark-page .navbar.hover img,
 body.dark-page .navbar.scrolled img {
   filter: none;
+}
+
+body.dark-page.dark-mode .user-icon.logged-in::after {
+  border-color: black;
+  box-shadow: 0 0 0 1px white;
 }
 
 

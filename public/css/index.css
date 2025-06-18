@@ -249,8 +249,12 @@ h1 {
 
 .title {
   font-weight: bold;
-  margin: 0.3rem 0;
   font-size: 1.25rem;
+  margin-bottom: 0rem;
+}
+
+.size {
+  margin-bottom: 0.5rem;
 }
 
 .desc {
