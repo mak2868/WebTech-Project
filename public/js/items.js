@@ -15,7 +15,9 @@ window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 let product;
 let cid;
 let initial = true;
-
+let touchStartX = 0;
+let touchEndX = 0;
+let selectedPic;
 
 // Alles /controller
 
@@ -82,6 +84,7 @@ function renderItemSite(prod, lcid, pid) {
     }
 
     document.getElementById('pageTitle').textContent = "XPN | " + product.name;
+
     document.getElementById('name').textContent = product.name;
 
     const rating = product.rating;
@@ -96,6 +99,8 @@ function renderItemSite(prod, lcid, pid) {
         }
     });
     document.getElementById('ratersCount').textContent = '(' + product.raters_count + ')';
+
+    setPositionFirstLine();
 
     document.getElementById('description').innerHTML = product.description;
 
@@ -193,17 +198,93 @@ function renderItemSite(prod, lcid, pid) {
 
 
     const produktbildAuswahl = document.getElementById('ProduktbildAuswahl');
-    console.log('bild' , product.product_pic1);
     produktbildAuswahl.getElementsByTagName('img')[0].src = product.product_pic1;
     produktbildAuswahl.getElementsByTagName('img')[1].src = product.product_pic2;
     produktbildAuswahl.getElementsByTagName('img')[2].src = product.product_pic3;
-   
 
-    document.querySelector('#Produktbild img').src = product.product_pic1;
+
+    const activeProductPic = document.querySelector('#Produktbild img')
+    activeProductPic.src = product.product_pic1;
+    selectedPic = 0;
+    createDots();
+
+
+
+    activeProductPic.addEventListener('touchstart', function (event) {
+        touchStartX = event.changedTouches[0].screenX;
+    }, false);
+
+    activeProductPic.addEventListener('touchend', function (event) {
+        touchEndX = event.changedTouches[0].screenX;
+        handleSwipe();
+        console.log("swipe");
+    }, false);
 
     document.getElementById('klBild').src = product.small_pic;
 }
 
+function handleSwipe() {
+    const swipeThreshold = 50;
+
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Swipe nach links → nächstes Bild
+        if (selectedPic < 3) {
+            selectedPic++;
+            switchProductbild(selectedPic);
+        }
+    }
+
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // Swipe nach rechts → vorheriges Bild
+        if (selectedPic > 0) {
+            selectedPic--;
+            switchProductbild(selectedPic);
+        }
+    }
+}
+
+function createDots() {
+    const dotContainer = document.getElementById('dotContainer');
+    dotContainer.innerHTML = ''; // Alte Dots entfernen
+
+    for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === selectedPic) {
+            dot.classList.add('active');
+            console.log("aktiver dot", selectedPic);
+        }
+        dotContainer.appendChild(dot);
+    }
+}
+
+function setPositionFirstLine() {
+    console.log("ja");
+    const firstLineContainer = document.getElementById('firstLine');
+    const nameContainer = document.getElementById('name');
+    const ratingCountContainer = document.getElementById('ratersCount');
+
+    // Berechne, wie viel Platz verfügbar ist
+    const availableWidthFL = firstLineContainer.clientWidth;
+
+    // Berechne, wie viel Platz die einzelnen Elemente brauchen
+    const nameWidth = nameContainer.offsetWidth;
+    const ratingWidth = ratingCountContainer.offsetWidth;
+    console.log("RC:", ratingWidth);
+
+    // Wenn der verfügbare Platz mehr ist als die Breite der Elemente nebeneinander, dann behalte sie in einer Reihe
+    if (availableWidthFL >= (nameWidth + ratingWidth + 90)) {  // 50px Puffer für gap
+        console.log(availableWidthFL, nameWidth);
+        firstLineContainer.style.flexDirection = 'row';
+        firstLineContainer.style.alignItems = 'center';
+        firstLineContainer.style.gap = '0.5rem';
+    } else {
+        // Wenn nicht genug Platz vorhanden ist, dann die Elemente untereinander anordnen
+        firstLineContainer.style.flexDirection = 'column-reverse';
+        firstLineContainer.style.alignItems = 'flex-start';
+        firstLineContainer.style.gap = 0;
+    }
+}
 
 function createStars(rating) {
     return new Promise((resolve, reject) => {
@@ -305,7 +386,7 @@ function openPanel(activatedIndex) {
     const acc = document.querySelectorAll('#accordion');
 
     if (activatedIndex == 2) {
-        // switchRecipe(0);
+        switchRecipe(0);
     }
     const button = acc[activatedIndex];
     const panel = button.nextElementSibling;
@@ -375,9 +456,9 @@ function switchProductbild(pictureNumber) {
     const pics = document.querySelectorAll('#ProduktbildAuswahl img');
 
     const picsSrc = [
-       product.product_pic1,
-       product.product_pic2,
-       product.product_pic3
+        product.product_pic1,
+        product.product_pic2,
+        product.product_pic3
     ];
 
     let selectedPic;
@@ -398,12 +479,18 @@ function switchProductbild(pictureNumber) {
         nonSelectedPic2 = pics[1];
     }
 
-    selectedPic.style.opacity = 0.8;
-    nonSelectedPic1.style.opacity = 0.3;
-    nonSelectedPic2.style.opacity = 0.3;
+    if (selectedPic != undefined && nonSelectedPic1 != undefined && nonSelectedPic2 != undefined) {
+        selectedPic.style.opacity = 0.8;
+        nonSelectedPic1.style.opacity = 0.3;
+        nonSelectedPic2.style.opacity = 0.3;
 
-    const productPic = document.querySelector('#Produktbild img');
-    productPic.src = picsSrc[pictureNumber];
+        const productPic = document.querySelector('#Produktbild img');
+        productPic.src = picsSrc[pictureNumber];
+        createDots()
+    }
+
+
+
 }
 
 
@@ -458,3 +545,16 @@ function intermediateStepChangeWishListStatus() {
 
     changeWishListStatus(name, image, price);
 }
+
+let previousWidth = window.innerWidth;
+
+setInterval(function () {
+    const currentWidth = window.innerWidth;
+
+    if (previousWidth !== currentWidth) {
+        console.log('Fenstergröße geändert!', currentWidth);
+        previousWidth = currentWidth;
+        setPositionFirstLine();  // Deine Funktion hier aufrufen
+    }
+}, 100);  
+

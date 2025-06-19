@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title id="pageTitle"></title>
     <link id="fenstersymbol" rel="icon" type="image/png" href="">
 
@@ -143,23 +143,23 @@ if (!empty($messages)) {
     }
 }
 
-                // if (!$hasError) {
-                //     if ($json === false) {
-                //         echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-                //     } else {
-                //         // $data = json_decode($json, true);
-                //         $data = json_decode($json, true);                    
+// if (!$hasError) {
+//     if ($json === false) {
+//         echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
+//     } else {
+//         // $data = json_decode($json, true);
+//         $data = json_decode($json, true);                    
 
-                //         if ($data === null) {
-                //             echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-                //         }
-                //     }
-                // }
+//         if ($data === null) {
+//             echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
+//         }
+//     }
+// }
 
 
-                ?>
+?>
 
-              <?php if (!empty($data)): ?>
+<?php if (!empty($data)): ?>
     <script>
         const data = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE); ?>;
         console.log("Daten geladen:", data);
@@ -183,48 +183,52 @@ if (!empty($messages)) {
                     <img src="" alt="Drittes Produktbild" onclick="switchProductbild(2)">
                 </div>
                 <!-- Produktbild -->
+                <div id="dotContainer" class="dots"></div>
                 <div id='Produktbild'>
                     <img src="" alt="ausgewähltes Produktbild">
                 </div>
+            </div>
 
-                <div id='top-rigth'>
-                    <!-- Produktüberschrift -->
-                    <div id='firstLine'>
-                        <h2 id="name"></h2>
-                        <!-- Bewertungsskala -->
-                        <div id="Bewertungsskala"></div>
-                        <p id="ratersCount"></p>
-                    </div>
-                    <h4 id="description"></h4>
-                    <!-- Sortenauswahl -->
-                    <div id="select-wrapper">
-                        <p>Geschmack</p>
-                        <select id="select"></select>
-                    </div>
-
-                    <!-- Verpackungsgrößen -->
-                    <div id='Verpackungsgrößen'>
-                        <p>Verpackungsgrößen</p>
-                        <div id='VerpackungsgrößenButtons'></div>
-                    </div>
-
-                    <!-- Preis -->
-                    <div id='Preis'>
-                        <p id="priceWTax"></p>
-                        <p id="pricePerKgOutput"></p>
-                    </div>
-
-                    <!-- Versand + Favoriten-->
-                    <div id='VersandFavoriten'>
-                         <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
-                            <img src="../../../public/images/shopping-cart.png" alt="">
-                            <span>In den Warenkorb</span>
-                        </button>
-                        <img id="FavButton" onclick="intermediateStepChangeWishListStatus()" src="../../../public/images/Herz_unausgefüllt.png" alt="">
-                        <br>
-                    </div>
-                    <p id="statusDistribution"></p>
+            <div id='top-rigth'>
+                <!-- Produktüberschrift -->
+                <div id='firstLine'>
+                    <h2 id="name"></h2>
+                    <!-- Bewertungsskala -->
+                     <div id="BewertungsskalaRatersCount">
+                         <div id="Bewertungsskala"></div>
+                         <p id="ratersCount"></p>
+                     </div>
                 </div>
+                <h4 id="description"></h4>
+                <!-- Sortenauswahl -->
+                <div id="select-wrapper">
+                    <p>Geschmack</p>
+                    <select id="select"></select>
+                </div>
+
+                <!-- Verpackungsgrößen -->
+                <div id='Verpackungsgrößen'>
+                    <p>Verpackungsgrößen</p>
+                    <div id='VerpackungsgrößenButtons'></div>
+                </div>
+
+                <!-- Preis -->
+                <div id='Preis'>
+                    <p id="priceWTax"></p>
+                    <p id="pricePerKgOutput"></p>
+                </div>
+
+                <!-- Versand + Favoriten-->
+                <div id='VersandFavoriten'>
+                    <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
+                        <img src="../../../public/images/shopping-cart.png" alt="">
+                        <span>In den Warenkorb</span>
+                    </button>
+                    <img id="FavButton" onclick="intermediateStepChangeWishListStatus()"
+                        src="../../../public/images/Herz_unausgefüllt.png" alt="">
+                    <br>
+                </div>
+                <p id="statusDistribution"></p>
 
         </section>
 
