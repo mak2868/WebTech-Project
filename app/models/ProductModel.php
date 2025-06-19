@@ -140,7 +140,7 @@ class ProductModel
                     if (!empty($product['small_pic'])) {
                         $product['small_pic'] = BASE_URL . $product['small_pic'];
                     }
-                    
+
                     // 3. Zutaten und Allergene
                     if (isset($ingredrientTable) && $ingredrientTable != null) {
                         $stmtIng = $pdo->prepare("SELECT ingredients, allergens FROM $ingredrientTable WHERE product_id = ?");
@@ -169,16 +169,33 @@ class ProductModel
                     }
 
                     // 6. Verpackungsgrößen und Preise
-                    if (isset($sizesPricesTable) && $sizesPricesTable != null) {
-                        $stmtSize = $pdo->prepare("
-                SELECT size, price_with_tax 
-                FROM $sizesPricesTable 
-                WHERE product_id = ? 
-                ");
-                        $stmtSize->execute([$productId]);
-                        $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
-                        $product['availableSizes'] = array_column($sizes, 'size');
-                        $product['priceWithTax'] = array_column($sizes, 'price_with_tax');
+                    if ($parentName === 'proteinriegel') {
+                        if (isset($sizesPricesTable) && $sizesPricesTable != null) {
+                            $stmtSize = $pdo->prepare("
+                        SELECT size, price_with_tax 
+                        FROM $sizesPricesTable 
+                        WHERE product_id = ?
+                        ORDER BY CAST(size AS UNSIGNED) DESC
+                        ");
+                            $stmtSize->execute([$productId]);
+                            $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
+                            $product['availableSizes'] = array_column($sizes, 'size');
+                            $product['priceWithTax'] = array_column($sizes, 'price_with_tax');
+                        }
+                    } else {
+                        if (isset($sizesPricesTable) && $sizesPricesTable != null) {
+                            $stmtSize = $pdo->prepare("
+                        SELECT size, price_with_tax 
+                        FROM $sizesPricesTable 
+                        WHERE product_id = ?
+                        ORDER BY CAST(size AS UNSIGNED) ASC
+                        ");
+                            $stmtSize->execute([$productId]);
+                            $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
+                            $product['availableSizes'] = array_column($sizes, 'size');
+                            $product['priceWithTax'] = array_column($sizes, 'price_with_tax');
+                        }
+
                     }
 
                     // 7. Description-Details
@@ -197,7 +214,7 @@ class ProductModel
                         ];
                     }
 
-                     // 8. Optional: Rezepte (wenn vorhanden)
+                    // 8. Optional: Rezepte (wenn vorhanden)
                     $stmtRec = $pdo->prepare("
                         SELECT id, title, short_title, `portion`
                         FROM proteinpulver_recipes 
