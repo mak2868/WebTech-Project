@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XPN | Whey Protein Choco</title>
+    <title id="pageTitle"></title>
+    <link id="fenstersymbol" rel="icon" type="image/png" href="">
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
@@ -22,16 +23,27 @@
     <script src="<?= BASE_URL ?>/js/items.js" defer></script>
     <!-- <script src="<?= BASE_URL ?>/js/cart.js" defer></script> -->
     <script src="<?= BASE_URL ?>/js/wishList.js" defer></script>
-    <!-- <script src="<?= BASE_URL ?>/js/navbar.js" defer></script> -->
+    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
 
 
 </head>
 
 <?php
-// include __DIR__ . '/../layouts/navbar.php';
+include __DIR__ . '/../layouts/navbar.php';
 require_once '../../models/ProductModel.php';
+include '../../controllers/InitialController.php';
 
+$controller = new InitialController();
+$symbolData = $controller->getFenstersymbols();
+?>
+
+<script>
+    const fenstersymbolData = <?php echo json_encode($symbolData, JSON_UNESCAPED_UNICODE); ?>;
+</script>
+
+<?php
 $messages = [];
 $pid = null;
 $cid = null;
@@ -452,6 +464,7 @@ if (!empty($messages)) {
     <script defer>
         window.onload = () => {
             window.intermediateStepRenderItemSite(<?php echo json_encode($cid); ?>, <?php echo json_encode($pid); ?>);
+            initializeFenstersymbol();
         }
     </script>
     <?php include 'cartSlider.php'; ?>

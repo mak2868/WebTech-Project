@@ -81,6 +81,7 @@ function renderItemSite(prod, lcid, pid) {
         })
     }
 
+    document.getElementById('pageTitle').textContent = "XPN | " + product.name;
     document.getElementById('name').textContent = product.name;
 
     const rating = product.rating;
