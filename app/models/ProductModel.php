@@ -1,5 +1,5 @@
 <?php
-require_once '../../lib/DB.php';
+require_once '../app/lib/DB.php';
 
 class ProductModel
 {
@@ -11,7 +11,7 @@ class ProductModel
         // 2 Bestseller aus Proteinpulver mit Bild und Preis
         $stmt1 = $pdo->prepare("
             SELECT 
-                p.id, p.name, p.description,
+                p.pid, p.name, p.description,
                 (SELECT pp.top_pic 
                  FROM proteinpulver_pictures pp 
                  WHERE pp.product_id = p.id 
@@ -207,27 +207,52 @@ class ProductModel
         return $products;
     }
 
-    public function getProductsByType($type, $category = null) {
+//     public function getProductsByType($type, $category = null) {
 
-        $pdo = DB::getConnection();
+//         $pdo = DB::getConnection();
 
-        $table = $type === 'proteinriegel' ? 'proteinriegel_products' : 'proteinpulver_products';
+//         $table = $type === 'proteinriegel' ? 'proteinriegel_products' : 'proteinpulver_products';
 
-        $sql = "SELECT * FROM $table";
-        $params = [];
+//         $sql = "SELECT * FROM $table";
+//         $params = [];
 
-        if ($category) {
-            $sql .= " WHERE cid = (SELECT id FROM product_categories WHERE name = ?)";
-            $params[] = $category;
-        }
+//         if ($category) {
+//             $sql .= " WHERE cid = (SELECT id FROM product_categories WHERE name = ?)";
+//             $params[] = $category;
+//         }
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-}
+//         $stmt = $this->pdo->prepare($sql);
+//         $stmt->execute($params);
+//         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+//     }
+// }
 
 // $products = ProductModel::getAllItemsOfKategory(3); // z. B. Kategorie "Vegan Whey"
 // echo '<pre>';
 // print_r($products);
 // echo '</pre>';
+
+
+public static function getProductsByCategory($cid)
+{
+    $pdo = DB::getConnection();
+
+    $stmt = $pdo->prepare("
+        SELECT 
+            p.pid, p.name, p.description,
+            (SELECT pp.top_pic 
+             FROM proteinpulver_pictures pp 
+             WHERE pp.product_id = p.id 
+             LIMIT 1) AS bild,
+            (SELECT sp.price_with_tax 
+             FROM proteinpulver_sizes_prices sp 
+             WHERE sp.product_id = p.id 
+             ORDER BY sp.price_with_tax ASC 
+             LIMIT 1) AS preis
+            FROM proteinpulver_products p
+    ");
+
+    $stmt->execute([':cid' => $cid]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+}

@@ -10,15 +10,19 @@ class ProductController
         // View laden und Daten übergeben
         require_once '../app/views/pages/item.php';
     }
-}
 
- public function showProducts() {
-        $type = $_GET['type'] ?? 'proteinpulver'; 
-        $category = $_GET['category'] ?? null;  
 
-        $model = new ProductModel();
-        $produkte = $model->getProductsByType($type, $category);
+public function showProducts()
+{
+    $cid = $_GET['cid'] ?? null;
 
-        require_once '../app/views/productList.php';
+    if ($cid === null) {
+        echo "Keine Kategorie-ID übergeben.";
+        return;
     }
+
+    $produkte = ProductModel::getProductsByCategory($cid);
+
+    require_once '../app/views/productList.php';
+}
 }
