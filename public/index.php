@@ -1,11 +1,13 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Autoload für Controller und Models
 spl_autoload_register(function ($class) {
-    $paths = ['../app/controllers/', '../app/models/'];
+    $paths = ['app/controllers/', 'app/models/'];
     foreach ($paths as $path) {
-        $file = $path . $class . '.php';
+        $file = __DIR__ . '/../' . $path . $class . '.php';
         if (file_exists($file)) {
             require_once $file;
             return;
@@ -13,20 +15,14 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Fallback-Page, wenn keine angegeben
+// Fallback-Page
 $page = $_GET['page'] ?? 'home';
-
 
 // Routing
 switch ($page) {
     case 'home':
         $controller = new HomeController();
         $controller->index();
-        break;
-
-    case 'cart':
-        $controller = new CartController();
-        $controller->show();
         break;
 
     case 'product':
@@ -68,6 +64,26 @@ switch ($page) {
         $controller = new StaticController();
         $controller->about();
         break;
+
+    case 'cart':
+        (new CartController())->showCart(); break;
+    case 'add-cart-item':
+        (new CartController())->addItem(); break;
+    case 'get-cart':
+        (new CartController())->getCart(); break;
+    case 'update-cart-item':
+        (new CartController())->updateItem(); break;
+    case 'remove-cart-item':
+        (new CartController())->removeItem(); break;
+    case 'clear-cart':
+        (new CartController())->clearCart(); break;
+
+    case 'merge-cart':
+    (new CartController())->mergeCart();
+    break;
+
+
+
 
     default:
         echo "Seite nicht gefunden.";
