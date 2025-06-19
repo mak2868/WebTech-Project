@@ -390,16 +390,6 @@ select option {
   display: block;
 }
 
-
-/* ========== provisorisch eingefügte Bild am oberen Rand ========== */
-header img {
-  width: 100%;
-  height: 800px;
-  margin: 0;
-}
-
-
-
 /* ============================== */
 /*            Darkmode            */
 /* ============================== */

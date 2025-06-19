@@ -189,21 +189,18 @@ function renderItemSite(prod, lcid, pid) {
 
     document.getElementById('laboratory').textContent = product.laboratory;
 
-    // document.querySelector('#topPic img').src = product.topPic;
-    document.querySelector('#topPic img').src = '/WebTech-Project/public/images/Schokopulver_Top.jpg';
 
 
     const produktbildAuswahl = document.getElementById('ProduktbildAuswahl');
-    // produktbildAuswahl.getElementsByTagName('img')[0].src = product.productPic1;
-    // produktbildAuswahl.getElementsByTagName('img')[1].src = product.productPic2;
-    // produktbildAuswahl.getElementsByTagName('img')[2].src = product.productPic3;
-    produktbildAuswahl.getElementsByTagName('img')[0].src = '/WebTech-Project/public/images/Choco Whey.webp';
-    produktbildAuswahl.getElementsByTagName('img')[1].src = '/WebTech-Project/public/images/choco_whey.jpeg';
-    produktbildAuswahl.getElementsByTagName('img')[2].src = '/WebTech-Project/public/images/Choco Whey.webp';
+    console.log('bild' , product.product_pic1);
+    produktbildAuswahl.getElementsByTagName('img')[0].src = product.product_pic1;
+    produktbildAuswahl.getElementsByTagName('img')[1].src = product.product_pic2;
+    produktbildAuswahl.getElementsByTagName('img')[2].src = product.product_pic3;
+   
 
-    document.querySelector('#Produktbild img').src = '/WebTech-Project/public/images/Choco Whey.webp';
+    document.querySelector('#Produktbild img').src = product.product_pic1;
 
-    document.getElementById('klBild').src = '/WebTech-Project/public/images/choco_whey.jpeg';
+    document.getElementById('klBild').src = product.small_pic;
 }
 
 
@@ -377,9 +374,9 @@ function switchProductbild(pictureNumber) {
     const pics = document.querySelectorAll('#ProduktbildAuswahl img');
 
     const picsSrc = [
-        '/WebTech-Project/public/images/Choco Whey.webp',
-        '/WebTech-Project/public/images/choco_whey.jpeg',
-        '/WebTech-Project/public/images/Choco Whey.webp'
+       product.product_pic1,
+       product.product_pic2,
+       product.product_pic3
     ];
 
     let selectedPic;

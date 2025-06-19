@@ -162,10 +162,6 @@ if (!empty($messages)) {
 
 
 <body>
-    <div id='topPic'>
-        <img src="" alt="">
-    </div>
-
     <main style="padding-top: 80px">
         <section id='top'>
             <div id='top-left'>

@@ -1,5 +1,6 @@
 <?php
 require_once '../../lib/DB.php';
+require_once __DIR__ . '/../config/config.php';
 
 class ProductModel
 {
@@ -98,7 +99,7 @@ class ProductModel
                 p.pid, p.cid, p.name, p.description, p.rating, p.raters_count, 
                 p.status_distribution, p.preparation, p.recommendation, 
                 p.tip, p.laboratory,
-                pi.top_pic, pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
+                pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
                 FROM $productTable p
                 LEFT JOIN $pictureTable pi ON p.pid = pi.product_id
                 WHERE p.cid = :categoryID
@@ -108,7 +109,7 @@ class ProductModel
                 SELECT 
                 p.pid, p.cid, p.name, p.description, p.rating, p.raters_count, 
                 p.status_distribution, p.preparation, p.recommendation, p.laboratory,
-                pi.top_pic, pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
+                pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
                 FROM $productTable p
                 LEFT JOIN $pictureTable pi ON p.pid = pi.product_id
                 WHERE p.cid = :categoryID
@@ -123,14 +124,31 @@ class ProductModel
                 foreach ($products as &$product) {
                     $productId = $product['pid'];
 
-                    // 2. Zutaten und Allergene
+                    // 2. Bildpfad zusammensetzen (wenn vorhanden)
+                    if (!empty($product['product_pic1'])) {
+                        $product['product_pic1'] = BASE_URL . $product['product_pic1'];
+                    }
+
+                    if (!empty($product['product_pic2'])) {
+                        $product['product_pic2'] = BASE_URL . $product['product_pic2'];
+                    }
+
+                    if (!empty($product['product_pic3'])) {
+                        $product['product_pic3'] = BASE_URL . $product['product_pic3'];
+                    }
+
+                    if (!empty($product['small_pic'])) {
+                        $product['small_pic'] = BASE_URL . $product['small_pic'];
+                    }
+                    
+                    // 3. Zutaten und Allergene
                     if (isset($ingredrientTable) && $ingredrientTable != null) {
                         $stmtIng = $pdo->prepare("SELECT ingredients, allergens FROM $ingredrientTable WHERE product_id = ?");
                         $stmtIng->execute([$productId]);
                         $product['substance'] = $stmtIng->fetch(PDO::FETCH_ASSOC);
                     }
 
-                    // 3. Nährwerte
+                    // 4. Nährwerte
                     if (isset($nutrientTable) && $nutrientTable != null) {
                         $stmtNut = $pdo->prepare("
                 SELECT energy, fat, saturates, carbohydrates, sugars, fibre, protein, salt 
@@ -141,7 +159,7 @@ class ProductModel
                         $product['substance']['nutrients'] = $stmtNut->fetch(PDO::FETCH_ASSOC);
                     }
 
-                    // 4. Aminosäuren
+                    // 5. Aminosäuren
                     if (isset($aminoTable) && $aminoTable != null) {
                         $stmtAmino = $pdo->prepare("SELECT * FROM $aminoTable WHERE product_id = ?");
                         $stmtAmino->execute([$productId]);
@@ -150,7 +168,7 @@ class ProductModel
                         $product['substance']['aminoAcids'] = $aminoAcids;
                     }
 
-                    // 5. Verpackungsgrößen und Preise
+                    // 6. Verpackungsgrößen und Preise
                     if (isset($sizesPricesTable) && $sizesPricesTable != null) {
                         $stmtSize = $pdo->prepare("
                 SELECT size, price_with_tax 
@@ -163,7 +181,7 @@ class ProductModel
                         $product['priceWithTax'] = array_column($sizes, 'price_with_tax');
                     }
 
-                    // 6. Description-Details
+                    // 7. Description-Details
                     if (isset($descriptionTable) && $descriptionTable != null) {
                         $stmtDesc = $pdo->prepare("
                         SELECT detail1, detail2 
@@ -179,7 +197,7 @@ class ProductModel
                         ];
                     }
 
-                     // 7. Optional: Rezepte (wenn vorhanden)
+                     // 8. Optional: Rezepte (wenn vorhanden)
                     $stmtRec = $pdo->prepare("
                         SELECT id, title, short_title, `portion`
                         FROM proteinpulver_recipes 
