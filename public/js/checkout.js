@@ -1,50 +1,53 @@
 window.addEventListener("DOMContentLoaded", () => {
-    const isLoggedIn = window.IS_LOGGED_IN === true;
-    const cartDataInput = document.getElementById('cart_data');
-    const cartItemsContainer = document.getElementById('cartItems');
-    const cartTotalEl = document.getElementById('cartTotal');
+  const isLoggedIn = window.IS_LOGGED_IN === true;
+  const cartDataInput = document.getElementById('cart_data');
+  const cartItemsContainer = document.getElementById('cartItems');
+  const cartTotalEl = document.getElementById('cartTotal');
 
-    if (isLoggedIn) {
-        fetch("index.php?page=get-cart")
-            .then(res => res.json())
-            .then(data => {
-                let total = 0;
-                cartItemsContainer.innerHTML = "";
-                data.forEach(item => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
+  if (!cartItemsContainer || !cartTotalEl) return;
 
-                    const itemDiv = document.createElement('div');
-                    itemDiv.innerHTML = `
-            <div style="margin-bottom: 1rem;">
-              <strong>${item.product_name}</strong> (${item.size}g)<br>
-              ${item.quantity} x ${Number(item.price).toFixed(2)
-                        } € = ${itemTotal.toFixed(2)} €
-            </div>`;
-                    cartItemsContainer.appendChild(itemDiv);
-                });
+  function renderItem({ name, product_name, size, quantity, price, image }) {
+    const total = price * quantity;
+    const wrapper = document.createElement("div");
+    wrapper.className = "checkout-item";
+    wrapper.innerHTML = `
+      <div class="checkout-item-img">
+        <img src="${window.BASE_URL + image}" alt="${product_name || name}" />
+      </div>
+      <div class="checkout-item-details">
+        <div class="checkout-item-title"><strong>${product_name || name}</strong> (${size}g)</div>
+        <div class="checkout-item-info">${quantity} × ${Number(price).toFixed(2)} € = <strong>${total.toFixed(2)} €</strong></div>
+      </div>
+    `;
+    return wrapper;
+  }
 
-                cartTotalEl.textContent = total.toFixed(2) + ' €';
-                cartDataInput.value = JSON.stringify(data);
-            });
-    } else {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        let total = 0;
+  if (isLoggedIn) {
+    fetch("index.php?page=get-cart")
+      .then((res) => res.json())
+      .then((data) => {
         cartItemsContainer.innerHTML = "";
-        cart.forEach(item => {
-            const itemTotal = Number(item.price) * Number(item.quantity);
-            total += itemTotal;
+        let total = 0;
 
-            const itemDiv = document.createElement('div');
-            itemDiv.innerHTML = `
-        <div style="margin-bottom: 1rem;">
-          <strong>${item.name}</strong> (${item.size}g)<br>
-          ${item.quantity} x ${item.price.toFixed(2)} € = ${itemTotal.toFixed(2)} €
-        </div>`;
-            cartItemsContainer.appendChild(itemDiv);
+        data.forEach((item) => {
+          total += item.price * item.quantity;
+          cartItemsContainer.appendChild(renderItem(item));
         });
 
-        cartTotalEl.textContent = total.toFixed(2) + ' €';
-        cartDataInput.value = JSON.stringify(cart);
-    }
+        cartTotalEl.textContent = total.toFixed(2) + " €";
+        cartDataInput.value = JSON.stringify(data);
+      });
+  } else {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item) => {
+      total += item.price * item.quantity;
+      cartItemsContainer.appendChild(renderItem(item));
+    });
+
+    cartTotalEl.textContent = total.toFixed(2) + " €";
+    cartDataInput.value = JSON.stringify(cart);
+  }
 });

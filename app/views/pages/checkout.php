@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
 
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
@@ -51,47 +52,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/checkout.css">
+
+    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/footer.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
 
 </head>
+
 <body>
- <?php include __DIR__ . '/../layouts/navbar.php'; ?>
-<main class="checkout-container" style="display: flex; gap: 2rem; padding: 2rem;">
-    <!-- Linke Seite: Benutzerdaten -->
-    <section style="flex: 1;">
-        <h2>Lieferadresse</h2>
-        <form method="post" id="checkoutForm">
-            <label>Vorname:</label>
-            <input type="text" name="first_name" value="<?= htmlspecialchars($user['first_name'] ?? '') ?>" required><br>
-            <label>Nachname:</label>
-            <input type="text" name="last_name" value="<?= htmlspecialchars($user['last_name'] ?? '') ?>" required><br>
-            <label>Straße:</label>
-            <input type="text" name="street" value="<?= htmlspecialchars($address['street'] ?? '') ?>" required><br>
-            <label>PLZ:</label>
-            <input type="text" name="zip" value="<?= htmlspecialchars($address['postal_code'] ?? '') ?>" required><br>
-            <label>Ort:</label>
-            <input type="text" name="city" value="<?= htmlspecialchars($address['city'] ?? '') ?>" required><br>
-            <label>Land:</label>
-            <input type="text" name="country" value="<?= htmlspecialchars($address['country'] ?? 'Deutschland') ?>" required><br>
+    <?php include __DIR__ . '/../layouts/navbar.php'; ?>
+    <main class="checkout-container">
+  <!-- Linke Seite: Benutzerdaten -->
+  <section class="checkout-form">
+    <h2>Lieferung</h2>
+    <form method="post" id="checkoutForm">
+      
+      <!-- Vorname & Nachname -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vorname:</label>
+          <input type="text" name="first_name" value="<?= htmlspecialchars($user['first_name'] ?? '') ?>" required>
+        </div>
+        <div class="form-group">
+          <label>Nachname:</label>
+          <input type="text" name="last_name" value="<?= htmlspecialchars($user['last_name'] ?? '') ?>" required>
+        </div>
+      </div>
 
-            <input type="hidden" name="cart_data" id="cart_data">
-            <button type="submit" name="place_order" class="checkout-btn">Jetzt bestellen</button>
-        </form>
-    </section>
+      <!-- Straße -->
+      <div class="form-group">
+        <label>Straße:</label>
+        <input type="text" name="street" value="<?= htmlspecialchars($address['street'] ?? '') ?>" required>
+      </div>
 
-    <!-- Rechte Seite: Warenkorb -->
-    <section style="flex: 1;">
-        <h2>Dein Warenkorb</h2>
-        <div id="cartItems"></div>
-        <div style="margin-top: 1rem; font-size: 1.3rem;"><strong>Gesamt:</strong> <span id="cartTotal">0,00 €</span></div>
-    </section>
-</main>
+      <!-- PLZ & Ort -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>PLZ:</label>
+          <input type="text" name="zip" value="<?= htmlspecialchars($address['postal_code'] ?? '') ?>" required>
+        </div>
+        <div class="form-group">
+          <label>Ort:</label>
+          <input type="text" name="city" value="<?= htmlspecialchars($address['city'] ?? '') ?>" required>
+        </div>
+      </div>
 
-<script>
-  window.IS_LOGGED_IN = <?= isset($_SESSION['user']) ? 'true' : 'false' ?>;
-</script>
-<script src="js/checkout.js" defer></script>
-<?php include __DIR__ . '/../layouts/cartSlider.php'; ?>
-<?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
-<?php include __DIR__ . '/../layouts/footer.php'; ?>
+      <!-- Land -->
+      <div class="form-group">
+        <label>Land:</label>
+        <input type="text" name="country" value="<?= htmlspecialchars($address['country'] ?? 'Deutschland') ?>" required>
+      </div>
+
+      <!-- Hidden und Button -->
+      <input type="hidden" name="cart_data" id="cart_data">
+      <button type="submit" name="place_order" class="checkout-btn">Jetzt bestellen</button>
+    </form>
+  </section>
+
+        <!-- Rechte Seite: Warenkorb -->
+        <section class="checkout-summary">
+            <h2>Dein Warenkorb</h2>
+
+            <div class="promo-code">
+                <input type="text" placeholder="Rabattcode oder Gutschein" id="promoCode">
+                <button onclick="applyPromo()">Anwenden</button>
+            </div>
+
+            <div id="cartItems"></div>
+
+            <div class="summary-total">
+                Gesamt: <span id="cartTotal">0,00 €</span>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        window.IS_LOGGED_IN = <?= isset($_SESSION['user']) ? 'true' : 'false' ?>;
+    </script>
+    <script src="js/checkout.js" defer></script>
+    <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
+    <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
+
 </html>
