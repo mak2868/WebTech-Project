@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../config/config.php';
 require_once '../app/models/UserModel.php';
 require_once '../app/lib/DB.php';
 
@@ -43,12 +44,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
 <head>
     <meta charset="UTF-8">
     <title>Checkout</title>
-<link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
-<link rel="stylesheet" href="<?= BASE_URL ?>/css/checkout.css"> <!-- optional -->
-
     <script src="js/cart.js" defer></script>
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/index.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/index-darkmode.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
+
 </head>
 <body>
+ <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 <main class="checkout-container" style="display: flex; gap: 2rem; padding: 2rem;">
     <!-- Linke Seite: Benutzerdaten -->
     <section style="flex: 1;">
@@ -84,6 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
   window.IS_LOGGED_IN = <?= isset($_SESSION['user']) ? 'true' : 'false' ?>;
 </script>
 <script src="js/checkout.js" defer></script>
-
+<?php include __DIR__ . '/../layouts/cartSlider.php'; ?>
+<?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 </html>
