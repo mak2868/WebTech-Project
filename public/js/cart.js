@@ -873,7 +873,10 @@ function renderServerCart(cartItems) {
  *            Slider-Funktionen               *
  **********************************************/
 
-
+/**
+ * zuständig für die Visualisierug der cart.php Seite (Render-Funktion)
+ * @author Merzan Köse
+ */
 
 function renderCartSlider() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
