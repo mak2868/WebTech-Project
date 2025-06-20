@@ -19,7 +19,6 @@
   </div>
 
   <div class="cart-summary">
-    <div class="summary-row">Du sparst: <span id="cartSavings">0,00 €</span></div>
     <div class="summary-row total"><b>Gesamt:</b> <span id="cartTotal">0,00 €</span></div>
     <button class="checkout-btn">Jetzt kaufen</button>
   </div>

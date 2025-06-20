@@ -924,7 +924,7 @@ function renderClientCartSlider() {
                 <i class="fa-solid fa-plus"></i>
               </button>
             </div>
-            <i class="fa-solid fa-trash remove-btn" onclick="removeFromCart(${index}, true)" title="Entfernen"></i>
+           <img src="${BASE_URL}/images/removeIcon.svg" alt="Entfernen" class="remove-btn" onclick="removeFromCart(${index}, true)">
           </div>
         </div>
       </div>
@@ -970,7 +970,7 @@ function renderServerCartSlider(cartItems) {
                 <i class="fa-solid fa-plus"></i>
               </button>
             </div>
-            <i class="fa-solid fa-trash remove-btn" onclick="removeServerItem(${item.id})" title="Entfernen"></i>
+           <img src="${BASE_URL}/images/removeIcon.svg" alt="Entfernen" class="remove-btn" onclick="removeServerItem(${item.id})">
           </div>
         </div>
       </div>

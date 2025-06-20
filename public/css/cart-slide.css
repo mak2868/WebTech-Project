@@ -190,18 +190,18 @@ flex: 1; }                         /* Nimmt restlichen Platz ein */
 .checkout-btn:hover { background: #09985a; }                 /* Dunkleres Grün beim Hover */
 
 .remove-btn {
-  background: none; 
-  border: none; 
-  color: #c44;               /* Entfernen-Button rot */
-  font-size: 1.5rem; 
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
   margin-left: 1.1rem;
-  cursor: pointer; 
-  transition: color .2s;
+  transition: transform 0.2s ease;
 }
+
 .remove-btn:hover {
-  background: #f2efef;
-  color: #b21824;
+  transform: scale(1.1);
+  filter: brightness(0.8);
 }
+
 
 
 /*==== Darkmode für unseren Cartslider ====*/
@@ -219,14 +219,7 @@ body.dark-mode .header-title {
   color: #fafafa;
 }
 
-body.dark-mode .cart-promo input {
-  background: #18181b;
-  color: #fafafa;
-  border: 1px solid #292933;
-}
-body.dark-mode .cart-promo input::placeholder {
-  color: #bbb;
-}
+
 
 body.dark-mode.cart-item {
   background: #23232a;
