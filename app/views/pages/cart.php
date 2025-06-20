@@ -68,11 +68,6 @@ require_once __DIR__ . '/../../config/config.php';
       <div class="time">00:00</div>
     </div>
 
-    <div class="cart-promo">
-      <input type="text" id="promoCode" placeholder="Gutscheincode" />
-      <button onclick="applyPromo()">Anwenden</button>
-    </div>
-
     <div class="cart-container" id="cart-items">
       <!-- Inhalte werden dynamisch durch JS gerendert -->
     </div>

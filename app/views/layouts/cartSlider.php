@@ -13,10 +13,6 @@
     <i class="fa-solid fa-xmark close-icon" aria-label="Schließen"></i>
   </div>
 
-  <div class="cart-promo">
-    <input type="text" id="promoCode" placeholder="Gutscheincode" />
-    <button onclick="applyPromo()">Anwenden</button>
-  </div>
 
   <div class="cart-content">
     <div id="cartItems"></div>
