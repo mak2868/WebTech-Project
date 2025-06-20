@@ -1,0 +1,317 @@
+/* ===================== */
+/* Navbar CSS */
+/* ===================== */
+
+/* Reset nur für Navbar-Elemente */
+.navbar *,
+.navbar *::before,
+.navbar *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Grundstruktur */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  padding: 1rem 2rem;
+  background-color: transparent;
+  color: black;
+  z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.navbar-brand img {
+  height: 40px;
+  transition: filter 0.3s ease;
+}
+
+.nav-menu-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  justify-content: center;
+  background-color: transparent;
+  color: inherit;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+}
+
+.nav-dropdown-toggle div:nth-child(2) {
+  color: inherit;
+}
+
+.nav-dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 280px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: none;
+  flex-direction: column;
+  z-index: 2000;
+  color: black;
+}
+
+.nav-dropdown:hover .nav-dropdown-list {
+  display: flex;
+}
+
+.nav-dropdown-link {
+  display: flex;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.icon-container {
+  display: flex;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+.navbar-icon img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  filter: none;
+  transition: filter 0.3s ease;
+}
+
+
+.dropdown-left-align {
+  right: 0;
+  transform: translateX(-80%);
+}
+
+
+
+/* ===== Zustände: transparent / hover / scrolled ===== */
+
+/* Normal: transparent, schwarze Schrift */
+.navbar {
+  background-color: transparent;
+  color: black;
+}
+
+.navbar a,
+.navbar .nav-dropdown-toggle div:nth-child(2) {
+  color: black;
+}
+
+.navbar-icon img,
+.navbar-brand img {
+  filter: none;
+}
+
+/* Hover / Scroll */
+.navbar.hover,
+.navbar.scrolled {
+  background-color: white;
+  color: black;
+}
+
+.navbar.hover a,
+.navbar.hover .nav-dropdown-toggle div:nth-child(2),
+.navbar.scrolled a,
+.navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
+  color: black;
+}
+
+.navbar.hover img,
+.navbar.scrolled img {
+  filter: invert(0);
+}
+
+/* ===== DARKMODE ===== */
+
+body.dark-mode .navbar {
+  background-color: transparent;
+  color: white;
+}
+
+body.dark-mode .navbar a,
+body.dark-mode .nav-dropdown-toggle div:nth-child(2) {
+  color: white;
+}
+
+body.dark-mode .navbar img {
+  filter: invert(1);
+}
+
+body.dark-mode .nav-dropdown-list {
+  background: black;
+  border-color: #333;
+  color: white;
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .user-icon.logged-in::after {
+  border-color: black;
+  box-shadow: 0 0 0 1px white;
+}
+
+
+/* Darkmode Hover / Scroll */
+body.dark-mode .navbar.hover,
+body.dark-mode .navbar.scrolled {
+  background-color: black;
+  color: white;
+}
+
+body.dark-mode .navbar.hover a,
+body.dark-mode .navbar.scrolled a,
+body.dark-mode .navbar.hover .nav-dropdown-toggle div:nth-child(2),
+body.dark-mode .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
+  color: white;
+}
+
+body.dark-mode .navbar.hover img,
+body.dark-mode .navbar.scrolled img {
+  filter: invert(1);
+}
+
+
+
+
+
+
+
+/* ================================================= */
+/* Ausnahme: auf einer „dark-page“ (z.B. index.php) */
+/* ================================================= */
+
+/* 1) Grundzustand auf dark-page: weißer Text + invertierte Bilder */
+body.dark-page .navbar {
+  background-color: transparent;
+  color: white;
+}
+
+body.dark-page .navbar a,
+body.dark-page .navbar .nav-dropdown-toggle div:nth-child(2) {
+  color: white;
+}
+
+body.dark-page .navbar-icon img,
+body.dark-page .navbar-brand img {
+  filter: invert(1);
+}
+
+/* 2) Hover & Scroll auf dark-page: wie normale Seiten (weißer BG, schwarzer Text + normale Bilder) */
+body.dark-page .navbar.hover,
+body.dark-page .navbar.scrolled {
+  background-color: white;
+  color: black;
+}
+
+body.dark-page .navbar.hover a,
+body.dark-page .navbar.scrolled a,
+body.dark-page .navbar.hover .nav-dropdown-toggle div:nth-child(2),
+body.dark-page .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
+  color: black;
+}
+
+body.dark-page .navbar.hover img,
+body.dark-page .navbar.scrolled img {
+  filter: none;
+}
+
+body.dark-page.dark-mode .user-icon.logged-in::after {
+  border-color: black;
+  box-shadow: 0 0 0 1px white;
+}
+
+
+/* ===== Darkmode auf der speziellen Seite (dark-page) ===== */
+
+body.dark-page.dark-mode .navbar {
+  background-color: transparent;
+  color: white;
+}
+
+body.dark-page.dark-mode .navbar a,
+body.dark-page.dark-mode .nav-dropdown-toggle div:nth-child(2) {
+  color: white;
+}
+
+body.dark-page.dark-mode .navbar-icon img,
+body.dark-page.dark-mode .navbar-brand img {
+  filter: invert(1);
+}
+
+/* Darkmode Hover / Scroll auf dark-page */
+body.dark-page.dark-mode .navbar.hover,
+body.dark-page.dark-mode .navbar.scrolled {
+  background-color: black;
+  color: white;
+}
+
+body.dark-page.dark-mode .navbar.hover a,
+body.dark-page.dark-mode .navbar.scrolled a,
+body.dark-page.dark-mode .navbar.hover .nav-dropdown-toggle div:nth-child(2),
+body.dark-page.dark-mode .navbar.scrolled .nav-dropdown-toggle div:nth-child(2) {
+  color: white;
+}
+
+body.dark-page.dark-mode .navbar.hover img,
+body.dark-page.dark-mode .navbar.scrolled img {
+  filter: invert(1);
+}
+

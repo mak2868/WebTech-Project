@@ -1,0 +1,434 @@
+[
+    {
+        "cid": 2,
+        "pid": 13,
+        "name": "Isolat Cola",
+        "description": "Erfrischender Protein-Drink mit vollem Geschmack <br> ganz ohne cremige Konsistenz",
+        "rating": 4.85,
+        "ratersCount": 2145,
+        "availableSizes": [
+            30,
+            500,
+            2000,
+            5000
+        ],
+        "priceWithTax": [
+            2.49,
+            26.99,
+            84.99,
+            189.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Fresh, clear and full of proteins: Isolat. <br> Unser erfrischender Protein-Drink schmeckt – je nach Sorte – wie Säfte, Limonade oder Eistee. Und das ganz ohne Zucker, Fett oder Laktose! <br> Perfekt, um deine Muskeln mit hochwertigem Protein zu versorgen, deinen täglichen Bedarf spielend leicht zu decken – oder einfach, um frischen Wind in dein Protein-Game zu bringen.",
+            "Pulver zur Herstellung eines proteinreichen Getränkes mit Cola-Geschmack (mit Süßungsmitteln)"
+        ],
+        "substance": {
+            "ingredients": "Molkenproteinisolat 96 %, Aroma, Säuerungsmittel (Citronensäure), Süßungsmittel (Sucralose, Acesulfam K), Farbstoff (Anthocyane (enthält Sulfite))",
+            "allergens": "Enthält Milch und Sulfite. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1480 kJ / 348 kcal",
+                "Fat": "0 g",
+                "of which saturates": "0 g",
+                "Carbohydrates": "2.1 g",
+                "of which sugars": "0 g",
+                "Fibre": "0 g",
+                "Protein": "82 g",
+                "Salt": "0.1 g"
+            },
+            "aminoAcids": {
+                "Alanine": "5.2 g",
+                "Arginine": "1.9 g",
+                "Aspartic acid": "11 g",
+                "Cysteine": "1.7 g",
+                "Glutamic acid": "18 g",
+                "Glycine": "1.2 g",
+                "Histidine": "1.5 g",
+                "Isoleucine": "6.1 g",
+                "Leucine": "11 g",
+                "Lysine": "9.6 g",
+                "Methionine": "2.1 g",
+                "Phenylalanine": "2.8 g",
+                "Proline": "6.1 g",
+                "Serine": "4.5 g",
+                "Threonine": "7 g",
+                "Tryptophan": "1.7 g",
+                "Tyrosine": "2.6 g",
+                "Valine": "5.7 g"
+            }
+        },
+        "usage": {
+            "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker.",
+            "recommendation": "Wir empfehlen dir 1–3 Portionen Isolat pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+            "tip": "Für maximale Erfrischung leg deinen Shake für 15 min. ins Gefrierfach."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "cid": 2,
+        "pid": 14,
+        "name": "Isolat Berry",
+        "description": "Erfrischender Protein-Drink mit vollem Geschmack <br> ganz ohne cremige Konsistenz",
+        "rating": 4.68,
+        "ratersCount": 1780,
+        "availableSizes": [
+            30,
+            500,
+            2000,
+            5000
+        ],
+        "priceWithTax": [
+            2.49,
+            26.99,
+            84.99,
+            189.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Fresh, clear and full of proteins: Isolat. <br> Unser erfrischender Protein-Drink schmeckt – je nach Sorte – wie Säfte, Limonade oder Eistee. Und das ganz ohne Zucker, Fett oder Laktose! <br> Perfekt, um deine Muskeln mit hochwertigem Protein zu versorgen, deinen täglichen Bedarf spielend leicht zu decken – oder einfach, um frischen Wind in dein Protein-Game zu bringen.",
+            "Pulver zur Herstellung eines proteinreichen Getränkes mit Berry-Geschmack (mit Süßungsmitteln)"
+        ],
+        "substance": {
+            "ingredients": "Molkenproteinisolat 96 %, Aroma, Säuerungsmittel (Citronensäure), Süßungsmittel (Sucralose, Acesulfam K), Farbstoff (Anthocyane (enthält Sulfite))",
+            "allergens": "Enthält Milch und Sulfite. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1480 kJ / 348 kcal",
+                "Fat": "0 g",
+                "of which saturates": "0 g",
+                "Carbohydrates": "2.1 g",
+                "of which sugars": "0 g",
+                "Fibre": "0 g",
+                "Protein": "82 g",
+                "Salt": "0.1 g"
+            },
+            "aminoAcids": {
+                "Alanine": "5.2 g",
+                "Arginine": "1.9 g",
+                "Aspartic acid": "11 g",
+                "Cysteine": "1.7 g",
+                "Glutamic acid": "18 g",
+                "Glycine": "1.2 g",
+                "Histidine": "1.5 g",
+                "Isoleucine": "6.1 g",
+                "Leucine": "11 g",
+                "Lysine": "9.6 g",
+                "Methionine": "2.1 g",
+                "Phenylalanine": "2.8 g",
+                "Proline": "6.1 g",
+                "Serine": "4.5 g",
+                "Threonine": "7 g",
+                "Tryptophan": "1.7 g",
+                "Tyrosine": "2.6 g",
+                "Valine": "5.7 g"
+            }
+        },
+        "usage": {
+            "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker.",
+            "recommendation": "Wir empfehlen dir 1–3 Portionen Isolat pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+            "tip": "Für maximale Erfrischung leg deinen Shake für 15 min. ins Gefrierfach."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "cid": 2,
+        "pid": 15,
+        "name": "Isolat Citrus",
+        "description": "Erfrischender Protein-Drink mit vollem Geschmack <br> ganz ohne cremige Konsistenz",
+        "rating": 4.73,
+        "ratersCount": 1560,
+        "availableSizes": [
+            30,
+            500,
+            2000,
+            5000
+        ],
+        "priceWithTax": [
+            2.49,
+            26.99,
+            84.99,
+            189.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Fresh, clear and full of proteins: Isolat. <br> Unser erfrischender Protein-Drink schmeckt – je nach Sorte – wie Säfte, Limonade oder Eistee. Und das ganz ohne Zucker, Fett oder Laktose! <br> Perfekt, um deine Muskeln mit hochwertigem Protein zu versorgen, deinen täglichen Bedarf spielend leicht zu decken – oder einfach, um frischen Wind in dein Protein-Game zu bringen.",
+            "Pulver zur Herstellung eines proteinreichen Getränkes mit Citrus-Geschmack (mit Süßungsmitteln)"
+        ],
+        "substance": {
+            "ingredients": "Molkenproteinisolat 96 %, Aroma, Säuerungsmittel (Citronensäure), Süßungsmittel (Sucralose, Acesulfam K), Farbstoff (Anthocyane (enthält Sulfite))",
+            "allergens": "Enthält Milch und Sulfite. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1480 kJ / 348 kcal",
+                "Fat": "0 g",
+                "of which saturates": "0 g",
+                "Carbohydrates": "2.1 g",
+                "of which sugars": "0 g",
+                "Fibre": "0 g",
+                "Protein": "82 g",
+                "Salt": "0.1 g"
+            },
+            "aminoAcids": {
+                "Alanine": "5.2 g",
+                "Arginine": "1.9 g",
+                "Aspartic acid": "11 g",
+                "Cysteine": "1.7 g",
+                "Glutamic acid": "18 g",
+                "Glycine": "1.2 g",
+                "Histidine": "1.5 g",
+                "Isoleucine": "6.1 g",
+                "Leucine": "11 g",
+                "Lysine": "9.6 g",
+                "Methionine": "2.1 g",
+                "Phenylalanine": "2.8 g",
+                "Proline": "6.1 g",
+                "Serine": "4.5 g",
+                "Threonine": "7 g",
+                "Tryptophan": "1.7 g",
+                "Tyrosine": "2.6 g",
+                "Valine": "5.7 g"
+            }
+        },
+        "usage": {
+            "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker.",
+            "recommendation": "Wir empfehlen dir 1–3 Portionen Isolat pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+            "tip": "Für maximale Erfrischung leg deinen Shake für 15 min. ins Gefrierfach."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "cid": 2,
+        "pid": 16,
+        "name": "Isolat Beer",
+        "description": "Erfrischender Protein-Drink mit vollem Geschmack <br> ganz ohne cremige Konsistenz",
+        "rating": 4.33,
+        "ratersCount": 987,
+        "availableSizes": [
+            30,
+            500,
+            2000,
+            5000
+        ],
+        "priceWithTax": [
+            2.49,
+            26.99,
+            84.99,
+            189.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Fresh, clear and full of proteins: Isolat. <br> Unser erfrischender Protein-Drink schmeckt – je nach Sorte – wie Säfte, Limonade oder Eistee. Und das ganz ohne Zucker, Fett oder Laktose! <br> Perfekt, um deine Muskeln mit hochwertigem Protein zu versorgen, deinen täglichen Bedarf spielend leicht zu decken – oder einfach, um frischen Wind in dein Protein-Game zu bringen.",
+            "Pulver zur Herstellung eines proteinreichen Getränkes mit Beer-Geschmack (mit Süßungsmitteln, alkoholfrei)"
+        ],
+        "substance": {
+            "ingredients": "Molkenproteinisolat 96 %, Aroma, Säuerungsmittel (Citronensäure), Süßungsmittel (Sucralose, Acesulfam K), Farbstoff (Anthocyane (enthält Sulfite))",
+            "allergens": "Enthält Milch und Sulfite. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1480 kJ / 348 kcal",
+                "Fat": "0 g",
+                "of which saturates": "0 g",
+                "Carbohydrates": "2.1 g",
+                "of which sugars": "0 g",
+                "Fibre": "0 g",
+                "Protein": "82 g",
+                "Salt": "0.1 g"
+            },
+            "aminoAcids": {
+                "Alanine": "5.2 g",
+                "Arginine": "1.9 g",
+                "Aspartic acid": "11 g",
+                "Cysteine": "1.7 g",
+                "Glutamic acid": "18 g",
+                "Glycine": "1.2 g",
+                "Histidine": "1.5 g",
+                "Isoleucine": "6.1 g",
+                "Leucine": "11 g",
+                "Lysine": "9.6 g",
+                "Methionine": "2.1 g",
+                "Phenylalanine": "2.8 g",
+                "Proline": "6.1 g",
+                "Serine": "4.5 g",
+                "Threonine": "7 g",
+                "Tryptophan": "1.7 g",
+                "Tyrosine": "2.6 g",
+                "Valine": "5.7 g"
+            }
+        },
+        "usage": {
+            "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker.",
+            "recommendation": "Wir empfehlen dir 1–3 Portionen Isolat pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+            "tip": "Für maximale Erfrischung leg deinen Shake für 15 min. ins Gefrierfach."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "cid": 2,
+        "pid": 17,
+        "name": "Isolat Tropic",
+        "description": "Erfrischender Protein-Drink mit vollem Geschmack <br> ganz ohne cremige Konsistenz",
+        "rating": 4.50,
+        "ratersCount": 875,
+        "availableSizes": [
+            30,
+            500,
+            2000,
+            5000
+        ],
+        "priceWithTax": [
+            2.49,
+            26.99,
+            84.99,
+            189.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Fresh, clear and full of proteins: Isolat. <br> Unser erfrischender Protein-Drink schmeckt – je nach Sorte – wie Säfte, Limonade oder Eistee. Und das ganz ohne Zucker, Fett oder Laktose! <br> Perfekt, um deine Muskeln mit hochwertigem Protein zu versorgen, deinen täglichen Bedarf spielend leicht zu decken – oder einfach, um frischen Wind in dein Protein-Game zu bringen.",
+            "Pulver zur Herstellung eines proteinreichen Getränkes mit tropischem Fruchtmix (mit Süßungsmitteln, alkoholfrei)"
+        ],
+        "substance": {
+            "ingredients": "Molkenproteinisolat 96 %, Aroma, Säuerungsmittel (Citronensäure), Süßungsmittel (Sucralose, Acesulfam K), Farbstoff (Anthocyane (enthält Sulfite))",
+            "allergens": "Enthält Milch und Sulfite. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1480 kJ / 348 kcal",
+                "Fat": "0 g",
+                "of which saturates": "0 g",
+                "Carbohydrates": "2.1 g",
+                "of which sugars": "0 g",
+                "Fibre": "0 g",
+                "Protein": "82 g",
+                "Salt": "0.1 g"
+            },
+            "aminoAcids": {
+                "Alanine": "5.2 g",
+                "Arginine": "1.9 g",
+                "Aspartic acid": "11 g",
+                "Cysteine": "1.7 g",
+                "Glutamic acid": "18 g",
+                "Glycine": "1.2 g",
+                "Histidine": "1.5 g",
+                "Isoleucine": "6.1 g",
+                "Leucine": "11 g",
+                "Lysine": "9.6 g",
+                "Methionine": "2.1 g",
+                "Phenylalanine": "2.8 g",
+                "Proline": "6.1 g",
+                "Serine": "4.5 g",
+                "Threonine": "7 g",
+                "Tryptophan": "1.7 g",
+                "Tyrosine": "2.6 g",
+                "Valine": "5.7 g"
+            }
+        },
+        "usage": {
+            "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker.",
+            "recommendation": "Wir empfehlen dir 1–3 Portionen Isolat pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+            "tip": "Für maximale Erfrischung leg deinen Shake für 15 min. ins Gefrierfach."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    },
+    {
+        "cid": 2,
+        "pid": 18,
+        "name": "Isolat Cherry",
+        "description": "Erfrischender Protein-Drink mit vollem Geschmack <br> ganz ohne cremige Konsistenz",
+        "rating": 4.40,
+        "ratersCount": 910,
+        "availableSizes": [
+            30,
+            500,
+            2000,
+            5000
+        ],
+        "priceWithTax": [
+            2.49,
+            26.99,
+            84.99,
+            189.99
+        ],
+        "statusDistribution": "Sofort verfügbar, Lieferzeit 2-4 Werktage",
+        "descriptionDetails": [
+            "Fresh, clear and full of proteins: Isolat. <br> Unser erfrischender Protein-Drink schmeckt – je nach Sorte – wie Säfte, Limonade oder Eistee. Und das ganz ohne Zucker, Fett oder Laktose! <br> Perfekt, um deine Muskeln mit hochwertigem Protein zu versorgen, deinen täglichen Bedarf spielend leicht zu decken – oder einfach, um frischen Wind in dein Protein-Game zu bringen.",
+            "Pulver zur Herstellung eines proteinreichen Getränkes mit Kirsch-Geschmack (mit Süßungsmitteln, alkoholfrei)"
+        ],
+        "substance": {
+            "ingredients": "Molkenproteinisolat 96 %, Aroma, Säuerungsmittel (Citronensäure), Süßungsmittel (Sucralose, Acesulfam K), Farbstoff (Anthocyane (enthält Sulfite))",
+            "allergens": "Enthält Milch und Sulfite. Kann Spuren von Gluten, Ei und Schalenfrüchten enthalten.",
+            "nutrients": {
+                "Energy": "1480 kJ / 348 kcal",
+                "Fat": "0 g",
+                "of which saturates": "0 g",
+                "Carbohydrates": "2.1 g",
+                "of which sugars": "0 g",
+                "Fibre": "0 g",
+                "Protein": "82 g",
+                "Salt": "0.1 g"
+            },
+            "aminoAcids": {
+                "Alanine": "5.2 g",
+                "Arginine": "1.9 g",
+                "Aspartic acid": "11 g",
+                "Cysteine": "1.7 g",
+                "Glutamic acid": "18 g",
+                "Glycine": "1.2 g",
+                "Histidine": "1.5 g",
+                "Isoleucine": "6.1 g",
+                "Leucine": "11 g",
+                "Lysine": "9.6 g",
+                "Methionine": "2.1 g",
+                "Phenylalanine": "2.8 g",
+                "Proline": "6.1 g",
+                "Serine": "4.5 g",
+                "Threonine": "7 g",
+                "Tryptophan": "1.7 g",
+                "Tyrosine": "2.6 g",
+                "Valine": "5.7 g"
+            }
+        },
+        "usage": {
+            "preparation": "Für eine Portion mixt du 30 g Pulver mit 200 ml Wasser in einem Shaker.",
+            "recommendation": "Wir empfehlen dir 1–3 Portionen Isolat pro Tag, z. B. nach dem Aufstehen, nach dem oder während des Trainings oder einfach zwischendurch.",
+            "tip": "Für maximale Erfrischung leg deinen Shake für 15 min. ins Gefrierfach."
+        },
+        "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
+        "pics": {
+            "topPic": "images/Schokopulver_Top.jpg",
+            "productPic1": "images/Choco Whey.webp",
+            "productPic2": "images/choco_whey.jpeg",
+            "productPic3": "images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "images/choco_whey.jpeg"
+        }
+    }
+]

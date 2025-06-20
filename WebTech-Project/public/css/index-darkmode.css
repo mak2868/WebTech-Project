@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+body.dark-mode .logo {
+    filter: invert(1);
+}
+
+body.dark-mode .logo-section {
+    background-color: black;
+}
+
+body.dark-mode .banner-section {
+    background-color: black;
+}
+
+body.dark-mode .banner-container {
+    border: 2px solid white;
+}
+
+body.dark-mode .reviews {
+    color: white;
+}

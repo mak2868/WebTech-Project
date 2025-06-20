@@ -36,12 +36,6 @@ require_once __DIR__ . '/../../config/config.php';
         renderCart();
       }
     });
-
-    function goToCheckout() {
-  window.location.href = "index.php?page=checkout";
-}
-
-    
   </script>
 </head>
 
@@ -60,7 +54,7 @@ require_once __DIR__ . '/../../config/config.php';
           <img src="<?= BASE_URL ?>/images/removeIcon.svg" alt="Alle Produkte entfernen">
         </button>
       <?php endif; ?>
-    <button class="checkout-btn" onclick="goToCheckout()">Zur Kasse</button>
+      <button class="checkout-btn">Zur Kasse</button>
     </div>
 
     <div class="timerSection">
