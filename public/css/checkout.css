@@ -199,10 +199,6 @@ body.dark-mode .checkout-item-info {  /* färbt die Anzahl der einzelnen Produkt
   color: #fff;
 }
 
-.checkout-summary {
-  flex: 1;
-  min-height: auto;
-}
 
 footer {
   margin-top: 2rem;

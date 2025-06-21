@@ -89,7 +89,7 @@ switch ($page) {
         break;
 
     case 'checkout':
-        (new CheckoutController())->checkout();
+        (new CheckoutController())->showcheckout();
         break;
 
     case 'apply-coupon':
@@ -97,7 +97,7 @@ switch ($page) {
         break;
 
     case 'set-cart-total':
-    (new CouponController())->setCartTotal();
+    (new CheckoutController())->setCartTotal();
     break;
 
     case 'place-order':

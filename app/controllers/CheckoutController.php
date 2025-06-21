@@ -1,110 +1,117 @@
 <?php
+require_once __DIR__ . '/../lib/db.php';
 class CheckoutController
 {
-    public function checkout()
+    public function showCheckout()
     {
+        $message = null;
+
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
         if (!isset($_SESSION['user'])) {
-            header('Location: index.php?page=login&redirect=checkout');
+            header("Location: index.php?page=login&redirect=checkout");
             exit;
         }
 
-        $user = $_SESSION['user'];
-        $address = UserModel::getUserAddressByUserId($user['id']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_coupon'])) {
+            $code = trim($_POST['couponCode'] ?? '');
+            if ($code !== '') {
+                $db = DB::getConnection();
+                $stmt = $db->prepare("SELECT * FROM coupons WHERE code = :code AND (valid_until IS NULL OR valid_until >= NOW())");
+                $stmt->execute(['code' => $code]);
+                $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        require '../app/views/pages/checkout.php';
+                if ($coupon) {
+                    $_SESSION['coupon'] = [
+                        'code' => $coupon['code'],
+                        'type' => $coupon['discount_type'],
+                        'value' => (float) $coupon['discount_value']
+                    ];
+                  
+                } else {
+                    unset($_SESSION['coupon']);
+                    $message = "Fehler";
+                }
+            }
+        }
+
+        $userId = $_SESSION['user']['id'];
+        $user = UserModel::getUserById($userId);
+        $cartItems = CartModel::getCartItems($userId);
+        $coupon = $_SESSION['coupon'] ?? null;
+        $address = UserModel::getUserAddressByUserId($userId);
+
+        require __DIR__ . '/../views/pages/checkout.php';
+    }
+
+    public function applyCoupon()
+    {
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+
+        $data = json_decode(file_get_contents("php://input"), true);
+        $code = trim($data['code'] ?? '');
+
+        if ($code) {
+            $db = DB::getConnection();
+            $stmt = $db->prepare("SELECT * FROM coupons WHERE code = :code AND (valid_until IS NULL OR valid_until >= NOW())");
+            $stmt->execute(['code' => $code]);
+            $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($coupon) {
+                $_SESSION['coupon'] = [
+                    'code' => $coupon['code'],
+                    'type' => $coupon['discount_type'],
+                    'value' => (float) $coupon['discount_value']
+                ];
+                echo json_encode(['success' => true]);
+            } else {
+                unset($_SESSION['coupon']);
+                echo json_encode(['success' => false, 'message' => 'Ungültiger Gutscheincode.']);
+            }
+        }
+    }
+
+    public function setCartTotal()
+    {
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+        $data = json_decode(file_get_contents("php://input"), true);
+        $_SESSION['cart_total'] = $data['total'] ?? 0;
+
+        echo json_encode(['success' => true]);
     }
 
     public function placeOrder()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user'])) {
-            header('Location: index.php?page=checkout&error=1');
-            exit;
-        }
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
 
-        require_once '../app/lib/DB.php';
-        $db = DB::getConnection();
+        if (!isset($_SESSION['user'])) {
+            echo json_encode(['success' => false, 'message' => 'Nicht eingeloggt.']);
+            return;
+        }
 
         $userId = $_SESSION['user']['id'];
-        $cart = json_decode($_POST['cart_data'] ?? '[]', true);
+        $cart = json_decode(file_get_contents("php://input"), true);
 
-        if (!is_array($cart) || count($cart) === 0) {
-            header('Location: index.php?page=checkout&error=emptycart');
-            exit;
+        if (!$cart || !is_array($cart)) {
+            echo json_encode(['success' => false, 'message' => 'Warenkorb ist leer oder ungültig.']);
+            return;
         }
 
-        $totalBeforeDiscount = array_sum(array_map(function ($item) {
-            return $item['price'] * $item['quantity'];
-        }, $cart));
+        require_once __DIR__ . '/../models/CheckoutModel.php';
+        $coupon = $_SESSION['coupon'] ?? null;
+        $total = CheckoutModel::calculateTotal($cart, $coupon);
 
-        $discount = 0;
-        $couponCode = null;
+        require_once __DIR__ . '/../models/OrderModel.php';
+        $orderId = OrderModel::createOrder($userId, $cart, $total, $coupon);
 
-        if (!empty($_SESSION['coupon'])) {
-            $coupon = $_SESSION['coupon'];
-            $couponCode = $coupon['code'];
-
-            switch ($coupon['type']) {
-                case 'percent':
-                    $discount = $totalBeforeDiscount * $coupon['value'] / 100;
-                    break;
-                case 'fixed':
-                    $discount = $coupon['value'];
-                    break;
-            }
-        }
-
-        $total = max(0, $totalBeforeDiscount - $discount);
-
-        // Adresse holen
-        $address = UserModel::getUserAddressByUserId($userId);
-        if (!$address || empty($address['id'])) {
-            header('Location: index.php?page=checkout&error=noaddress');
-            exit;
-        }
-
-        // Bestellung speichern
-        $stmt = $db->prepare("
-            INSERT INTO orders 
-                (user_id, order_date, status, total, shipping_address_id, coupon_code, discount)
-            VALUES 
-                (?, NOW(), 'offen', ?, ?, ?, ?)
-        ");
-        $stmt->execute([$userId, $total, $address['id'], $couponCode, $discount]);
-
-        $orderId = $db->lastInsertId();
-
-        // Produkte speichern
-        $stmtItem = $db->prepare("
-            INSERT INTO order_items 
-                (order_id, product_type, product_id, quantity, price) 
-            VALUES (?, ?, ?, ?, ?)
-        ");
-
-        foreach ($cart as $item) {
-            $stmtItem->execute([
-                $orderId,
-                $item['type'] ?? 'product',
-                $item['id'],
-                $item['quantity'],
-                $item['price']
-            ]);
-        }
-
-        // Statushistorie speichern
-        $stmtStatus = $db->prepare("
-            INSERT INTO order_status_history 
-                (order_id, status, changed_at) 
-            VALUES (?, 'offen', NOW())
-        ");
-        $stmtStatus->execute([$orderId]);
-
+        CartModel::clearCart($userId);
         unset($_SESSION['coupon']);
 
-        header('Location: index.php?page=profile&success=1');
-        exit;
+        echo json_encode(['success' => true, 'order_id' => $orderId]);
     }
 }

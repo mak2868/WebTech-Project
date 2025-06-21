@@ -1,78 +1,11 @@
 <?php
+
 require_once __DIR__ . '/../../config/config.php';
-require_once '../app/models/UserModel.php';
-require_once '../app/lib/DB.php';
 
-// Weiterleitung zur Login-Seite, wenn nicht eingeloggt
-if (!isset($_SESSION['user'])) {
-  header('Location: index.php?page=login&redirect=checkout');
-  exit;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();  // Nur wenn noch keine Sitzung läuft
 }
-
-$cartIsEmpty = empty($_POST['cart_data']) || json_decode($_POST['cart_data'], true) === [];
-
-if ($cartIsEmpty && isset($_SESSION['coupon'])) {
-    unset($_SESSION['coupon']);
-}
-
-// Gutschein anwenden (vor Bestellabschickung)
-$message = null;
-$totalBeforeDiscount = 0;
-$discount = 0;
-$couponCode = null;
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_coupon'])) {
-  $code = trim($_POST['couponCode'] ?? '');
-
-  if ($code) {
-    $db = DB::getConnection();
-    $stmt = $db->prepare("SELECT * FROM coupons WHERE code = :code AND (valid_until IS NULL OR valid_until >= NOW())");
-    $stmt->execute(['code' => $code]);
-    $coupon = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($coupon) {
-      $_SESSION['coupon'] = [
-        'code' => $coupon['code'],
-        'type' => $coupon['discount_type'],
-        'value' => (float) $coupon['discount_value']
-      ];
-      
-    } else {
-      unset($_SESSION['coupon']);
-      $message = "Fehler";
-    }
-  }
-}
-
-
-$user = $_SESSION['user'];
-$userId = $user['id'];
-$address = UserModel::getUserAddressByUserId($userId);
-
-// Bestellung abschicken
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
-  $db = DB::getConnection();
-  $cart = json_decode($_POST['cart_data'], true);
-  $total = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
-
-  // Bestellung speichern
-  $stmt = $db->prepare("INSERT INTO orders (user_id, order_date, status, total, shipping_address_id) VALUES (?, NOW(), 'offen', ?, ?)");
-  $stmt->execute([$userId, $total, $address['id']]);
-  $orderId = $db->lastInsertId();
-
-  // Einzelne Produkte speichern
-  $stmtItem = $db->prepare("INSERT INTO order_items (order_id, product_type, product_id, quantity, price) VALUES (?, ?, ?, ?, ?)");
-  foreach ($cart as $item) {
-    $stmtItem->execute([$orderId, $item['type'], $item['id'], $item['quantity'], $item['price']]);
-  }
-
-  // Statusverlauf speichern
-  $stmtStatus = $db->prepare("INSERT INTO order_status_history (order_id, status, changed_at) VALUES (?, 'offen', NOW())");
-  $stmtStatus->execute([$orderId]);
-
-  echo '<div class="success">Bestellung erfolgreich! <a href="index.php">Zur Startseite</a></div>';
-  exit;
-}
+$coupon = $_SESSION['coupon'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -94,9 +27,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
   <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
   <script src="<?= BASE_URL ?>/js/footer.js" defer></script>
   <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
-  <script>
-  window.SESSION_COUPON = <?= isset($_SESSION['coupon']) ? json_encode($_SESSION['coupon']) : 'null' ?>;
+
+<script>
+  window.SESSION_COUPON = <?= json_encode($_SESSION['coupon'] ?? null) ?>;
 </script>
+
+
+
+
+  <script>
+    window.SESSION_COUPON = <?= json_encode($coupon ?? null) ?>;
+  </script>
+
 
 
 </head>
@@ -176,6 +118,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
       }
       ?>
 
+      <div class="summary-savings" id="cartSavings"></div>
+
       <div class="summary-total">
         Gesamt: <span id="cartTotal">0,00 €</span>
       </div>
@@ -191,3 +135,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
 </body>
 
 </html>
+
+
