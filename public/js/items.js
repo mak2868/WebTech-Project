@@ -23,20 +23,24 @@ let selectedPic;
 
 
 
-function intermediateStepRenderItemSite(cid, pid) {
-    console.log("cid: ", cid, "pid: ", pid);
-    if (isNaN(cid) && isNaN(pid) || cid == null && pid == null) {
-        console.error("Parameter error (cat + pid): " + cid + ", " + pid);
+function intermediateStepRenderItemSite(parentID, cid, pid, idInData) {
+    console.log("cid: ", cid, "pid: ", pid, "parentID:", parentID);
+
+    if ((isNaN(cid) && isNaN(pid) && isNaN(parentID)) || (cid == null && pid == null && parentID == null)) {
+        console.error("Parameter error (cid + pid + parentID):", cid, pid, parentID);
     } else if (isNaN(cid) || cid == null) {
-        console.error("Parameter error: " + cid);
+        console.error("Parameter error (cid): " + cid);
     } else if (isNaN(pid) || pid == null) {
-        console.error("Parameter error: " + pid);
+        console.error("Parameter error (pid): " + pid);
+    } else if (isNaN(parentID) || parentID == null) {
+        console.error("Parameter error (parentID): " + parentID);
     } else {
-        renderItemSite(data[pid - 1], cid, pid);
+        renderItemSite(data[idInData], cid, pid, parentID, idInData);
     }
+
 }
 
-function renderItemSite(prod, lcid, pid) {
+function renderItemSite(prod, lcid, pid, parentID, idInData) {
 
     console.log(prod);
     console.log(lcid);
@@ -45,7 +49,13 @@ function renderItemSite(prod, lcid, pid) {
     product = prod;
     cid = lcid;
 
-    history.pushState({ cid: cid, pid: pid }, '', '?cid=' + encodeURIComponent(cid) + '&pid=' + encodeURIComponent(pid));
+    history.pushState(
+        { cid: cid, pid: pid, parentID: parentID },
+        '',
+        '?parent=' + encodeURIComponent(parentID) +
+        '&cid=' + encodeURIComponent(cid) +
+        '&pid=' + encodeURIComponent(pid)
+    );
 
     if (initial) {
         initial = false;
@@ -61,22 +71,23 @@ function renderItemSite(prod, lcid, pid) {
             } else {
                 productShortName = productName.split(" ").pop();
             }
+            console.log("psn: ", productShortName);
             selectItem.textContent = productShortName;
 
             selectBox.appendChild(selectItem);
         }
 
-        selectBox.selectedIndex = (pid - 1);
+        selectBox.selectedIndex = (idInData);
 
         select.addEventListener('change', e => {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].name.includes(e.target.value)) {
                     if (e.target.value == "Choco") {
-                        renderItemSite(data[0], cid, data[0].pid);
+                        renderItemSite(data[0], cid, data[0].pid, parentID, idInData);
                     } else if (e.target.value == "White Choco") {
-                        renderItemSite(data[11], cid, data[11].pid);
+                        renderItemSite(data[11], cid, data[11].pid, parentID, idInData);
                     } else {
-                        renderItemSite(data[i], cid, data[i].pid);
+                        renderItemSite(data[i], cid, data[i].pid, parentID, idInData);
                     }
                 }
             }
@@ -556,5 +567,5 @@ setInterval(function () {
         previousWidth = currentWidth;
         setPositionFirstLine();  // Deine Funktion hier aufrufen
     }
-}, 100);  
+}, 100);
 

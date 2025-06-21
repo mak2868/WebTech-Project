@@ -267,9 +267,76 @@ class ProductModel
 
         return $products;
     }
+
+    public static function getAllParentIDs()
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("
+            SELECT id FROM product_parent_categories
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllCids($parentID)
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("
+            SELECT id FROM product_categories WHERE parent_id = ?
+        ");
+        $stmt->execute([$parentID]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllPidsOfOneCids($parentID, $categoryID)
+    {
+        $pdo = DB::getConnection();
+
+        $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($parentID);
+        $tablePrefix = strtolower($tablePrefixArray[0]['name']);
+
+        $table = $tablePrefix . "_products";
+        // return ($tablePrefix . "_products");
+
+
+        $stmt = $pdo->prepare("
+            SELECT pid FROM $table WHERE cid = ?
+        ");
+        $stmt->execute([$categoryID]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getParentCategoryNameFromParentID($parentID)
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("
+            SELECT name FROM product_parent_categories WHERE id = ?
+        ");
+        $stmt->execute([$parentID]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 // $products = ProductModel::getAllItemsOfKategory(3); // z. B. Kategorie "Vegan Whey"
 // echo '<pre>';
 // print_r($products);
+// echo '</pre>';
+
+// $cids = ProductModel::getAllCids();
+// echo '<pre>';
+// print_r($cids);
+// echo '</pre>';
+
+// $pids = ProductModel::getAllPidsOfOneCids(2, 4);
+// echo '<pre>';
+// print_r($pids);
+// echo '</pre>';
+
+// $parentids = ProductModel::getAllParentIDs();
+// echo '<pre>';
+// print_r($parentids);
 // echo '</pre>';

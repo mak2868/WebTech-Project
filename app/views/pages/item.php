@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/items.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+    <!-- <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css"> -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
 
@@ -23,7 +23,7 @@
     <script src="<?= BASE_URL ?>/js/items.js" defer></script>
     <!-- <script src="<?= BASE_URL ?>/js/cart.js" defer></script> -->
     <script src="<?= BASE_URL ?>/js/wishList.js" defer></script>
-    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+    <!-- <script src="<?= BASE_URL ?>/js/navbar.js" defer></script> -->
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
 
@@ -31,7 +31,7 @@
 </head>
 
 <?php
-include __DIR__ . '/../layouts/navbar.php';
+// include __DIR__ . '/../layouts/navbar.php';
 require_once '../../models/ProductModel.php';
 include '../../controllers/InitialController.php';
 
@@ -45,20 +45,21 @@ $symbolData = $controller->getFenstersymbols();
 
 <?php
 $messages = [];
-$pid = null;
+$parentID = null;
 $cid = null;
+$pid = null;
+$idInData = null;
 $json = null;
-$path = null;
 $hasError = false;
 
-if (isset($_GET["pid"])) {
-    if (trim($_GET["pid"]) === '') {
-        $messages[] = 'Der Parameter "pid" wurde übergeben, ist aber leer.';
+if (isset($_GET["parent"])) {
+    if (trim($_GET["parent"]) === '') {
+        $messages[] = 'Der Parameter "parent" wurde übergeben, ist aber leer.';
     } else {
-        $pid = $_GET["pid"];
+        $parentID = $_GET["parent"];
     }
 } else {
-    $messages[] = 'Der Parameter "pid" fehlt vollständig.';
+    $messages[] = 'Der Parameter "parent" fehlt vollständig.';
 }
 
 if (isset($_GET["cid"])) {
@@ -71,91 +72,75 @@ if (isset($_GET["cid"])) {
     $messages[] = 'Der Parameter "cid" fehlt vollständig.';
 }
 
+if (isset($_GET["pid"])) {
+    if (trim($_GET["pid"]) === '') {
+        $messages[] = 'Der Parameter "pid" wurde übergeben, ist aber leer.';
+    } else {
+        $pid = $_GET["pid"];
+    }
+} else {
+    $messages[] = 'Der Parameter "pid" fehlt vollständig.';
+}
+
+
 if (!empty($messages)) {
     $hasError = true;
     foreach ($messages as $msg) {
         echo '<script>console.log(' . json_encode($msg) . ');</script>';
     }
 } else {
-    switch ($cid) {
-        case 1:
-            if ($pid >= 1 && $pid <= 12) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Pulver/WheyProteins.json";
-            } else {
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 1 (WheyProteins)") . ");</script>";
-            }
-            break;
 
-        case 2:
-            if ($pid >= 1 && $pid <= 6) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Pulver/Isolat.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 2 (Isolat).") . ");</script>";
-            }
-            break;
 
-        case 3:
-            if ($pid >= 1 && $pid <= 6) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Pulver/Vegan.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 3 (Vegan Pulver).") . ");</script>";
-            }
-            break;
+    $allCorrectParentIDs = ProductModel::getAllParentIDs();
 
-        case 4:
-            if ($pid >= 1 && $pid <= 6) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Riegel/Proteinriegel.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 4 (Proteinriegel).") . ");</script>";
-            }
-            break;
+    $wrongParentID = true;
 
-        case 5:
-            if ($pid >= 1 && $pid <= 3) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Riegel/LowCarb.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 5 (LowCarb).") . ");</script>";
-            }
+    for ($i = 0; $i < count($allCorrectParentIDs); $i++) {
+        if ($parentID == $allCorrectParentIDs[$i]['id']) {
+            $wrongParentID = false;
             break;
+        }
+    }
 
-        case 6:
-            if ($pid >= 1 && $pid <= 3) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Riegel/Vegan.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 6 (Riegel Vegan).") . ");</script>";
+    if ($wrongParentID) {
+        echo "<script>console.log(" . json_encode("Ungültige Parent-Kategorie.") . ");</script>";
+    } else {
+        $allCorrectCIDs = ProductModel::getAllCids($parentID);
+
+        $wrongCID = true;
+
+        for ($i = 0; $i < count($allCorrectCIDs); $i++) {
+            if ($cid == $allCorrectCIDs[$i]['id']) {
+                $wrongCID = false;
+                break;
             }
-            break;
+        }
 
-        default:
-            $json = false;
-            echo "<script>console.log(" . json_encode("Ungültige Kategorie.") . ");</script>";
+        if ($wrongCID) {
+            echo "<script>console.log(" . json_encode("Ungültige Kategorie für die angegebene parent-id.") . ");</script>";
+        } else {
+            $allCorrectPIDs = ProductModel::getAllPidsOfOneCids($parentID, $cid);
+
+            $wrongPID = true;
+
+            for ($i = 0; $i < count($allCorrectPIDs); $i++) {
+                if ($pid == $allCorrectPIDs[$i]['pid']) {
+                    $wrongPID = false;
+                    $idInData = $i;
+                    break;
+                }
+            }
+
+            if ($wrongPID) {
+                echo "<script>console.log(" . json_encode("Ungültige pid für die angegebene cid") . ");</script>";
+            }
+        }
+
+        if (!$wrongParentID && !$wrongCID && !$wrongPID) {
+            $data = ProductModel::getAllItemsOfKategory($cid);
+        }
     }
 }
-
-// if (!$hasError) {
-//     if ($json === false) {
-//         echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-//     } else {
-//         // $data = json_decode($json, true);
-//         $data = json_decode($json, true);                    
-
-//         if ($data === null) {
-//             echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-//         }
-//     }
-// }
-
 
 ?>
 
@@ -194,10 +179,10 @@ if (!empty($messages)) {
                 <div id='firstLine'>
                     <h2 id="name"></h2>
                     <!-- Bewertungsskala -->
-                     <div id="BewertungsskalaRatersCount">
-                         <div id="Bewertungsskala"></div>
-                         <p id="ratersCount"></p>
-                     </div>
+                    <div id="BewertungsskalaRatersCount">
+                        <div id="Bewertungsskala"></div>
+                        <p id="ratersCount"></p>
+                    </div>
                 </div>
                 <h4 id="description"></h4>
                 <!-- Sortenauswahl -->
@@ -467,7 +452,7 @@ if (!empty($messages)) {
 
     <script defer>
         window.onload = () => {
-            window.intermediateStepRenderItemSite(<?php echo json_encode($cid); ?>, <?php echo json_encode($pid); ?>);
+            window.intermediateStepRenderItemSite(<?php echo json_encode($parentID); ?>, <?php echo json_encode($cid); ?>, <?php echo json_encode($pid); ?>, <?php echo json_encode($idInData); ?>);
             initializeFenstersymbol();
         }
     </script>
