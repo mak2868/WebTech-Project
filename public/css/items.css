@@ -240,11 +240,15 @@ select option {
   background-color: var(--color-button-selected);
 }
 
-#VerpackungsgrößenButtons button:not(.active):hover {
+#VerpackungsgrößenButtons button:not(.active):not(.notAvailable):hover {
   background-color: var(--color-button-hover);
   border: 2px solid var(--color-button-hover);
 }
 
+#VerpackungsgrößenButtons button.notAvailable {
+  background-color: var(--color-button-hover);
+  text-decoration: line-through;
+}
 
 /* ========== PRICES ========== */
 #Preis #priceWTax {
@@ -512,9 +516,14 @@ body.dark-mode #VerpackungsgrößenButtons button.active {
   background-color: var(--color-button-selected);
 }
 
-body.dark-mode #VerpackungsgrößenButtons button:not(.active):hover {
+body.dark-mode #VerpackungsgrößenButtons button:not(.active):not(.notAvailable):hover {
   background-color: var(--color-button-hover);
   border: 2px solid var(--color-button-hover);
+}
+
+body.dark-mode #VerpackungsgrößenButtons button.notAvailable {
+  background-color: var(--color-button-hover);
+  text-decoration: line-through;
 }
 
 body.dark-mode #VersandButton {

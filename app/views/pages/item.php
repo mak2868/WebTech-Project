@@ -15,15 +15,15 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/items.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
-    <!-- <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css"> -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
 
     <!-- JS -->
     <script src="<?= BASE_URL ?>/js/items.js" defer></script>
-    <!-- <script src="<?= BASE_URL ?>/js/cart.js" defer></script> -->
+    <script src="<?= BASE_URL ?>/js/cart.js" defer></script>
     <script src="<?= BASE_URL ?>/js/wishList.js" defer></script>
-    <!-- <script src="<?= BASE_URL ?>/js/navbar.js" defer></script> -->
+    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
 
@@ -31,7 +31,7 @@
 </head>
 
 <?php
-// include __DIR__ . '/../layouts/navbar.php';
+include __DIR__ . '/../layouts/navbar.php';
 require_once '../../models/ProductModel.php';
 include '../../controllers/InitialController.php';
 

@@ -117,13 +117,18 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
 
     const verpackungsgrößenButtonsContainer = document.getElementById('VerpackungsgrößenButtons');
     verpackungsgrößenButtonsContainer.innerHTML = "";
-    for (let i = 0; i < product.availableSizes.length; i++) {
+    for (let i = 0; i < product.sizes.length; i++) {
         let button = document.createElement('button');
-        button.textContent = product.availableSizes[i] + 'g';
+        button.textContent = product.sizes[i] + 'g';
 
-        if (product.availableSizes[i] == 500 || product.availableSizes[i] == 45) {
+        if (product.sizes[i] == 500 || product.sizes[i] == 45) {
             button.classList.add('active');
         }
+
+        if (product.quantityPerSize[i] === 0) {
+            button.classList.add('notAvailable');
+        }
+
         button.onclick = () => changeSelectedSize(button);
         verpackungsgrößenButtonsContainer.appendChild(button);
     }
@@ -510,8 +515,8 @@ function getTotalPrice() {
     let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
     let buttonContent = selectedButton.textContent.slice(0, -1);
     let index;
-    for (let i = 0; i < product.availableSizes.length; i++) {
-        if (buttonContent == product.availableSizes[i]) {
+    for (let i = 0; i < product.sizes.length; i++) {
+        if (buttonContent == product.sizes[i]) {
             index = i;
             break;
         }
@@ -537,14 +542,16 @@ function getPricePerKG(price, totalWeight) {
 
 function changeSelectedSize(selctedButton) {
     const allButtons = document.querySelectorAll('#VerpackungsgrößenButtons button');
-    allButtons.forEach(btn => btn.classList.remove('active'));
-    selctedButton.classList.add('active');
+    if (!selectedButton.classList.contains('notAvailable')) {
+        allButtons.forEach(btn => btn.classList.remove('active'));
+        selctedButton.classList.add('active');
 
-    const priceWTax = getTotalPrice();
-    document.getElementById("priceWTax").textContent = priceWTax + '€';
-    const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent);
-    if (pricePerKG !== undefined) {
-        document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
+        const priceWTax = getTotalPrice();
+        document.getElementById("priceWTax").textContent = priceWTax + '€';
+        const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent);
+        if (pricePerKG !== undefined) {
+            document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
+        }
     }
 }
 

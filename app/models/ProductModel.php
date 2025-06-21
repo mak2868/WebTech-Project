@@ -219,28 +219,30 @@ LIMIT 1
                     if ($parentName === 'proteinriegel') {
                         if (isset($sizesPricesTable) && $sizesPricesTable != null) {
                             $stmtSize = $pdo->prepare("
-                        SELECT size, price_with_tax 
+                        SELECT size, price_with_tax, quantity_available
                         FROM $sizesPricesTable 
                         WHERE product_id = ?
                         ORDER BY CAST(size AS UNSIGNED) DESC
                         ");
                             $stmtSize->execute([$productId]);
                             $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
-                            $product['availableSizes'] = array_column($sizes, 'size');
-                            $product['priceWithTax'] = array_column($sizes, 'price_with_tax');
+                            $product['sizes'] = array_column($sizes, 'size');
+                            $product['quantityPerSize'] = array_column($sizes, 'quantity_available');
+                            $product['priceWithTax'] = array_column($sizes, column_key: 'price_with_tax');
                         }
                     } else {
                         if (isset($sizesPricesTable) && $sizesPricesTable != null) {
                             $stmtSize = $pdo->prepare("
-                        SELECT size, price_with_tax 
+                        SELECT size, price_with_tax, quantity_available 
                         FROM $sizesPricesTable 
                         WHERE product_id = ?
                         ORDER BY CAST(size AS UNSIGNED) ASC
                         ");
                             $stmtSize->execute([$productId]);
                             $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
-                            $product['availableSizes'] = array_column($sizes, 'size');
-                            $product['priceWithTax'] = array_column($sizes, 'price_with_tax');
+                            $product['sizes'] = array_column($sizes, 'size');
+                            $product['quantityPerSize'] = array_column($sizes, 'quantity_available');
+                            $product['priceWithTax'] = array_column($sizes, column_key: 'price_with_tax');
                         }
 
                     }
