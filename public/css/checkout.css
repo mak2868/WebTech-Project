@@ -117,7 +117,7 @@
 }
 
 .promo-code button {
-  background: #111;
+  background:  #16b36a;
   color: white;
   border: none;
   padding: 0.7rem 1.3rem;
@@ -127,7 +127,7 @@
 }
 
 .promo-code button:hover {
-  background: #16b36a;
+  background:  #09985a;
 }
 
 /* ========== Dark Mode Anpassung ========== */
@@ -195,11 +195,9 @@ body.dark-mode .promo-code button:hover {
   font-weight: bold;
 }
 
-.checkout-item-info {
-  font-size: 0.9rem;
-  color: #333;
+body.dark-mode .checkout-item-info {  /* färbt die Anzahl der einzelnen Produkte und preise weis */
+  color: #fff;
 }
-
 
 .checkout-summary {
   flex: 1;
@@ -230,4 +228,18 @@ footer {
   .form-row {
     flex-direction: column;
   }
+}
+
+body.dark-mode .promo-code button {
+  background: #f4c15d; 
+  color: #111;
+}
+
+body.dark-mode .promo-code button:hover {
+  background: white; 
+}
+
+body.dark-mode .qty {
+  color: #fff;
+  font-weight: bold;
 }

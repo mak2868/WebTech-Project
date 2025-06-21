@@ -89,12 +89,15 @@ switch ($page) {
         break;
 
     case 'checkout':
-        (new OrderController())->checkout();
+        (new CheckoutController())->checkout();
         break;
 
-    case 'place-order':
-        (new OrderController())->placeOrder();
+    case 'apply-coupon':
+        (new CouponController())->apply();
         break;
+
+
+
 
 
 

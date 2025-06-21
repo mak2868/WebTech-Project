@@ -1,5 +1,5 @@
 <?php
-class OrderController
+class CheckoutController
 {
     public function checkout()
     {
@@ -26,10 +26,29 @@ class OrderController
             $userId = $_SESSION['user']['id'];
             $cart = json_decode($_POST['cart_data'], true);
 
-            $total = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
+            $totalBeforeDiscount = array_sum(array_map(fn($item) => $item['price'] * $item['quantity'], $cart));
+            $discount = 0;
+            $couponCode = null;
 
-            $stmt = $db->prepare("INSERT INTO orders (user_id, order_date, status, total, shipping_address_id) VALUES (?, NOW(), 'offen', ?, ?)");
-            $stmt->execute([$userId, $total, $_POST['address_id']]);
+            if (isset($_SESSION['coupon'])) {
+                $coupon = $_SESSION['coupon'];
+                $couponCode = $coupon['code'];
+
+                switch ($coupon['type']) {
+                    case 'percentage':
+                        $discount = $totalBeforeDiscount * $coupon['value'] / 100;
+                        break;
+                    case 'fixed':
+                        $discount = $coupon['value'];
+                        break;
+                }
+            }
+
+            $total = max(0, $totalBeforeDiscount - $discount);
+
+            $stmt = $db->prepare("INSERT INTO orders (user_id, order_date, status, total, shipping_address_id, coupon_code) VALUES (?, NOW(), 'offen', ?, ?, ?)");
+            $stmt->execute([$userId, $total, $_POST['address_id'], $couponCode]);
+
             $orderId = $db->lastInsertId();
 
             $stmtItem = $db->prepare("INSERT INTO order_items (order_id, product_type, product_id, quantity, price) VALUES (?, ?, ?, ?, ?)");
@@ -40,6 +59,9 @@ class OrderController
             $stmtStatus = $db->prepare("INSERT INTO order_status_history (order_id, status, changed_at) VALUES (?, 'offen', NOW())");
             $stmtStatus->execute([$orderId]);
 
+            // Optional: Coupon aus Session löschen
+            unset($_SESSION['coupon']);
+
             header('Location: index.php?page=profile&success=1');
             exit;
         } else {
@@ -47,6 +69,7 @@ class OrderController
             exit;
         }
     }
+
 }
 
 
