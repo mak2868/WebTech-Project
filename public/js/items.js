@@ -24,8 +24,6 @@ let selectedPic;
 
 
 function intermediateStepRenderItemSite(parentID, cid, pid, idInData) {
-    console.log("cid: ", cid, "pid: ", pid, "parentID:", parentID);
-
     if ((isNaN(cid) && isNaN(pid) && isNaN(parentID)) || (cid == null && pid == null && parentID == null)) {
         console.error("Parameter error (cid + pid + parentID):", cid, pid, parentID);
     } else if (isNaN(cid) || cid == null) {
@@ -41,11 +39,6 @@ function intermediateStepRenderItemSite(parentID, cid, pid, idInData) {
 }
 
 function renderItemSite(prod, lcid, pid, parentID, idInData) {
-
-    console.log(prod);
-    console.log(lcid);
-    console.log(pid);
-
     product = prod;
     cid = lcid;
 
@@ -62,7 +55,6 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
         let selectBox = document.getElementById('select');
         for (let i = 0; i < data.length; i++) {
             const selectItem = document.createElement('option');
-            console.log(data);
             const productName = data[i].name;
 
             let productShortName;
@@ -71,7 +63,6 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
             } else {
                 productShortName = productName.split(" ").pop();
             }
-            console.log("psn: ", productShortName);
             selectItem.textContent = productShortName;
 
             selectBox.appendChild(selectItem);
@@ -233,7 +224,6 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
     activeProductPic.addEventListener('touchend', function (event) {
         touchEndX = event.changedTouches[0].screenX;
         handleSwipe();
-        console.log("swipe");
     }, false);
 
     document.getElementById('klBild').src = product.small_pic;
@@ -268,14 +258,12 @@ function createDots() {
         dot.classList.add('dot');
         if (i === selectedPic) {
             dot.classList.add('active');
-            console.log("aktiver dot", selectedPic);
         }
         dotContainer.appendChild(dot);
     }
 }
 
 function setPositionFirstLine() {
-    console.log("ja");
     const firstLineContainer = document.getElementById('firstLine');
     const nameContainer = document.getElementById('name');
     const ratingCountContainer = document.getElementById('ratersCount');
@@ -286,11 +274,9 @@ function setPositionFirstLine() {
     // Berechne, wie viel Platz die einzelnen Elemente brauchen
     const nameWidth = nameContainer.offsetWidth;
     const ratingWidth = ratingCountContainer.offsetWidth;
-    console.log("RC:", ratingWidth);
 
     // Wenn der verfügbare Platz mehr ist als die Breite der Elemente nebeneinander, dann behalte sie in einer Reihe
     if (availableWidthFL >= (nameWidth + ratingWidth + 90)) {  // 50px Puffer für gap
-        console.log(availableWidthFL, nameWidth);
         firstLineContainer.style.flexDirection = 'row';
         firstLineContainer.style.alignItems = 'center';
         firstLineContainer.style.gap = '0.5rem';
@@ -570,7 +556,6 @@ setInterval(function () {
     const currentWidth = window.innerWidth;
 
     if (previousWidth !== currentWidth) {
-        console.log('Fenstergröße geändert!', currentWidth);
         previousWidth = currentWidth;
         setPositionFirstLine();  // Deine Funktion hier aufrufen
     }
