@@ -10,48 +10,102 @@ class ProductModel
     {
         $pdo = DB::getConnection();
 
+        $allParentIDs = ProductModel::getAllParentIDs();
+        $results = [];
+        $usedProductIDs = []; // <--- IDs merken
+
+        if (!empty($allParentIDs)) {
+            for ($i = 0; $i < 4; $i++) {
+                $newProduct = false;
+                do {
+                    $randomKey = array_rand($allParentIDs);
+                    $randomParentID = $allParentIDs[$randomKey]['id'];
+
+                    $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($randomParentID);
+                    $tablePrefix = strtolower($tablePrefixArray[0]['name']);
+
+                    $tablePics = $tablePrefix . "_pictures";
+                    $tableSizesPrices = $tablePrefix . "_sizes_prices";
+                    $tableProducts = $tablePrefix . "_products";
+
+                    $sql = "
+           SELECT 
+    p.pid, p.name, p.description,
+    (SELECT pp.product_pic1
+     FROM $tablePics pp 
+     WHERE pp.product_id = p.pid 
+     LIMIT 1) AS bild,
+    (SELECT sp.price_with_tax 
+     FROM $tableSizesPrices sp 
+     WHERE sp.product_id = p.pid 
+       AND sp.bestseller = 1
+     ORDER BY sp.price_with_tax ASC 
+     LIMIT 1) AS preis
+FROM $tableProducts p
+ORDER BY RAND()
+LIMIT 1
+
+            ";
+
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute();
+                    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    // Prüfen, ob Produkt gültig und noch nicht verwendet
+                    if ($product && !in_array($product['pid'], $usedProductIDs)) {
+                        $usedProductIDs[] = $product['pid'];
+                        $results[] = $product;
+                        $newProduct = true;
+                    }
+
+                } while (!$newProduct);
+            }
+        }
+
+        return $results;
+
         // 2 Bestseller aus Proteinpulver mit Bild und Preis
-        $stmt1 = $pdo->prepare("
-            SELECT 
-                p.id, p.name, p.description,
-                (SELECT pp.top_pic 
-                 FROM proteinpulver_pictures pp 
-                 WHERE pp.product_id = p.id 
-                 LIMIT 1) AS bild,
-                (SELECT sp.price_with_tax 
-                 FROM proteinpulver_sizes_prices sp 
-                 WHERE sp.product_id = p.id 
-                 ORDER BY sp.price_with_tax ASC 
-                 LIMIT 1) AS preis
-            FROM proteinpulver_products p
-            WHERE p.bestseller = 1
-            LIMIT 2
-        ");
-        $stmt1->execute();
-        $pulver = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+        //     $stmt1 = $pdo->prepare("
+        //         SELECT 
+        //             p.id, p.name, p.description,
+        //             (SELECT pp.top_pic 
+        //              FROM proteinpulver_pictures pp 
+        //              WHERE pp.product_id = p.id 
+        //              LIMIT 1) AS bild,
+        //             (SELECT sp.price_with_tax 
+        //              FROM proteinpulver_sizes_prices sp 
+        //              WHERE sp.product_id = p.id 
+        //              ORDER BY sp.price_with_tax ASC 
+        //              LIMIT 1) AS preis
+        //         FROM proteinpulver_products p
+        //         WHERE p.bestseller = 1
+        //         LIMIT 2
+        //     ");
+        //     $stmt1->execute();
+        //     $pulver = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
-        // 2 Bestseller aus Proteinriegel mit Bild und Preis
-        $stmt2 = $pdo->prepare("
-            SELECT 
-                p.id, p.name, p.description,
-                (SELECT pp.top_pic 
-                 FROM proteinriegel_pictures pp 
-                 WHERE pp.product_id = p.id 
-                 LIMIT 1) AS bild,
-                (SELECT sp.price_with_tax 
-                 FROM proteinriegel_sizes_prices sp 
-                 WHERE sp.product_id = p.id 
-                 ORDER BY sp.price_with_tax ASC 
-                 LIMIT 1) AS preis
-            FROM proteinriegel_products p
-            WHERE p.bestseller = 1
-            LIMIT 2
-        ");
-        $stmt2->execute();
-        $riegel = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        //     // 2 Bestseller aus Proteinriegel mit Bild und Preis
+        //     $stmt2 = $pdo->prepare("
+        //         SELECT 
+        //             p.id, p.name, p.description,
+        //             (SELECT pp.top_pic 
+        //              FROM proteinriegel_pictures pp 
+        //              WHERE pp.product_id = p.id 
+        //              LIMIT 1) AS bild,
+        //             (SELECT sp.price_with_tax 
+        //              FROM proteinriegel_sizes_prices sp 
+        //              WHERE sp.product_id = p.id 
+        //              ORDER BY sp.price_with_tax ASC 
+        //              LIMIT 1) AS preis
+        //         FROM proteinriegel_products p
+        //         WHERE p.bestseller = 1
+        //         LIMIT 2
+        //     ");
+        //     $stmt2->execute();
+        //     $riegel = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
-        // Zusammenführen
-        return array_merge($pulver, $riegel);
+        //    // Zusammenführen
+        //     return array_merge($pulver, $riegel);
     }
 
     public static function getAllItemsOfKategory($categoryID)
@@ -71,25 +125,18 @@ class ProductModel
         $parentName = strtolower($typeRow['parent_name']); // z. B. 'proteinpulver' oder 'proteinriegel'
 
         // Passende Tabellennamen definieren
-        if ($parentName === 'proteinpulver') {
-            $productTable = 'proteinpulver_products';
-            $pictureTable = 'proteinpulver_pictures';
-            $nutrientTable = 'proteinpulver_nutrients';
-            $ingredrientTable = 'proteinpulver_ingredients';
-            $aminoTable = 'proteinpulver_amino_acids';
-            $sizesPricesTable = 'proteinpulver_sizes_prices';
-            $descriptionTable = 'proteinpulver_descriptions';
-        } elseif ($parentName === 'proteinriegel') {
-            $productTable = 'proteinriegel_products';
-            $pictureTable = 'proteinriegel_pictures';
-            $nutrientTable = 'proteinriegel_nutrients';
-            $ingredrientTable = 'proteinriegel_ingredients';
+
+        $productTable = $parentName . '_products';
+        $pictureTable = $parentName . '_pictures';
+        $nutrientTable = $parentName . '_nutrients';
+        $ingredrientTable = $parentName . '_ingredients';
+        $aminoTable = $parentName . '_amino_acids';
+        if (!ProductModel::tableExists($pdo, $aminoTable)) {
             $aminoTable = null;
-            $sizesPricesTable = 'proteinriegel_sizes_prices';
-            $descriptionTable = 'proteinriegel_descriptions';
-        } else {
-            throw new Exception("Unbekannter Produkttyp: $parentName");
         }
+        $sizesPricesTable = $parentName . '_sizes_prices';
+        $descriptionTable = $parentName . '_descriptions';
+
 
         // 1. Produkte aus Kategorie laden
         if (isset($productTable) && $productTable != null) {
@@ -104,7 +151,7 @@ class ProductModel
                 LEFT JOIN $pictureTable pi ON p.pid = pi.product_id
                 WHERE p.cid = :categoryID
                 ");
-            } else if ($parentName === 'proteinriegel') {
+            } else {
                 $stmt = $pdo->prepare("
                 SELECT 
                 p.pid, p.cid, p.name, p.description, p.rating, p.raters_count, 
@@ -319,6 +366,23 @@ class ProductModel
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function tableExists(PDO $pdo, string $tableName): bool
+    {
+        $stmt = $pdo->prepare("
+        SELECT COUNT(*) 
+        FROM INFORMATION_SCHEMA.TABLES 
+        WHERE TABLE_SCHEMA = :db 
+          AND TABLE_NAME = :table
+    ");
+        $stmt->execute([
+            ':db' => $pdo->query("SELECT DATABASE()")->fetchColumn(),
+            ':table' => $tableName
+        ]);
+
+        return $stmt->fetchColumn() > 0;
+    }
+
 }
 
 // $products = ProductModel::getAllItemsOfKategory(3); // z. B. Kategorie "Vegan Whey"
@@ -339,4 +403,9 @@ class ProductModel
 // $parentids = ProductModel::getAllParentIDs();
 // echo '<pre>';
 // print_r($parentids);
+// echo '</pre>';
+
+// $bestseller = ProductModel::getBestseller();
+// echo '<pre>';
+// print_r($bestseller);
 // echo '</pre>';
