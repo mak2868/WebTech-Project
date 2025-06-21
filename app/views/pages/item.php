@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
 
+
     <!-- JS -->
     <script src="<?= BASE_URL ?>/js/items.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cart.js" defer></script>
@@ -26,6 +27,7 @@
     <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
+
 
 
 </head>

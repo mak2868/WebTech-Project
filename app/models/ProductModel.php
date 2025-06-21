@@ -6,9 +6,9 @@ class ProductModel
 {
 
 
-    public static function getBestseller()
-    {
-        $pdo = DB::getConnection();
+  public static function getBestseller()
+{
+    $pdo = DB::getConnection();
 
         $allParentIDs = ProductModel::getAllParentIDs();
         $results = [];

@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="components/Navbar/navbar_transparent.css">
   <link rel="stylesheet" href="components/Footer/footer.css">
   <link rel="stylesheet" href="style/cookieBanner.css">
+
+
+
   <script src="components/Navbar/navbar.js" defer></script>
   <script src="js/cart.js"></script>
   <script src="js/items.js" defer></script>
