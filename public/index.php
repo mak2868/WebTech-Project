@@ -96,6 +96,14 @@ switch ($page) {
         (new CouponController())->apply();
         break;
 
+    case 'set-cart-total':
+    (new CouponController())->setCartTotal();
+    break;
+
+    case 'place-order':
+    (new CheckoutController())->placeOrder();
+    break;
+
 
 
 

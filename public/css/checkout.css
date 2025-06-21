@@ -243,3 +243,11 @@ body.dark-mode .qty {
   color: #fff;
   font-weight: bold;
 }
+
+.summary-savings {
+  color: black; 
+}
+
+body.dark-mode .summary-savings{
+  color: white;
+}

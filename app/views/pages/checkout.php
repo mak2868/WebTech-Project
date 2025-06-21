@@ -94,6 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
   <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
   <script src="<?= BASE_URL ?>/js/footer.js" defer></script>
   <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
+  <script>
+  window.SESSION_COUPON = <?= isset($_SESSION['coupon']) ? json_encode($_SESSION['coupon']) : 'null' ?>;
+</script>
+
 
 </head>
 
@@ -159,7 +163,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
           </p>
         <?php endif; ?>
 
-        <input type="text" name="couponCode" placeholder="Gutscheincode" required>
+        <input type="text" name="couponCode" placeholder="Gutscheincode">
         <button type="submit" name="apply_coupon">Anwenden</button>
       </form>
 
