@@ -50,8 +50,9 @@ function importBars($pdo, $filename, $barType)
         // Preis & Größen
         foreach ($bar['availableSizes'] as $i => $size) {
             $price = $bar['priceWithTax'][$i];
-            $stmt = $pdo->prepare("INSERT INTO proteinriegel_sizes_prices (product_id, size, price_with_tax) VALUES (?, ?, ?)");
-            $stmt->execute([$productId, $size, $price]);
+            $quantityAvailable = rand(0, 50); // zufälliger Wert zwischen 0 und 50
+            $stmt = $pdo->prepare("INSERT INTO proteinriegel_sizes_prices (product_id, size, price_with_tax, quantity_available) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$productId, $size, $price, $quantityAvailable]);
         }
 
         // Nährwerte
