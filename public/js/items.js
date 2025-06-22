@@ -18,6 +18,8 @@ let initial = true;
 let touchStartX = 0;
 let touchEndX = 0;
 let selectedPic;
+let picProductNotOnListSrc = null;
+let picProductOnListSrc = null;
 
 // Alles /controller
 
@@ -131,6 +133,12 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
     if (pricePerKG !== undefined) {
         document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
     }
+
+    document.getElementById('VersandButtonImg').src = product.shopping_cart;
+
+    picProductNotOnListSrc = product.Herz_unausgefuellt;
+    picProductOnListSrc = product.Herz_ausgefuellt;
+    document.getElementById('FavButton').src = product.Herz_unausgefuellt;
 
     document.getElementById('statusDistribution').textContent = product.statusDistribution;
 

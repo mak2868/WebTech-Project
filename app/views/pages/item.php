@@ -95,11 +95,11 @@ include __DIR__ . '/../layouts/navbar.php';
                 <!-- Versand + Favoriten-->
                 <div id='VersandFavoriten'>
                     <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
-                        <img src="../public/images/shopping-cart.png" alt="">
+                        <img id="VersandButtonImg" src="" alt="">
                         <span>In den Warenkorb</span>
                     </button>
                     <img id="FavButton" onclick="intermediateStepChangeWishListStatus()"
-                        src="../public/images/Herz_unausgefüllt.png" alt="">
+                        src="" alt="">
                     <br>
                 </div>
                 <p id="statusDistribution"></p>

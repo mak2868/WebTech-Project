@@ -273,6 +273,22 @@ class ProductModel
                     }
 
                 }
+                //Bilder laden 
+                $stmtPic = $pdo->prepare(
+                    'SELECT shopping_cart, Herz_unausgefuellt, Herz_ausgefuellt FROM pictures;'
+                );
+                $stmtPic->execute();
+                $pictures = $stmtPic->fetchAll(PDO::FETCH_ASSOC);
+
+                // Bilder zu jedem Produkt hinzufügen
+                foreach ($products as &$product) {  // Mit Referenz arbeiten
+                    // Alle Bilder zuweisen
+                    $product['shopping_cart'] = !empty($pictures[0]['shopping_cart']) ? BASE_URL . $pictures[0]['shopping_cart'] : '';
+                    $product['Herz_unausgefuellt'] = !empty($pictures[0]['Herz_unausgefuellt']) ? BASE_URL . $pictures[0]['Herz_unausgefuellt'] : '';
+                    $product['Herz_ausgefuellt'] = !empty($pictures[0]['Herz_ausgefuellt']) ? BASE_URL . $pictures[0]['Herz_ausgefuellt'] : '';
+                }
+
+                unset($product);  // Referenz löschen
             }
         }
 
@@ -349,10 +365,10 @@ class ProductModel
 
 }
 
-// $products = ProductModel::getAllItemsOfKategory(3); // z. B. Kategorie "Vegan Whey"
-// echo '<pre>';
-// print_r($products);
-// echo '</pre>';
+$products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
+echo '<pre>';
+print_r($products);
+echo '</pre>';
 
 // $cids = ProductModel::getAllCids();
 // echo '<pre>';
