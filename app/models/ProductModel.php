@@ -12,7 +12,7 @@ class ProductModel
     $stmt1 = $pdo->prepare("
         SELECT 
             p.pid, p.name, p.description, p.raters_count, p.rating,
-            (SELECT pp.top_pic 
+            (SELECT pp.product_pic1 
              FROM proteinpulver_pictures pp 
              WHERE pp.product_id = p.pid 
              LIMIT 1) AS bild,
@@ -32,7 +32,7 @@ class ProductModel
     $stmt2 = $pdo->prepare("
         SELECT 
             p.pid, p.name, p.description, p.raters_count, p.rating,
-            (SELECT pp.top_pic 
+            (SELECT pp.product_pic1
              FROM proteinriegel_pictures pp 
              WHERE pp.product_id = p.pid 
              LIMIT 1) AS bild,

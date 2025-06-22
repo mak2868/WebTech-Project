@@ -8,7 +8,6 @@ body {
   background-color: white;
   padding: 2rem;
   border-top: 1px solid black;
-
 }
 
 .container {
@@ -29,6 +28,7 @@ body {
 .footer-form-block {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-form-input {
@@ -37,8 +37,6 @@ body {
   border: 1px solid #ccc;
   border-radius: 1.5rem;
 }
-
-
 
 .footer-form-button {
   display: block;
@@ -57,7 +55,6 @@ body {
 .footer-form-button:hover {
   background-color: var(--color-button-hover);
 }
-
 
 .footer-wrapper {
   display: flex;
@@ -104,9 +101,15 @@ body {
 
 
 
+
+
+
+
 /* ================================================= */
 /* Darkmode - Footer mit CSS-Variablen */
 /* ================================================= */
+
+
 
 body.dark-mode .footer-subscribe {
   background-color: var(--color-background-darkmode);
@@ -142,8 +145,6 @@ body.dark-mode .footer-legal a {
   color: var(--color-text-darkmode);
 }
 
-
-
 body.dark-mode .footer-divider {
   border-top: 1px solid var(--color-border-darkmode);
 }
@@ -157,3 +158,31 @@ body.dark-mode .footer-social a img {
 }
 
 
+
+/* ================================================= */
+/* Responsiv Design */
+/* ================================================= */
+
+
+@media (max-width: 768px) {
+  .footer-wrapper {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .footer-legal a {
+    margin-right: 1rem;
+  }
+}

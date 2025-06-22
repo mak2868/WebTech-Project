@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 🔁 Global verfügbare Funktion für Icon-Wechsel
+  // Global verfügbare Funktion für Icon-Wechsel
   window.updateCartIcon = function updateCartIcon() {
     if (!cartIcon) return;
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // 🌙 Darkmode Toggle
+  // Darkmode Toggle
   darkmodeBtn.addEventListener('click', () => {
     isDark = !isDark;
     localStorage.setItem('darkMode', isDark);

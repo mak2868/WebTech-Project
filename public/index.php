@@ -18,6 +18,17 @@ spl_autoload_register(function ($class) {
 // Fallback-Page
 $page = $_GET['page'] ?? 'home';
 
+
+// Sonderfall Newsletter
+if ($page === 'newsletterSignup') {
+    $controller = new NewsletterController();
+    $controller->handleSignup();
+    exit;
+}
+
+
+
+
 // Routing
 switch ($page) {
     case 'home':
@@ -66,23 +77,32 @@ switch ($page) {
         break;
 
     case 'cart':
-        (new CartController())->showCart(); break;
+        (new CartController())->showCart(); 
+        break;
+
     case 'add-cart-item':
-        (new CartController())->addItem(); break;
+        (new CartController())->addItem(); 
+        break;
+
     case 'get-cart':
-        (new CartController())->getCart(); break;
+        (new CartController())->getCart(); 
+        break;
+
     case 'update-cart-item':
-        (new CartController())->updateItem(); break;
+        (new CartController())->updateItem(); 
+        break;
+
     case 'remove-cart-item':
-        (new CartController())->removeItem(); break;
+        (new CartController())->removeItem(); 
+        break;
+
     case 'clear-cart':
-        (new CartController())->clearCart(); break;
+        (new CartController())->clearCart(); 
+        break;
 
     case 'merge-cart':
     (new CartController())->mergeCart();
     break;
-
-
 
 
     default:

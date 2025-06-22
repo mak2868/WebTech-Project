@@ -22,7 +22,7 @@ $username = $isLoggedIn ? htmlspecialchars($_SESSION['user']['username']) : null
 <div id="navbar" class="navbar">
   <div class="navbar-container">
     <a href="<?= BASE_URL ?>/index.php?page=home" class="navbar-brand">
-      <img id="navbarLogo" src="<?= BASE_URL ?>/images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" />
+      <img id="navbarLogo" src="<?= BASE_URL ?>/images/Logo_SchriftSchwarz.png" alt="Logo"/>
     </a>
 
     <nav role="navigation" class="nav-menu-wrapper">

@@ -2,23 +2,28 @@
 <section class="footer-subscribe">
   <div class="container">
     <div class="footer-form">
-      <form id="newsletterForm" class="footer-form-container" method="get">
-        <div class="footer-form-title">Jetzt Newsletter abonnieren</div>
-        <div class="footer-form-block">
-          <input class="footer-form-input" type="email" placeholder="E-Mail eingeben" required />
-          <input type="submit" class="footer-form-button" value="Jetzt bestellen" />
-        </div>
-      </form>
-      <div class="form-success" style="display: none;">Danke! Deine Anmeldung geht bei uns ein!</div>
-      <div class="form-error" style="display: none;">Oh! Hier ist etwas schiefgelaufen!</div>
-    </div>
+    <form id="newsletterForm" class="footer-form-container">
+  <div class="footer-form-title">Jetzt Newsletter abonnieren</div>
+  <div class="footer-form-block">
+    <input
+      name="email"
+      class="footer-form-input"
+      type="email"
+      placeholder="E-Mail eingeben"
+      required
+    />
+    <input type="submit" class="footer-form-button" value="Jetzt bestellen" />
+  </div>
+</form>
+<div class="form-success" style="display: none;"></div>
+<div class="form-error" style="display: none;"></div>
+
 
     <div class="footer-wrapper">
       <div class="footer-links">
         <a href="<?= BASE_URL ?>/?page=about">About</a>
         <a href="<?= BASE_URL ?>/?page=ProteinpulverList">Proteinpulver</a>
         <a href="<?= BASE_URL ?>/?page=ProteinriegelList">Proteinriegel</a>
-        <a href="#">FAQ</a>
         <a href="#">Kontakt</a>
       </div>
       <div class="footer-social">
@@ -40,5 +45,5 @@
   </div>
 </section>
 
-<!-- JS für den Footer (falls du einen brauchst) -->
+<!-- footer.js Einbindung damit wir nicht auf jeder Seite das einbinden müssen -->
 <script src="<?= BASE_URL ?>/js/footer.js"></script>
