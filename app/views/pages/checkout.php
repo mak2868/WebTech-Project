@@ -1,20 +1,24 @@
 <?php
-
 require_once __DIR__ . '/../../config/config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();  // Nur wenn noch keine Sitzung läuft
+    session_start(); // Session nur starten, wenn sie noch nicht läuft
 }
+//Author: Merzan
+// Aktuelle Gutschein-Daten (für Anzeige und JS)
 $coupon = $_SESSION['coupon'] ?? null;
+
+// Optional: Fehlermeldung oder Erfolg (kommt aus Controller)
+$message = $message ?? null;
 ?>
 
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
   <meta charset="UTF-8">
   <title>Checkout</title>
-  <script src="js/cart.js" defer></script>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/index.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/index-darkmode.css">
@@ -23,34 +27,29 @@ $coupon = $_SESSION['coupon'] ?? null;
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/checkout.css">
 
+  <!-- JS -->
   <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
   <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
   <script src="<?= BASE_URL ?>/js/footer.js" defer></script>
   <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
+  <script src="js/checkout.js" defer></script>
 
-<script>
-  window.SESSION_COUPON = <?= json_encode($_SESSION['coupon'] ?? null) ?>;
-</script>
-
-
-
-
+  <!-- Daten für JavaScript bereitstellen -->
   <script>
-    window.SESSION_COUPON = <?= json_encode($coupon ?? null) ?>;
+    window.SESSION_COUPON = <?= json_encode($coupon) ?>;
+    window.IS_LOGGED_IN = <?= isset($_SESSION['user']) ? 'true' : 'false' ?>;
   </script>
-
-
-
 </head>
 
 <body>
   <?php include __DIR__ . '/../layouts/navbar.php'; ?>
+
   <main class="checkout-container">
-    <!-- Linke Seite: Benutzerdaten -->
+
+    <!-- Linke Seite: Lieferadresse -->
     <section class="checkout-form">
       <h2>Lieferung</h2>
       <form method="post" id="checkoutForm">
-
         <!-- Vorname & Nachname -->
         <div class="form-row">
           <div class="form-group">
@@ -84,22 +83,22 @@ $coupon = $_SESSION['coupon'] ?? null;
         <!-- Land -->
         <div class="form-group">
           <label>Land:</label>
-          <input type="text" name="country" value="<?= htmlspecialchars($address['country'] ?? 'Deutschland') ?>"
-            required>
+          <input type="text" name="country" value="<?= htmlspecialchars($address['country'] ?? 'Deutschland') ?>" required>
         </div>
 
-        <!-- Hidden und Button -->
+        <!-- Versteckte Daten und Button -->
         <input type="hidden" name="cart_data" id="cart_data">
         <button type="submit" name="place_order" class="checkout-btn">Jetzt bestellen</button>
       </form>
     </section>
 
-    <!-- Rechte Seite: Warenkorb -->
+    <!-- Rechte Seite: Warenkorbübersicht -->
     <section class="checkout-summary">
       <h2>Dein Warenkorb</h2>
 
+      <!-- Gutschein-Eingabe -->
       <form method="post" class="promo-code">
-        <?php if ($message): ?>
+        <?php if (!empty($message)): ?>
           <p style="color: <?= str_contains($message, 'erfolgreich') ? 'green' : 'red' ?>;">
             <?= htmlspecialchars($message) ?>
           </p>
@@ -109,31 +108,27 @@ $coupon = $_SESSION['coupon'] ?? null;
         <button type="submit" name="apply_coupon">Anwenden</button>
       </form>
 
-
+      <!-- Produkte -->
       <div id="cartItems"></div>
-      <?php
-      if (isset($_SESSION['coupon'])) {
-        $coupon = $_SESSION['coupon'];
-        echo "<div class='summary-discount'>Rabattcode „" . htmlspecialchars($coupon['code']) . "“ angewendet</div>";
-      }
-      ?>
 
+      <!-- Rabattcode anzeigen, falls aktiv -->
+      <?php if (isset($coupon)): ?>
+        <div class="summary-discount">
+          Rabattcode „<?= htmlspecialchars($coupon['code']) ?>“ angewendet
+        </div>
+      <?php endif; ?>
+
+      <!-- Ersparnis -->
       <div class="summary-savings" id="cartSavings"></div>
 
+      <!-- Gesamtbetrag -->
       <div class="summary-total">
         Gesamt: <span id="cartTotal">0,00 €</span>
       </div>
     </section>
   </main>
 
-  <script>
-    window.IS_LOGGED_IN = <?= isset($_SESSION['user']) ? 'true' : 'false' ?>;
-  </script>
-  <script src="js/checkout.js" defer></script>
   <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
   <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
-
 </html>
-
-

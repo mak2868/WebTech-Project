@@ -8,6 +8,7 @@ require_once '../app/lib/DB.php';
  * die Benutzerdaten und Benutzeradressen betreffen.
  * Es agiert als Schnittstelle zwischen der Anwendung und den 'users'-
  * und 'user_addresses'-Tabellen in der Datenbank.
+ * @author Merzan
  */
 class UserModel
 {

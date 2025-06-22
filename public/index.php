@@ -93,7 +93,7 @@ switch ($page) {
         break;
 
     case 'apply-coupon':
-        (new CheckoutController())->apply();
+        (new CheckoutController())->applyCoupon();
         break;
 
     case 'set-cart-total':

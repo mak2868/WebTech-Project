@@ -920,14 +920,14 @@ function renderClientCartSlider() {
           <div class="cart-item-bottom-row">
             <div class="qty-row">
               <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity - 1}, true)">
-                <i class="fa-solid fa-minus"></i>
+                <img src="${BASE_URL}/images/minusBlack.svg" alt="Minus">
               </button>
               <span class="qty">${item.quantity}</span>
               <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity + 1}, true)">
-                <i class="fa-solid fa-plus"></i>
+                <img src="${BASE_URL}/images/plusBlack.svg" alt="Plus">
               </button>
             </div>
-           <img src="${BASE_URL}/images/removeIcon.svg" alt="Entfernen" class="remove-btn" onclick="removeFromCart(${index}, true)">
+            <img src="${BASE_URL}/images/removeIcon.svg" alt="Entfernen" class="remove-btn" onclick="removeFromCart(${index}, true)">
           </div>
         </div>
       </div>
@@ -939,6 +939,7 @@ function renderClientCartSlider() {
     cartTotalSlider.textContent = total.toFixed(2) + " €";
   }
 }
+
 
 function renderServerCartSlider(cartItems) {
   const cartItemsContainer =
@@ -966,11 +967,11 @@ function renderServerCartSlider(cartItems) {
           <div class="cart-item-bottom-row">
             <div class="qty-row">
               <button class="qty-btn" onclick="${item.quantity > 1 ? `updateServerQuantity(${item.id}, ${item.quantity - 1})` : `removeServerItem(${item.id})`}">
-                <i class="fa-solid fa-minus"></i>
+               <img src="${BASE_URL}/images/minusBlack.svg" alt="Minnus">
               </button>
               <span class="qty">${item.quantity}</span>
               <button class="qty-btn" onclick="updateServerQuantity(${item.id}, ${item.quantity + 1})">
-                <i class="fa-solid fa-plus"></i>
+               <img src="${BASE_URL}/images/plusBlack.svg" alt="Plus">
               </button>
             </div>
            <img src="${BASE_URL}/images/removeIcon.svg" alt="Entfernen" class="remove-btn" onclick="removeServerItem(${item.id})">
@@ -999,13 +1000,20 @@ function closeCart() {
   if (slider) slider.classList.remove("open");
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  closeCart();
-  const closeIcon = document.querySelector('.close-icon');
-  if (closeIcon) {
-    closeIcon.addEventListener('click', closeCart);
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.getElementById('closeCartBtn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      const slider = document.getElementById('cartSlider');
+      if (slider) slider.classList.remove('open');
+    });
   }
 });
+
+
+
+
+
 
 
 

@@ -7,6 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
  * Der UserController verwaltet alle Benutzeraktionen wie Login, Registrierung,
  * Logout und die Profilverwaltung. Er interagiert mit dem UserModel,
  * um Daten aus der Datenbank abzurufen und zu speichern, und lädt die entsprechenden Views.
+ * @author Merzan
  */
 class UserController
 {
