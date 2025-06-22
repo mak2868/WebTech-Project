@@ -63,7 +63,7 @@ function sortCart(cart) {
  * @author Marvin Kunz
  */
 function getIndexInCart(name, indexFromButtons) {
-let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
+  let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
 
   // Variable, die das Auftreten der unterschiedlichen Größen eines Produktes zählt
   let countItemWithName = 0;
@@ -182,7 +182,7 @@ function updateQuantity(index, newQuantity, isSlider) {
   } else {
     renderCart(); // nur auf cart.php nötig
   }
-   updateCartIcon();
+  updateCartIcon();
 }
 
 
@@ -206,7 +206,7 @@ function updateQuantityMultiRow(name, indexFromButtons, newQuantity, isSlider) {
 
     const inputs = cartItem?.querySelectorAll('.cart-item-quantity-input');
     const input = inputs?.[indexFromButtons];
-    const itemId = input?.getAttribute('data-id'); 
+    const itemId = input?.getAttribute('data-id');
 
     if (itemId) {
       updateServerQuantity(Number(itemId), newQuantity);
@@ -308,7 +308,8 @@ function createSingleItemRow(item, index, itemTotal) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
+
   img.alt = item.name;
   img.width = 60;
 
@@ -396,7 +397,7 @@ function createMultiItemRow(item, allItemsOfThisType) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
@@ -668,7 +669,7 @@ function createSingleItemRowServer(item, itemTotal) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
@@ -752,7 +753,7 @@ function createMultiItemRowServer(item, allItemsOfThisType) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
@@ -907,7 +908,7 @@ function renderClientCartSlider() {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
-    const imagePath = BASE_URL + item.image;
+    const imagePath = item.image;
 
     cartItemsContainer.innerHTML += `
       <div class="cart-item">
@@ -954,7 +955,7 @@ function renderServerCartSlider(cartItems) {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
-    const imagePath = BASE_URL + item.image;
+    const imagePath = item.image;
 
     cartItemsContainer.innerHTML += `
       <div class="cart-item">
@@ -1149,6 +1150,6 @@ function intermediateStepAddToCart() {
   let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
   let buttonContent = selectedButton.textContent.slice(0, -1);
 
-  addToCart(product.name, product.pics.productPic1, getTotalPrice(product.priceWithoutTax), buttonContent);
+  addToCart(product.name, product.product_pic1, getTotalPrice(product.priceWithoutTax), buttonContent);
 }
 

@@ -50,10 +50,14 @@ function importProducts($pdo, $filename, $proteinType)
 
         // Preis & Größen
         foreach ($product['availableSizes'] as $i => $size) {
-            $price = $product['priceWithTax'][$i];
-            $stmt = $pdo->prepare("INSERT INTO proteinpulver_sizes_prices (product_id, size, price_with_tax) VALUES (?, ?, ?)");
-            $stmt->execute([$productId, (int)$size, $price]);
+        $price = $product['priceWithTax'][$i];
+        $quantityAvailable = rand(0, 50); // zufälliger Wert zwischen 0 und 50
+
+        $stmt = $pdo->prepare("INSERT INTO proteinpulver_sizes_prices (product_id, size, price_with_tax, quantity_available) VALUES (?, ?, ?, ?)");
+    
+        $stmt->execute([$productId, (int)$size, $price, $quantityAvailable]);
         }
+
 
         // Nährwerte
         $nutrients = $product['substance']['nutrients'] ?? [];
@@ -110,6 +114,48 @@ function importProducts($pdo, $filename, $proteinType)
             $product['substance']['ingredients'] ?? null,
             $product['substance']['allergens'] ?? null
         ]);
+
+        // BeschreibungDetails
+        if (!empty($product['descriptionDetails'])) {
+            $detail1 = $product['descriptionDetails'][0] ?? null;
+            $detail2 = $product['descriptionDetails'][1] ?? null;
+            $stmt = $pdo->prepare("INSERT INTO proteinpulver_descriptions (product_id, detail1, detail2) VALUES (?, ?, ?)");
+            $stmt->execute([$productId, $detail1, $detail2]);
+        }
+
+        // Rezepte
+        if (!empty($product['usage']['recipes'])) {
+        foreach ($product['usage']['recipes'] as $recipe) {
+        // Rezeptdaten einfügen
+        $stmt = $pdo->prepare("INSERT INTO proteinpulver_recipes (product_id, title, short_title, `portion`) VALUES (?, ?, ?, ?)");
+        $stmt->execute([
+            $productId,
+            $recipe['title'] ?? null,
+            $recipe['shortTitle'] ?? null,
+            $recipe['portion'] ?? null
+        ]);
+
+        $recipeId = $pdo->lastInsertId();
+
+        // Zutaten einfügen
+        if (!empty($recipe['ingredients'])) {
+            $stmtIng = $pdo->prepare("INSERT INTO proteinpulver_recipe_ingredients (recipe_id, ingredient) VALUES (?, ?)");
+            foreach ($recipe['ingredients'] as $ingredient) {
+                $stmtIng->execute([$recipeId, $ingredient]);
+            }
+        }
+
+        // Zubereitungsschritte einfügen
+        if (!empty($recipe['preparation'])) {
+            $stmtPrep = $pdo->prepare("INSERT INTO proteinpulver_recipe_steps (recipe_id, step_number, instruction) VALUES (?, ?, ?)");
+            foreach ($recipe['preparation'] as $index => $step) {
+                $stmtPrep->execute([$recipeId, $index + 1, $step]);
+            }
+        }
+    }
+}
+
+
 
         // Bilder
         $pics = $product['pics'] ?? [];

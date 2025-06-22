@@ -1,3 +1,18 @@
+<?php require_once __DIR__ . '/../app/config/config.php'; ?>
+
+<script src="<?= BASE_URL ?>/js/initial.js" defer></script>
+<link id="fenstersymbol" rel="icon" type="image/png" href="">
+
+<?php
+
+include __DIR__ . '/../app/controllers/InitialController.php';
+$initialController = new InitialController();
+$symbolData = $initialController->getFenstersymbols();
+?>
+<script>
+    const fenstersymbolData = <?php echo json_encode($symbolData, JSON_UNESCAPED_UNICODE); ?>;
+</script>
+
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -65,6 +80,15 @@ switch ($page) {
         $controller->about();
         break;
 
+    case 'item':
+    $controller = new ProductController();
+    $params = $controller->validateParams();
+    if ($params[0]) {
+        $controller->renderItemSite($params[1], $params[2], $params[3], $params[4]);
+    }
+    break;
+
+
     case 'cart':
         (new CartController())->showCart();
         break;
@@ -111,3 +135,10 @@ switch ($page) {
     default:
         echo "Seite nicht gefunden.";
 }
+?>
+
+<script defer>
+    window.onload = () => {
+        initializeFenstersymbol();
+    }
+</script>
