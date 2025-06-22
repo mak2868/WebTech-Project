@@ -24,7 +24,7 @@ transform: translateX(0);
   display: flex;                       /* Flexbox für horizontale Ausrichtung */
   align-items: center;                 /* Vertikal zentriert */
   justify-content: space-between;      /* Abstand zwischen Titel und Close-Button */
-  padding: 1.3rem 1.4rem 1rem 1.4rem;
+  padding: 1rem 1.4rem 0.31rem 1.4rem;
   border-bottom: 1px solid #ececec;    /* Dünne Linie unten als Trennung */
   background: #fff;
   position: relative;
@@ -190,18 +190,18 @@ flex: 1; }                         /* Nimmt restlichen Platz ein */
 .checkout-btn:hover { background: #09985a; }                 /* Dunkleres Grün beim Hover */
 
 .remove-btn {
-  background: none; 
-  border: none; 
-  color: #c44;               /* Entfernen-Button rot */
-  font-size: 1.5rem; 
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
   margin-left: 1.1rem;
-  cursor: pointer; 
-  transition: color .2s;
+  transition: transform 0.2s ease;
 }
+
 .remove-btn:hover {
-  background: #f2efef;
-  color: #b21824;
+  transform: scale(1.1);
+  filter: brightness(0.8);
 }
+
 
 
 /*==== Darkmode für unseren Cartslider ====*/
@@ -219,14 +219,7 @@ body.dark-mode .header-title {
   color: #fafafa;
 }
 
-body.dark-mode .cart-promo input {
-  background: #18181b;
-  color: #fafafa;
-  border: 1px solid #292933;
-}
-body.dark-mode .cart-promo input::placeholder {
-  color: #bbb;
-}
+
 
 body.dark-mode.cart-item {
   background: #23232a;
@@ -251,4 +244,47 @@ body.dark-mode .cart-summary .total {
   color: #fff;
 }
 
+.qty-btn {
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: none;
+}
+
+.qty-btn img {
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+body.dark-mode .qty-btn {
+  background-color: white;
+  border: 1px solid #444;
+}
+
+.close-x {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.close-x-icon:hover {
+  transform: scale(1.1);
+}
+
+body.dark-mode .close-x {
+  content: url('/WebTech-Project/public/images/closeButtonSliderDarkmodee.png');
+}
+
+body:not(.dark-mode) .close-x {
+  content: url('/WebTech-Project/public/images/CloseButtonSlider.png');
+}
 

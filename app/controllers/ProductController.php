@@ -116,9 +116,6 @@ class ProductController
                     }
                 }
 
-                // if (!$wrongParentID && !$wrongCID && !$wrongPID) {
-                //     $data = ProductModel::getAllItemsOfKategory($cid);
-                // }
             }
         }
 
