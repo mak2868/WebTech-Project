@@ -1,14 +1,14 @@
 <?php
-require_once '../../lib/DB.php';
+require_once __DIR__ . '/../lib/DB.php';
 require_once __DIR__ . '/../config/config.php';
 
 class ProductModel
 {
 
 
-  public static function getBestseller()
-{
-    $pdo = DB::getConnection();
+    public static function getBestseller()
+    {
+        $pdo = DB::getConnection();
 
         $allParentIDs = ProductModel::getAllParentIDs();
         $results = [];
@@ -28,24 +28,29 @@ class ProductModel
                     $tableSizesPrices = $tablePrefix . "_sizes_prices";
                     $tableProducts = $tablePrefix . "_products";
 
-                    $sql = "
-           SELECT 
-    p.pid, p.name, p.description,
-    (SELECT pp.product_pic1
-     FROM $tablePics pp 
-     WHERE pp.product_id = p.pid 
-     LIMIT 1) AS bild,
-    (SELECT sp.price_with_tax 
-     FROM $tableSizesPrices sp 
-     WHERE sp.product_id = p.pid 
-       AND sp.bestseller = 1
-     ORDER BY sp.price_with_tax ASC 
-     LIMIT 1) AS preis
-FROM $tableProducts p
-ORDER BY RAND()
-LIMIT 1
-
-            ";
+                    $sql = "SELECT 
+                        p.pid,
+                        p.cid, 
+                        p.name, 
+                        p.description, 
+                        p.raters_count, 
+                        p.rating, 
+                        (SELECT pp.product_pic1
+                        FROM $tablePics pp 
+                        WHERE pp.product_id = p.pid 
+                        LIMIT 1) AS bild,
+                        sp.price_with_tax AS preis,
+                        sp.size AS size,
+                        ppc.id AS parent_id
+                    FROM $tableProducts p
+                    JOIN $tableSizesPrices sp 
+                        ON sp.product_id = p.pid AND sp.bestseller = 1
+                    JOIN product_categories pc 
+                        ON pc.id = p.cid
+                    JOIN product_parent_categories ppc 
+                        ON ppc.id = pc.parent_id
+                    ORDER BY RAND()
+                    LIMIT 1;";
 
                     $stmt = $pdo->prepare($sql);
                     $stmt->execute();
@@ -63,52 +68,9 @@ LIMIT 1
         }
 
         return $results;
-
-        // 2 Bestseller aus Proteinpulver mit Bild und Preis
-        //     $stmt1 = $pdo->prepare("
-        //         SELECT 
-        //             p.id, p.name, p.description,
-        //             (SELECT pp.top_pic 
-        //              FROM proteinpulver_pictures pp 
-        //              WHERE pp.product_id = p.id 
-        //              LIMIT 1) AS bild,
-        //             (SELECT sp.price_with_tax 
-        //              FROM proteinpulver_sizes_prices sp 
-        //              WHERE sp.product_id = p.id 
-        //              ORDER BY sp.price_with_tax ASC 
-        //              LIMIT 1) AS preis
-        //         FROM proteinpulver_products p
-        //         WHERE p.bestseller = 1
-        //         LIMIT 2
-        //     ");
-        //     $stmt1->execute();
-        //     $pulver = $stmt1->fetchAll(PDO::FETCH_ASSOC);
-
-        //     // 2 Bestseller aus Proteinriegel mit Bild und Preis
-        //     $stmt2 = $pdo->prepare("
-        //         SELECT 
-        //             p.id, p.name, p.description,
-        //             (SELECT pp.top_pic 
-        //              FROM proteinriegel_pictures pp 
-        //              WHERE pp.product_id = p.id 
-        //              LIMIT 1) AS bild,
-        //             (SELECT sp.price_with_tax 
-        //              FROM proteinriegel_sizes_prices sp 
-        //              WHERE sp.product_id = p.id 
-        //              ORDER BY sp.price_with_tax ASC 
-        //              LIMIT 1) AS preis
-        //         FROM proteinriegel_products p
-        //         WHERE p.bestseller = 1
-        //         LIMIT 2
-        //     ");
-        //     $stmt2->execute();
-        //     $riegel = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-
-        //    // Zusammenführen
-        //     return array_merge($pulver, $riegel);
     }
 
-    public static function getAllItemsOfKategory($categoryID)
+    public static function getAllItemsOfCategory($categoryID)
     {
         $pdo = DB::getConnection();
 

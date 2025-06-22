@@ -42,13 +42,14 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
     product = prod;
     cid = lcid;
 
-    history.pushState(
-        { cid: cid, pid: pid, parentID: parentID },
-        '',
-        '?parent=' + encodeURIComponent(parentID) +
-        '&cid=' + encodeURIComponent(cid) +
-        '&pid=' + encodeURIComponent(pid)
-    );
+   history.pushState(
+    { cid: cid, pid: pid, parentID: parentID },
+    '',
+    '?page=item&parent=' + encodeURIComponent(parentID) +
+    '&cid=' + encodeURIComponent(cid) +
+    '&pid=' + encodeURIComponent(pid)
+);
+
 
     if (initial) {
         initial = false;
@@ -526,11 +527,11 @@ function getPricePerKG(price, totalWeight) {
     return returnValue.toFixed(2);
 }
 
-function changeSelectedSize(selctedButton) {
+function changeSelectedSize(selectedButton) {
     const allButtons = document.querySelectorAll('#VerpackungsgrößenButtons button');
     if (!selectedButton.classList.contains('notAvailable')) {
         allButtons.forEach(btn => btn.classList.remove('active'));
-        selctedButton.classList.add('active');
+        selectedButton.classList.add('active');
 
         const priceWTax = getTotalPrice();
         document.getElementById("priceWTax").textContent = priceWTax + '€';
@@ -540,6 +541,7 @@ function changeSelectedSize(selctedButton) {
         }
     }
 }
+
 
 // Model, ist halt so ein Daten bums
 function intermediateStepChangeWishListStatus() {

@@ -1,5 +1,5 @@
 <?php
-require_once '../../lib/DB.php';
+require_once __DIR__ . '../../lib/DB.php';
 require_once __DIR__ . '/../config/config.php';
 
 class InitialModel {

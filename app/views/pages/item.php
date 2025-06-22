@@ -1,4 +1,4 @@
-<!-- erstellt von: Marvin Kunz (außer Navbar) -->
+<!-- erstellt von: Marvin Kunz -->
 
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title id="pageTitle"></title>
-    <link id="fenstersymbol" rel="icon" type="image/png" href="">
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
@@ -28,127 +27,15 @@
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
 
-
-
 </head>
 
 <?php
 include __DIR__ . '/../layouts/navbar.php';
-require_once '../../models/ProductModel.php';
-include '../../controllers/InitialController.php';
-
-$controller = new InitialController();
-$symbolData = $controller->getFenstersymbols();
 ?>
 
-<script>
-    const fenstersymbolData = <?php echo json_encode($symbolData, JSON_UNESCAPED_UNICODE); ?>;
-</script>
-
-<?php
-$messages = [];
-$parentID = null;
-$cid = null;
-$pid = null;
-$idInData = null;
-$json = null;
-$hasError = false;
-
-if (isset($_GET["parent"])) {
-    if (trim($_GET["parent"]) === '') {
-        $messages[] = 'Der Parameter "parent" wurde übergeben, ist aber leer.';
-    } else {
-        $parentID = $_GET["parent"];
-    }
-} else {
-    $messages[] = 'Der Parameter "parent" fehlt vollständig.';
-}
-
-if (isset($_GET["cid"])) {
-    if (trim($_GET["cid"]) === '') {
-        $messages[] = 'Der Parameter "cid" wurde übergeben, ist aber leer.';
-    } else {
-        $cid = $_GET["cid"];
-    }
-} else {
-    $messages[] = 'Der Parameter "cid" fehlt vollständig.';
-}
-
-if (isset($_GET["pid"])) {
-    if (trim($_GET["pid"]) === '') {
-        $messages[] = 'Der Parameter "pid" wurde übergeben, ist aber leer.';
-    } else {
-        $pid = $_GET["pid"];
-    }
-} else {
-    $messages[] = 'Der Parameter "pid" fehlt vollständig.';
-}
-
-
-if (!empty($messages)) {
-    $hasError = true;
-    foreach ($messages as $msg) {
-        echo '<script>console.log(' . json_encode($msg) . ');</script>';
-    }
-} else {
-
-
-    $allCorrectParentIDs = ProductModel::getAllParentIDs();
-
-    $wrongParentID = true;
-
-    for ($i = 0; $i < count($allCorrectParentIDs); $i++) {
-        if ($parentID == $allCorrectParentIDs[$i]['id']) {
-            $wrongParentID = false;
-            break;
-        }
-    }
-
-    if ($wrongParentID) {
-        echo "<script>console.log(" . json_encode("Ungültige Parent-Kategorie.") . ");</script>";
-    } else {
-        $allCorrectCIDs = ProductModel::getAllCids($parentID);
-
-        $wrongCID = true;
-
-        for ($i = 0; $i < count($allCorrectCIDs); $i++) {
-            if ($cid == $allCorrectCIDs[$i]['id']) {
-                $wrongCID = false;
-                break;
-            }
-        }
-
-        if ($wrongCID) {
-            echo "<script>console.log(" . json_encode("Ungültige Kategorie für die angegebene parent-id.") . ");</script>";
-        } else {
-            $allCorrectPIDs = ProductModel::getAllPidsOfOneCids($parentID, $cid);
-
-            $wrongPID = true;
-
-            for ($i = 0; $i < count($allCorrectPIDs); $i++) {
-                if ($pid == $allCorrectPIDs[$i]['pid']) {
-                    $wrongPID = false;
-                    $idInData = $i;
-                    break;
-                }
-            }
-
-            if ($wrongPID) {
-                echo "<script>console.log(" . json_encode("Ungültige pid für die angegebene cid") . ");</script>";
-            }
-        }
-
-        if (!$wrongParentID && !$wrongCID && !$wrongPID) {
-            $data = ProductModel::getAllItemsOfKategory($cid);
-        }
-    }
-}
-
-?>
-
-<?php if (!empty($data)): ?>
+<?php if (!empty($produkte)): ?>
     <script>
-        const data = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE); ?>;
+        const data = <?php echo json_encode($produkte, JSON_UNESCAPED_UNICODE); ?>;
         console.log("Daten geladen:", data);
     </script>
 <?php else: ?>
@@ -208,11 +95,11 @@ if (!empty($messages)) {
                 <!-- Versand + Favoriten-->
                 <div id='VersandFavoriten'>
                     <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
-                        <img src="../../../public/images/shopping-cart.png" alt="">
+                        <img src="../public/images/shopping-cart.png" alt="">
                         <span>In den Warenkorb</span>
                     </button>
                     <img id="FavButton" onclick="intermediateStepChangeWishListStatus()"
-                        src="../../../public/images/Herz_unausgefüllt.png" alt="">
+                        src="../public/images/Herz_unausgefüllt.png" alt="">
                     <br>
                 </div>
                 <p id="statusDistribution"></p>
@@ -449,16 +336,21 @@ if (!empty($messages)) {
 
         </div>
     </main>
-    <?php include '../layouts/cookieBanner.php'; ?>
-    <?php include '../layouts/footer.php'; ?>
+    <?php include '../app/views/layouts/cookieBanner.php'; ?>
+    <?php include '../app/views/layouts/footer.php'; ?>
 
     <script defer>
-        window.onload = () => {
-            window.intermediateStepRenderItemSite(<?php echo json_encode($parentID); ?>, <?php echo json_encode($cid); ?>, <?php echo json_encode($pid); ?>, <?php echo json_encode($idInData); ?>);
-            initializeFenstersymbol();
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            const parentID = <?php echo json_encode($parentID); ?>;
+            const cid = <?php echo json_encode($cid); ?>;
+            const pid = <?php echo json_encode($pid); ?>;
+            const idInData = <?php echo json_encode($idInData); ?>;
+            const data = <?php echo json_encode($produkte); ?>;
+
+            window.intermediateStepRenderItemSite(parentID, cid, pid, idInData, data);
+        });
     </script>
-    <?php include 'cartSlider.php'; ?>
+    <?php include '../app/views/layouts/cartSlider.php'; ?>
 </body>
 
 </html>
