@@ -93,21 +93,20 @@ switch ($page) {
         break;
 
     case 'apply-coupon':
-        (new CouponController())->apply();
+        (new CheckoutController())->apply();
         break;
 
     case 'set-cart-total':
-    (new CheckoutController())->setCartTotal();
-    break;
+        (new CheckoutController())->setCartTotal();
+        break;
 
     case 'place-order':
-    (new CheckoutController())->placeOrder();
-    break;
+        (new CheckoutController())->placeOrder();
+        break;
 
-
-
-
-
+    case 'thankyou':
+        require_once '../app/views/pages/thankyou.php';
+        break;
 
     default:
         echo "Seite nicht gefunden.";
