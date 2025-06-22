@@ -15,42 +15,49 @@ window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 let product;
 let cid;
 let initial = true;
-
+let touchStartX = 0;
+let touchEndX = 0;
+let selectedPic;
+let picProductNotOnListSrc = null;
+let picProductOnListSrc = null;
 
 // Alles /controller
 
 
 
-function intermediateStepRenderItemSite(cid, pid) {
-    console.log("cid: ", cid, "pid: ", pid);
-    if (isNaN(cid) && isNaN(pid) || cid == null && pid == null) {
-        console.error("Parameter error (cat + pid): " + cid + ", " + pid);
+function intermediateStepRenderItemSite(parentID, cid, pid, idInData) {
+    if ((isNaN(cid) && isNaN(pid) && isNaN(parentID)) || (cid == null && pid == null && parentID == null)) {
+        console.error("Parameter error (cid + pid + parentID):", cid, pid, parentID);
     } else if (isNaN(cid) || cid == null) {
-        console.error("Parameter error: " + cid);
+        console.error("Parameter error (cid): " + cid);
     } else if (isNaN(pid) || pid == null) {
-        console.error("Parameter error: " + pid);
+        console.error("Parameter error (pid): " + pid);
+    } else if (isNaN(parentID) || parentID == null) {
+        console.error("Parameter error (parentID): " + parentID);
     } else {
-        renderItemSite(data[pid - 1], cid, pid);
+        renderItemSite(data[idInData], cid, pid, parentID, idInData);
     }
+
 }
 
-function renderItemSite(prod, lcid, pid) {
-
-    console.log(prod);
-    console.log(lcid);
-    console.log(pid);
-
+function renderItemSite(prod, lcid, pid, parentID, idInData) {
     product = prod;
     cid = lcid;
 
-    history.pushState({ cid: cid, pid: pid }, '', '?cid=' + encodeURIComponent(cid) + '&pid=' + encodeURIComponent(pid));
+   history.pushState(
+    { cid: cid, pid: pid, parentID: parentID },
+    '',
+    '?page=item&parent=' + encodeURIComponent(parentID) +
+    '&cid=' + encodeURIComponent(cid) +
+    '&pid=' + encodeURIComponent(pid)
+);
+
 
     if (initial) {
         initial = false;
         let selectBox = document.getElementById('select');
         for (let i = 0; i < data.length; i++) {
             const selectItem = document.createElement('option');
-            console.log(data);
             const productName = data[i].name;
 
             let productShortName;
@@ -64,22 +71,24 @@ function renderItemSite(prod, lcid, pid) {
             selectBox.appendChild(selectItem);
         }
 
-        selectBox.selectedIndex = (pid - 1);
+        selectBox.selectedIndex = (idInData);
 
         select.addEventListener('change', e => {
             for (let i = 0; i < data.length; i++) {
                 if (data[i].name.includes(e.target.value)) {
                     if (e.target.value == "Choco") {
-                        renderItemSite(data[0], cid, data[0].pid);
+                        renderItemSite(data[0], cid, data[0].pid, parentID, idInData);
                     } else if (e.target.value == "White Choco") {
-                        renderItemSite(data[11], cid, data[11].pid);
+                        renderItemSite(data[11], cid, data[11].pid, parentID, idInData);
                     } else {
-                        renderItemSite(data[i], cid, data[i].pid);
+                        renderItemSite(data[i], cid, data[i].pid, parentID, idInData);
                     }
                 }
             }
         })
     }
+
+    document.getElementById('pageTitle').textContent = "XPN | " + product.name;
 
     document.getElementById('name').textContent = product.name;
 
@@ -94,19 +103,26 @@ function renderItemSite(prod, lcid, pid) {
             starContainer.appendChild(canvas);
         }
     });
-    document.getElementById('ratersCount').textContent = '(' + product.ratersCount + ')';
+    document.getElementById('ratersCount').textContent = '(' + product.raters_count + ')';
 
-    // document.getElementById('description').innerHTML = product.description;
+    setPositionFirstLine();
+
+    document.getElementById('description').innerHTML = product.description;
 
     const verpackungsgrößenButtonsContainer = document.getElementById('VerpackungsgrößenButtons');
     verpackungsgrößenButtonsContainer.innerHTML = "";
-    for (let i = 0; i < product.availableSizes.length; i++) {
+    for (let i = 0; i < product.sizes.length; i++) {
         let button = document.createElement('button');
-        button.textContent = product.availableSizes[i] + 'g';
+        button.textContent = product.sizes[i] + 'g';
 
-        if (product.availableSizes[i] == 500 || product.availableSizes[i] == 45) {
+        if (product.sizes[i] == 500 || product.sizes[i] == 45) {
             button.classList.add('active');
         }
+
+        if (product.quantityPerSize[i] === 0) {
+            button.classList.add('notAvailable');
+        }
+
         button.onclick = () => changeSelectedSize(button);
         verpackungsgrößenButtonsContainer.appendChild(button);
     }
@@ -118,10 +134,16 @@ function renderItemSite(prod, lcid, pid) {
         document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
     }
 
+    document.getElementById('VersandButtonImg').src = product.shopping_cart;
+
+    picProductNotOnListSrc = product.Herz_unausgefuellt;
+    picProductOnListSrc = product.Herz_ausgefuellt;
+    document.getElementById('FavButton').src = product.Herz_unausgefuellt;
+
     document.getElementById('statusDistribution').textContent = product.statusDistribution;
 
-    // document.getElementById('descriptionDetails1').textContent = product.descriptionDetails[0];
-    // document.getElementById('descriptionDetails2').textContent = product.descriptionDetails[1];
+    document.getElementById('descriptionDetails1').textContent = product.descriptionDetails[0];
+    document.getElementById('descriptionDetails2').textContent = product.descriptionDetails[1];
 
     document.getElementById('substanceIngredients').textContent = product.substance.ingredients;
     document.getElementById('substanceAllergens').textContent = product.substance.allergens;
@@ -160,52 +182,120 @@ function renderItemSite(prod, lcid, pid) {
 
     document.getElementById('usagePreparation').textContent = product.usage.preparation;
     document.getElementById('usageRecommendation').textContent = product.usage.recommendation;
-    // if (cid < 4) {
-    //     document.getElementById('usageTip').textContent = product.usage.tip;
-    //     if (cid != 2) {
-    //         const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
-    //         recipeButtonsContainer.innerHTML = "";
-    //         for (let i = 0; i < 3; i++) {
-    //             let recipeButton = document.createElement('button');
-    //             recipeButton.textContent = product.usage.recipes[i].shortTitle;
+    if (cid < 4) {
+        document.getElementById('usageTip').textContent = product.usage.tip;
+        if (cid != 2) {
+            const recipeButtonsContainer = document.getElementById('btn-group-Rezeptidee');
+            recipeButtonsContainer.innerHTML = "";
+            for (let i = 0; i < 3; i++) {
+                let recipeButton = document.createElement('button');
+                recipeButton.textContent = product.usage.recipes[i].short_title;
 
-    //             recipeButton.onclick = () => switchRecipe(i);
-    //             recipeButtonsContainer.appendChild(recipeButton);
-    //         }
-    //         switchRecipe();
-    //     } else {
-    //         document.getElementById('recipePreparationHeading').style.display = 'none';
-    //         document.getElementById('recipePreparation').style.display = 'none';
-    //         document.getElementById('recipeIngredients').style.display = 'none';
-    //         document.getElementById('tipHeading').style.display = 'none';
-    //         document.getElementById('tipHeading').style.marginTop = '0rem';
-    //     }
-    // } else {
-    //     document.getElementById('recipePreparationHeading').style.display = 'none';
-    //     document.getElementById('recipePreparation').style.display = 'none';
-    //     document.getElementById('recipeIngredients').style.display = 'none';
-    //     document.getElementById('tipHeading').style.display = 'none';
-    // }
+                recipeButton.onclick = () => switchRecipe(i);
+                recipeButtonsContainer.appendChild(recipeButton);
+            }
+            switchRecipe();
+        } else {
+            document.getElementById('recipePreparationHeading').style.display = 'none';
+            document.getElementById('recipePreparation').style.display = 'none';
+            document.getElementById('recipeIngredients').style.display = 'none';
+            document.getElementById('tipHeading').style.display = 'none';
+            document.getElementById('tipHeading').style.marginTop = '0rem';
+        }
+    } else {
+        document.getElementById('recipePreparationHeading').style.display = 'none';
+        document.getElementById('recipePreparation').style.display = 'none';
+        document.getElementById('recipeIngredients').style.display = 'none';
+        document.getElementById('tipHeading').style.display = 'none';
+    }
 
     document.getElementById('laboratory').textContent = product.laboratory;
 
-    // document.querySelector('#topPic img').src = product.topPic;
-    document.querySelector('#topPic img').src = '/WebTech-Project/public/images/Schokopulver_Top.jpg';
 
 
     const produktbildAuswahl = document.getElementById('ProduktbildAuswahl');
-    // produktbildAuswahl.getElementsByTagName('img')[0].src = product.productPic1;
-    // produktbildAuswahl.getElementsByTagName('img')[1].src = product.productPic2;
-    // produktbildAuswahl.getElementsByTagName('img')[2].src = product.productPic3;
-    produktbildAuswahl.getElementsByTagName('img')[0].src = '/WebTech-Project/public/images/Choco Whey.webp';
-    produktbildAuswahl.getElementsByTagName('img')[1].src = '/WebTech-Project/public/images/choco_whey.jpeg';
-    produktbildAuswahl.getElementsByTagName('img')[2].src = '/WebTech-Project/public/images/Choco Whey.webp';
+    produktbildAuswahl.getElementsByTagName('img')[0].src = product.product_pic1;
+    produktbildAuswahl.getElementsByTagName('img')[1].src = product.product_pic2;
+    produktbildAuswahl.getElementsByTagName('img')[2].src = product.product_pic3;
 
-    document.querySelector('#Produktbild img').src = '/WebTech-Project/public/images/Choco Whey.webp';
 
-    document.getElementById('klBild').src = '/WebTech-Project/public/images/choco_whey.jpeg';
+    const activeProductPic = document.querySelector('#Produktbild img')
+    activeProductPic.src = product.product_pic1;
+    selectedPic = 0;
+    createDots();
+
+
+
+    activeProductPic.addEventListener('touchstart', function (event) {
+        touchStartX = event.changedTouches[0].screenX;
+    }, false);
+
+    activeProductPic.addEventListener('touchend', function (event) {
+        touchEndX = event.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    document.getElementById('klBild').src = product.small_pic;
 }
 
+function handleSwipe() {
+    const swipeThreshold = 50;
+
+    if (touchEndX < touchStartX - swipeThreshold) {
+        // Swipe nach links → nächstes Bild
+        if (selectedPic < 3) {
+            selectedPic++;
+            switchProductbild(selectedPic);
+        }
+    }
+
+    if (touchEndX > touchStartX + swipeThreshold) {
+        // Swipe nach rechts → vorheriges Bild
+        if (selectedPic > 0) {
+            selectedPic--;
+            switchProductbild(selectedPic);
+        }
+    }
+}
+
+function createDots() {
+    const dotContainer = document.getElementById('dotContainer');
+    dotContainer.innerHTML = ''; // Alte Dots entfernen
+
+    for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        if (i === selectedPic) {
+            dot.classList.add('active');
+        }
+        dotContainer.appendChild(dot);
+    }
+}
+
+function setPositionFirstLine() {
+    const firstLineContainer = document.getElementById('firstLine');
+    const nameContainer = document.getElementById('name');
+    const ratingCountContainer = document.getElementById('ratersCount');
+
+    // Berechne, wie viel Platz verfügbar ist
+    const availableWidthFL = firstLineContainer.clientWidth;
+
+    // Berechne, wie viel Platz die einzelnen Elemente brauchen
+    const nameWidth = nameContainer.offsetWidth;
+    const ratingWidth = ratingCountContainer.offsetWidth;
+
+    // Wenn der verfügbare Platz mehr ist als die Breite der Elemente nebeneinander, dann behalte sie in einer Reihe
+    if (availableWidthFL >= (nameWidth + ratingWidth + 90)) {  // 50px Puffer für gap
+        firstLineContainer.style.flexDirection = 'row';
+        firstLineContainer.style.alignItems = 'center';
+        firstLineContainer.style.gap = '0.5rem';
+    } else {
+        // Wenn nicht genug Platz vorhanden ist, dann die Elemente untereinander anordnen
+        firstLineContainer.style.flexDirection = 'column-reverse';
+        firstLineContainer.style.alignItems = 'flex-start';
+        firstLineContainer.style.gap = 0;
+    }
+}
 
 function createStars(rating) {
     return new Promise((resolve, reject) => {
@@ -307,7 +397,7 @@ function openPanel(activatedIndex) {
     const acc = document.querySelectorAll('#accordion');
 
     if (activatedIndex == 2) {
-        // switchRecipe(0);
+        switchRecipe(0);
     }
     const button = acc[activatedIndex];
     const panel = button.nextElementSibling;
@@ -377,9 +467,9 @@ function switchProductbild(pictureNumber) {
     const pics = document.querySelectorAll('#ProduktbildAuswahl img');
 
     const picsSrc = [
-        '/WebTech-Project/public/images/Choco Whey.webp',
-        '/WebTech-Project/public/images/choco_whey.jpeg',
-        '/WebTech-Project/public/images/Choco Whey.webp'
+        product.product_pic1,
+        product.product_pic2,
+        product.product_pic3
     ];
 
     let selectedPic;
@@ -400,12 +490,18 @@ function switchProductbild(pictureNumber) {
         nonSelectedPic2 = pics[1];
     }
 
-    selectedPic.style.opacity = 0.8;
-    nonSelectedPic1.style.opacity = 0.3;
-    nonSelectedPic2.style.opacity = 0.3;
+    if (selectedPic != undefined && nonSelectedPic1 != undefined && nonSelectedPic2 != undefined) {
+        selectedPic.style.opacity = 0.8;
+        nonSelectedPic1.style.opacity = 0.3;
+        nonSelectedPic2.style.opacity = 0.3;
 
-    const productPic = document.querySelector('#Produktbild img');
-    productPic.src = picsSrc[pictureNumber];
+        const productPic = document.querySelector('#Produktbild img');
+        productPic.src = picsSrc[pictureNumber];
+        createDots()
+    }
+
+
+
 }
 
 
@@ -414,8 +510,8 @@ function getTotalPrice() {
     let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
     let buttonContent = selectedButton.textContent.slice(0, -1);
     let index;
-    for (let i = 0; i < product.availableSizes.length; i++) {
-        if (buttonContent == product.availableSizes[i]) {
+    for (let i = 0; i < product.sizes.length; i++) {
+        if (buttonContent == product.sizes[i]) {
             index = i;
             break;
         }
@@ -439,18 +535,21 @@ function getPricePerKG(price, totalWeight) {
     return returnValue.toFixed(2);
 }
 
-function changeSelectedSize(selctedButton) {
+function changeSelectedSize(selectedButton) {
     const allButtons = document.querySelectorAll('#VerpackungsgrößenButtons button');
-    allButtons.forEach(btn => btn.classList.remove('active'));
-    selctedButton.classList.add('active');
+    if (!selectedButton.classList.contains('notAvailable')) {
+        allButtons.forEach(btn => btn.classList.remove('active'));
+        selectedButton.classList.add('active');
 
-    const priceWTax = getTotalPrice();
-    document.getElementById("priceWTax").textContent = priceWTax + '€';
-    const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent);
-    if (pricePerKG !== undefined) {
-        document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
+        const priceWTax = getTotalPrice();
+        document.getElementById("priceWTax").textContent = priceWTax + '€';
+        const pricePerKG = getPricePerKG(priceWTax, document.querySelector('#VerpackungsgrößenButtons button.active').textContent);
+        if (pricePerKG !== undefined) {
+            document.getElementById("pricePerKgOutput").textContent = pricePerKG + '€/kg, inkl. MwSt. zzgl. Versand';
+        }
     }
 }
+
 
 // Model, ist halt so ein Daten bums
 function intermediateStepChangeWishListStatus() {
@@ -460,3 +559,15 @@ function intermediateStepChangeWishListStatus() {
 
     changeWishListStatus(name, image, price);
 }
+
+let previousWidth = window.innerWidth;
+
+setInterval(function () {
+    const currentWidth = window.innerWidth;
+
+    if (previousWidth !== currentWidth) {
+        previousWidth = currentWidth;
+        setPositionFirstLine();  // Deine Funktion hier aufrufen
+    }
+}, 100);
+

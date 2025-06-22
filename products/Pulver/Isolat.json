@@ -64,11 +64,11 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Schokopulver_Top.jpg",
-            "productPic1": "images/Choco Whey.webp",
-            "productPic2": "images/choco_whey.jpeg",
-            "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/choco_whey.jpeg"
+            "topPic": "<?= BASE_URL ?>/images/Schokopulver_Top.jpg",
+            "productPic1": "<?= BASE_URL ?>/images/Choco Whey.webp",
+            "productPic2": "<?= BASE_URL ?>/images/choco_whey.jpeg",
+            "productPic3": "<?= BASE_URL ?>/images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "<?= BASE_URL ?>/images/choco_whey.jpeg"
         }
     },
     {
@@ -136,11 +136,11 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Schokopulver_Top.jpg",
-            "productPic1": "images/Choco Whey.webp",
-            "productPic2": "images/choco_whey.jpeg",
-            "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/choco_whey.jpeg"
+            "topPic": "<?= BASE_URL ?>/images/Schokopulver_Top.jpg",
+            "productPic1": "<?= BASE_URL ?>/images/Choco Whey.webp",
+            "productPic2": "<?= BASE_URL ?>/images/choco_whey.jpeg",
+            "productPic3": "<?= BASE_URL ?>/images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "<?= BASE_URL ?>/images/choco_whey.jpeg"
         }
     },
     {
@@ -208,11 +208,11 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Schokopulver_Top.jpg",
-            "productPic1": "images/Choco Whey.webp",
-            "productPic2": "images/choco_whey.jpeg",
-            "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/choco_whey.jpeg"
+            "topPic": "<?= BASE_URL ?>/images/Schokopulver_Top.jpg",
+            "productPic1": "<?= BASE_URL ?>/images/Choco Whey.webp",
+            "productPic2": "<?= BASE_URL ?>/images/choco_whey.jpeg",
+            "productPic3": "<?= BASE_URL ?>/images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "<?= BASE_URL ?>/images/choco_whey.jpeg"
         }
     },
     {
@@ -280,11 +280,11 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Schokopulver_Top.jpg",
-            "productPic1": "images/Choco Whey.webp",
-            "productPic2": "images/choco_whey.jpeg",
-            "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/choco_whey.jpeg"
+            "topPic": "<?= BASE_URL ?>/images/Schokopulver_Top.jpg",
+            "productPic1": "<?= BASE_URL ?>/images/Choco Whey.webp",
+            "productPic2": "<?= BASE_URL ?>/images/choco_whey.jpeg",
+            "productPic3": "<?= BASE_URL ?>/images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "<?= BASE_URL ?>/images/choco_whey.jpeg"
         }
     },
     {
@@ -352,11 +352,11 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Schokopulver_Top.jpg",
-            "productPic1": "images/Choco Whey.webp",
-            "productPic2": "images/choco_whey.jpeg",
-            "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/choco_whey.jpeg"
+            "topPic": "<?= BASE_URL ?>/images/Schokopulver_Top.jpg",
+            "productPic1": "<?= BASE_URL ?>/images/Choco Whey.webp",
+            "productPic2": "<?= BASE_URL ?>/images/choco_whey.jpeg",
+            "productPic3": "<?= BASE_URL ?>/images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "<?= BASE_URL ?>/images/choco_whey.jpeg"
         }
     },
     {
@@ -424,11 +424,11 @@
         },
         "laboratory": "Um höchste Qualität zu gewährleisten, lassen wir unsere Produkte regelmäßig in unabhängigen Laboren testen.",
         "pics": {
-            "topPic": "images/Schokopulver_Top.jpg",
-            "productPic1": "images/Choco Whey.webp",
-            "productPic2": "images/choco_whey.jpeg",
-            "productPic3": "images/Proteinpulver_Unsplash.jpg",
-            "smallPic": "images/choco_whey.jpeg"
+            "topPic": "<?= BASE_URL ?>/images/Schokopulver_Top.jpg",
+            "productPic1": "<?= BASE_URL ?>/images/Choco Whey.webp",
+            "productPic2": "<?= BASE_URL ?>/images/choco_whey.jpeg",
+            "productPic3": "<?= BASE_URL ?>/images/Proteinpulver_Unsplash.jpg",
+            "smallPic": "<?= BASE_URL ?>/images/choco_whey.jpeg"
         }
     }
 ]

@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (darkmodeIcon) {
       darkmodeIcon.src = isDark
-        ? 'images/sonne.png'
-        : 'images/mond.png';
+        ? 'images/Sonne.png'
+        : 'images/Mond.png';
     }
   }
 
