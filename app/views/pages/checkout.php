@@ -26,6 +26,10 @@ $message = $message ?? null;
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/checkout.css">
+  <script>
+  window.BASE_URL = "<?= BASE_URL ?>";
+</script>
+
 
   <!-- JS -->
   <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
