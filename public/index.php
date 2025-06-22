@@ -123,6 +123,25 @@ switch ($page) {
         (new CartController())->mergeCart();
         break;
 
+    case 'checkout':
+        (new CheckoutController())->showcheckout();
+        break;
+
+    case 'apply-coupon':
+        (new CheckoutController())->applyCoupon();
+        break;
+
+    case 'set-cart-total':
+        (new CheckoutController())->setCartTotal();
+        break;
+
+    case 'place-order':
+        (new CheckoutController())->placeOrder();
+        break;
+
+    case 'thankyou':
+        require_once '../app/views/pages/thankyou.php';
+        break;
 
     default:
         echo "Seite nicht gefunden.";

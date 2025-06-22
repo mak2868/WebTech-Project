@@ -36,6 +36,12 @@ require_once __DIR__ . '/../../config/config.php';
         renderCart();
       }
     });
+
+    function goToCheckout() {
+  window.location.href = "index.php?page=checkout";
+}
+
+    
   </script>
 </head>
 
@@ -54,17 +60,12 @@ require_once __DIR__ . '/../../config/config.php';
           <img src="<?= BASE_URL ?>/images/removeIcon.svg" alt="Alle Produkte entfernen">
         </button>
       <?php endif; ?>
-      <button class="checkout-btn">Zur Kasse</button>
+    <button class="checkout-btn" onclick="goToCheckout()">Zur Kasse</button>
     </div>
 
     <div class="timerSection">
       <div class="timerText">Produktreservierung läuft ab in:</div>
       <div class="time">00:00</div>
-    </div>
-
-    <div class="cart-promo">
-      <input type="text" id="promoCode" placeholder="Gutscheincode" />
-      <button onclick="applyPromo()">Anwenden</button>
     </div>
 
     <div class="cart-container" id="cart-items">
