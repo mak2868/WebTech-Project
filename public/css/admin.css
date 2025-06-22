@@ -1,0 +1,78 @@
+/* Grundlegendes Styling für die Seite */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    height: 100vh;
+}
+
+/* Container für den Inhalt */
+.container {
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 5vw;
+}
+
+/* Titel */
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Label und Select-Element */
+label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Auswahlmenü */
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    transition: all 0.3s;
+}
+
+/* Hover und Focus-Effekte */
+select:hover, select:focus {
+    border-color: #0056b3;
+    background-color: #f0f8ff;
+    outline: none;
+}
+
+/* Box für die Unteroptionen */
+.sub-options {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.sub-options div {
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f1f5ff;
+    border-radius: 10px;
+    display: none;
+}
+
+/* Stil für die ausgewählten Optionen */
+.sub-options h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
