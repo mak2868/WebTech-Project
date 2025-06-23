@@ -1,10 +1,16 @@
-<?php require_once __DIR__ . '/../app/config/config.php'; ?>
+<?php
+// Session ganz am Anfang starten
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once __DIR__ . '/../app/config/config.php';
+?>
 
 <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
 <link id="fenstersymbol" rel="icon" type="image/png" href="">
 
 <?php
-
 include __DIR__ . '/../app/controllers/InitialController.php';
 $initialController = new InitialController();
 $symbolData = $initialController->getFenstersymbols();
@@ -14,10 +20,6 @@ $symbolData = $initialController->getFenstersymbols();
 </script>
 
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 // Autoload für Controller und Models
 spl_autoload_register(function ($class) {
     $paths = ['app/controllers/', 'app/models/'];

@@ -22,7 +22,7 @@ require_once __DIR__ . '/../../config/config.php';
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/index.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/home.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/index-darkmode.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
@@ -54,13 +54,14 @@ require_once __DIR__ . '/../../config/config.php';
 
 <main>
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Made for Athletes</h1>
-      <p class="hero-paragraph">Nutrition that tastes as good as it works</p>
-      <button class="button" onclick="window.location.href='?page=ProteinpulverList'">Shop now</button>
-    </div>
-  </section>
+  <section class="hero" style="background-image: url('<?= BASE_URL . $heroBackground ?>'); background-size: cover; background-position: center;">
+  <div class="hero-content">
+    <h1>Made for Athletes</h1>
+    <p class="hero-paragraph">Nutrition that tastes as good as it works</p>
+    <button class="button" onclick="window.location.href='?page=ProteinpulverList'">Shop now</button>
+  </div>
+</section>
+
 
   <!-- Logo Section -->
   <section class="logo-section">
@@ -69,27 +70,23 @@ require_once __DIR__ . '/../../config/config.php';
       <div class="logo-slider">
         <div class="logos">
           <?php
-            $logos = [
-              'Foodspring_Logo.png', 'GoldsGym_Logo.png', 'MyProtein_Logo.png',
-              'Dm_Logo.png', 'JohnReed_Logo.png', 'Edeka_Logo.png'
-            ];
-            // Logos mehrfach für Endlosschleife
-            for ($i = 0; $i < 3; $i++) {
-              foreach ($logos as $logo) {
-                echo '<img src="' . BASE_URL . '/images/' . $logo . '" alt="' . $logo . '" class="logo">';
+           for ($i = 0; $i < 3; $i++) {
+              foreach ($logos as $logoPath) {
+                  echo '<img src="' . BASE_URL . $logoPath . '" alt="Logo" class="logo">';
+                  }
               }
-            }
           ?>
         </div>
       </div>
     </div>
   </section>
 
+
   <!-- Banner Section -->
   <section class="banner-section">
     <div class="banner-container">
       <div class="banner-image">
-        <img src="<?= BASE_URL ?>/images/Proteinriegel_Banner.png" alt="Banner Image">
+        <img src="<?= BASE_URL . $bannerImage ?>" alt="Banner Image">
       </div>
       <div class="banner-text">
         <h2>Deutschlands Nr. 1 Proteinriegel</h2>
@@ -109,7 +106,10 @@ require_once __DIR__ . '/../../config/config.php';
         <div class="product-card">
           <div class="badge">Bestseller</div>
           <div class="image-wrapper">
-            <img src="<?= BASE_URL ?><?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
+            <!-- Link-Block um das Bild -->
+            <a href="<?= BASE_URL ?>/index.php?page=item&parent=<?= urlencode($produkt['parent_id']) ?>&cid=<?= urlencode($produkt['cid']) ?>&pid=<?= urlencode($produkt['pid']) ?>">
+              <img src="<?= BASE_URL ?><?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
+            </a>
             <div class="icons">
               <div class="icon" onclick="addToCart(
                 '<?= htmlspecialchars($produkt['name']) ?>',
@@ -135,6 +135,7 @@ require_once __DIR__ . '/../../config/config.php';
     </div>
   </div>
 </section>
+
 
 </main>
 

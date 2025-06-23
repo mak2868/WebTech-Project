@@ -23,14 +23,14 @@ h1 {
 .hero {
   width: 100vw;
   height: 90vh;
-  background-image: url(../images/Hintergrundbild_Startseite.jpg); 
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   padding-left: 5%;
   position: relative;
+  background-size: cover;
+  background-position: center;
 }
+
 
 
 .hero::before {
@@ -290,5 +290,26 @@ h1 {
 
 
 
+/* ========== Darkmode ========== */
 
+
+body.dark-mode .logo {
+    filter: invert(1);
+}
+
+body.dark-mode .logo-section {
+    background-color: black;
+}
+
+body.dark-mode .banner-section {
+    background-color: black;
+}
+
+body.dark-mode .banner-container {
+    border: 2px solid white;
+}
+
+body.dark-mode .reviews {
+    color: white;
+}
 
