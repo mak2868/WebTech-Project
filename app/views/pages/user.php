@@ -22,6 +22,10 @@
     <script src="<?= BASE_URL ?>/js/merge-cart.js" defer></script>
 
 
+     <!-- Head-Datei -->
+    <?php include __DIR__ . '/../layouts/head.php'; ?>
+
+
 </head>
 <body>
     <?php include __DIR__ . '/../layouts/navbar.php'; ?>

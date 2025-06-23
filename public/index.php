@@ -1,25 +1,30 @@
 <?php
-// Session ganz am Anfang starten
+// Session und Config laden
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 require_once __DIR__ . '/../app/config/config.php';
-?>
 
-<script src="<?= BASE_URL ?>/js/initial.js" defer></script>
-<link id="fenstersymbol" rel="icon" type="image/png" href="">
-
-<?php
-include __DIR__ . '/../app/controllers/InitialController.php';
+// Favicon-Daten holen (für spätere Übergabe an Views)
+require_once __DIR__ . '/../app/controllers/InitialController.php';
 $initialController = new InitialController();
 $symbolData = $initialController->getFenstersymbols();
-?>
-<script>
-    const fenstersymbolData = <?php echo json_encode($symbolData, JSON_UNESCAPED_UNICODE); ?>;
-</script>
+$_SESSION['fenstersymbolData'] = $symbolData;
 
-<?php
+
+// Navbar-Daten (Kategorien + Bilder) laden
+require_once __DIR__ . '/../app/controllers/NavbarController.php';
+$navbarController = new NavbarController();
+$navbarData = $navbarController->getNavbarData();
+$_SESSION['navbarData'] = $navbarData;
+
+
+// Footer-Daten (Links + Social Icons) laden
+require_once __DIR__ . '/../app/controllers/FooterController.php';
+FooterController::prepareFooterData();
+
+
 // Autoload für Controller und Models
 spl_autoload_register(function ($class) {
     $paths = ['app/controllers/', 'app/models/'];
@@ -36,72 +41,50 @@ spl_autoload_register(function ($class) {
 $page = $_GET['page'] ?? 'home';
 
 
-// Sonderfall Newsletter
+
+// Newsletter
 if ($page === 'newsletterSignup') {
     $controller = new NewsletterController();
     $controller->handleSignup();
     exit;
 }
 
-
-
-
 // Routing
 switch ($page) {
     case 'home':
-        $controller = new HomeController();
-        $controller->index();
+        (new HomeController())->index();
         break;
-
     case 'product':
-        $controller = new ProductController();
-        $controller->detail($_GET['id'] ?? null);
+        (new ProductController())->detail($_GET['id'] ?? null);
         break;
-
     case 'login':
-        $controller = new UserController();
-        $controller->login();
+        (new UserController())->login();
         break;
-
     case 'logout':
-        $controller = new UserController();
-        $controller->logout();
+        (new UserController())->logout();
         break;
-
     case 'register':
-        $controller = new UserController();
-        $controller->register();
+        (new UserController())->register();
         break;
-
     case 'profile':
-        $controller = new UserController();
-        $controller->profile();
+        (new UserController())->profile();
         break;
-
     case 'impressum':
-        $controller = new StaticController();
-        $controller->impressum();
+        (new StaticController())->impressum();
         break;
-
     case 'datenschutzerklaerung':
-        $controller = new StaticController();
-        $controller->datenschutzerklaerung();
+        (new StaticController())->datenschutzerklaerung();
         break;
-
     case 'about':
-        $controller = new StaticController();
-        $controller->about();
+        (new StaticController())->about();
         break;
-
     case 'item':
-    $controller = new ProductController();
-    $params = $controller->validateParams();
-    if ($params[0]) {
-        $controller->renderItemSite($params[1], $params[2], $params[3], $params[4]);
-    }
-    break;
-
-
+        $controller = new ProductController();
+        $params = $controller->validateParams();
+        if ($params[0]) {
+            $controller->renderItemSite($params[1], $params[2], $params[3], $params[4]);
+        }
+        break;
     case 'cart':
         (new CartController())->showCart();
         break;
@@ -120,38 +103,30 @@ switch ($page) {
     case 'clear-cart':
         (new CartController())->clearCart();
         break;
-
     case 'merge-cart':
         (new CartController())->mergeCart();
         break;
-
     case 'checkout':
-        (new CheckoutController())->showcheckout();
+        (new CheckoutController())->showCheckout();
         break;
-
     case 'apply-coupon':
         (new CheckoutController())->applyCoupon();
         break;
-
     case 'set-cart-total':
         (new CheckoutController())->setCartTotal();
         break;
-
     case 'place-order':
         (new CheckoutController())->placeOrder();
         break;
-
     case 'thankyou':
         require_once '../app/views/pages/thankyou.php';
         break;
-
+    case 'admin':
+        (new AdminController())->showAdmin();
+        break;
+    case 'admin-users':
+        (new AdminController())->userManagement();
+        break;
     default:
         echo "Seite nicht gefunden.";
 }
-?>
-
-<script defer>
-    window.onload = () => {
-        initializeFenstersymbol();
-    }
-</script>

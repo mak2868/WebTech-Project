@@ -34,6 +34,9 @@ require_once __DIR__ . '/../../config/config.php';
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
 
+    <!-- Head-Datei -->
+    <?php include __DIR__ . '/../layouts/head.php'; ?>
+
 
     <?php if (!empty($_SESSION['user_id'])): ?>
     <script>
@@ -109,9 +112,8 @@ require_once __DIR__ . '/../../config/config.php';
         <div class="product-card">
           <div class="badge">Bestseller</div>
           <div class="image-wrapper">
-            <!-- Link-Block um das Bild -->
             <a href="<?= BASE_URL ?>/index.php?page=item&parent=<?= urlencode($produkt['parent_id']) ?>&cid=<?= urlencode($produkt['cid']) ?>&pid=<?= urlencode($produkt['pid']) ?>">
-              <img src="<?= BASE_URL ?><?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
+              <img src="<?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
             </a>
             <div class="icons">
               <div class="icon" onclick="addToCart(
@@ -138,6 +140,7 @@ require_once __DIR__ . '/../../config/config.php';
     </div>
   </div>
 </section>
+
 
 
 </main>

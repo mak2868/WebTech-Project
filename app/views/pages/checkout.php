@@ -38,6 +38,12 @@ $message = $message ?? null;
   <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
   <script src="js/checkout.js" defer></script>
 
+
+  <!-- Head-Datei -->
+  <?php include __DIR__ . '/../layouts/head.php'; ?>
+
+  
+
   <!-- Daten für JavaScript bereitstellen -->
   <script>
     window.SESSION_COUPON = <?= json_encode($coupon) ?>;

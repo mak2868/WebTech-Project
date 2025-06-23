@@ -1,16 +1,17 @@
-// Author: Felix
-
 document.addEventListener('DOMContentLoaded', () => {
-  const navbar        = document.getElementById('navbar');
-  const darkmodeBtn   = document.getElementById('darkmodeBtn');
-  const logoImg       = document.getElementById('navbarLogo');
-  const darkmodeIcon  = document.getElementById('darkmodeIcon');
-  const cartIcon      = document.getElementById('cart-icon');
-  const body          = document.body;
+  const navbar = document.getElementById('navbar');
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const burgerIcon = burgerBtn?.querySelector('.burger-icon');
 
-  let isDark     = localStorage.getItem('darkMode') === 'true';
+  const darkmodeBtn = document.getElementById('darkmodeBtn');
+  const darkmodeIcon = document.getElementById('darkmodeIcon');
+  const cartIcon = document.getElementById('cart-icon');
+  const body = document.body;
+
+  let isDark = localStorage.getItem('darkMode') === 'true';
   let isScrolled = false;
-  let isHover    = false;
+  let isHover = false;
 
   function updateNavbar() {
     navbar.classList.toggle('dark-mode', isDark);
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Global verfügbare Funktion für Icon-Wechsel
+  // Cart-Icon-Update
   window.updateCartIcon = function updateCartIcon() {
     if (!cartIcon) return;
 
@@ -52,19 +53,19 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Darkmode Toggle
-  darkmodeBtn.addEventListener('click', () => {
+  darkmodeBtn?.addEventListener('click', () => {
     isDark = !isDark;
     localStorage.setItem('darkMode', isDark);
     updateNavbar();
   });
 
   // Hover-Effekt
-  navbar.addEventListener('mouseenter', () => {
+  navbar?.addEventListener('mouseenter', () => {
     isHover = true;
     updateNavbar();
   });
 
-  navbar.addEventListener('mouseleave', () => {
+  navbar?.addEventListener('mouseleave', () => {
     isHover = false;
     updateNavbar();
   });
@@ -73,6 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     isScrolled = window.scrollY > 0;
     updateNavbar();
+  });
+
+  // Burger Menü Logik
+  burgerBtn?.addEventListener('click', () => {
+  mobileMenu?.classList.toggle('open');
+  burgerIcon?.classList.toggle('open');
+});
+
+
+  // Mobile Dropdowns aufklappen
+  document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const parent = toggle.closest('.mobile-dropdown');
+      parent?.classList.toggle('open');
+    });
   });
 
   updateNavbar();

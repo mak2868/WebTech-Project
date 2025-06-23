@@ -346,6 +346,10 @@ body.dark-mode .reviews {
   text-align: center;
 }
 
+.hero-content h1 {
+  font-size: 3rem;
+}
+
 
 
   /* 2. Banner Section: Bild oben, Text darunter */
@@ -362,8 +366,12 @@ body.dark-mode .reviews {
     padding: 1rem;
   }
 
-  .banner-image img {
-    width: 100%;
-    height: auto;
-  }
+.banner-image img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  transform: translateX(50px);
+
+}
 }

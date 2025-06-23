@@ -2,6 +2,7 @@
 
 <?php
   $icons = $GLOBALS['footerSocialIcons'] ?? [];
+  $footerLinks = $GLOBALS['footerLinks'] ?? [];
 ?>
 
 <section class="footer-subscribe">
@@ -21,8 +22,11 @@
       <div class="footer-wrapper">
         <div class="footer-links">
           <a href="<?= BASE_URL ?>/?page=about">About</a>
-          <a href="<?= BASE_URL ?>/?page=ProteinpulverList">Proteinpulver</a>
-          <a href="<?= BASE_URL ?>/?page=ProteinriegelList">Proteinriegel</a>
+          <?php foreach ($footerLinks as $link): ?>
+            <a href="<?= BASE_URL ?>/?page=<?= htmlspecialchars($link['url']) ?>List">
+              <?= htmlspecialchars($link['name']) ?>
+            </a>
+          <?php endforeach; ?>
         </div>
         <div class="footer-social">
           <?php foreach ($icons as $icon): ?>
