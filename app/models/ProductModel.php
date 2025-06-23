@@ -365,10 +365,10 @@ class ProductModel
 
 }
 
-$products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
-echo '<pre>';
-print_r($products);
-echo '</pre>';
+// $products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
+// echo '<pre>';
+// print_r($products);
+// echo '</pre>';
 
 // $cids = ProductModel::getAllCids();
 // echo '<pre>';
