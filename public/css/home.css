@@ -28,7 +28,7 @@ h1 {
   padding-left: 5%;
   position: relative;
   background-size: cover;
-  background-position: center;
+  background-position: center center;
 }
 
 
@@ -313,3 +313,57 @@ body.dark-mode .reviews {
     color: white;
 }
 
+
+
+
+
+/* ========= Responsive Styles ab Handy (max-width: 768px) ========= */
+@media screen and (max-width: 512px) {
+/* 1. Hero Section: Text oben + zentriert */
+.hero {
+  flex-direction: column;
+  justify-content: flex-start;        
+  align-items: center;              
+  text-align: center;
+  padding-left: 0;
+  padding-top: 7rem;   
+  padding-bottom: 2rem;
+  background-position: 65% 50%;       /* links (X: 65%), Mitte (Y: 50%) */
+  background-size: cover;
+  height: 90vh;
+}
+
+.hero-content {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content h1,
+.hero-paragraph,
+.hero-content .button {
+  text-align: center;
+}
+
+
+
+  /* 2. Banner Section: Bild oben, Text darunter */
+  .banner-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .banner-image,
+  .banner-text {
+    flex: unset;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .banner-image img {
+    width: 100%;
+    height: auto;
+  }
+}

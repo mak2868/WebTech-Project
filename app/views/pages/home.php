@@ -23,7 +23,6 @@ require_once __DIR__ . '/../../config/config.php';
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/home.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/index-darkmode.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
@@ -54,13 +53,17 @@ require_once __DIR__ . '/../../config/config.php';
 
 <main>
   <!-- Hero Section -->
-  <section class="hero" style="background-image: url('<?= BASE_URL . $heroBackground ?>'); background-size: cover; background-position: center;">
+
+
+  <!-- Ausnahme für inline-CSS weil Hintergrundbild, wo der Pfad aus DB geladen wird (war zuvor im css) -->
+  <section class="hero" style="background-image: url('<?= BASE_URL . $heroBackground ?>');">
   <div class="hero-content">
     <h1>Made for Athletes</h1>
     <p class="hero-paragraph">Nutrition that tastes as good as it works</p>
     <button class="button" onclick="window.location.href='?page=ProteinpulverList'">Shop now</button>
   </div>
 </section>
+
 
 
   <!-- Logo Section -->

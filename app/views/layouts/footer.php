@@ -23,7 +23,6 @@
           <a href="<?= BASE_URL ?>/?page=about">About</a>
           <a href="<?= BASE_URL ?>/?page=ProteinpulverList">Proteinpulver</a>
           <a href="<?= BASE_URL ?>/?page=ProteinriegelList">Proteinriegel</a>
-          <a href="#">Kontakt</a>
         </div>
         <div class="footer-social">
           <?php foreach ($icons as $icon): ?>
