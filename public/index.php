@@ -87,7 +87,11 @@ switch ($page) {
         $controller->renderItemSite($params[1], $params[2], $params[3], $params[4]);
     }
     break;
-
+    
+    case 'productList':
+        $controller = new ProductController();
+        $controller->showProducts();
+        break;
 
     case 'cart':
         (new CartController())->showCart();
