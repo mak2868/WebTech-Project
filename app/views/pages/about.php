@@ -15,6 +15,7 @@
   <!-- JS -->
   <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
   <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
+
 </head>
 
 <body>

@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 /**
  * Der UserController verwaltet alle Benutzeraktionen wie Login, Registrierung,
@@ -44,6 +47,8 @@ class UserController
                 // Wenn erfolgreich, werden die Benutzerdaten in der Session gespeichert.
                 // Dies markiert den Benutzer als eingeloggt.
                 $_SESSION['user'] = $user;
+                $_SESSION['user_id'] = $user['id']; 
+
                 
                 // Leitet den Benutzer zur Profilseite um.
                 // header() muss aufgerufen werden, bevor Inhalte an den Browser gesendet wurden.
@@ -127,6 +132,8 @@ class UserController
                     $user = UserModel::getUserByUsername($username);
                     if ($user) {
                         $_SESSION['user'] = $user;
+                        $_SESSION['user_id'] = $user['id'];
+
                         header('Location: index.php?page=profile'); // Leitet zur Profilseite um.
                         exit;
                     } else {

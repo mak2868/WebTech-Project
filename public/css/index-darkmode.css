@@ -20,3 +20,7 @@ body.dark-mode .banner-section {
 body.dark-mode .banner-container {
     border: 2px solid white;
 }
+
+body.dark-mode .reviews {
+    color: white;
+}

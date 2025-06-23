@@ -1,10 +1,30 @@
-<?php require_once __DIR__ . '/../../config/config.php'; ?>
+<?php
+require_once __DIR__ . '/../../config/config.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$isLoggedIn = isset($_SESSION['user']);
+$username = $isLoggedIn ? htmlspecialchars($_SESSION['user']['username']) : null;
+?>
+
+<noscript>
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/no-js.css" />
+  <div class="no-js-modal">
+    <div class="modal-content">
+      <h1>JavaScript ist deaktiviert</h1>
+      <p>Bitte aktiviere JavaScript in deinem Browser, um den Webshop zu nutzen.</p>
+    </div>
+  </div>
+</noscript>
 
 <div id="navbar" class="navbar">
   <div class="navbar-container">
     <a href="<?= BASE_URL ?>/index.php?page=home" class="navbar-brand">
       <img id="navbarLogo" src="<?= BASE_URL ?>/images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" />
     </a>
+
     <nav role="navigation" class="nav-menu-wrapper">
       <ul role="list" class="nav-menu">
         <li><a href="<?= BASE_URL ?>/index.php?page=about" class="nav-link">About</a></li>
@@ -37,13 +57,30 @@
 
     <div class="icon-container">
       <a id="darkmodeBtn" class="navbar-icon">
-        <img src="<?= BASE_URL ?>/images/Mond.png" width="32" alt="Darkmode umschalten" />
-      </a>
-      <a id="userBtn" href="<?= BASE_URL ?>/index.php?page=login" class="navbar-icon">
-        <img src="<?= BASE_URL ?>/images/user.png" width="32" alt="Benutzerbereich" />
-      </a>
+  <img id="darkmodeIcon" src="<?= BASE_URL ?>/images/mond.png" width="32" alt="Darkmode umschalten" />
+</a>
+
+
+     <div class="nav-dropdown user-dropdown">
+  <?php if ($isLoggedIn): ?>
+    <div class="navbar-icon">
+      <img src="<?= BASE_URL ?>/images/user-logged-in.png" alt="Benutzerbereich" class="user-icon" />
+    </div>
+    <div class="nav-dropdown-list dropdown-left-align">
+      <a href="<?= BASE_URL ?>/index.php?page=profile" class="nav-dropdown-link">Benutzerbereich</a>
+      <a href="<?= BASE_URL ?>/index.php?page=logout" class="nav-dropdown-link">Abmelden</a>
+    </div>
+  <?php else: ?>
+    <a id="userBtn" href="<?= BASE_URL ?>/index.php?page=login" class="navbar-icon">
+      <img src="<?= BASE_URL ?>/images/user-logged-out.png" alt="Benutzerbereich" class="user-icon" />
+    </a>
+  <?php endif; ?>
+</div>
+
+
+
       <a id="cartBtn" href="<?= BASE_URL ?>/index.php?page=cart" class="navbar-icon">
-        <img src="<?= BASE_URL ?>/images/shopping-cart.png" width="32" alt="Warenkorb" />
+      <img id="cart-icon" src="<?= BASE_URL ?>/images/einkaufswagen.png" alt="Warenkorb">
       </a>
     </div>
 
