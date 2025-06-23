@@ -7,6 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
  * Der UserController verwaltet alle Benutzeraktionen wie Login, Registrierung,
  * Logout und die Profilverwaltung. Er interagiert mit dem UserModel,
  * um Daten aus der Datenbank abzurufen und zu speichern, und lädt die entsprechenden Views.
+ * @author Merzan
  */
 class UserController
 {
@@ -53,7 +54,7 @@ class UserController
                 // Leitet den Benutzer zur Profilseite um.
                 // header() muss aufgerufen werden, bevor Inhalte an den Browser gesendet wurden.
                 // exit; beendet die Skriptausführung, um sicherzustellen, dass die Weiterleitung sofort erfolgt.
-                header('Location: index.php?page=profile');
+                header('Location: index.php?page=home');
                 exit;
             } else {
                 // Wenn die Authentifizierung fehlschlägt, wird eine Fehlermeldung gesetzt.
@@ -134,7 +135,7 @@ class UserController
                         $_SESSION['user'] = $user;
                         $_SESSION['user_id'] = $user['id'];
 
-                        header('Location: index.php?page=profile'); // Leitet zur Profilseite um.
+                        header('Location: index.php?page=home'); // Leitet zur Profilseite um.
                         exit;
                     } else {
                         $error = "Registrierung erfolgreich, aber Benutzerdaten konnten nicht abgerufen werden. Bitte melden Sie sich an.";

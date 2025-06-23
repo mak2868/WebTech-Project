@@ -63,7 +63,7 @@ function sortCart(cart) {
  * @author Marvin Kunz
  */
 function getIndexInCart(name, indexFromButtons) {
-let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
+  let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
 
   // Variable, die das Auftreten der unterschiedlichen Größen eines Produktes zählt
   let countItemWithName = 0;
@@ -182,7 +182,7 @@ function updateQuantity(index, newQuantity, isSlider) {
   } else {
     renderCart(); // nur auf cart.php nötig
   }
-   updateCartIcon();
+  updateCartIcon();
 }
 
 
@@ -206,7 +206,7 @@ function updateQuantityMultiRow(name, indexFromButtons, newQuantity, isSlider) {
 
     const inputs = cartItem?.querySelectorAll('.cart-item-quantity-input');
     const input = inputs?.[indexFromButtons];
-    const itemId = input?.getAttribute('data-id'); 
+    const itemId = input?.getAttribute('data-id');
 
     if (itemId) {
       updateServerQuantity(Number(itemId), newQuantity);
@@ -308,7 +308,8 @@ function createSingleItemRow(item, index, itemTotal) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
+
   img.alt = item.name;
   img.width = 60;
 
@@ -396,7 +397,7 @@ function createMultiItemRow(item, allItemsOfThisType) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
@@ -668,7 +669,7 @@ function createSingleItemRowServer(item, itemTotal) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
@@ -752,7 +753,7 @@ function createMultiItemRowServer(item, allItemsOfThisType) {
 
   const img = document.createElement('img');
   img.className = 'cart-item-img';
-  img.src = BASE_URL + item.image;
+  img.src = item.image;
   img.alt = item.name;
   img.width = 60;
 
@@ -873,7 +874,10 @@ function renderServerCart(cartItems) {
  *            Slider-Funktionen               *
  **********************************************/
 
-
+/**
+ * zuständig für die Visualisierug der cart.php Seite (Render-Funktion)
+ * @author Merzan Köse
+ */
 
 function renderCartSlider() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -904,7 +908,7 @@ function renderClientCartSlider() {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
-    const imagePath = BASE_URL + item.image;
+    const imagePath = item.image;
 
     cartItemsContainer.innerHTML += `
       <div class="cart-item">
@@ -917,14 +921,14 @@ function renderClientCartSlider() {
           <div class="cart-item-bottom-row">
             <div class="qty-row">
               <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity - 1}, true)">
-                <i class="fa-solid fa-minus"></i>
+                <img src="${BASE_URL}/images/minusBlack.svg" alt="Minus">
               </button>
               <span class="qty">${item.quantity}</span>
               <button class="qty-btn" onclick="updateQuantity(${index}, ${item.quantity + 1}, true)">
-                <i class="fa-solid fa-plus"></i>
+                <img src="${BASE_URL}/images/plusBlack.svg" alt="Plus">
               </button>
             </div>
-            <i class="fa-solid fa-trash remove-btn" onclick="removeFromCart(${index}, true)" title="Entfernen"></i>
+            <img src="${BASE_URL}/images/removeIcon.svg" alt="Entfernen" class="remove-btn" onclick="removeFromCart(${index}, true)">
           </div>
         </div>
       </div>
@@ -936,6 +940,7 @@ function renderClientCartSlider() {
     cartTotalSlider.textContent = total.toFixed(2) + " €";
   }
 }
+
 
 function renderServerCartSlider(cartItems) {
   const cartItemsContainer =
@@ -950,7 +955,7 @@ function renderServerCartSlider(cartItems) {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
-    const imagePath = BASE_URL + item.image;
+    const imagePath = item.image;
 
     cartItemsContainer.innerHTML += `
       <div class="cart-item">
@@ -963,14 +968,14 @@ function renderServerCartSlider(cartItems) {
           <div class="cart-item-bottom-row">
             <div class="qty-row">
               <button class="qty-btn" onclick="${item.quantity > 1 ? `updateServerQuantity(${item.id}, ${item.quantity - 1})` : `removeServerItem(${item.id})`}">
-                <i class="fa-solid fa-minus"></i>
+               <img src="${BASE_URL}/images/minusBlack.svg" alt="Minnus">
               </button>
               <span class="qty">${item.quantity}</span>
               <button class="qty-btn" onclick="updateServerQuantity(${item.id}, ${item.quantity + 1})">
-                <i class="fa-solid fa-plus"></i>
+               <img src="${BASE_URL}/images/plusBlack.svg" alt="Plus">
               </button>
             </div>
-            <i class="fa-solid fa-trash remove-btn" onclick="removeServerItem(${item.id})" title="Entfernen"></i>
+           <img src="${BASE_URL}/images/removeIcon.svg" alt="Entfernen" class="remove-btn" onclick="removeServerItem(${item.id})">
           </div>
         </div>
       </div>
@@ -996,13 +1001,20 @@ function closeCart() {
   if (slider) slider.classList.remove("open");
 }
 
-window.addEventListener("DOMContentLoaded", () => {
-  closeCart();
-  const closeIcon = document.querySelector('.close-icon');
-  if (closeIcon) {
-    closeIcon.addEventListener('click', closeCart);
+document.addEventListener('DOMContentLoaded', () => {
+  const closeBtn = document.getElementById('closeCartBtn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      const slider = document.getElementById('cartSlider');
+      if (slider) slider.classList.remove('open');
+    });
   }
 });
+
+
+
+
+
 
 
 
@@ -1138,6 +1150,6 @@ function intermediateStepAddToCart() {
   let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
   let buttonContent = selectedButton.textContent.slice(0, -1);
 
-  addToCart(product.name, product.pics.productPic1, getTotalPrice(product.priceWithoutTax), buttonContent);
+  addToCart(product.name, product.product_pic1, getTotalPrice(product.priceWithoutTax), buttonContent);
 }
 

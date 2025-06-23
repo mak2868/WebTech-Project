@@ -1,4 +1,4 @@
-<!-- erstellt von: Marvin Kunz (außer Navbar) -->
+<!-- erstellt von: Marvin Kunz -->
 
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
@@ -6,8 +6,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XPN | Whey Protein Choco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title id="pageTitle"></title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
@@ -21,137 +21,21 @@
 
     <!-- JS -->
     <script src="<?= BASE_URL ?>/js/items.js" defer></script>
-    <!-- <script src="<?= BASE_URL ?>/js/cart.js" defer></script> -->
+    <script src="<?= BASE_URL ?>/js/cart.js" defer></script>
     <script src="<?= BASE_URL ?>/js/wishList.js" defer></script>
     <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
-
-
+    <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
 
 </head>
 
 <?php
 include __DIR__ . '/../layouts/navbar.php';
-require_once '../../models/ProductModel.php';
+?>
 
-$messages = [];
-$pid = null;
-$cid = null;
-$json = null;
-$path = null;
-$hasError = false;
-
-if (isset($_GET["pid"])) {
-    if (trim($_GET["pid"]) === '') {
-        $messages[] = 'Der Parameter "pid" wurde übergeben, ist aber leer.';
-    } else {
-        $pid = $_GET["pid"];
-    }
-} else {
-    $messages[] = 'Der Parameter "pid" fehlt vollständig.';
-}
-
-if (isset($_GET["cid"])) {
-    if (trim($_GET["cid"]) === '') {
-        $messages[] = 'Der Parameter "cid" wurde übergeben, ist aber leer.';
-    } else {
-        $cid = $_GET["cid"];
-    }
-} else {
-    $messages[] = 'Der Parameter "cid" fehlt vollständig.';
-}
-
-if (!empty($messages)) {
-    $hasError = true;
-    foreach ($messages as $msg) {
-        echo '<script>console.log(' . json_encode($msg) . ');</script>';
-    }
-} else {
-    switch ($cid) {
-        case 1:
-            if ($pid >= 1 && $pid <= 12) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Pulver/WheyProteins.json";
-            } else {
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 1 (WheyProteins)") . ");</script>";
-            }
-            break;
-
-        case 2:
-            if ($pid >= 1 && $pid <= 6) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Pulver/Isolat.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 2 (Isolat).") . ");</script>";
-            }
-            break;
-
-        case 3:
-            if ($pid >= 1 && $pid <= 6) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Pulver/Vegan.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 3 (Vegan Pulver).") . ");</script>";
-            }
-            break;
-
-        case 4:
-            if ($pid >= 1 && $pid <= 6) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Riegel/Proteinriegel.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 4 (Proteinriegel).") . ");</script>";
-            }
-            break;
-
-        case 5:
-            if ($pid >= 1 && $pid <= 3) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Riegel/LowCarb.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 5 (LowCarb).") . ");</script>";
-            }
-            break;
-
-        case 6:
-            if ($pid >= 1 && $pid <= 3) {
-                $data = ProductModel::getAllItemsOfKategory($cid);
-                $path = "/products/Riegel/Vegan.json";
-            } else {
-                $hasError = true;
-                echo "<script>console.log(" . json_encode("Ungültige pid für Kategorie 6 (Riegel Vegan).") . ");</script>";
-            }
-            break;
-
-        default:
-            $json = false;
-            echo "<script>console.log(" . json_encode("Ungültige Kategorie.") . ");</script>";
-    }
-}
-
-                // if (!$hasError) {
-                //     if ($json === false) {
-                //         echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-                //     } else {
-                //         // $data = json_decode($json, true);
-                //         $data = json_decode($json, true);                    
-
-                //         if ($data === null) {
-                //             echo "<script>console.log(" . json_encode("Error loading the file: " . $path) . ");</script>";
-                //         }
-                //     }
-                // }
-
-
-                ?>
-
-              <?php if (!empty($data)): ?>
+<?php if (!empty($produkte)): ?>
     <script>
-        const data = <?php echo json_encode($data, JSON_UNESCAPED_UNICODE); ?>;
+        const data = <?php echo json_encode($produkte, JSON_UNESCAPED_UNICODE); ?>;
         console.log("Daten geladen:", data);
     </script>
 <?php else: ?>
@@ -164,10 +48,6 @@ if (!empty($messages)) {
 
 
 <body>
-    <div id='topPic'>
-        <img src="" alt="">
-    </div>
-
     <main style="padding-top: 80px">
         <section id='top'>
             <div id='top-left'>
@@ -177,48 +57,52 @@ if (!empty($messages)) {
                     <img src="" alt="Drittes Produktbild" onclick="switchProductbild(2)">
                 </div>
                 <!-- Produktbild -->
+                <div id="dotContainer" class="dots"></div>
                 <div id='Produktbild'>
                     <img src="" alt="ausgewähltes Produktbild">
                 </div>
+            </div>
 
-                <div id='top-rigth'>
-                    <!-- Produktüberschrift -->
-                    <div id='firstLine'>
-                        <h2 id="name"></h2>
-                        <!-- Bewertungsskala -->
+            <div id='top-rigth'>
+                <!-- Produktüberschrift -->
+                <div id='firstLine'>
+                    <h2 id="name"></h2>
+                    <!-- Bewertungsskala -->
+                    <div id="BewertungsskalaRatersCount">
                         <div id="Bewertungsskala"></div>
                         <p id="ratersCount"></p>
                     </div>
-                    <h4 id="description"></h4>
-                    <!-- Sortenauswahl -->
-                    <div id="select-wrapper">
-                        <p>Geschmack</p>
-                        <select id="select"></select>
-                    </div>
-
-                    <!-- Verpackungsgrößen -->
-                    <div id='Verpackungsgrößen'>
-                        <p>Verpackungsgrößen</p>
-                        <div id='VerpackungsgrößenButtons'></div>
-                    </div>
-
-                    <!-- Preis -->
-                    <div id='Preis'>
-                        <p id="priceWTax"></p>
-                        <p id="pricePerKgOutput"></p>
-                    </div>
-
-                    <!-- Versand + Favoriten-->
-                    <div id='VersandFavoriten'>
-                         <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
-                            <img src="../../../public/images/shopping-cart.png" alt="">
-                            <span>In den Warenkorb</span>
-                        </button>
-                        <img id="FavButton" onclick="intermediateStepChangeWishListStatus()" src="../../../public/images/Herz_unausgefüllt.png" alt="">
-                        <br>
-                    </div>
-                    <p id="statusDistribution"></p>
                 </div>
+                <h4 id="description"></h4>
+                <!-- Sortenauswahl -->
+                <div id="select-wrapper">
+                    <p>Geschmack</p>
+                    <select id="select"></select>
+                </div>
+
+                <!-- Verpackungsgrößen -->
+                <div id='Verpackungsgrößen'>
+                    <p>Verpackungsgrößen</p>
+                    <div id='VerpackungsgrößenButtons'></div>
+                </div>
+
+                <!-- Preis -->
+                <div id='Preis'>
+                    <p id="priceWTax"></p>
+                    <p id="pricePerKgOutput"></p>
+                </div>
+
+                <!-- Versand + Favoriten-->
+                <div id='VersandFavoriten'>
+                    <button id="VersandButton" onclick="intermediateStepAddToCart(); openCart();">
+                        <img id="VersandButtonImg" src="" alt="">
+                        <span>In den Warenkorb</span>
+                    </button>
+                    <img id="FavButton" onclick="intermediateStepChangeWishListStatus()"
+                        src="" alt="">
+                    <br>
+                </div>
+                <p id="statusDistribution"></p>
 
         </section>
 
@@ -452,15 +336,21 @@ if (!empty($messages)) {
 
         </div>
     </main>
-    <?php include '../layouts/cookieBanner.php'; ?>
-    <?php include '../layouts/footer.php'; ?>
+    <?php include '../app/views/layouts/cookieBanner.php'; ?>
+    <?php include '../app/views/layouts/footer.php'; ?>
 
     <script defer>
-        window.onload = () => {
-            window.intermediateStepRenderItemSite(<?php echo json_encode($cid); ?>, <?php echo json_encode($pid); ?>);
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            const parentID = <?php echo json_encode($parentID); ?>;
+            const cid = <?php echo json_encode($cid); ?>;
+            const pid = <?php echo json_encode($pid); ?>;
+            const idInData = <?php echo json_encode($idInData); ?>;
+            const data = <?php echo json_encode($produkte); ?>;
+
+            window.intermediateStepRenderItemSite(parentID, cid, pid, idInData, data);
+        });
     </script>
-    <?php include 'cartSlider.php'; ?>
+    <?php include '../app/views/layouts/cartSlider.php'; ?>
 </body>
 
 </html>

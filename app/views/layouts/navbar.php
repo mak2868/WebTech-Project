@@ -57,7 +57,7 @@ $username = $isLoggedIn ? htmlspecialchars($_SESSION['user']['username']) : null
 
     <div class="icon-container">
       <a id="darkmodeBtn" class="navbar-icon">
-  <img id="darkmodeIcon" src="<?= BASE_URL ?>/images/mond.png" width="32" alt="Darkmode umschalten" />
+  <img id="darkmodeIcon" src="<?= BASE_URL ?>/images/Mond.png" width="32" alt="Darkmode umschalten" />
 </a>
 
 

@@ -1,59 +1,76 @@
 <?php
 require_once __DIR__ . '/../lib/DB.php';
+require_once __DIR__ . '/../config/config.php';
+
 class ProductModel
 {
 
 
-  public static function getBestseller()
-{
-    $pdo = DB::getConnection();
+    public static function getBestseller()
+    {
+        $pdo = DB::getConnection();
 
-    // 2 Bestseller aus Proteinpulver
-    $stmt1 = $pdo->prepare("
-        SELECT 
-            p.pid, p.name, p.description, p.raters_count, p.rating,
-            (SELECT pp.top_pic 
-             FROM proteinpulver_pictures pp 
-             WHERE pp.product_id = p.pid 
-             LIMIT 1) AS bild,
-            sp.price_with_tax AS preis,
-            sp.size AS size
-        FROM proteinpulver_products p
-        INNER JOIN proteinpulver_sizes_prices sp ON sp.product_id = p.pid
-        WHERE sp.bestseller = 1
-        GROUP BY p.pid
-        ORDER BY sp.price_with_tax ASC
-        LIMIT 2
-    ");
-    $stmt1->execute();
-    $pulver = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+        $allParentIDs = ProductModel::getAllParentIDs();
+        $results = [];
+        $usedProductIDs = []; // <--- IDs merken
 
-    // 2 Bestseller aus Proteinriegel
-    $stmt2 = $pdo->prepare("
-        SELECT 
-            p.pid, p.name, p.description, p.raters_count, p.rating,
-            (SELECT pp.top_pic 
-             FROM proteinriegel_pictures pp 
-             WHERE pp.product_id = p.pid 
-             LIMIT 1) AS bild,
-            sp.price_with_tax AS preis,
-            sp.size AS size
-        FROM proteinriegel_products p
-        INNER JOIN proteinriegel_sizes_prices sp ON sp.product_id = p.pid
-        WHERE sp.bestseller = 1
-        GROUP BY p.pid
-        ORDER BY sp.price_with_tax ASC
-        LIMIT 2
-    ");
-    $stmt2->execute();
-    $riegel = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($allParentIDs)) {
+            for ($i = 0; $i < 4; $i++) {
+                $newProduct = false;
+                do {
+                    $randomKey = array_rand($allParentIDs);
+                    $randomParentID = $allParentIDs[$randomKey]['id'];
 
-    return array_merge($pulver, $riegel);
-}
+                    $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($randomParentID);
+                    $tablePrefix = strtolower($tablePrefixArray[0]['name']);
 
+                    $tablePics = $tablePrefix . "_pictures";
+                    $tableSizesPrices = $tablePrefix . "_sizes_prices";
+                    $tableProducts = $tablePrefix . "_products";
 
+                    $sql = "SELECT 
+                        p.pid,
+                        p.cid, 
+                        p.name, 
+                        p.description, 
+                        p.raters_count, 
+                        p.rating, 
+                        (SELECT pp.product_pic1
+                        FROM $tablePics pp 
+                        WHERE pp.product_id = p.pid 
+                        LIMIT 1) AS bild,
+                        sp.price_with_tax AS preis,
+                        sp.size AS size,
+                        ppc.id AS parent_id
+                    FROM $tableProducts p
+                    JOIN $tableSizesPrices sp 
+                        ON sp.product_id = p.pid AND sp.bestseller = 1
+                    JOIN product_categories pc 
+                        ON pc.id = p.cid
+                    JOIN product_parent_categories ppc 
+                        ON ppc.id = pc.parent_id
+                    ORDER BY RAND()
+                    LIMIT 1;";
 
-    public static function getAllItemsOfKategory($categoryID)
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute();
+                    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    // Prüfen, ob Produkt gültig und noch nicht verwendet
+                    if ($product && !in_array($product['pid'], $usedProductIDs)) {
+                        $usedProductIDs[] = $product['pid'];
+                        $results[] = $product;
+                        $newProduct = true;
+                    }
+
+                } while (!$newProduct);
+            }
+        }
+
+        return $results;
+    }
+
+    public static function getAllItemsOfCategory($categoryID)
     {
         $pdo = DB::getConnection();
 
@@ -70,25 +87,18 @@ class ProductModel
         $parentName = strtolower($typeRow['parent_name']); // z. B. 'proteinpulver' oder 'proteinriegel'
 
         // Passende Tabellennamen definieren
-        if ($parentName === 'proteinpulver') {
-            $productTable = 'proteinpulver_products';
-            $pictureTable = 'proteinpulver_pictures';
-            $nutrientTable = 'proteinpulver_nutrients';
-            $ingredrientTable = 'proteinpulver_ingredients';
-            $aminoTable = 'proteinpulver_amino_acids';
-            $sizesPricesTable = 'proteinpulver_sizes_prices';
-            $descriptionTable = null;
-        } elseif ($parentName === 'proteinriegel') {
-            $productTable = 'proteinriegel_products';
-            $pictureTable = 'proteinriegel_pictures';
-            $nutrientTable = 'proteinriegel_nutrients';
-            $ingredrientTable = 'proteinriegel_ingredients';
+
+        $productTable = $parentName . '_products';
+        $pictureTable = $parentName . '_pictures';
+        $nutrientTable = $parentName . '_nutrients';
+        $ingredrientTable = $parentName . '_ingredients';
+        $aminoTable = $parentName . '_amino_acids';
+        if (!ProductModel::tableExists($pdo, $aminoTable)) {
             $aminoTable = null;
-            $sizesPricesTable = 'proteinriegel_sizes_prices';
-            $descriptionTable = 'proteinriegel_descriptions';
-        } else {
-            throw new Exception("Unbekannter Produkttyp: $parentName");
         }
+        $sizesPricesTable = $parentName . '_sizes_prices';
+        $descriptionTable = $parentName . '_descriptions';
+
 
         // 1. Produkte aus Kategorie laden
         if (isset($productTable) && $productTable != null) {
@@ -98,17 +108,17 @@ class ProductModel
                 p.pid, p.cid, p.name, p.description, p.rating, p.raters_count, 
                 p.status_distribution, p.preparation, p.recommendation, 
                 p.tip, p.laboratory,
-                pi.top_pic, pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
+                pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
                 FROM $productTable p
                 LEFT JOIN $pictureTable pi ON p.pid = pi.product_id
                 WHERE p.cid = :categoryID
                 ");
-            } else if ($parentName === 'proteinriegel') {
+            } else {
                 $stmt = $pdo->prepare("
                 SELECT 
                 p.pid, p.cid, p.name, p.description, p.rating, p.raters_count, 
                 p.status_distribution, p.preparation, p.recommendation, p.laboratory,
-                pi.top_pic, pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
+                pi.product_pic1, pi.product_pic2, pi.product_pic3, pi.small_pic
                 FROM $productTable p
                 LEFT JOIN $pictureTable pi ON p.pid = pi.product_id
                 WHERE p.cid = :categoryID
@@ -123,14 +133,31 @@ class ProductModel
                 foreach ($products as &$product) {
                     $productId = $product['pid'];
 
-                    // 2. Zutaten und Allergene
+                    // 2. Bildpfad zusammensetzen (wenn vorhanden)
+                    if (!empty($product['product_pic1'])) {
+                        $product['product_pic1'] = BASE_URL . $product['product_pic1'];
+                    }
+
+                    if (!empty($product['product_pic2'])) {
+                        $product['product_pic2'] = BASE_URL . $product['product_pic2'];
+                    }
+
+                    if (!empty($product['product_pic3'])) {
+                        $product['product_pic3'] = BASE_URL . $product['product_pic3'];
+                    }
+
+                    if (!empty($product['small_pic'])) {
+                        $product['small_pic'] = BASE_URL . $product['small_pic'];
+                    }
+
+                    // 3. Zutaten und Allergene
                     if (isset($ingredrientTable) && $ingredrientTable != null) {
                         $stmtIng = $pdo->prepare("SELECT ingredients, allergens FROM $ingredrientTable WHERE product_id = ?");
                         $stmtIng->execute([$productId]);
                         $product['substance'] = $stmtIng->fetch(PDO::FETCH_ASSOC);
                     }
 
-                    // 3. Nährwerte
+                    // 4. Nährwerte
                     if (isset($nutrientTable) && $nutrientTable != null) {
                         $stmtNut = $pdo->prepare("
                 SELECT energy, fat, saturates, carbohydrates, sugars, fibre, protein, salt 
@@ -141,7 +168,7 @@ class ProductModel
                         $product['substance']['nutrients'] = $stmtNut->fetch(PDO::FETCH_ASSOC);
                     }
 
-                    // 4. Aminosäuren
+                    // 5. Aminosäuren
                     if (isset($aminoTable) && $aminoTable != null) {
                         $stmtAmino = $pdo->prepare("SELECT * FROM $aminoTable WHERE product_id = ?");
                         $stmtAmino->execute([$productId]);
@@ -150,20 +177,39 @@ class ProductModel
                         $product['substance']['aminoAcids'] = $aminoAcids;
                     }
 
-                    // 5. Verpackungsgrößen und Preise
-                    if (isset($sizesPricesTable) && $sizesPricesTable != null) {
-                        $stmtSize = $pdo->prepare("
-                SELECT size, price_with_tax 
-                FROM $sizesPricesTable 
-                WHERE product_id = ? 
-                ");
-                        $stmtSize->execute([$productId]);
-                        $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
-                        $product['availableSizes'] = array_column($sizes, 'size');
-                        $product['priceWithTax'] = array_column($sizes, 'price_with_tax');
+                    // 6. Verpackungsgrößen und Preise
+                    if ($parentName === 'proteinriegel') {
+                        if (isset($sizesPricesTable) && $sizesPricesTable != null) {
+                            $stmtSize = $pdo->prepare("
+                        SELECT size, price_with_tax, quantity_available
+                        FROM $sizesPricesTable 
+                        WHERE product_id = ?
+                        ORDER BY CAST(size AS UNSIGNED) DESC
+                        ");
+                            $stmtSize->execute([$productId]);
+                            $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
+                            $product['sizes'] = array_column($sizes, 'size');
+                            $product['quantityPerSize'] = array_column($sizes, 'quantity_available');
+                            $product['priceWithTax'] = array_column($sizes, column_key: 'price_with_tax');
+                        }
+                    } else {
+                        if (isset($sizesPricesTable) && $sizesPricesTable != null) {
+                            $stmtSize = $pdo->prepare("
+                        SELECT size, price_with_tax, quantity_available 
+                        FROM $sizesPricesTable 
+                        WHERE product_id = ?
+                        ORDER BY CAST(size AS UNSIGNED) ASC
+                        ");
+                            $stmtSize->execute([$productId]);
+                            $sizes = $stmtSize->fetchAll(PDO::FETCH_ASSOC);
+                            $product['sizes'] = array_column($sizes, 'size');
+                            $product['quantityPerSize'] = array_column($sizes, 'quantity_available');
+                            $product['priceWithTax'] = array_column($sizes, column_key: 'price_with_tax');
+                        }
+
                     }
 
-                    // 6. Description-Details
+                    // 7. Description-Details
                     if (isset($descriptionTable) && $descriptionTable != null) {
                         $stmtDesc = $pdo->prepare("
                         SELECT detail1, detail2 
@@ -179,83 +225,167 @@ class ProductModel
                         ];
                     }
 
-                    //     // 6. Optional: Rezepte (wenn vorhanden)
-                    //     $stmtRec = $pdo->prepare("
-                    //     SELECT title, short_title, portion, ingredients, preparation 
-                    //     FROM proteinpulver_recipes 
-                    //     WHERE product_id = ?
-                    // ");
-                    // $stmtRec->execute([$productId]);
-                    // $recipes = [];
-                    // while ($r = $stmtRec->fetch(PDO::FETCH_ASSOC)) {
-                    //     $r['ingredients'] = json_decode($r['ingredients'], true);
-                    //     $r['preparation'] = json_decode($r['preparation'], true);
-                    //     $recipes[] = $r;
-                    // }
+                    // 8. Optional: Rezepte (wenn vorhanden)
+                    $stmtRec = $pdo->prepare("
+                        SELECT id, title, short_title, `portion`
+                        FROM proteinpulver_recipes 
+                        WHERE product_id = ?
+                    ");
+                    $stmtRec->execute([$productId]);
+
+                    $recipes = [];
+
+                    while ($r = $stmtRec->fetch(PDO::FETCH_ASSOC)) {
+                        $recipeId = $r['id'];
+
+                        // Zutaten (Ingredients) abrufen
+                        $stmtIngr = $pdo->prepare("
+                            SELECT ingredient 
+                            FROM proteinpulver_recipe_ingredients 
+                            WHERE recipe_id = ?
+                            ORDER BY id ASC
+                        ");
+                        $stmtIngr->execute([$recipeId]);
+                        $r['ingredients'] = $stmtIngr->fetchAll(PDO::FETCH_COLUMN); // array of ingredients
+
+                        // Zubereitungsschritte (Preparation) abrufen
+                        $stmtPrep = $pdo->prepare("
+                            SELECT instruction 
+                            FROM proteinpulver_recipe_steps 
+                            WHERE recipe_id = ?
+                            ORDER BY step_number ASC
+                        ");
+                        $stmtPrep->execute([$recipeId]);
+                        $r['preparation'] = $stmtPrep->fetchAll(PDO::FETCH_COLUMN); // array of steps
+
+                        $recipes[] = $r;
+                    }
+
+                    // Zuweisung ans Produkt
                     $product['usage'] = [
                         'preparation' => $product['preparation'],
                         'recommendation' => $product['recommendation'],
-                        // 'recipes' => $recipes
+                        'recipes' => $recipes
                     ];
 
                     if (isset($product['tip'])) {
                         $product['usage']['tip'] = $product['tip'];
                     }
+
                 }
+                //Bilder laden 
+                $stmtPic = $pdo->prepare(
+                    'SELECT shopping_cart, Herz_unausgefuellt, Herz_ausgefuellt FROM pictures;'
+                );
+                $stmtPic->execute();
+                $pictures = $stmtPic->fetchAll(PDO::FETCH_ASSOC);
+
+                // Bilder zu jedem Produkt hinzufügen
+                foreach ($products as &$product) {  // Mit Referenz arbeiten
+                    // Alle Bilder zuweisen
+                    $product['shopping_cart'] = !empty($pictures[0]['shopping_cart']) ? BASE_URL . $pictures[0]['shopping_cart'] : '';
+                    $product['Herz_unausgefuellt'] = !empty($pictures[0]['Herz_unausgefuellt']) ? BASE_URL . $pictures[0]['Herz_unausgefuellt'] : '';
+                    $product['Herz_ausgefuellt'] = !empty($pictures[0]['Herz_ausgefuellt']) ? BASE_URL . $pictures[0]['Herz_ausgefuellt'] : '';
+                }
+
+                unset($product);  // Referenz löschen
             }
         }
 
         return $products;
     }
 
-
-// $products = ProductModel::getAllItemsOfKategory(3); // z. B. Kategorie "Vegan Whey"
-// echo '<pre>';
-// print_r($products);
-// echo '</pre>';
-
-//     public function getProductsByType($type, $category = null) {
-
-//         $pdo = DB::getConnection();
-
-//         $table = $type === 'proteinriegel' ? 'proteinriegel_products' : 'proteinpulver_products';
-
-//         $sql = "SELECT * FROM $table";
-//         $params = [];
-
-//         if ($category) {
-//             $sql .= " WHERE cid = (SELECT id FROM product_categories WHERE name = ?)";
-//             $params[] = $category;
-//         }
-
-//         $stmt = $this->pdo->prepare($sql);
-//         $stmt->execute($params);
-//         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-//     }
-// }
-
-
-    public static function getProductsByCategory($cid)
+    public static function getAllParentIDs()
     {
-     $pdo = DB::getConnection();
+        $pdo = DB::getConnection();
 
         $stmt = $pdo->prepare("
-        SELECT 
-            p.pid, p.name, p.description, p.raters_count, p.rating,
-            (SELECT pp.top_pic 
-             FROM proteinpulver_pictures pp 
-             WHERE pp.product_id = p.pid 
-             LIMIT 1) AS bild,
-            sp.price_with_tax AS preis,
-            sp.size AS size
-        FROM proteinpulver_products p
-        INNER JOIN proteinpulver_sizes_prices sp ON sp.product_id = p.pid
-        WHERE p.cid = :cid
-        GROUP BY p.pid
-        ORDER BY sp.price_with_tax ASC
-    ");
-
-    $stmt->execute([':cid' => $cid]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            SELECT id FROM product_parent_categories
+        ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getAllCids($parentID)
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("
+            SELECT id FROM product_categories WHERE parent_id = ?
+        ");
+        $stmt->execute([$parentID]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllPidsOfOneCids($parentID, $categoryID)
+    {
+        $pdo = DB::getConnection();
+
+        $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($parentID);
+        $tablePrefix = strtolower($tablePrefixArray[0]['name']);
+
+        $table = $tablePrefix . "_products";
+        // return ($tablePrefix . "_products");
+
+
+        $stmt = $pdo->prepare("
+            SELECT pid FROM $table WHERE cid = ?
+        ");
+        $stmt->execute([$categoryID]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getParentCategoryNameFromParentID($parentID)
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("
+            SELECT name FROM product_parent_categories WHERE id = ?
+        ");
+        $stmt->execute([$parentID]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function tableExists(PDO $pdo, string $tableName): bool
+    {
+        $stmt = $pdo->prepare("
+        SELECT COUNT(*) 
+        FROM INFORMATION_SCHEMA.TABLES 
+        WHERE TABLE_SCHEMA = :db 
+          AND TABLE_NAME = :table
+    ");
+        $stmt->execute([
+            ':db' => $pdo->query("SELECT DATABASE()")->fetchColumn(),
+            ':table' => $tableName
+        ]);
+
+        return $stmt->fetchColumn() > 0;
+    }
+
 }
+
+$products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
+echo '<pre>';
+print_r($products);
+echo '</pre>';
+
+// $cids = ProductModel::getAllCids();
+// echo '<pre>';
+// print_r($cids);
+// echo '</pre>';
+
+// $pids = ProductModel::getAllPidsOfOneCids(2, 4);
+// echo '<pre>';
+// print_r($pids);
+// echo '</pre>';
+
+// $parentids = ProductModel::getAllParentIDs();
+// echo '<pre>';
+// print_r($parentids);
+// echo '</pre>';
+
+// $bestseller = ProductModel::getBestseller();
+// echo '<pre>';
+// print_r($bestseller);
+// echo '</pre>';
