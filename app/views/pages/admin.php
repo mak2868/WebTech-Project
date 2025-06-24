@@ -53,6 +53,7 @@
         const menuSelect = document.getElementById('menu');
         const adminContent = document.getElementById('adminContent');
 
+        let isUserAddressEditable; // oder false, je nachdem welche Felder angezeigt werden sollen
         menuSelect.addEventListener('change', function () {
             // Die Optionen ausblenden
             adminContent.innerHTML = '';  // Leere Inhalte löschen
@@ -68,142 +69,158 @@
                         console.log(data);  // Überprüfe die Daten im Browser-Console
 
                         if (data.length > 0) {
-                            // HTML-Tabelle mit den Kopfzeilen
-                            let userList = "<table border='1' style='width: 100%; margin-top: 20px;' id='userTable'>";
-                            userList += "<thead><tr><th>ID</th><th>Username</th><th>Email</th><th>Phone</th><th>Geburtstag</th><th>Geschlecht</th><th>Vorname</th><th>Nachname</th><th>Erstellt am</th></tr></thead>";
-                            userList += "<tbody>";
+                            let userList = `
+<style>
+    .user-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .user-card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+    .user-card:hover {
+        transform: translateY(-4px);
+    }
+    .user-field {
+        margin: 8px 0;
+    }
+    .editable {
+        background-color: #fff8dc;
+        border-radius: 4px;
+        padding: 2px 4px;
+        cursor: text;
+        display: inline-block;
+        min-width: 50px;
+    }
+    .delete-btn {
+        margin-top: 10px;
+        padding: 6px 12px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .delete-btn:hover {
+        background-color: #c0392b;
+    }
+</style>
+<div class="user-grid">
+`;
 
-                            // Durchlaufe alle Benutzer und füge die entsprechenden Zeilen hinzu
-                            data.forEach(user => {
-                                userList += `<tr>
-                                <td id="id">${user.id}</td>
-                                <td>${user.username}</td>
-                                <td>${user.email}</td>
-                                <td>${user.phone}</td>
-                                <td>${user.birthdate}</td>
-                                <td>${user.gender}</td>
-                                <td>${user.first_name}</td>
-                                <td>${user.last_name}</td>
-                                <td>${user.created_at}</td>
-                                <td id="delete">Datensatz löschen</td>
-                             </tr>`;
-                            });
+                               data.forEach(user => {
+                userList += `<div class="user-card" data-id="${user.id}">`;
 
-                            userList += "</tbody></table>";
-                            document.getElementById('adminContent').innerHTML = userList;  // Benutzerliste in die Seite einfügen
-                        } else {
-                            document.getElementById('adminContent').innerHTML = "<p>Keine Benutzer gefunden.</p>";
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Fehler beim Laden der Benutzer:", error);
-                        document.getElementById('adminContent').innerHTML = "<p>Fehler beim Laden der Benutzer.</p>";
-                    });
-            }
-        }
-        )
+            
+                    userList += `
+            <div class="user-field" data-field="id"><strong>ID:</strong> <span>${user.id}</span></div>
+            <div class="user-field" data-field="username"><strong>Username:</strong> <span class="editable" contenteditable="true">${user.username}</span></div>
+            <div class="user-field" data-field="email"><strong>Email:</strong> <span class="editable" contenteditable="true">${user.email}</span></div>
+            <div class="user-field" data-field="phone"><strong>Telefon:</strong> <span class="editable" contenteditable="true">${user.phone}</span></div>
+            <div class="user-field" data-field="birthdate"><strong>Geburtstag:</strong> <span class="editable" contenteditable="true">${user.birthdate}</span></div>
+            <div class="user-field" data-field="gender"><strong>Geschlecht:</strong> <span class="editable" contenteditable="true">${user.gender}</span></div>
+            <div class="user-field" data-field="first_name"><strong>Vorname:</strong> <span class="editable" contenteditable="true">${user.first_name}</span></div>
+            <div class="user-field" data-field="last_name"><strong>Nachname:</strong> <span class="editable" contenteditable="true">${user.last_name}</span></div>
+            <div class="user-field" data-field="created_at"><strong>Erstellt am:</strong> <span class="editable" contenteditable="true">${user.created_at}</span></div>
+        `;
+                
+                    userList += `
+            <div class="user-field" id="address" data-field="type"><strong>Type:</strong> <span class="editable" contenteditable="true">${user.type || ''}</span></div>
+            <div class="user-field" id="address" data-field="street"><strong>Straße:</strong> <span class="editable" contenteditable="true">${user.street || ''}</span></div>
+            <div class="user-field" id="address" data-field="city"><strong>Stadt:</strong> <span class="editable" contenteditable="true">${user.city || ''}</span></div>
+            <div class="user-field" id="address" data-field="postal_code"><strong>PLZ:</strong> <span class="editable" contenteditable="true">${user.postal_code || ''}</span></div>
+            <div class="user-field" id="address" data-field="country"><strong>Land:</strong> <span class="editable" contenteditable="true">${user.country || ''}</span></div>
+            <div class="user-field" id="address" data-field="created_at"><strong>Erstellt am:</strong> <span class="editable" contenteditable="true">${user.ua_created_at || ''}</span></div>
+            <div class="user-field" id="address" data-field="updated_at"><strong>Aktualisiert am:</strong> <span class="editable" contenteditable="true">${user.ua_updated_at || ''}</span></div>
+        `;
+                
 
-        document.getElementById('adminContent').addEventListener('click', function (event) {
-            // Wenn die Tabelle existiert und eine Zeile angeklickt wird
-            const table = document.getElementById('userTable');  // Stellen sicher, dass die Tabelle existiert
+                userList += `<button class="delete-btn">Datensatz löschen</button></div>`;
+            }); // Ende forEach
 
-            if (!table) return; // Wenn die Tabelle noch nicht existiert, keine Aktion durchführen
+            userList += `</div>`; // Ende user-grid
+            adminContent.innerHTML = userList;
 
-            const headers = Array.from(table.querySelectorAll('th')).map(th => th.textContent);
+            // Rest deiner Event Listener Code hier...
+        } // Ende if (data.length > 0)
+    });
+                    
 
-            // Wenn eine Zelle in der Tabelle angeklickt wird
-            if (event.target.tagName === 'TD') {
-                const row = event.target.parentElement;  // Zeile (TR)
-                const idCell = row.querySelector('td[id="id"]');  // ID-Zelle der aktuellen Zeile finden
-                const deleteCell = row.querySelector('td[id="delete"]');
-
-                const idValue = idCell ? idCell.textContent : null;  // ID-Wert der Zelle (z.B. "1")
-
-                // Wenn die angeklickte Zelle eine "editierbare" Zelle ist, machen wir sie editierbar
-                if (event.target !== idCell) {
-                    if (event.target == deleteCell) {
-                        fetch('index.php?page=delete-user', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                id: idValue,              // ID der betroffenen Zeile
-                            })
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                if (data.success) {
-                                    alert(`Löschen erfolgreich!`);
-                                } else {
-                                    alert(`Fehler beim Löschen: ${data.error}`);
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Fehler beim AJAX-Request:', error);
-                                alert('Es ist ein Fehler aufgetreten.');
-                            });;
-                    } else {
-                        const originalValue = event.target.textContent;  // Wert der angeklickten Zelle
-
-                        // Erstelle ein Input-Feld
-                        const inputField = document.createElement('input');
-                        inputField.value = originalValue;
-                        event.target.innerHTML = '';  // Lösche den aktuellen Inhalt der Zelle
-                        event.target.appendChild(inputField);
-
-                        // Wenn der Benutzer mit der Eingabe fertig ist, speichern wir die Änderung
-                        inputField.addEventListener('blur', function () {
-                            const newValue = inputField.value;
-                            event.target.textContent = newValue;
-
-                            const columnName = headers[event.target.cellIndex];  // Spaltenname anhand des Indexes
-                            // Ausgabe der Änderung mit dem Spaltennamen statt Index
-                            console.log(`Neuer Wert für ${columnName}: ${newValue} (ID der Zeile: ${idValue})`);
-
-                            // Hier kannst du auch die Änderung an den Server senden, z.B. mit einer AJAX-Anfrage
-                        });
-
-                        // Falls der Benutzer die Eingabe mit Enter abschließt:
-                        inputField.addEventListener('keydown', function (e) {
-                            if (e.key === 'Enter') {
-                                const newValue = inputField.value;
-                                event.target.textContent = newValue;
-
-                                const columnName = headers[event.target.cellIndex];  // Spaltenname anhand des Indexes
-                                fetch('index.php?page=update-user-field', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({
-                                        id: idValue,              // ID der betroffenen Zeile
-                                        field: columnName,        // Spaltenname
-                                        value: newValue           // Neuer Wert
-                                    })
+                // Event Listener nur für die editable Spans
+                document.querySelectorAll('.editable').forEach(field => {
+                    field.addEventListener('keydown', function (e) {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const newValue = field.textContent.trim();
+                            const userCard = field.closest('.user-card');
+                            const fieldName = field.closest('.user-field').getAttribute('data-field');
+                            const userId = userCard.getAttribute('data-id');
+                            isUserAddressEditable = field.closest('#address') !== null;
+                            
+                            fetch('index.php?page=update-user-field', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    id: userId,
+                                    field: fieldName,
+                                    value: newValue,
+                                    isAddressField: isUserAddressEditable  // Hier gibst du mit, ob es user_address oder user Feld ist
                                 })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data.success) {
-                                            alert(`Änderung erfolgreich gespeichert!`);
-                                        } else {
-                                            alert(`Fehler beim Speichern: ${data.error}`);
-                                        }
-                                    })
-                                    .catch(error => {
-                                        console.error('Fehler beim AJAX-Request:', error);
-                                        alert('Es ist ein Fehler aufgetreten.');
-                                    });
-                            }
-                        });
-                    }
-                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert('Änderung gespeichert!');
+                                    } else {
+                                        alert('Fehler beim Speichern: ' + data.error);
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Fehler beim AJAX-Request:', error);
+                                    alert('Serverfehler.');
+                                });
+
+                            field.blur();
+                        }
+                    });
+                });
+
+                // Delete Buttons
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const userId = this.closest('.user-card').getAttribute('data-id');
+                        if (confirm(`Soll Benutzer mit ID ${userId} gelöscht werden?`)) {
+                            fetch('index.php?page=delete-user', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ id: userId })
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.success) {
+                                        alert('Benutzer gelöscht');
+                                        this.closest('.user-card').remove();
+                                    } else {
+                                        alert('Fehler beim Löschen: ' + data.error);
+                                    }
+                                });
+                        }
+                    });
+                });
             }
-        });
-
-
-
-
+        })
+                   
     </script>
 </body>
 

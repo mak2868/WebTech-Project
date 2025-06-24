@@ -11,8 +11,14 @@ class AdminModel
         $pdo = DB::getConnection();
 
         $stmtUser = $pdo->prepare("
-        SELECT id, username, email, phone, birthdate, gender, first_name, last_name, created_at
-        FROM users
+        SELECT 
+        u.id, u.username, u.email, u.phone, u.birthdate, u.gender, 
+        u.first_name, u.last_name, u.created_at,
+        ua.type, ua.street, ua.city, ua.postal_code, ua.country, ua.created_at, ua.updated_at
+        FROM 
+        users u
+        LEFT JOIN 
+        user_addresses ua ON u.id = ua.user_id;
         ");
         $stmtUser->execute();
         $users = $stmtUser->fetchAll(PDO::FETCH_ASSOC);
@@ -26,6 +32,22 @@ class AdminModel
 
         $stmt = $pdo->prepare(
             "UPDATE users SET 
+            $changedColumn = ?
+            WHERE id = ?"
+        );
+
+        return $stmt->execute([
+            $changedValue,
+            $userID
+        ]);
+    }
+
+     public static function updateUserAddressData($userID, $changedColumn, $changedValue)
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare(
+            "UPDATE user_addresses SET 
             $changedColumn = ?
             WHERE id = ?"
         );
