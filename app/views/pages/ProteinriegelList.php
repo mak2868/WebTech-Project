@@ -6,6 +6,8 @@
 <head>
   <meta charset="UTF-8">
   <title>XPN | Proteinriegel</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style/global.css">
   <link rel="stylesheet" href="style/Grid-List.css">
   <link rel="stylesheet" href="style/cart-slide.css">
@@ -14,11 +16,16 @@
   <link rel="stylesheet" href="style/cookieBanner.css">
 
 
-
+  <!-- JS -->
   <script src="components/Navbar/navbar.js" defer></script>
   <script src="js/cart.js"></script>
   <script src="js/items.js" defer></script>
   <script src="js/cookieBanner.js" defer></script>
+
+   <!-- Head-Datei -->
+  <?php include __DIR__ . '/../layouts/head.php'; ?>
+
+  
 
 </head>
 

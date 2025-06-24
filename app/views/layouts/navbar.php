@@ -7,84 +7,102 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $isLoggedIn = isset($_SESSION['user']);
 $username = $isLoggedIn ? htmlspecialchars($_SESSION['user']['username']) : null;
-?>
 
-<noscript>
-  <link rel="stylesheet" href="<?= BASE_URL ?>/css/no-js.css" />
-  <div class="no-js-modal">
-    <div class="modal-content">
-      <h1>JavaScript ist deaktiviert</h1>
-      <p>Bitte aktiviere JavaScript in deinem Browser, um den Webshop zu nutzen.</p>
-    </div>
-  </div>
-</noscript>
+$navbarData = $_SESSION['navbarData'] ?? ['categories' => [], 'images' => []];
+$categories = $navbarData['categories'] ?? [];
+
+function getImagePath($images, $keyword) {
+    foreach ($images as $img) {
+        if (stripos($img, $keyword) !== false) {
+            return BASE_URL . $img;
+        }
+    }
+    return ''; // fallback
+}
+?>
 
 <div id="navbar" class="navbar">
   <div class="navbar-container">
+
+    <!-- 📌 LINKS: Logo -->
     <a href="<?= BASE_URL ?>/index.php?page=home" class="navbar-brand">
-      <img id="navbarLogo" src="<?= BASE_URL ?>/images/Logo_SchriftSchwarz.png" alt="Logo" width="120px" height="100px" />
+      <img id="navbarLogo" src="<?= getImagePath($navbarData['images'], 'Logo_SchriftSchwarz') ?>" alt="Logo" />
     </a>
 
-    <nav role="navigation" class="nav-menu-wrapper">
-      <ul role="list" class="nav-menu">
+    <!-- 📌 MITTE: Hauptnavigation -->
+    <nav class="nav-menu-wrapper">
+      <ul class="nav-menu">
         <li><a href="<?= BASE_URL ?>/index.php?page=about" class="nav-link">About</a></li>
-
-        <li class="nav-dropdown">
-          <div class="nav-dropdown-toggle">
-            <div class="nav-dropdown-icon"></div>
-            <div>Proteinpulver</div>
-          </div>
-          <nav class="nav-dropdown-list">
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinpulverList" class="nav-dropdown-link">Whey Protein</a>
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinpulverList" class="nav-dropdown-link">Isolat</a>
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinpulverList" class="nav-dropdown-link">Vegan</a>
-          </nav>
-        </li>
-
-        <li class="nav-dropdown">
-          <div class="nav-dropdown-toggle">
-            <div class="nav-dropdown-icon"></div>
-            <div>Proteinriegel</div>
-          </div>
-          <nav class="nav-dropdown-list">
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinriegelList" class="nav-dropdown-link">Vegan</a>
-            <a href="<?= BASE_URL ?>/index.php?page=ProteinriegelList" class="nav-dropdown-link">Low Carb</a>
-          </nav>
-        </li>
+        <?php foreach ($categories as $category): ?>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-toggle">
+              <div class="nav-dropdown-icon"></div>
+              <div><?= htmlspecialchars($category['name']) ?></div>
+            </div>
+            <nav class="nav-dropdown-list">
+              <?php foreach ($category['subcategories'] as $sub): ?>
+                <a href="<?= BASE_URL ?>/index.php?page=<?= urlencode($category['name']) ?>List" class="nav-dropdown-link">
+                  <?= htmlspecialchars($sub) ?>
+                </a>
+              <?php endforeach; ?>
+            </nav>
+          </li>
+        <?php endforeach; ?>
       </ul>
     </nav>
 
-    <div class="icon-container">
+    <!-- 📌 RECHTS: Icons -->
+    <div class="navbar-icons">
       <a id="darkmodeBtn" class="navbar-icon">
-  <img id="darkmodeIcon" src="<?= BASE_URL ?>/images/Mond.png" width="32" alt="Darkmode umschalten" />
-</a>
+        <img id="darkmodeIcon" src="<?= getImagePath($navbarData['images'], 'mond') ?>" alt="Darkmode" />
+      </a>
 
-
-     <div class="nav-dropdown user-dropdown">
-  <?php if ($isLoggedIn): ?>
-    <div class="navbar-icon">
-      <img src="<?= BASE_URL ?>/images/user-logged-in.png" alt="Benutzerbereich" class="user-icon" />
-    </div>
-    <div class="nav-dropdown-list dropdown-left-align">
-      <a href="<?= BASE_URL ?>/index.php?page=profile" class="nav-dropdown-link">Benutzerbereich</a>
-      <a href="<?= BASE_URL ?>/index.php?page=logout" class="nav-dropdown-link">Abmelden</a>
-    </div>
-  <?php else: ?>
-    <a id="userBtn" href="<?= BASE_URL ?>/index.php?page=login" class="navbar-icon">
-      <img src="<?= BASE_URL ?>/images/user-logged-out.png" alt="Benutzerbereich" class="user-icon" />
-    </a>
-  <?php endif; ?>
-</div>
-
-
+      <div class="nav-dropdown user-dropdown">
+        <?php if ($isLoggedIn): ?>
+          <div class="navbar-icon">
+            <img src="<?= getImagePath($navbarData['images'], 'user-logged-in') ?>" alt="User" class="user-icon" />
+          </div>
+          <div class="nav-dropdown-list dropdown-left-align">
+            <a href="<?= BASE_URL ?>/index.php?page=profile" class="nav-dropdown-link">Benutzerbereich</a>
+            <a href="<?= BASE_URL ?>/index.php?page=logout" class="nav-dropdown-link">Abmelden</a>
+          </div>
+        <?php else: ?>
+          <a id="userBtn" href="<?= BASE_URL ?>/index.php?page=login" class="navbar-icon">
+            <img src="<?= getImagePath($navbarData['images'], 'user-logged-out') ?>" alt="Login" class="user-icon" />
+          </a>
+        <?php endif; ?>
+      </div>
 
       <a id="cartBtn" href="<?= BASE_URL ?>/index.php?page=cart" class="navbar-icon">
-      <img id="cart-icon" src="<?= BASE_URL ?>/images/einkaufswagen.png" alt="Warenkorb">
+        <img id="cart-icon" src="<?= getImagePath($navbarData['images'], 'einkaufswagen') ?>" alt="Warenkorb" />
       </a>
     </div>
 
-    <div class="menu-button">
-      <div class="w-icon-nav-menu"></div>
-    </div>
+    <!-- 📌 RECHTS außen (nur Mobile): Burger -->
+    <button id="burgerBtn" class="burger-button">
+      <div class="burger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- 📱 MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <ul class="mobile-menu-list">
+      <li><a class="mobile-link" href="<?= BASE_URL ?>/index.php?page=about">About</a></li>
+
+      <?php foreach ($categories as $category): ?>
+        <li class="mobile-dropdown">
+          <div class="mobile-dropdown-toggle"><?= htmlspecialchars($category['name']) ?></div>
+          <div class="mobile-submenu">
+            <?php foreach ($category['subcategories'] as $sub): ?>
+              <a href="<?= BASE_URL ?>/index.php?page=<?= urlencode($category['name']) ?>List"><?= htmlspecialchars($sub) ?></a>
+            <?php endforeach; ?>
+          </div>
+        </li>
+      <?php endforeach; ?>
+    </ul>
   </div>
 </div>
