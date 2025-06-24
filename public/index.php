@@ -1,22 +1,12 @@
-<?php require_once __DIR__ . '/../app/config/config.php'; ?>
+<?php require_once __DIR__ . '/../app/config/config.php';
 
-<script src="<?= BASE_URL ?>/js/initial.js" defer></script>
-<link id="fenstersymbol" rel="icon" type="image/png" href="">
-
-<?php
-
-include __DIR__ . '/../app/controllers/InitialController.php';
-$initialController = new InitialController();
-$symbolData = $initialController->getFenstersymbols();
-?>
-<script>
-    const fenstersymbolData = <?php echo json_encode($symbolData, JSON_UNESCAPED_UNICODE); ?>;
-</script>
-
-<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// include __DIR__ . '/../app/controllers/InitialController.php';
+// $initialController = new InitialController();
+// $symbolData = $initialController->getFenstersymbols();
 
 // Autoload für Controller und Models
 spl_autoload_register(function ($class) {
@@ -81,12 +71,12 @@ switch ($page) {
         break;
 
     case 'item':
-    $controller = new ProductController();
-    $params = $controller->validateParams();
-    if ($params[0]) {
-        $controller->renderItemSite($params[1], $params[2], $params[3], $params[4]);
-    }
-    break;
+        $controller = new ProductController();
+        $params = $controller->validateParams();
+        if ($params[0]) {
+            $controller->renderItemSite($params[1], $params[2], $params[3], $params[4]);
+        }
+        break;
 
 
     case 'cart':
@@ -132,13 +122,27 @@ switch ($page) {
         require_once '../app/views/pages/thankyou.php';
         break;
 
+    case 'admin':
+        $controller = new AdminController();
+        $controller->showAdmin();
+        break;
+
+    case 'admin-users':
+        $controller = new AdminController();
+        $controller->userManagement();
+        break;
+
+    case 'update-user-field':
+        $controller = new AdminController();
+        $controller->updateUserData();
+        break;
+
+    case 'delete-user':
+        $controller = new AdminController();
+        $controller->deleteUser();
+        break;
+
     default:
         echo "Seite nicht gefunden.";
 }
 ?>
-
-<script defer>
-    window.onload = () => {
-        initializeFenstersymbol();
-    }
-</script>
