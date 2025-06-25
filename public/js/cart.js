@@ -594,6 +594,12 @@ function addToCart(name, image, price, size) {
     let existing = cart.find(i => i.name === name && i.size === size);
     if (existing) existing.quantity += 1;
     else cart.push(item);
+    cart.forEach(item => {
+      if(item.name === name){
+        item.lastAdded = true;
+      }
+    });
+    cart = sortCart(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
     openCart();
     renderCartSlider();
