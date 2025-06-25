@@ -49,7 +49,7 @@ class AdminModel
         $stmt = $pdo->prepare(
             "UPDATE user_addresses SET 
             $changedColumn = ?
-            WHERE id = ?"
+            WHERE user_id = ?"
         );
 
         return $stmt->execute([
@@ -73,6 +73,16 @@ class AdminModel
         return $stmt2->execute([
             $userID
         ]);
+    }
+
+    public static function getAllParentCategories(){
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM product_parent_categories");
+        $stmt->execute();
+
+         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     }
 
 }

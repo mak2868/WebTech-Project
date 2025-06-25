@@ -142,6 +142,11 @@ switch ($page) {
         $controller->deleteUser();
         break;
 
+    case 'admin-show-parent-category':
+        $controller = new AdminController();
+        $controller->showAllParentCategories();
+        break;
+
     default:
         echo "Seite nicht gefunden.";
 }

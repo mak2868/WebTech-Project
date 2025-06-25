@@ -28,34 +28,35 @@ class AdminController
     }
 
     public function updateUserData()
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $input = json_decode(file_get_contents("php://input"), true);
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = json_decode(file_get_contents("php://input"), true);
 
-        $id = $input['id'] ?? null;
-        $changedColumn = $input['field'] ?? null;
-        $changedValue = $input['value'] ?? null;
-        $isAddressField = $input['isAddressField'] ?? false;
+            $id = $input['id'] ?? null;
+            $changedColumn = $input['field'] ?? null;
+            $changedValue = $input['value'] ?? null;
+            $isAddressField = $input['isAddressField'];
 
-        if ($isAddressField) {
-            // Update in user_addresses
-            $result = AdminModel::updateUserAddressData($id, $changedColumn, $changedValue);
-        } else {
-            // Update in users
-            $result = AdminModel::updateUserData($id, $changedColumn, $changedValue);
-        }
+            if ($isAddressField) {
+                // Update in user_addresses
+                $result = AdminModel::updateUserAddressData($id, $changedColumn, $changedValue);
+            } else {
+                // Update in users
+                $result = AdminModel::updateUserData($id, $changedColumn, $changedValue);
+            }
 
-        if ($result) {
-            echo json_encode(['success' => true]);
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Ungültige Eingabe oder Update fehlgeschlagen']);
+            if ($result) {
+                echo json_encode(['success' => true, 'var' => $isAddressField]);
+            } else {
+                echo json_encode(['success' => false, 'error' => 'Ungültige Eingabe oder Update fehlgeschlagen']);
+            }
         }
     }
-}
 
 
-    public function deleteUser(){
-         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    public function deleteUser()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input = json_decode(file_get_contents("php://input"), true);
 
             $id = $input['id'] ?? null;
@@ -69,6 +70,14 @@ class AdminController
             }
 
 
-         }
+        }
+    }
+
+    public function showAllParentCategories()
+    {
+        $results = AdminModel::getAllParentCategories();
+        header('Content-Type: application/json');
+        echo json_encode($results);
+        exit;
     }
 }
