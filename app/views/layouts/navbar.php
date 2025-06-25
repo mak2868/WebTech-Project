@@ -24,12 +24,12 @@ function getImagePath($images, $keyword) {
 <div id="navbar" class="navbar">
   <div class="navbar-container">
 
-    <!-- 📌 LINKS: Logo -->
+    <!-- LINKS: Logo -->
     <a href="<?= BASE_URL ?>/index.php?page=home" class="navbar-brand">
       <img id="navbarLogo" src="<?= getImagePath($navbarData['images'], 'Logo_SchriftSchwarz') ?>" alt="Logo" />
     </a>
 
-    <!-- 📌 MITTE: Hauptnavigation -->
+    <!-- MITTE: Hauptnavigation -->
     <nav class="nav-menu-wrapper">
       <ul class="nav-menu">
         <li><a href="<?= BASE_URL ?>/index.php?page=about" class="nav-link">About</a></li>
@@ -41,8 +41,8 @@ function getImagePath($images, $keyword) {
             </div>
             <nav class="nav-dropdown-list">
               <?php foreach ($category['subcategories'] as $sub): ?>
-                <a href="<?= BASE_URL ?>/index.php?page=<?= urlencode($category['name']) ?>List" class="nav-dropdown-link">
-                  <?= htmlspecialchars($sub) ?>
+                <a href="<?= BASE_URL ?>/index.php?page=productList&cid=<?= $sub['id'] ?>" class="nav-dropdown-link">
+                  <?= htmlspecialchars($sub['name']) ?>
                 </a>
               <?php endforeach; ?>
             </nav>
@@ -51,7 +51,7 @@ function getImagePath($images, $keyword) {
       </ul>
     </nav>
 
-    <!-- 📌 RECHTS: Icons -->
+    <!-- RECHTS: Icons -->
     <div class="navbar-icons">
       <a id="darkmodeBtn" class="navbar-icon">
         <img id="darkmodeIcon" src="<?= getImagePath($navbarData['images'], 'mond') ?>" alt="Darkmode" />
@@ -78,7 +78,7 @@ function getImagePath($images, $keyword) {
       </a>
     </div>
 
-    <!-- 📌 RECHTS außen (nur Mobile): Burger -->
+    <!-- RECHTS außen (nur Mobile): Burger -->
     <button id="burgerBtn" class="burger-button">
       <div class="burger-icon">
         <span></span>
@@ -88,7 +88,7 @@ function getImagePath($images, $keyword) {
     </button>
   </div>
 
-  <!-- 📱 MOBILE MENU -->
+  <!-- MOBILE MENU -->
   <div id="mobileMenu" class="mobile-menu">
     <ul class="mobile-menu-list">
       <li><a class="mobile-link" href="<?= BASE_URL ?>/index.php?page=about">About</a></li>
@@ -98,7 +98,9 @@ function getImagePath($images, $keyword) {
           <div class="mobile-dropdown-toggle"><?= htmlspecialchars($category['name']) ?></div>
           <div class="mobile-submenu">
             <?php foreach ($category['subcategories'] as $sub): ?>
-              <a href="<?= BASE_URL ?>/index.php?page=<?= urlencode($category['name']) ?>List"><?= htmlspecialchars($sub) ?></a>
+              <a href="<?= BASE_URL ?>/index.php?page=productList&cid=<?= $sub['id'] ?>">
+                <?= htmlspecialchars($sub['name']) ?>
+              </a>
             <?php endforeach; ?>
           </div>
         </li>
