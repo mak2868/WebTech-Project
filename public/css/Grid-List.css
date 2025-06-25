@@ -1,62 +1,97 @@
 /*erstellt von: Nick Zetzmann*/
 
-
-h1 {
-  text-align: center;
-  color: #000000;
-}
-
-main {
-  flex: 1;
+.filter-sort-bar {  
+  margin-top: 4rem;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 20px;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.filter-container {
-  width: 250px;
-  background-color: #fafafa;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+.filter-dropdown {
+  position: relative;
 }
 
-.filter-container h2 {
-  margin-bottom: 10px;
+.filter-dropdown button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
-.filter-group {
-  margin-bottom: 20px;
+.filter-content {
+  display: none;
+  position: absolute;
+  top: 2.5rem;
+  left: 1.5rem;
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+  min-width: 250px;
 }
 
-.grid-container {
-  flex: 1;
+.filter-dropdown.active .filter-content {
+  display: block;
+}
+
+.sort-dropdown select {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+#price-range {
+  width: 100%;
+}
+
+#price-value {
+  position: absolute;
+  top: 100%; /* unterhalb des Sliders zuzeigen */
+  right: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  transition: rigth 0.1s ease-out;
+}
+
+/* ========== Produkt-Grid ========== */
+
+.product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
 }
 
-
-.grid-item {
-  background-color: #fafafa;
-  border-radius: 15px;
+.product-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  cursor: pointer;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
 }
 
-.grid-item:hover {
-  border: 2px solid #000000;
-  cursor: pointer;
-}
-
+/* Ergänzung für die Icon-Position */
 .image-wrapper {
   position: relative;
   margin-bottom: 0.25rem;
   padding-top: 2rem;
+  background-color:lightgrey;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .icons {
@@ -91,13 +126,38 @@ main {
   object-fit: contain;
 }
 
+
+.flavor {
+  font-size: 0.9rem;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0rem;
+  margin-left: 1rem;
+}
+
+.size {
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+}
+
+.desc {
+  font-size: 1rem;
+  margin-bottom: 0rem;
+  margin-left: 1rem;
+}
+
 .rating {
+  display: flex;
+  align-items: center;
   gap: 0.3rem;
   font-size: 1rem;
+  margin-left: 1rem;
 }
 
 .stars {
-  text-align: center;
   color: #facc15;
 }
 
@@ -106,42 +166,18 @@ main {
   font-size: 1rem;
 }
 
-/*ab hier Darkmode*/
-.darkmode-toggle {
-  position: absolute;
-  top: 150px;
-  left: 50px;
-  cursor: pointer;
+.price {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-left: 1rem;
 }
 
-.dark-mode h1 {
-  color: #f0f0f0;
+.price-kg {
+  font-size: 0.85rem;
+  font-weight: normal;
 }
 
-.dark-mode {
-  background-color: #121212;
-  color: #4b4b4b;
-}
-
-.dark-mode .filter-container {
-  background-color: #444444;
-  color: #f0f0f0;
-}
-
-.dark-mode .grid-container {
-  border-color: #1e1e1e;
-}
-
-.dark-mode .grid-item {
-  color: #f0f0f0;
-  background-color: #757575;
-}
-
-.dark-mode .grid-item:hover {
-  border: 2px solid #ded118;
-  cursor: pointer;
-}
-
-.dark-mode .reviews {
-  color: #f0f0f0;
+/* ========== Darkmode ========== */
+.dark-mode .product-card{
+  background-color: darkgrey;
 }

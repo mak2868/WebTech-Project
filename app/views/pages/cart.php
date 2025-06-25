@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../config/config.php';
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
   <title>XPN | Warenkorb</title>
 
   <!-- CSS -->
@@ -23,6 +23,9 @@ require_once __DIR__ . '/../../config/config.php';
   <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
   <script src="<?= BASE_URL ?>/js/cart.js" defer></script>
   <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
+
+  <!-- Head-Datei -->
+  <?php include __DIR__ . '/../layouts/head.php'; ?>
 
 
   <script>
