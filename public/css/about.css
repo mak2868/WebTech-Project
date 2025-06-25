@@ -1,3 +1,9 @@
+/* ========== erstellt von: Nick Zetzmann ========== */
+
+.page-padding {
+  padding-top: 100px !important;
+}
+
 .team-member {
   display: flex;
   align-items: center;
@@ -16,8 +22,31 @@
   object-fit: cover;
   border-radius: 5%;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  flex-shrink: 0;
 }
 
 .team-member-text {
   max-width: 600px;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .team-member {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .team-member:nth-child(even) {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .team-member img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .team-member-text {
+    max-width: 100%;
+  }
 }

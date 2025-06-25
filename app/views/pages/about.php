@@ -1,8 +1,11 @@
+<!-- erstellt von: Nick Zetzmann -->
+
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>XPN | About</title>
 
   <!-- CSS -->
@@ -18,16 +21,14 @@
 
   <!-- Head-Datei -->
   <?php include __DIR__ . '/../layouts/head.php'; ?>
-
-
 </head>
 
 <body>
   <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 
-  <main style="padding-top: 80px" class="container content-wrapper">
+  <main class="container content-wrapper page-padding">
     
-    <!-- Wer sind wir? -->
+    <!-- Wer sind wir? - kurze Geschichte zu XPN und uns -->
     <section>
       <h2>Wer sind wir?</h2>
       <p>
@@ -43,12 +44,12 @@
       </p><br><br>
     </section>
 
-    <!-- Teamvorstellung -->
+    <!-- Teamvorstellung mit Bilder & Kurztext -->
     <section>
       <h2>Unser Team</h2>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Felix_Bartel.jpg" alt="Felix Bartel">
+        <img src="<?= BASE_URL ?>/images/Felix_Bartel.jpeg" alt="Felix Bartel">
         <div class="team-member-text">
           <h4>Felix Bartel</h4>
           <p>Felix ist unser Fitnessguru und Produktexperte. Er verbringt seine Freizeit am liebsten im Gym und kennt sich bestens mit den neuesten Supplement-Trends aus.</p>
@@ -56,7 +57,7 @@
       </div>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Marvin_Kunz.jpg" alt="Marvin Kunz">
+        <img src="<?= BASE_URL ?>/images/Marvin_Kunz.jpeg" alt="Marvin Kunz">
         <div class="team-member-text">
           <h4>Marvin Kunz</h4>
           <p>Marvin kümmert sich um Marketing und Social Media. Er verbindet Sport mit Lifestyle und sorgt dafür, dass unsere Community immer auf dem Laufenden bleibt.</p>
@@ -72,7 +73,7 @@
       </div>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Nick_Zetzmann.jpg" alt="Nick Zetzmann">
+        <img src="<?= BASE_URL ?>/images/Nick_Zetzmann.jpeg" alt="Nick Zetzmann">
         <div class="team-member-text">
           <h4>Nick Zetzmann</h4>
           <p>Nick ist unser Logistik-Profi. Er sorgt dafür, dass eure Bestellungen schnell und zuverlässig bei euch ankommen, damit ihr direkt durchstarten könnt.</p>
