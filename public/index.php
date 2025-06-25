@@ -1,12 +1,29 @@
-<?php require_once __DIR__ . '/../app/config/config.php';
-
+<?php
+// Session und Config laden
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// include __DIR__ . '/../app/controllers/InitialController.php';
-// $initialController = new InitialController();
-// $symbolData = $initialController->getFenstersymbols();
+require_once __DIR__ . '/../app/config/config.php';
+
+// Favicon-Daten holen (für spätere Übergabe an Views)
+require_once __DIR__ . '/../app/controllers/InitialController.php';
+$initialController = new InitialController();
+$symbolData = $initialController->getFenstersymbols();
+$_SESSION['fenstersymbolData'] = $symbolData;
+
+
+// Navbar-Daten (Kategorien + Bilder) laden
+require_once __DIR__ . '/../app/controllers/NavbarController.php';
+$navbarController = new NavbarController();
+$navbarData = $navbarController->getNavbarData();
+$_SESSION['navbarData'] = $navbarData;
+
+
+// Footer-Daten (Links + Social Icons) laden
+require_once __DIR__ . '/../app/controllers/FooterController.php';
+FooterController::prepareFooterData();
+
 
 // Autoload für Controller und Models
 spl_autoload_register(function ($class) {
@@ -23,53 +40,48 @@ spl_autoload_register(function ($class) {
 // Fallback-Page
 $page = $_GET['page'] ?? 'home';
 
+
+
+// Newsletter
+if ($page === 'newsletterSignup') {
+    $controller = new NewsletterController();
+    $controller->handleSignup();
+    exit;
+}
+
 // Routing
 switch ($page) {
     case 'home':
-        $controller = new HomeController();
-        $controller->index();
+        (new HomeController())->index();
         break;
-
     case 'product':
-        $controller = new ProductController();
-        $controller->detail($_GET['id'] ?? null);
+        (new ProductController())->detail($_GET['id'] ?? null);
         break;
-
     case 'login':
-        $controller = new UserController();
-        $controller->login();
+        (new UserController())->login();
         break;
-
     case 'logout':
-        $controller = new UserController();
-        $controller->logout();
+        (new UserController())->logout();
         break;
-
     case 'register':
-        $controller = new UserController();
-        $controller->register();
+        (new UserController())->register();
         break;
-
     case 'profile':
-        $controller = new UserController();
-        $controller->profile();
+        (new UserController())->profile();
         break;
-
     case 'impressum':
-        $controller = new StaticController();
-        $controller->impressum();
+        (new StaticController())->impressum();
         break;
-
     case 'datenschutzerklaerung':
-        $controller = new StaticController();
-        $controller->datenschutzerklaerung();
+        (new StaticController())->datenschutzerklaerung();
         break;
-
     case 'about':
-        $controller = new StaticController();
-        $controller->about();
+        (new StaticController())->about();
         break;
-
+    case 'productList':
+        $controller = new ProductController();
+        $controller->showProducts();
+        break;
     case 'item':
         $controller = new ProductController();
         $params = $controller->validateParams();
@@ -77,8 +89,6 @@ switch ($page) {
             $controller->renderItemSite($params[1], $params[2], $params[3], $params[4]);
         }
         break;
-
-
     case 'cart':
         (new CartController())->showCart();
         break;
@@ -97,27 +107,21 @@ switch ($page) {
     case 'clear-cart':
         (new CartController())->clearCart();
         break;
-
     case 'merge-cart':
         (new CartController())->mergeCart();
         break;
-
     case 'checkout':
-        (new CheckoutController())->showcheckout();
+        (new CheckoutController())->showCheckout();
         break;
-
     case 'apply-coupon':
         (new CheckoutController())->applyCoupon();
         break;
-
     case 'set-cart-total':
         (new CheckoutController())->setCartTotal();
         break;
-
     case 'place-order':
         (new CheckoutController())->placeOrder();
         break;
-
     case 'thankyou':
         require_once '../app/views/pages/thankyou.php';
         break;

@@ -23,14 +23,14 @@ h1 {
 .hero {
   width: 100vw;
   height: 90vh;
-  background-image: url(../images/Hintergrundbild_Startseite.jpg); 
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   padding-left: 5%;
   position: relative;
+  background-size: cover;
+  background-position: center center;
 }
+
 
 
 .hero::before {
@@ -290,5 +290,88 @@ h1 {
 
 
 
+/* ========== Darkmode ========== */
 
 
+body.dark-mode .logo {
+    filter: invert(1);
+}
+
+body.dark-mode .logo-section {
+    background-color: black;
+}
+
+body.dark-mode .banner-section {
+    background-color: black;
+}
+
+body.dark-mode .banner-container {
+    border: 2px solid white;
+}
+
+body.dark-mode .reviews {
+    color: white;
+}
+
+
+
+
+
+/* ========= Responsive Styles ab Handy (max-width: 768px) ========= */
+@media screen and (max-width: 512px) {
+/* 1. Hero Section: Text oben + zentriert */
+.hero {
+  flex-direction: column;
+  justify-content: flex-start;        
+  align-items: center;              
+  text-align: center;
+  padding-left: 0;
+  padding-top: 7rem;   
+  padding-bottom: 2rem;
+  background-position: 65% 50%;       /* links (X: 65%), Mitte (Y: 50%) */
+  background-size: cover;
+  height: 90vh;
+}
+
+.hero-content {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content h1,
+.hero-paragraph,
+.hero-content .button {
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+}
+
+
+
+  /* 2. Banner Section: Bild oben, Text darunter */
+  .banner-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .banner-image,
+  .banner-text {
+    flex: unset;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+
+.banner-image img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  transform: translateX(50px);
+
+}
+}

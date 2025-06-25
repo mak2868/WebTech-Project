@@ -122,4 +122,19 @@ class ProductController
         return [$allParamsCorrect, $parentID, $cid, $pid, $idInData];
         
     }
+
+
+public function showProducts()
+{
+    $cid = $_GET['cid'] ?? null;
+
+    if ($cid === null) {
+        echo "Keine Kategorie-ID übergeben.";
+        return;
+    }
+
+    $produkte = ProductModel::getProductsByCategory($cid);
+
+    include '../app/views/pages/ProductList.php';
+}
 }
