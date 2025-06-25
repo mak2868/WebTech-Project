@@ -134,7 +134,7 @@ require_once __DIR__ . '/../../config/config.php';
             <div class="stars" data-rating="<?= htmlspecialchars($produkt['rating'] ?? '0') ?>"></div>
             <span class="reviews">(<?= htmlspecialchars($produkt['raters_count'] ?? '0') ?>)</span>
           </div>
-          <p class="price">€<?= number_format(floatval($produkt['preis']), 2, ',', '.') ?></p>
+          <p class="price"><?= number_format(floatval($produkt['preis']), 2, ',', '.') ?>€</p>
         </div>
       <?php endforeach; ?>
     </div>

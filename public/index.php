@@ -78,6 +78,10 @@ switch ($page) {
     case 'about':
         (new StaticController())->about();
         break;
+    case 'productList':
+        $controller = new ProductController();
+        $controller->showProducts();
+        break;
     case 'item':
         $controller = new ProductController();
         $params = $controller->validateParams();

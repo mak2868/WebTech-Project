@@ -395,6 +395,57 @@ class ProductModel
         return $stmt->fetchColumn() > 0;
     }
 
+  public static function getProductsByCategory($cid)
+{
+    $pdo = DB::getConnection();
+
+    $sqlParent = "SELECT parent_id FROM product_categories WHERE id = :cid";
+    $stmtParent = $pdo->prepare($sqlParent);
+    $stmtParent->execute([':cid' => $cid]);
+    $parentRow = $stmtParent->fetch(PDO::FETCH_ASSOC);
+
+    if (!$parentRow) {
+        return [];
+    }
+    $parentID = $parentRow['parent_id'];
+
+    $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($parentID);
+    $tablePrefix = strtolower($tablePrefixArray[0]['name']);
+
+    $tablePics = $tablePrefix . "_pictures";
+    $tableSizesPrices = $tablePrefix . "_sizes_prices";
+    $tableProducts = $tablePrefix . "_products";
+
+    $sql = "SELECT 
+                p.pid,
+                p.cid, 
+                p.name, 
+                p.description, 
+                p.raters_count, 
+                p.rating, 
+                (SELECT pp.product_pic1
+                 FROM $tablePics pp 
+                 WHERE pp.product_id = p.pid 
+                 LIMIT 1) AS bild,
+                sp.price_with_tax AS preis,
+                sp.size AS size,
+                ppc.id AS parent_id
+            FROM $tableProducts p
+            JOIN $tableSizesPrices sp 
+                ON sp.product_id = p.pid
+            JOIN product_categories pc 
+                ON pc.id = p.cid
+            JOIN product_parent_categories ppc 
+                ON ppc.id = pc.parent_id
+            WHERE p.cid = :cid";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([':cid' => $cid]);
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $products;
+}
+
 }
 
 // $products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
