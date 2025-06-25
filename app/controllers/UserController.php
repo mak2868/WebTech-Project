@@ -9,6 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
  * um Daten aus der Datenbank abzurufen und zu speichern, und lädt die entsprechenden Views.
  * @author Merzan
  */
+
 class UserController
 {
     /**
