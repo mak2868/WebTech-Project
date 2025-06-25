@@ -5,6 +5,8 @@
 
 <head>
     <meta charset="UTF-8"> <!-- Zeichensatz UTF-8 für Umlaute usw. -->
+    <!--MetatTag das uns  respensive design ermöglicht-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title> <!-- Titel, der im Browser-Tab angezeigt wird -->
 
     <!-- CSS -->
@@ -23,8 +25,6 @@
 
     <!-- Head-Datei -->
     <?php include __DIR__ . '/../layouts/head.php'; ?>
-    
-
 
 </head>
 

@@ -239,3 +239,35 @@ body:not(.dark-mode) #formLogo {
 body.dark-mode #formLogo {
   filter: none;
 }
+
+
+@media screen and (max-width: 500px) {
+  .form-wrapper {
+    padding: 1.2rem 1rem;
+    border-radius: 12px;
+    max-width: 95%;
+  }
+
+  .form-wrapper h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-wrapper input {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+
+  .btn-esn {
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+
+  .form-Logo {
+    max-width: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .form-text {
+    font-size: 0.9rem;
+  }
+}

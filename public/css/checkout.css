@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
   padding:  6rem 2rem 2rem 2rem;
   max-width: 1200px;
@@ -247,3 +247,5 @@ body.dark-mode .qty {
 body.dark-mode .summary-savings{
   color: white;
 }
+
+

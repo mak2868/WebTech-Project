@@ -407,6 +407,8 @@ class ProductModel
     if (!$parentRow) {
         return [];
     }
+
+    
     $parentID = $parentRow['parent_id'];
 
     $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($parentID);
@@ -442,6 +444,12 @@ class ProductModel
     $stmt = $pdo->prepare($sql);
     $stmt->execute([':cid' => $cid]);
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($products as &$product) {
+if (!empty($product['bild'])) {
+                        $product['bild'] = BASE_URL . $product['bild'];
+    }
+}
 
     return $products;
 }

@@ -19,7 +19,7 @@
     <!-- JS -->
     <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
-
+    <script src="<?= BASE_URL ?>/js/merge-cart.js" defer></script>
 
      <!-- Head-Datei -->
     <?php include __DIR__ . '/../layouts/head.php'; ?>
