@@ -136,12 +136,12 @@ switch ($page) {
         $controller->userManagement();
         break;
 
-    case 'update-user-field':
+    case 'admin-update-user-field':
         $controller = new AdminController();
         $controller->updateUserData();
         break;
 
-    case 'delete-user':
+    case 'admin-delete-user':
         $controller = new AdminController();
         $controller->deleteUser();
         break;
@@ -149,6 +149,11 @@ switch ($page) {
     case 'admin-show-parent-category':
         $controller = new AdminController();
         $controller->showAllParentCategories();
+        break;
+
+    case 'admin-add-parent-category':
+        $controller = new AdminController();
+        $controller->addParentCategory();
         break;
 
     default:

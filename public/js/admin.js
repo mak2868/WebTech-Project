@@ -55,7 +55,7 @@ menuSelect.addEventListener('change', function () {
                                 const isAddressField = field.closest('#address') !== null;
                                 console.log(isAddressField);
 
-                                fetch('index.php?page=update-user-field', {
+                                fetch('index.php?page=admin-update-user-field', {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
                                     body: JSON.stringify({
@@ -88,7 +88,7 @@ menuSelect.addEventListener('change', function () {
                         button.addEventListener('click', function () {
                             const userId = this.closest('.user-card').getAttribute('data-id');
                             if (confirm(`Soll Benutzer mit ID ${userId} gelöscht werden?`)) {
-                                fetch('index.php?page=delete-user', {
+                                fetch('index.php?page=admin-delete-user', {
                                     method: 'POST',
                                     headers: { 'Content-Type': 'application/json' },
                                     body: JSON.stringify({ id: userId })
@@ -157,8 +157,59 @@ menuSelect.addEventListener('change', function () {
 
                         html += `</tbody></table>`;
                         adminContent.innerHTML = html;
+
+                        const container = document.getElementById('new-parent-category-form');
+                        container.style.display = 'block';
+
+                        
+
                     });
+
+                    const addButton = document.getElementById("addParentCategoryBtn");
+
+if (addButton) {
+    addButton.addEventListener("click", function () {
+        const input = document.getElementById("newParentCategoryInput");
+        const parentCategoryName = input.value.trim();
+
+        if (parentCategoryName === "") {
+            alert("Bitte gib einen Kategorienamen ein.");
+            return;
+        }
+
+        console.log("fetch kommt");
+        fetch("index.php?page=admin-add-parent-category", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name: parentCategoryName })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Fehler beim Senden der Kategorie.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("Antwort vom Server:", data);
+
+                if (data.success) {
+                    alert("Kategorie erfolgreich hinzugefügt!");
+                    input.value = "";
+                } else {
+                    alert("Fehler: " + (data.message || "Unbekannter Fehler"));
+                }
+            })
+            .catch(error => {
+                console.error("Fetch-Fehler:", error);
+                alert("Beim Hinzufügen ist ein Fehler aufgetreten.");
+            });
+    });
+}
             }
         })
+       
+
     }
 });

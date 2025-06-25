@@ -160,3 +160,27 @@ select:focus {
   background-color: #f2f2f2; /* leichter Hintergrund für Kopfzeile */
   font-weight: bold;
 }
+
+#new-parent-category-form{
+    display: none;
+     text-align: left;
+}
+
+#addParentCategoryBtn{
+    width: 40%;
+}
+
+
+#newParentCategoryInput {
+  margin-bottom: 0.5rem;
+  /* Abstand nach unten */
+  padding: 0.75rem 1rem;
+  /* Innenabstand (oben/unten & seitlich) */
+  border-radius: 10px;
+  /* abgerundete Ecken */
+  border: 1px solid #ccc;
+  /* hellgrauer Rand */
+  font-size: 1rem;
+  width: 40%;
+  /* volle Breite innerhalb des Wrappers */
+}

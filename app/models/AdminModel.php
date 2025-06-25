@@ -42,7 +42,7 @@ class AdminModel
         ]);
     }
 
-     public static function updateUserAddressData($userID, $changedColumn, $changedValue)
+    public static function updateUserAddressData($userID, $changedColumn, $changedValue)
     {
         $pdo = DB::getConnection();
 
@@ -75,14 +75,26 @@ class AdminModel
         ]);
     }
 
-    public static function getAllParentCategories(){
+    public static function getAllParentCategories()
+    {
         $pdo = DB::getConnection();
 
         $stmt = $pdo->prepare("SELECT * FROM product_parent_categories");
         $stmt->execute();
 
-         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    }
+
+
+    public static function addParentCategory($categoryName)
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("INSERT INTO product_parent_categories(name) VALUES (:name)");
+        $stmt->execute([':name' => $categoryName]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 }

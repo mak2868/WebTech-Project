@@ -8,6 +8,7 @@
     <title>Adminbereich</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/admin.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <script src="<?= BASE_URL ?>/js/admin.js" defer></script>
 
 </head>
@@ -39,6 +40,12 @@
         </div>
 
         <div id="adminContent"></div>
+
+        <div id="new-parent-category-form">
+            <label for="newParentCategoryInput">Name der neuen Kategorie:</label><br>
+            <input type="text" id="newParentCategoryInput" name="newCategory" placeholder="Kategorie eingeben" />
+            <button type="button" id="addParentCategoryBtn">Hinzufügen</button>
+        </div>
     </div>
 </body>
 

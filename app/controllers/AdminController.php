@@ -80,4 +80,27 @@ class AdminController
         echo json_encode($results);
         exit;
     }
+
+    public function addParentCategory()
+    {
+        header('Content-Type: application/json');
+
+        // JSON-Daten einlesen
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        $categoryName = $data['name'];
+
+        try {
+            // Modell aufrufen
+            $result = AdminModel::addParentCategory($categoryName);
+
+            // Erfolgsantwort (optional: du kannst auch $result prüfen)
+            echo json_encode(['success' => true, 'message' => 'Kategorie wurde hinzugefügt.']);
+        } catch (Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Fehler beim Hinzufügen: ' . $e->getMessage()
+            ]);
+        }
+    }
 }
