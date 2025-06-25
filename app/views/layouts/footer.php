@@ -16,10 +16,10 @@
     <div class="footer-wrapper">
       <div class="footer-links">
         <a href="<?= BASE_URL ?>/?page=about">About</a>
-        <a href="<?= BASE_URL ?>/?page=ProteinpulverList">Proteinpulver</a>
-        <a href="<?= BASE_URL ?>/?page=ProteinriegelList">Proteinriegel</a>
+        <a href="<?= BASE_URL ?>/?page=ProductList">Proteinpulver</a>
+        <a href="<?= BASE_URL ?>/?page=ProductList">Proteinriegel</a>
         <a href="#">FAQ</a>
-        <a href="#">Kontakt</a>
+        <a href="<?= BASE_URL ?>/?page=kontakt">Kontakt</a>
       </div>
       <div class="footer-social">
         <a href="#"><img src="<?= BASE_URL ?>/images/facebook.png" alt="Facebook" /></a>

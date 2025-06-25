@@ -363,12 +363,77 @@ class ProductModel
         return $stmt->fetchColumn() > 0;
     }
 
+    public static function getProductsByCategory()
+    {
+        $pdo = DB::getConnection();
+
+        $allParentIDs = ProductModel::getAllParentIDs();
+        $results = [];
+        $usedProductIDs = []; // <--- IDs merken
+
+        if (!empty($allParentIDs)) {
+            for ($i = 0; $i < 4; $i++) {
+                $newProduct = false;
+                do {
+                    $randomKey = array_rand($allParentIDs);
+                    $randomParentID = $allParentIDs[$randomKey]['id'];
+
+                    $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($randomParentID);
+                    $tablePrefix = strtolower($tablePrefixArray[0]['name']);
+
+                    $tablePics = $tablePrefix . "_pictures";
+                    $tableSizesPrices = $tablePrefix . "_sizes_prices";
+                    $tableProducts = $tablePrefix . "_products";
+
+                    $sql = "SELECT 
+                        p.pid,
+                        p.cid, 
+                        p.name, 
+                        p.description, 
+                        p.raters_count, 
+                        p.rating, 
+                        (SELECT pp.product_pic1
+                        FROM $tablePics pp 
+                        WHERE pp.product_id = p.pid 
+                        LIMIT 1) AS bild,
+                        sp.price_with_tax AS preis,
+                        sp.size AS size,
+                        ppc.id AS parent_id
+                    FROM $tableProducts p
+                    JOIN $tableSizesPrices sp 
+                        ON sp.product_id = p.pid
+                    JOIN product_categories pc 
+                        ON pc.id = p.cid
+                    JOIN product_parent_categories ppc 
+                        ON ppc.id = pc.parent_id
+                    ORDER BY RAND()
+                    LIMIT 1;";
+
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->execute();
+                    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    // Prüfen, ob Produkt gültig und noch nicht verwendet
+                    if ($product && !in_array($product['pid'], $usedProductIDs)) {
+                        $usedProductIDs[] = $product['pid'];
+                        $results[] = $product;
+                        $newProduct = true;
+                    }
+
+                } while (!$newProduct);
+            }
+        }
+
+        return $results;
+    }
+
+
 }
 
-$products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
-echo '<pre>';
-print_r($products);
-echo '</pre>';
+//$products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
+//echo '<pre>';
+//print_r($products);
+//echo '</pre>';
 
 // $cids = ProductModel::getAllCids();
 // echo '<pre>';

@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css" />
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css" />
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css" />
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/index.css" />
 
   <!-- JS -->
   <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
@@ -38,31 +39,32 @@
 
     <div class="container">
       <div class="product-grid">
-        <?php foreach ($produkte as $produkt): ?>
-          <div class="product-card">
-            <div class="image-wrapper">
-              <img src="<?= BASE_URL ?>/<?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
-              <div class="icons">
-                <div class="icon" onclick="addToCart(
-                  '<?= htmlspecialchars($produkt['name']) ?>',
-                  '<?= BASE_URL ?>/images/<?= htmlspecialchars($produkt['bild']) ?>',
-                  <?= floatval($produkt['preis']) ?>
-                )">
-                  <img src="<?= BASE_URL ?>/images/shopping-cart.png" alt="In den Warenkorb" />
-                </div>
+      <?php foreach ($produkte as $produkt): ?>
+        <div class="product-card">
+          <div class="image-wrapper">
+            <img src="<?= BASE_URL ?><?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
+            <div class="icons">
+              <div class="icon" onclick="addToCart(
+                '<?= htmlspecialchars($produkt['name']) ?>',
+                '<?= htmlspecialchars($produkt['bild']) ?>',
+                <?= floatval($produkt['preis']) ?>,
+                '<?= htmlspecialchars($produkt['size']) ?>'
+              )">
+                <img src="<?= BASE_URL ?>/images/einkaufswagen.png" alt="In den Warenkorb" />
               </div>
-            </div>
-            <p class="flavor"><?= htmlspecialchars($produkt['geschmack'] ?? '') ?></p>
-            <h3 class="title"><?= htmlspecialchars($produkt['name']) ?></h3>
-            <p class="desc"><?= htmlspecialchars($produkt['description'] ?? '') ?></p>
-            <div class="rating">
-              <span class="stars">★★★★☆</span>
-              <span class="reviews">(5800)</span>
-            </div>
-            <p class="price">€<?= number_format(floatval($produkt['preis']), 2, ',', '.') ?></p>
           </div>
-        <?php endforeach; ?>
-      </div>
+          <p class="flavor"><?= htmlspecialchars($produkt['geschmack'] ?? '') ?></p>
+          <h3 class="title"><?= htmlspecialchars($produkt['name']) ?></h3>
+          <p class="size"><?= htmlspecialchars($produkt['size'] ?? '') ?> g</p>
+          <p class="desc"><?= htmlspecialchars($produkt['description'] ?? '') ?></p>
+          <div class="rating">
+            <div class="stars" data-rating="<?= htmlspecialchars($produkt['rating'] ?? '0') ?>"></div>
+            <span class="reviews">(<?= htmlspecialchars($produkt['raters_count'] ?? '0') ?>)</span>
+          </div>
+          <p class="price">€<?= number_format(floatval($produkt['preis']), 2, ',', '.') ?></p>
+        </div>
+      <?php endforeach; ?>
+    </div>
   </main>
 
   <?php include __DIR__ . '/../layouts/cartSlider.php'; ?>

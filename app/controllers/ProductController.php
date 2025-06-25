@@ -135,6 +135,6 @@ public function showProducts()
 
     $produkte = ProductModel::getProductsByCategory($cid);
 
-    require_once '../app/views/ProductList.php';
+    include '../app/views/pages/ProductList.php';
 }
 }
