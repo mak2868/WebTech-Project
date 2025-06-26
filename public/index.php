@@ -161,6 +161,16 @@ switch ($page) {
         $controller->showAllCategories();
         break;
 
+    case 'admin-add-category':
+        $controller = new AdminController();
+        $controller->addCategory();
+        break;
+
+    case 'admin-get-ategories':
+        $controller = new AdminController();
+        $controller->getCategories();
+        break;
+
     default:
         echo "Seite nicht gefunden.";
 }

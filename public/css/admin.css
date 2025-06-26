@@ -161,17 +161,18 @@ select:focus {
   font-weight: bold;
 }
 
-#new-parent-category-form{
+#new-parent-category-form, #new-category-form, #new-product-form{
     display: none;
-     text-align: left;
+    text-align: left;
+    gap: 0;
 }
 
-#addParentCategoryBtn{
+#addParentCategoryBtn, #addCategoryBtn, #addProductBtn{
     width: 40%;
 }
 
 
-#newParentCategoryInput {
+#newParentCategoryInput, #newCategoryInput, #newProductInput{
   margin-bottom: 0.5rem;
   /* Abstand nach unten */
   padding: 0.75rem 1rem;
@@ -187,4 +188,8 @@ select:focus {
 
 h4 {
     width: fit-content;
+}
+
+#new-category-form{
+    display: none;
 }
