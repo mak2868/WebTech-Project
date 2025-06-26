@@ -4,6 +4,7 @@ const adminContent = document.getElementById('adminContent');
 menuSelect.addEventListener('change', function () {
     adminContent.innerHTML = '';
     document.getElementById('hinzufuegen-options').style.display = 'none';
+    document.getElementById('new-parent-category-form').style.display = 'none';
 
     if (menuSelect.value === 'benutzerverwaltung') {
         fetch('index.php?page=admin-users')
@@ -110,14 +111,14 @@ menuSelect.addEventListener('change', function () {
     } else if (menuSelect.value === 'hinzufuegen') {
         const hinzufuegenOptions = document.getElementById('hinzufuegen-options');
         hinzufuegenOptions.style.display = 'block';
+        document.getElementById('new-parent-category-form').style.display = 'none';
+
 
         const unterSelect = document.getElementById('hinzufuegen-select');
 
         unterSelect.value = ''; // Zurücksetzen, falls schon was gewählt
         unterSelect.addEventListener('change', () => {
             if (unterSelect.value === 'ueberkategorie') {
-                console.log('Will fetch now');
-
                 fetch('index.php?page=admin-show-parent-category')
                     .then(response => response.text())
                     .then(text => {
@@ -161,55 +162,135 @@ menuSelect.addEventListener('change', function () {
                         const container = document.getElementById('new-parent-category-form');
                         container.style.display = 'block';
 
-                        
+
 
                     });
 
-                    const addButton = document.getElementById("addParentCategoryBtn");
+                const addButton = document.getElementById("addParentCategoryBtn");
 
-if (addButton) {
-    addButton.addEventListener("click", function () {
-        const input = document.getElementById("newParentCategoryInput");
-        const parentCategoryName = input.value.trim();
+                if (addButton) {
+                    addButton.addEventListener("click", function () {
+                        const input = document.getElementById("newParentCategoryInput");
+                        const parentCategoryName = input.value.trim();
 
-        if (parentCategoryName === "") {
-            alert("Bitte gib einen Kategorienamen ein.");
+                        if (parentCategoryName === "") {
+                            alert("Bitte gib einen Kategorienamen ein.");
+                            return;
+                        }
+
+                        console.log("fetch kommt");
+                        fetch("index.php?page=admin-add-parent-category", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ name: parentCategoryName })
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error("Fehler beim Senden der Kategorie.");
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                console.log("Antwort vom Server:", data);
+
+                                if (data.success) {
+                                    alert("Kategorie erfolgreich hinzugefügt!");
+                                    input.value = "";
+                                } else {
+                                    alert("Fehler: " + (data.message || "Unbekannter Fehler"));
+                                }
+                            })
+                            .catch(error => {
+                                console.error("Fetch-Fehler:", error);
+                                alert("Beim Hinzufügen ist ein Fehler aufgetreten.");
+                            });
+                    });
+                }
+            } else if (unterSelect.value === 'unterkategorie') {
+               fetch('index.php?page=admin-show-all-categories')
+    .then(response => response.text())
+    .then(text => {
+        console.log('Raw response text:', text);
+        let data;
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            console.error('Ungültiges JSON:', e);
+            adminContent.innerHTML = 'Fehler: Ungültige Server-Antwort';
             return;
         }
 
-        console.log("fetch kommt");
-        fetch("index.php?page=admin-add-parent-category", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ name: parentCategoryName })
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Fehler beim Senden der Kategorie.");
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log("Antwort vom Server:", data);
+        if (!Array.isArray(data) || data.length !== 2) {
+            console.error('Erwartet ein Array mit zwei Unter-Arrays:', data);
+            adminContent.innerHTML = 'Fehler: Unerwartete Server-Antwort';
+            return;
+        }
 
-                if (data.success) {
-                    alert("Kategorie erfolgreich hinzugefügt!");
-                    input.value = "";
-                } else {
-                    alert("Fehler: " + (data.message || "Unbekannter Fehler"));
-                }
-            })
-            .catch(error => {
-                console.error("Fetch-Fehler:", error);
-                alert("Beim Hinzufügen ist ein Fehler aufgetreten.");
-            });
+        const [mainCategories, subCategories] = data;
+
+        let html = `
+            <div style="display: flex; gap: 40px; align-items: flex-start;">
+                <div>
+                    <h4>Hauptkategorien</h4>
+                    <table class="admin-table">
+                        <thead>
+                            <tr><th>ID</th><th>Name</th></tr>
+                        </thead>
+                        <tbody>
+        `;
+
+        mainCategories.forEach(entry => {
+            html += `
+                            <tr>
+                                <td>${entry.id}</td>
+                                <td>${entry.name}</td>
+                            </tr>
+            `;
+        });
+
+        html += `
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h4>Unterkategorien</h4>
+                    <table class="admin-table">
+                        <thead>
+                            <tr><th>ID</th><th>Name</th><th>Parent ID</th></tr>
+                        </thead>
+                        <tbody>
+        `;
+
+        subCategories.forEach(entry => {
+            html += `
+                            <tr>
+                                <td>${entry.id}</td>
+                                <td>${entry.name}</td>
+                                <td>${entry.parent_id}</td>
+                            </tr>
+            `;
+        });
+
+        html += `
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        `;
+
+        adminContent.innerHTML = html;
+
+        const container = document.getElementById('new-parent-category-form');
+        container.style.display = 'block';
     });
-}
+
+
             }
         })
-       
+
 
     }
 });

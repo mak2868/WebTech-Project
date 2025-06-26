@@ -97,6 +97,16 @@ class AdminModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public static function getAllNonParentCategories()
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM product_categories");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 
 

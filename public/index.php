@@ -156,6 +156,11 @@ switch ($page) {
         $controller->addParentCategory();
         break;
 
+    case 'admin-show-all-categories':
+        $controller = new AdminController();
+        $controller->showAllCategories();
+        break;
+
     default:
         echo "Seite nicht gefunden.";
 }

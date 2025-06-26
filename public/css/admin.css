@@ -184,3 +184,7 @@ select:focus {
   width: 40%;
   /* volle Breite innerhalb des Wrappers */
 }
+
+h4 {
+    width: fit-content;
+}

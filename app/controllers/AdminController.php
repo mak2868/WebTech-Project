@@ -92,7 +92,7 @@ class AdminController
 
         try {
             // Modell aufrufen
-            $result = AdminModel::addParentCategory($categoryName);
+            AdminModel::addParentCategory($categoryName);
 
             // Erfolgsantwort (optional: du kannst auch $result prüfen)
             echo json_encode(['success' => true, 'message' => 'Kategorie wurde hinzugefügt.']);
@@ -102,5 +102,15 @@ class AdminController
                 'message' => 'Fehler beim Hinzufügen: ' . $e->getMessage()
             ]);
         }
+    }
+
+    public function showAllCategories()
+    {
+        $resultsParentCategories = AdminModel::getAllParentCategories();
+        $resultsCategories = AdminModel::getAllNonParentCategories();
+
+        header('Content-Type: application/json');
+        echo json_encode([$resultsParentCategories, $resultsCategories]);
+        exit;
     }
 }

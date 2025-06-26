@@ -46,6 +46,12 @@
             <input type="text" id="newParentCategoryInput" name="newCategory" placeholder="Kategorie eingeben" />
             <button type="button" id="addParentCategoryBtn">Hinzufügen</button>
         </div>
+
+        <div id="new-category-form">
+            <label for="newCategoryInput">Name der neuen Kategorie:</label><br>
+            <input type="text" id="newCategoryInput" name="newCategory" placeholder="Kategorie eingeben" />
+            <button type="button" id="addCategoryBtn">Hinzufügen</button>
+        </div>
     </div>
 </body>
 
