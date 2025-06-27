@@ -1,18 +1,133 @@
-body {
+/* ================= BENUTZERBEREICH & BESTELLÜBERSICHT ================= */
+
+/* Wrapper für den gesamten Benutzerbereich */
+.user-main {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1600px;
+    margin: 5rem auto;
+    padding: 40px 20px;
+}
+
+/* Benutzerbereich (Formular) – linke Spalte */
+.user-main .user-wrapper {
+    flex: 1 1 60%;
+    max-width: 60%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin: 0 !important; /* verhindert zentriertes Layout aus logres.css */
+}
+
+/* Bestellhistorie – rechte Spalte */
+.user-main .order-history {
+    flex: 1 1 37.5%;
+    max-width: 37.5%;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+/* Einzelne Bestellung */
+.order-box {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+}
+
+/* Produktdarstellung in Bestellung */
+.order-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
     align-items: center;
-    min-height: 100vh;
-    padding-top: 3rem;
-    box-sizing: border-box;
 }
 
-h2 {
-    margin-bottom: 5px;
+.order-item img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.item-info {
+    flex-grow: 1;
+}
+
+/* Optional für Meta-Daten (Datum, Status, etc.) */
+.order-meta p {
+    margin: 0.25rem 0;
+}
+
+
+
+/* Bestellhistorie im Darkmode */
+body.dark-mode .order-history {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode .order-box {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+body.dark-mode .order-item {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #444;
+  padding: 0.75rem 0;
+}
+
+body.dark-mode .order-item:last-child {
+  border-bottom: none;
+}
+
+body.dark-mode .order-item img {
+  max-width: 80px;
+  border-radius: 6px;
+  background-color: #333;
+}
+
+body.dark-mode .item-info {
+  color: #ddd;
+}
+
+body.dark-mode .order-meta p {
+  color: #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1000px) {
+    .user-main {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .user-main .user-wrapper,
+    .user-main .order-history {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
 }

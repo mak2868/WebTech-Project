@@ -9,8 +9,8 @@
 
     <!-- Einbindung globaler und registrierungsbezogener CSS-Dateien -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/user.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/logreg.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/user.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
@@ -29,7 +29,7 @@
 <body>
     <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 
-    <main style="padding-top: 40px">
+    <main class="user-main">
         <!-- Userbereich: breites Formular -->
         <div class="form-wrapper user-wrapper">
             <?php
@@ -161,13 +161,48 @@ function get_field_value($data_array, $field_name, $default = '') {
 
                 <button type="submit" class="btn-esn">Speichern</button>
             </form>
+            
 
             <a href="index.php?page=home" class="form-text">Zurück zur Homepage</a>
         </div>
 
+
+
+ <!-- Bestellhistorie daneben -->
+<div class="order-history">
+    <h2>Deine Bestellungen</h2>
+    <?php if (!empty($orderHistory)): ?>
+        <?php foreach ($orderHistory as $order): ?>
+            <div class="order-box">
+                <?php foreach ($order['items'] as $item): ?>
+                    <div class="order-item">
+                        <img src="<?= BASE_URL . '/' . ltrim($item['product_image'], '/') ?>" alt="Produktbild">
+                        <div class="item-info">
+                            <strong><?= htmlspecialchars($item['product_name']) ?></strong><br>
+                            <?= $item['quantity'] ?> x <?= htmlspecialchars($item['size']) ?>g
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="order-meta">
+                    <p><strong>Datum:</strong> <?= $order['order_date'] ?></p>
+                    <p><strong>Status:</strong> <?= ucfirst($order['status']) ?></p>
+                    <p><strong>Versandadresse:</strong> <?= htmlspecialchars($order['shipping_address']) ?></p>
+                    <p style="text-align:right;"><strong>Gesamt:</strong> <?= number_format($order['total'], 2) ?> €</p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>Keine Bestellungen vorhanden.</p>
+    <?php endif; ?>
+</div>
+
+</main>
+
+
+
         <script src="<?= BASE_URL ?>/js/validate-user.js"></script>
         <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
         <?php include __DIR__ . '/../layouts/footer.php'; ?>
-    </main>
+  
 </body>
 </html>

@@ -4,10 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-echo "<script>console.log('PHP-SESSION-USER-ID: " . ($_SESSION['user_id'] ?? 'NICHT GESETZT') . "');</script>";
-
-
-
 require_once __DIR__ . '/../../config/config.php';
 ?>
 
@@ -18,7 +14,7 @@ require_once __DIR__ . '/../../config/config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Section</title>
+    <title>XPN | Home</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
@@ -34,6 +30,8 @@ require_once __DIR__ . '/../../config/config.php';
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
     <script src="<?= BASE_URL ?>/js/merge-cart.js" defer></script>
+
+    <script src="<?= BASE_URL ?>/js/cart.js" defer></script>
 
 
     <!-- Head-Datei -->
@@ -65,7 +63,7 @@ require_once __DIR__ . '/../../config/config.php';
   <div class="hero-content">
     <h1>Made for Athletes</h1>
     <p class="hero-paragraph">Nutrition that tastes as good as it works</p>
-    <button class="button" onclick="window.location.href='?page=ProteinpulverList'">Shop now</button>
+    <button class="button" onclick="window.location.href='?page=productList&cid=1'">Shop now</button>
   </div>
 </section>
 
@@ -99,7 +97,7 @@ require_once __DIR__ . '/../../config/config.php';
       <div class="banner-text">
         <h2>Deutschlands Nr. 1 Proteinriegel</h2>
         <p>Protein Snack für maximalen Muskelaufbau.</p>
-        <button class="button" onclick="window.location.href='?page=ProteinpulverList'">20% Aktion</button>
+        <button class="button" onclick="window.location.href='?page=productList&cid=4'">Riegel entdecken</button>
       </div>
     </div>
   </section>
@@ -147,7 +145,6 @@ require_once __DIR__ . '/../../config/config.php';
 
 </main>
 
-<script src="<?= BASE_URL ?>/js/cart.js"></script>
 <?php include __DIR__ . '/../layouts/cartSlider.php'; ?>
 <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
 <?php include __DIR__ . '/../layouts/footer.php'; ?>

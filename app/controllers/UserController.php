@@ -174,6 +174,8 @@ public function login()
         // Ruft Benutzerdaten und Adressdaten aus dem UserModel ab.
         $userdata = UserModel::getUserById($userId); // Holt persönliche Benutzerdaten.
         $addressdata = UserModel::getUserAddressByUserId($userId); // Holt die Adressdaten.
+        $orderHistory = UserModel::getOrdersWithItems($userId);
+
 
         // Prüft, ob die Benutzerdaten geladen werden konnten.
         if (!$userdata) {
