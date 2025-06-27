@@ -300,6 +300,7 @@ function renderCart() {
   });
 
   totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+  checkCheckoutButtonState();
 }
 
 function createSingleItemRow(item, index, itemTotal) {
@@ -859,6 +860,7 @@ function renderServerCart(cartItems) {
   });
 
   totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+  checkCheckoutButtonState();
 }
 
 
@@ -875,7 +877,7 @@ function renderServerCart(cartItems) {
  **********************************************/
 
 /**
- * zuständig für die Visualisierug der cart.php Seite (Render-Funktion)
+ * zuständig für die Visualisierug der cartslider.php Seite (Render-Funktion)
  * @author Merzan Köse
  */
 
@@ -1151,5 +1153,39 @@ function intermediateStepAddToCart() {
   let buttonContent = selectedButton.textContent.slice(0, -1);
 
   addToCart(product.name, product.product_pic1, getTotalPrice(product.priceWithoutTax), buttonContent);
+}
+
+/**
+ * Funktion die den CheckoutBTTN blockiert wenn man kein
+ * Produkt im Warenkobr hat aber in den checkout möchte
+ */
+function checkCheckoutButtonState() {
+  const btn = document.getElementById('checkoutBtn');
+  if (!btn) return;
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (isLoggedIn) {
+    fetch('index.php?page=get-cart')
+      .then(res => res.json())
+      .then(cart => {
+        if (!Array.isArray(cart) || cart.length === 0) {
+          disableCheckoutBtn(btn);
+        }
+      })
+      .catch(() => disableCheckoutBtn(btn));
+  } else {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (cart.length === 0) {
+      disableCheckoutBtn(btn);
+    }
+  }
+}
+
+function disableCheckoutBtn(button) {
+  button.disabled = true;
+  button.title = 'Warenkorb ist leer';
+  button.style.opacity = 0.5;
+  button.style.cursor = 'not-allowed';
 }
 

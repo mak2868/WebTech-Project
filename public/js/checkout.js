@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById('cartItems'); // Container für Produktdarstellung
   const cartTotalEl = document.getElementById('cartTotal'); // Gesamtpreis-Anzeige
 
-  // Falls kein Warenkorb angezeigt werden soll, Abbruch
+  // Falls kein Warenkorb angezeigt werden soll, Abbruch 
   if (!cartItemsContainer || !cartTotalEl) return;
 
   /**

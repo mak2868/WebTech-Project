@@ -36,6 +36,10 @@
 
             <!-- Formular zum Einloggen (POST wird an Server gesendet) -->
             <form action="/WebTech-Project/public/index.php?page=login" method="post">
+                <?php if (isset($_GET['redirect'])): ?>
+                    <input type="hidden" name="redirect" value="<?= htmlspecialchars($_GET['redirect']) ?>">
+                <?php endif; ?>
+
                 <?php if (!empty($error)): ?>
                     <div class="form-error"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>

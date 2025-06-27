@@ -63,7 +63,7 @@ require_once __DIR__ . '/../../config/config.php';
           <img src="<?= BASE_URL ?>/images/removeIcon.svg" alt="Alle Produkte entfernen">
         </button>
       <?php endif; ?>
-    <button class="checkout-btn" onclick="goToCheckout()">Zur Kasse</button>
+    <button id= "checkoutBtn" class="checkout-btn" onclick="goToCheckout()">Zur Kasse</button>
     </div>
 
     <div class="timerSection">
@@ -87,5 +87,6 @@ require_once __DIR__ . '/../../config/config.php';
 
   <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
   <?php include __DIR__ . '/../layouts/footer.php'; ?>
+  
 </body>
 </html>
