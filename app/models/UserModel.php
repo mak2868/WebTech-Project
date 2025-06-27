@@ -222,4 +222,87 @@ class UserModel
             ]);
         }
     }
+
+
+
+    
+
+public static function getOrdersWithItems($userId)
+{
+    $db = DB::getConnection();
+
+    $stmt = $db->prepare("
+        -- Bestellungen mit Proteinpulver
+        SELECT 
+            o.id as order_id,
+            o.order_date,
+            o.status,
+            o.total,
+            ua.street,
+            ua.postal_code,
+            ua.city,
+            ua.country,
+            pp.name as product_name,
+            ppic.product_pic1 as product_image,
+            oi.quantity,
+            oi.size
+        FROM orders o
+        JOIN order_items oi ON o.id = oi.order_id
+        LEFT JOIN user_addresses ua ON o.shipping_address_id = ua.id
+        JOIN proteinpulver_products pp ON oi.product_id = pp.pid
+        JOIN proteinpulver_pictures ppic ON pp.pid = ppic.product_id
+        WHERE o.user_id = :user_id
+
+        UNION ALL
+
+        -- Bestellungen mit Proteinriegeln
+        SELECT 
+            o.id as order_id,
+            o.order_date,
+            o.status,
+            o.total,
+            ua.street,
+            ua.postal_code,
+            ua.city,
+            ua.country,
+            pr.name as product_name,
+            rpic.product_pic1 as product_image,
+            oi.quantity,
+            oi.size
+        FROM orders o
+        JOIN order_items oi ON o.id = oi.order_id
+        LEFT JOIN user_addresses ua ON o.shipping_address_id = ua.id
+        JOIN proteinriegel_products pr ON oi.product_id = pr.pid
+        JOIN proteinriegel_pictures rpic ON pr.pid = rpic.product_id
+        WHERE o.user_id = :user_id
+
+        ORDER BY order_date DESC
+    ");
+
+    $stmt->execute(['user_id' => $userId]);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Gruppieren nach Bestellung
+    $orders = [];
+    foreach ($rows as $row) {
+        $id = $row['order_id'];
+        if (!isset($orders[$id])) {
+            $orders[$id] = [
+                'order_date' => $row['order_date'],
+                'status' => $row['status'],
+                'total' => $row['total'],
+                'shipping_address' => "{$row['street']}, {$row['postal_code']} {$row['city']}, {$row['country']}",
+                'items' => []
+            ];
+        }
+        $orders[$id]['items'][] = [
+            'product_name' => $row['product_name'],
+            'product_image' => $row['product_image'],
+            'quantity' => $row['quantity'],
+            'size' => $row['size'] ?? null
+        ];
+    }
+
+    return $orders;
+}
 }
