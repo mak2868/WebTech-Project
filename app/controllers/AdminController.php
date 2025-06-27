@@ -146,4 +146,51 @@ class AdminController
         echo json_encode([$resultsCategories]);
         exit;
     }
+
+    public function isPulver()
+    {
+        $value = $_GET['value'] ?? null;
+
+        if ($value === null) {
+            echo "Kein Wert übergeben.";
+            return;
+        }
+
+        $result = AdminModel::checkIfPulver($value);
+
+        echo json_encode(['success' => true, 'isPulver' => $result]);
+
+    }
+
+    public function addProduct()
+    {
+        header('Content-Type: application/json');
+
+        // JSON-Daten aus dem Request einlesen
+        $data = json_decode(file_get_contents("php://input"), true);
+
+        if (!$data) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Ungültige oder leere JSON-Daten übermittelt.'
+            ]);
+            return;
+        }
+
+        try {
+            // Übergabe an Model zur Speicherung
+            $success = AdminModel::saveFullProduct($data);
+
+            echo json_encode([
+                'success' => $success,
+                'message' => $success ? 'Produkt wurde erfolgreich gespeichert.' : 'Produkt konnte nicht gespeichert werden.'
+            ]);
+        } catch (Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Fehler beim Speichern: ' . $e->getMessage()
+            ]);
+        }
+    }
+
 }

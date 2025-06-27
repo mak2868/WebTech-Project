@@ -64,24 +64,24 @@
                 <label for="newProductInput">Parent-Category der neuen Kategorie:</label><br>
                 <select id="product-select"></select>
             </div>
-            <div id="product-details">
+            <form id="product-details">
                 <!-- Product Description -->
                 <label for="description">Beschreibung:</label>
                 <textarea id="description" name="description" rows="4" required></textarea>
 
-                <!-- Available Sizes -->
-                <label for="availableSizes">Verfügbare Größen:</label>
-                <input type="text" id="availableSizes" name="availableSizes" placeholder="z.B. 30, 500, 2000, 5000"
-                    required>
+                <!-- Product Variants -->
+                <label for="productVariants">Produktvarianten (je Variante mit Komma, Varianten mit ; trennen):</label>
+                <textarea id="productVariants" name="productVariants"
+                    placeholder="z.B.: 500g, 19.99, 1, 50; 1000g, 34.99, 0, 20" required></textarea>
 
-                <!-- Price with Tax -->
-                <label for="priceWithTax">Preis mit Steuer:</label>
-                <input type="text" id="priceWithTax" name="priceWithTax" placeholder="z.B. 2.29, 24.99, 79.99, 179.99"
-                    required>
 
                 <!-- Description Details -->
-                <label for="descriptionDetails">Produktdetails:</label>
+                <label for="descriptionDetails">Produktdetails (2 Stück, mit ; trennen):</label>
                 <textarea id="descriptionDetails" name="descriptionDetails" rows="4" required></textarea>
+
+                <!-- Description Details -->
+                <label for="laboratory">Laboranalysen:</label>
+                <textarea id="laboratory" name="laboratory" rows="4" required></textarea>
 
                 <!-- Ingredients -->
                 <label for="ingredients">Zutaten:</label>
@@ -120,7 +120,7 @@
                 </fieldset>
 
                 <!-- Amino Acids -->
-                <fieldset>
+                <fieldset id="aminoAcids-input">
                     <legend>Aminosäuren:</legend>
                     <label for="alanine">Alanine:</label>
                     <input type="text" id="alanine" name="alanine" required>
@@ -184,29 +184,71 @@
                 <label for="recommendation">Empfehlung:</label>
                 <textarea id="recommendation" name="recommendation" rows="4" required></textarea>
 
-                <label for="tip">Tipp:</label>
-                <textarea id="tip" name="tip" rows="4"></textarea>
+                <div id="tipDiv">
+                    <label for="tip">Tipp:</label>
+                    <textarea id="tip" name="tip" rows="4" required></textarea>
+                </div>
 
                 <!-- Recipes -->
-                <fieldset>
+                <fieldset id="recipes-input">
                     <legend>Rezepte:</legend>
+
+                    <!-- Rezept 1 -->
                     <label for="recipeTitle1">Rezept 1 Titel:</label>
-                    <input type="text" id="recipeTitle1" name="recipeTitle1">
+                    <input type="text" id="recipeTitle1" name="recipeTitle1" required>
 
-                    <label for="recipeIngredients1">Rezept 1 Zutaten:</label>
-                    <textarea id="recipeIngredients1" name="recipeIngredients1"></textarea>
+                    <label for="recipeShortTitle1">Rezept 1 Kurz-Titel:</label>
+                    <input type="text" id="recipeShortTitle1" name="recipeShortTitle1" required>
 
-                    <label for="recipePreparation1">Rezept 1 Zubereitung:</label>
-                    <textarea id="recipePreparation1" name="recipePreparation1"></textarea>
+                    <label for="recipePortion1">Rezept 1 Portionen:</label>
+                    <input type="number" id="recipePortion1" name="recipePortion1" min="1" required>
 
+                    <label for="recipeIngredients1">Rezept 1 Zutaten (mit ; trennen):</label>
+                    <textarea id="recipeIngredients1" name="recipeIngredients1"
+                        placeholder="z.B.: 2 reife Bananen (zerdrückt); 2 Eier; 40 g Proteinpulver" required></textarea>
+
+                    <label for="recipePreparation1">Rezept 1 Zubereitung (mit ; trennen):</label>
+                    <textarea id="recipePreparation1" name="recipePreparation1"
+                        placeholder="z.B.: Ofen auf 180 Grad vorheizen; Bananen zerdrücken; Alle Zutaten vermengen und in eine Form füllen"
+                        required></textarea>
+
+                    <!-- Rezept 2 -->
                     <label for="recipeTitle2">Rezept 2 Titel:</label>
-                    <input type="text" id="recipeTitle2" name="recipeTitle2">
+                    <input type="text" id="recipeTitle2" name="recipeTitle2" required>
 
-                    <label for="recipeIngredients2">Rezept 2 Zutaten:</label>
-                    <textarea id="recipeIngredients2" name="recipeIngredients2"></textarea>
+                    <label for="recipeShortTitle2">Rezept 2 Kurz-Titel:</label>
+                    <input type="text" id="recipeShortTitle2" name="recipeShortTitle2" required>
 
-                    <label for="recipePreparation2">Rezept 2 Zubereitung:</label>
-                    <textarea id="recipePreparation2" name="recipePreparation2"></textarea>
+                    <label for="recipePortion2">Rezept 2 Portionen:</label>
+                    <input type="number" id="recipePortion2" name="recipePortion2" min="1" required>
+
+                    <label for="recipeIngredients2">Rezept 2 Zutaten (mit ; trennen):</label>
+                    <textarea id="recipeIngredients2" name="recipeIngredients2"
+                        placeholder="z.B.: 2 reife Bananen (zerdrückt); 2 Eier; 40 g Proteinpulver" required></textarea>
+
+                    <label for="recipePreparation2">Rezept 2 Zubereitung (mit ; trennen):</label>
+                    <textarea id="recipePreparation2" name="recipePreparation2"
+                        placeholder="z.B.: Ofen auf 180 Grad vorheizen; Bananen zerdrücken; Alle Zutaten vermengen und in eine Form füllen"
+                        required></textarea>
+
+                    <!-- Rezept 3 -->
+                    <label for="recipeTitle3">Rezept 3 Titel:</label>
+                    <input type="text" id="recipeTitle3" name="recipeTitle3" required>
+
+                    <label for="recipeShortTitle3">Rezept 3 Kurz-Titel:</label>
+                    <input type="text" id="recipeShortTitle3" name="recipeShortTitle3" required>
+
+                    <label for="recipePortion3">Rezept 3 Portionen:</label>
+                    <input type="number" id="recipePortion3" name="recipePortion3" min="1" required>
+
+                    <label for="recipeIngredients3">Rezept 3 Zutaten (mit ; trennen):</label>
+                    <textarea id="recipeIngredients3" name="recipeIngredients3"
+                        placeholder="z.B.: 2 reife Bananen (zerdrückt); 2 Eier; 40 g Proteinpulver" required></textarea>
+
+                    <label for="recipePreparation3">Rezept 3 Zubereitung (mit ; trennen):</label>
+                    <textarea id="recipePreparation3" name="recipePreparation3"
+                        placeholder="z.B.: Ofen auf 180 Grad vorheizen; Bananen zerdrücken; Alle Zutaten vermengen und in eine Form füllen"
+                        required></textarea>
                 </fieldset>
 
                 <fieldset>
@@ -225,9 +267,9 @@
                     <input type="text" id="smallPic" name="smallPic" placeholder="Pfad zum Bild" required>
                 </fieldset>
 
-            </div>
+                <button type="button" id="addProductBtn">Hinzufügen</button>
+            </form>
 
-            <button type="button" id="addProductBtn">Hinzufügen</button>
         </div>
     </div>
 </body>

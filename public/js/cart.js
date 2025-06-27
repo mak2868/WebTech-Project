@@ -22,7 +22,7 @@ function getCart() {
 
 
 /**
- * Sortiert den Warenkorb nach: Name und Größe de Produktes, zsätzlich stehen alle Größen des zuletzt hinzugefügten Produktes ganz vorne
+ * Sortiert den Warenkorb nach: Name und Größe des Produktes, zusätzlich stehen alle Größen des zuletzt hinzugefügten Produktes ganz vorne
  * @param {Warenkorb, der zuvor geladen wurde} cart 
  * @returns nach festgelegten Regeln sortierten Warenkorb
  * @author Marvin Kunz
@@ -67,7 +67,6 @@ function getIndexInCart(name, indexFromButtons) {
 
   // Variable, die das Auftreten der unterschiedlichen Größen eines Produktes zählt
   let countItemWithName = 0;
-  let returnValue;
 
   // Schleife, die den Warenkorb durchläuft
   for (let i = 0; i < cart.length; i++) {

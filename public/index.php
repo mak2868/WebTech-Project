@@ -125,51 +125,50 @@ switch ($page) {
     case 'thankyou':
         require_once '../app/views/pages/thankyou.php';
         break;
-
     case 'admin':
         $controller = new AdminController();
         $controller->showAdmin();
         break;
-
     case 'admin-users':
         $controller = new AdminController();
         $controller->userManagement();
         break;
-
     case 'admin-update-user-field':
         $controller = new AdminController();
         $controller->updateUserData();
         break;
-
     case 'admin-delete-user':
         $controller = new AdminController();
         $controller->deleteUser();
         break;
-
     case 'admin-show-parent-category':
         $controller = new AdminController();
         $controller->showAllParentCategories();
         break;
-
     case 'admin-add-parent-category':
         $controller = new AdminController();
         $controller->addParentCategory();
         break;
-
     case 'admin-show-all-categories':
         $controller = new AdminController();
         $controller->showAllCategories();
         break;
-
     case 'admin-add-category':
         $controller = new AdminController();
         $controller->addCategory();
         break;
-
-    case 'admin-get-ategories':
+    case 'admin-get-categories':
         $controller = new AdminController();
         $controller->getCategories();
         break;
+    case 'admin-is-pulver':
+    $controller = new AdminController();
+    $controller->isPulver();
+    break;
+    case 'admin-add-product':
+    $controller = new AdminController();
+    $controller->addProduct();
+    break;
 
     default:
         echo "Seite nicht gefunden.";

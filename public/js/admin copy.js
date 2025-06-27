@@ -418,12 +418,23 @@ async function displayHinzufuegenProdukte() {
     const containerProduct = document.getElementById('new-product-form');
     containerProduct.style.display = 'block';
 
+    const productDetailInputs = document.getElementById('product-details');
+    productDetailInputs.style.display = 'none';
+
     const categoryNameList = await getCategories();
     console.log(categoryNameList);
 
     let selectBox = document.getElementById('product-select');
     selectBox.innerHTML = '';
 
+    // Erstellt das "Bitte wählen..." Option
+    const defaultOption = document.createElement('option');
+    defaultOption.textContent = 'Bitte wählen...';
+    defaultOption.disabled = true;  // macht es nicht auswählbar
+    defaultOption.selected = true;  // macht es standardmäßig ausgewählt
+    selectBox.appendChild(defaultOption);
+
+    // Hinzufügen aller auswählbaren Kategorien
     for (let i = 0; i < categoryNameList.length; i++) {
         const selectItem = document.createElement('option');
 
@@ -432,10 +443,84 @@ async function displayHinzufuegenProdukte() {
         selectBox.appendChild(selectItem);
     }
 
+    selectBox.addEventListener('change', async e => {
+        const value = e.target.value;
+
+        const boolIsPulver = await isPulver(value);
+        console.log(boolIsPulver);
+
+        productDetailInputs.style.display = 'block';
+        document.getElementById('aminoAcids-input').style.display = 'block';
+        document.getElementById('tipDiv').style.display = 'block';
+        document.getElementById('recipes-input').style.display = 'block';
+
+        if (!boolIsPulver) {
+            console.log("ja");
+            document.getElementById('aminoAcids-input').style.display = 'none';
+            document.getElementById('recipes-input').style.display = 'none';
+            document.getElementById('tipDiv').style.display = 'none';
+        } else if (value === "Isolat") {
+            document.getElementById('recipes-input').style.display = 'none';
+        }
+
+
+    });
+
+    const addProductBtn = document.getElementById("addProductBtn");
+
+    if (addProductBtn) {
+        if (!addProductBtn.dataset.listenerAdded) {
+            document.getElementById("addProductBtn").addEventListener("click", () => {
+                const form = document.querySelector('#product-details');
+                const data = {};
+
+                // Sichtbare Felder sammeln (input, textarea, select)
+                form.querySelectorAll('input, textarea, select').forEach(el => {
+                    const isVisible = el.offsetParent !== null; // check für Sichtbarkeit
+                    if (el.name && !el.disabled && isVisible) {
+                        data[el.name] = el.value;
+                    }
+                });
+
+                // Zusätzlich: Kategorie und Name extra setzen, falls nicht im form enthalten
+                const select = document.getElementById("product-select");
+                if (select) data["category"] = select.value.toLowerCase();
+
+                const newProductValue = document.getElementById("newProductInput")?.value;
+                if (newProductValue) data["name"] = newProductValue;
+
+                console.log("Gesendete Daten:", data);
+
+                // Senden als JSON
+                fetch("index.php?page=admin-add-product", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (result.success) {
+                            alert("✅ Produkt erfolgreich hinzugefügt!");
+                        } else {
+                            alert("❌ Fehler beim Hinzufügen: " + (result.message || "Unbekannter Fehler"));
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Fehler beim Senden:", error);
+                        alert("❌ Netzwerkfehler oder Serverproblem.");
+                    });
+            });
+
+
+
+        }
+    }
 }
 
 async function getCategories() {
-    const response = await fetch('index.php?page=admin-get-ategories');
+    const response = await fetch('index.php?page=admin-get-categories');
     const text = await response.text();
     let categories;
     let categoryList;
@@ -475,4 +560,11 @@ function hideEverythingFromHinzufuegen() {
 
     adminContent.innerHTML = '';
 
+}
+
+async function isPulver(value) {
+    const response = await fetch(`index.php?page=admin-is-pulver&value=${encodeURIComponent(value)}`);
+    const data = await response.json();
+
+    return data.isPulver === true;
 }
