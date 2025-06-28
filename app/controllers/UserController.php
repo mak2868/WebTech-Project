@@ -16,49 +16,57 @@ class UserController
      * Verwaltet den Login-Prozess des Benutzers.
      * Behandelt POST-Anfragen für die Authentifizierung und lädt die Login-View.
      */
-public function login()
-{
-    // Starte die Session, falls noch nicht aktiv
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-
-    $error = null; // Zum Anzeigen von Fehlern bei falschem Login
-
-    // Nur wenn das Formular per POST abgeschickt wurde
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Benutzereingaben holen (Username & Passwort)
-        $username = $_POST['username'] ?? '';
-        $password = $_POST['password'] ?? '';
-
-        // Lade das UserModel für die Authentifizierung
-        require_once '../app/models/UserModel.php';
-
-        // Versuche den Benutzer mit den eingegebenen Daten zu authentifizieren
-        $user = UserModel::authenticate($username, $password);
-
-        // Wenn Authentifizierung erfolgreich war:
-        if ($user) {
-            // Benutzer in der Session speichern
-            $_SESSION['user'] = $user;
-            $_SESSION['user_id'] = $user['id'];
-
-            // Weiterleitungsziel ermitteln (z. B. "checkout" oder "home")
-            // Falls jemand als Gast zur Kasse wollte → redirect=checkout
-            $redirectPage = $_POST['redirect'] ?? $_GET['redirect'] ?? 'home';
-
-            // Weiterleitung zur Zielseite nach Login
-            header('Location: index.php?page=' . urlencode($redirectPage));
-            exit;
-        } else {
-            // Bei Fehlschlag Fehlermeldung setzen
-            $error = "Benutzername oder Passwort ist falsch!";
+    public function login()
+    {
+        // Starte die Session, falls noch nicht aktiv
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
-    }
 
-    // Login-Formular anzeigen (inkl. möglicher Fehlermeldung)
-    require '../app/views/pages/login.php';
-}
+        $error = null; // Zum Anzeigen von Fehlern bei falschem Login
+
+        // Nur wenn das Formular per POST abgeschickt wurde
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Benutzereingaben holen (Username & Passwort)
+            $username = $_POST['username'] ?? '';
+            $password = $_POST['password'] ?? '';
+
+            // Lade das UserModel für die Authentifizierung
+            require_once '../app/models/UserModel.php';
+
+            // Prüfe, ob es sich um einen Admin handelt
+            if (UserModel::authenticateAdmin($username, $password)) {
+                $_SESSION['is_admin'] = true;
+                header('Location: index.php?page=admin');
+                exit;
+            }
+
+
+            // Versuche den Benutzer mit den eingegebenen Daten zu authentifizieren
+            $user = UserModel::authenticate($username, $password);
+
+            // Wenn Authentifizierung erfolgreich war:
+            if ($user) {
+                // Benutzer in der Session speichern
+                $_SESSION['user'] = $user;
+                $_SESSION['user_id'] = $user['id'];
+
+                // Weiterleitungsziel ermitteln (z. B. "checkout" oder "home")
+                // Falls jemand als Gast zur Kasse wollte → redirect=checkout
+                $redirectPage = $_POST['redirect'] ?? $_GET['redirect'] ?? 'home';
+
+                // Weiterleitung zur Zielseite nach Login
+                header('Location: index.php?page=' . urlencode($redirectPage));
+                exit;
+            } else {
+                // Bei Fehlschlag Fehlermeldung setzen
+                $error = "Benutzername oder Passwort ist falsch!";
+            }
+        }
+
+        // Login-Formular anzeigen (inkl. möglicher Fehlermeldung)
+        require '../app/views/pages/login.php';
+    }
 
 
     /**
