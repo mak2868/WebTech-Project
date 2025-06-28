@@ -30,6 +30,7 @@ require_once __DIR__ . '/../../config/config.php';
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
     <script src="<?= BASE_URL ?>/js/merge-cart.js" defer></script>
+    
     <script src="<?= BASE_URL ?>/js/cart.js" defer></script>
 
 
