@@ -9,7 +9,7 @@ class StaticController {
         require_once '../app/views/pages/datenschutzerklaerung.php';
     }
 
-    public function about() {
-        require_once '../app/views/pages/about.php';
+    public function faq() {
+        require_once '../app/views/pages/faq.php';
     }
 }

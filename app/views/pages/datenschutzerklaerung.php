@@ -41,7 +41,7 @@
       Felix Bartel<br />
       Esplanade 10<br />
       85057 Ingolstadt<br />
-      E-Mail: info@xpn.de<br />
+      E-Mail: <a href="mailto:info@xpn.de">info@xpn.de</a><br />
     </address>
 
     <h3>2. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck der Verwendung</h3>
