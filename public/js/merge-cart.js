@@ -1,8 +1,8 @@
-function mergeClientCartWithServer() {
-  console.log("mergeClientCartWithServer wurde aufgerufen");
-
+(function mergeClientCartWithServer() {
   const cart = JSON.parse(localStorage.getItem('cart') || '[]');
   if (!cart.length) return;
+
+  console.log("mergeClientCartWithServer wurde aufgerufen");
 
   fetch('index.php?page=merge-cart', {
     method: 'POST',
@@ -13,10 +13,6 @@ function mergeClientCartWithServer() {
       localStorage.removeItem('cart');
     })
     .catch(err => {
-      console.error('Fehler beim mergen des Warenkorbs:', err);
+      console.error('Fehler beim Mergen des Warenkorbs:', err);
     });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  mergeClientCartWithServer();
-});
+})();

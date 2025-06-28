@@ -1,4 +1,15 @@
 <?php
+/**
+ * Navbar Controller
+ *
+ * Datenbankabfrage für Categories und Subcategrories (name + id)
+ * Datenbankabfrage für Bildpfade
+ *
+ * @author Felix Bartel
+ */
+
+
+
 require_once __DIR__ . '/../lib/DB.php';
 
 class NavbarModel {
@@ -27,6 +38,9 @@ class NavbarModel {
         return $result;
     }
 
+
+    //Holt die Bildpfade aus der Datenbank und speichert sie in ein Array
+    //Das Array wird von getImagePath($image, $keyword) in navbar.php nach dem entsprechenden Bild durchsucht
     public function getNavbarImages() {
         $pdo = DB::getConnection();
         $stmt = $pdo->prepare("SELECT bildpfad FROM pictures");

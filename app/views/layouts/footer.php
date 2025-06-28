@@ -22,19 +22,20 @@
       <div class="footer-wrapper">
         <div class="footer-links">
           <a href="<?= BASE_URL ?>/?page=about">About</a>
+          <a href="<?= BASE_URL ?>/?page=kontakt">Kontakt</a>
           <?php foreach ($footerLinks as $link): ?>
             <a href="<?= BASE_URL ?>/?page=<?= htmlspecialchars($link['url']) ?>List">
               <?= htmlspecialchars($link['name']) ?>
             </a>
-          <?php endforeach; ?>
+          <?php endforeach; ?> 
         </div>
         <div class="footer-social">
-          <?php foreach ($icons as $icon): ?>
-            <a href="#"><img src="<?= BASE_URL . $icon ?>" alt="Social Icon" /></a>
-          <?php endforeach; ?>
+          <?php foreach ($icons as $icon): ?>                                                   
+            <a href="#"><img src="<?= BASE_URL . $icon ?>" alt="Social Icon" /></a>               
+          <?php endforeach; ?> 
         </div>
-      </div>
-
+      </div> 
+                                                                                                                                                                           
       <div class="footer-divider"></div>
       <div class="footer-bottom">
         <div class="footer-copyright">© 2025 EXTREM PERFORMANCE NUTRITION. All rights reserved</div>
