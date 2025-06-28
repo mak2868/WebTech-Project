@@ -19,16 +19,16 @@ class FooterModel {
     }
 
     public static function getParentCategories() {
-        $pdo = DB::getConnection();
-        $stmt = $pdo->query("SELECT name FROM product_parent_categories");
-        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $pdo = DB::getConnection();
+    $stmt = $pdo->query("SELECT id, name FROM product_parent_categories");
+    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Bereite Namen + URL-Slug (z. B. 'Proteinpulver' → 'ProteinpulverList') vor
-        return array_map(function($cat) {
-            return [
-                'name' => $cat['name'],
-                'url' => str_replace(' ', '', $cat['name']) // whitespace entfernen
-            ];
-        }, $categories);
-    }
+    return array_map(function($cat) {
+        return [
+            'name' => $cat['name'],
+            'id' => $cat['id']
+        ];
+    }, $categories);
+}
+
 }
