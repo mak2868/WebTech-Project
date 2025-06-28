@@ -1,3 +1,12 @@
+<?php
+/**
+ * Impressum
+ * @author: Felix Bartel
+ */
+?>
+
+
+
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de">

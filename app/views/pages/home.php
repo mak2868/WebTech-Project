@@ -1,4 +1,14 @@
 <?php
+/**
+ * Startseite (view)
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

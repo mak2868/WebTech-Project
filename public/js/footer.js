@@ -1,6 +1,9 @@
 
 /**
  * footer.js
+ * Schreibt E-Mail für Newsletteranmeldung in die DB, 
+ * gibt entsprechend Rückmeldung ob erfolgreich, oder E-Mail schon eingetragen.
+ * @author Felix Bartel
  */
 
 
@@ -13,6 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const error = document.querySelector(".form-error");
 
   if (!form) return;
+
+
+/**
+ * async function, mit await, stellt sicher, dass in der Zeit, in welcher die Netzwerkanfrage durchgeht 
+ * die Seite weiterhin bedienbar bleibt und nicht einfriert. 
+ * Erwartet ein "Promise" (Rückmeldung vom Server)
+ */
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault(); // verhindert klassisches Absenden, kein Neuladen des Browser --> JS übernimmt

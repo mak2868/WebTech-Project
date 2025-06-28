@@ -309,6 +309,15 @@ function renderCart() {
   checkCheckoutButtonState();
 }
 
+
+
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp nur eine Size im Warenkorb befindet
+ * @param item, index, itemTotal
+ * @author Felix Bartel, Marvin Kunz
+ */
+
+
 function createSingleItemRow(item, index, itemTotal) {
   const row = document.createElement('div');
   row.className = 'cart-item';
@@ -395,6 +404,13 @@ function createSingleItemRow(item, index, itemTotal) {
 
 
 
+
+
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp mehrere Sizes im Warenkorb befinden
+ * @param item, allItemsOfThisType
+ * @author Felix Bartel, Marvin Kunz
+ */
 
 function createMultiItemRow(item, allItemsOfThisType) {
   let totalSum = 0;
@@ -559,7 +575,10 @@ function createMultiItemRow(item, allItemsOfThisType) {
  **********************************************/
 
 
-
+/**
+ *  Lädt die serverseitige Warenkorb-Daten eines eingeloggten Users
+ * @author Felix Bartel
+ */
 
 function loadServerCart() {
   fetch('index.php?page=get-cart')
@@ -573,6 +592,13 @@ function loadServerCart() {
     })
     .catch(err => console.error('Fehler beim Laden des Server-Warenkorbs:', err));
 }
+
+
+/**
+ * @param name, image, price, size
+ * @author Felix Bartel, Marvin Kunz
+ */
+
 
 function addToCart(name, image, price, size) {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -623,6 +649,15 @@ function addToCart(name, image, price, size) {
   }
 }
 
+
+
+/**
+ * Ändert serverseitig die Anzahl, löscht wenn Anzahl 0
+ * Schreibt Anzahl in DB, aktualisiert entsprechend den Warenkorb mit dem Aufruf von loadServerCart()
+ * @param itemId, quantity
+ * @author Felix Bartel
+ */
+
 function updateServerQuantity(itemId, quantity) {
   if (quantity <= 0) {
     removeServerItem(itemId);
@@ -648,6 +683,15 @@ function updateServerQuantity(itemId, quantity) {
 
 
 
+
+/**
+ * Löscht serverseitig das Item und aktualisiert den Warenkorb über Aufruf von loadServerCart()
+ * @param itemId
+ * @author Felix Bartel
+ */
+
+
+
 function removeServerItem(itemId) {
   fetch('index.php?page=remove-cart-item', {
     method: 'POST',
@@ -667,6 +711,14 @@ function removeServerItem(itemId) {
 
 
 
+
+
+/**
+ * Löscht serverseitig den kompletten Warenkorb, 
+ * aktualisiert entsprechend den Warenkorb mit Aufruf der Funktion loadServerCart()
+ * @author Felix Bartel
+ */
+
 function clearServerCart() {
   fetch('index.php?page=clear-cart', { method: 'POST' })
     .then(() => {
@@ -683,7 +735,11 @@ function clearServerCart() {
 
 
 
-
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp nur eine Size im Warenkorb befindet
+ * @param item, itemTotal
+ * @author Felix Bartel
+ */
 
 function createSingleItemRowServer(item, itemTotal) {
   const row = document.createElement('div');
@@ -769,6 +825,14 @@ function createSingleItemRowServer(item, itemTotal) {
 
 
 
+
+
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp mehrere Sizes im Warenkorb befinden
+ * @param item, allItemsOfThisType
+ * @author Felix Bartel
+ */
+
 function createMultiItemRowServer(item, allItemsOfThisType) {
   const row = document.createElement('div');
   row.className = 'cart-item';
@@ -832,6 +896,18 @@ function createMultiItemRowServer(item, allItemsOfThisType) {
   row.appendChild(block);
   return row;
 }
+
+
+
+
+
+
+/**
+ * zeigt alle serverseitigen Warenkorb-Artikel an, 
+ * berechnet den Gesamtpreis und gruppiert Produkte mit mehreren Größen zu einer gemeinsamen Darstellung.
+ * @param cartItems
+ * @author Felix Bartel
+ */
 
 
 function renderServerCart(cartItems) {
@@ -965,6 +1041,16 @@ function renderClientCartSlider() {
 }
 
 
+
+
+
+
+/**
+ * zeigt alle serverseitigen Warenkorb-Artikel im Slider an, 
+ * @param cartItems
+ * @author Felix Bartel
+ */
+
 function renderServerCartSlider(cartItems) {
   const cartItemsContainer =
     document.getElementById('cartItems') ||
@@ -1013,6 +1099,12 @@ function renderServerCartSlider(cartItems) {
     cartTotalSlider.textContent = total.toFixed(2) + " €";
   }
 }
+
+
+
+
+
+
 
 function openCart() {
   const slider = document.getElementById("cartSlider");
