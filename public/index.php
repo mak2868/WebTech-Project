@@ -162,13 +162,21 @@ switch ($page) {
         $controller->getCategories();
         break;
     case 'admin-is-pulver':
-    $controller = new AdminController();
-    $controller->isPulver();
-    break;
+        $controller = new AdminController();
+        $controller->isPulver();
+        break;
     case 'admin-add-product':
-    $controller = new AdminController();
-    $controller->addProduct();
-    break;
+        $controller = new AdminController();
+        $controller->addProduct();
+        break;
+    case 'admin-get-all-orders':
+        $controller = new AdminController();
+        $controller->getAllOrders();
+        break;
+    case 'admin-update-order-status':
+        $controller = new AdminController();
+        $controller->updateOrderStatus();
+        break;
 
     default:
         echo "Seite nicht gefunden.";

@@ -26,6 +26,18 @@ class AdminModel
         return $users;
     }
 
+    public static function getAllUserIDs()
+    {
+        $pdo = DB::getConnection();
+
+        $stmtUser = $pdo->prepare("
+        SELECT id FROM users");
+        $stmtUser->execute();
+        $userIDs = $stmtUser->fetchAll(PDO::FETCH_COLUMN);
+
+        return $userIDs;
+    }
+
     public static function updateUserData($userID, $changedColumn, $changedValue)
     {
         $pdo = DB::getConnection();
@@ -92,6 +104,19 @@ class AdminModel
             $userID
         ]);
     }
+
+    public static function updateOrderStatus($orderId, $newStatus)
+    {
+        $pdo = DB::getConnection();
+        $stmt = $pdo->prepare("UPDATE `orders` SET `status` = :status WHERE `id` = :id");
+        $stmt->execute([
+            'status' => $newStatus,
+            'id' => $orderId
+        ]);
+
+        return $stmt->rowCount(); // Gibt z. B. 1 zurück, wenn eine Zeile geändert wurde
+    }
+
 
     public static function getAllParentCategories()
     {
@@ -225,7 +250,7 @@ class AdminModel
 
             $pdo->beginTransaction();
 
-       
+
             if (AdminModel::hasColumn($pdo, $productTable, 'tip')) {
                 $stmt = $pdo->prepare("INSERT INTO $productTable (`description`, preparation, recommendation, tip, laboratory, cid, `name`, pid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 $params = [
@@ -274,7 +299,7 @@ class AdminModel
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ";
 
-$pdo->exec($sql);
+            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $nutrientTable (product_id, energy, fat, saturates, carbohydrates, sugars, fibre, protein, salt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([
@@ -369,7 +394,7 @@ $pdo->exec($sql);
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ";
 
-$pdo->exec($sql);
+            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $pictureTable (product_id, product_pic1 , product_pic2, product_pic3, small_pic) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([
@@ -394,7 +419,7 @@ $pdo->exec($sql);
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ";
 
-$pdo->exec($sql);
+            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $descriptionTable (product_id, detail1, detail2) VALUES (?, ?, ?)");
             $stmt->execute([
@@ -414,7 +439,7 @@ $pdo->exec($sql);
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ";
 
-$pdo->exec($sql);
+            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $ingredientsTable (product_id, ingredients, allergens) VALUES (?, ?, ?)");
             $stmt->execute([
@@ -443,7 +468,7 @@ $pdo->exec($sql);
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 ";
 
-$pdo->exec($sql);
+            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $spTable (product_id, `size`, price_with_tax, bestseller, quantity_available) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([
@@ -464,11 +489,12 @@ $pdo->exec($sql);
         }
     }
 
-public static function createTableIfNeeded($tableName) {
-    $pdo = DB::getConnection();
+    public static function createTableIfNeeded($tableName)
+    {
+        $pdo = DB::getConnection();
 
-    // Dynamischen Tabellennamen einfügen
-    $sql = "
+        // Dynamischen Tabellennamen einfügen
+        $sql = "
     CREATE TABLE IF NOT EXISTS `$tableName` (
         pid INT(11) NOT NULL AUTO_INCREMENT,
         cid INT(11) DEFAULT NULL,
@@ -486,13 +512,13 @@ public static function createTableIfNeeded($tableName) {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
     ";
 
-    try {
-        $pdo->exec($sql);
-        echo "Tabelle '$tableName' wurde erfolgreich erstellt oder existiert bereits.";
-    } catch (PDOException $e) {
-        echo "Fehler bei der Erstellung der Tabelle '$tableName': " . $e->getMessage();
+        try {
+            $pdo->exec($sql);
+            echo "Tabelle '$tableName' wurde erfolgreich erstellt oder existiert bereits.";
+        } catch (PDOException $e) {
+            echo "Fehler bei der Erstellung der Tabelle '$tableName': " . $e->getMessage();
+        }
     }
-}
 
 
     public static function hasColumn(PDO $pdo, string $table, string $column): bool

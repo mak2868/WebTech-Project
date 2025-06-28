@@ -193,4 +193,50 @@ class AdminController
         }
     }
 
+    public function getAllOrders()
+    {
+        $userIDs = AdminModel::getAllUserIDs();
+        $allOrderHistories = [];
+
+        foreach ($userIDs as $userID) {
+            $orders = UserModel::getOrdersWithItems($userID);
+            foreach ($orders as $orderID => $order) {
+                $order['user_id'] = $userID;
+                $allOrderHistories[] = $order;
+            }
+        }
+
+        // Sortieren nach user_id
+        usort($allOrderHistories, fn($a, $b) => $a['user_id'] <=> $b['user_id']);
+
+        header('Content-Type: application/json');
+        echo json_encode($allOrderHistories);
+        exit;
+    }
+
+    public function updateOrderStatus()
+{
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (!isset($data['order_id'], $data['new_status'])) {
+        http_response_code(400);
+        echo json_encode(["error" => "Ungültige Daten"]);
+        exit;
+    }
+
+    $orderId = $data['order_id'];
+    $newStatus = $data['new_status'];
+
+    $affectedRows = AdminModel::updateOrderStatus($orderId, $newStatus);
+
+if ($affectedRows > 0) {
+    echo json_encode(["success" => true]);
+} else {
+    // Es wurde nichts geändert (z. B. gleicher Status wie vorher)
+    http_response_code(200); // Kein Fehler
+    echo json_encode(["success" => false, "message" => "Kein Update notwendig"]);
+}
+
+}
+
 }

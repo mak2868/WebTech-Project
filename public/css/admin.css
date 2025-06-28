@@ -144,53 +144,162 @@ select:focus {
 }
 
 .admin-table {
-  border-collapse: separate; /* wichtig, damit spacing wirkt */
-  border-spacing: 15px 8px;  /* horizontaler Abstand 15px, vertikal 8px */
-  font-family: Arial, sans-serif;
+    border-collapse: separate;
+    /* wichtig, damit spacing wirkt */
+    border-spacing: 15px 8px;
+    /* horizontaler Abstand 15px, vertikal 8px */
+    font-family: Arial, sans-serif;
 }
 
 .admin-table th,
 .admin-table td {
-  text-align: left; /* linksbündig */
-  padding: 8px 10px; /* innen Abstand für bessere Lesbarkeit */
-  border-bottom: 1px solid #ddd; /* dezente Trennung der Zeilen */
+    text-align: left;
+    /* linksbündig */
+    padding: 8px 10px;
+    /* innen Abstand für bessere Lesbarkeit */
+    border-bottom: 1px solid #ddd;
+    /* dezente Trennung der Zeilen */
 }
 
 .admin-table thead th {
-  background-color: #f2f2f2; /* leichter Hintergrund für Kopfzeile */
-  font-weight: bold;
+    background-color: #f2f2f2;
+    /* leichter Hintergrund für Kopfzeile */
+    font-weight: bold;
 }
 
-#new-parent-category-form, #new-category-form, #new-product-form{
+#new-parent-category-form,
+#new-category-form,
+#new-product-form {
     display: none;
     text-align: left;
     gap: 0;
 }
 
-#addParentCategoryBtn, #addCategoryBtn, #addProductBtn{
+#addParentCategoryBtn,
+#addCategoryBtn,
+#addProductBtn {
     width: 40%;
 }
 
 
-#newParentCategoryInput, #newCategoryInput, #newProductInput, input, textarea{
-  margin-bottom: 0.5rem;
-  /* Abstand nach unten */
-  padding: 0.75rem 1rem;
-  /* Innenabstand (oben/unten & seitlich) */
-  border-radius: 10px;
-  /* abgerundete Ecken */
-  border: 1px solid #ccc;
-  /* hellgrauer Rand */
-  font-size: 1rem;
-  width: 40%;
-  /* volle Breite innerhalb des Wrappers */
+#newParentCategoryInput,
+#newCategoryInput,
+#newProductInput,
+input,
+textarea {
+    margin-bottom: 0.5rem;
+    /* Abstand nach unten */
+    padding: 0.75rem 1rem;
+    /* Innenabstand (oben/unten & seitlich) */
+    border-radius: 10px;
+    /* abgerundete Ecken */
+    border: 1px solid #ccc;
+    /* hellgrauer Rand */
+    font-size: 1rem;
+    width: 40%;
+    /* volle Breite innerhalb des Wrappers */
 }
 
 h4 {
     width: fit-content;
 }
 
-#new-category-form{
+#new-category-form {
     display: none;
 }
 
+
+
+
+
+
+
+
+
+
+/* Bestellhistorie – rechte Spalte */
+.user-main .order-history {
+    flex: 1 1 37.5%;
+    max-width: 37.5%;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+/* Einzelne Bestellung */
+.order-box {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+}
+
+/* Produktdarstellung in Bestellung */
+.order-item {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.order-item img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.item-info {
+    /* flex-grow: 1; */
+    width: fit-content;
+}
+
+/* Optional für Meta-Daten (Datum, Status, etc.) */
+.order-meta p {
+    margin: 0.25rem 0;
+}
+
+
+
+/* Bestellhistorie im Darkmode */
+body.dark-mode .order-history {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+body.dark-mode .order-box {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+body.dark-mode .order-item {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid #444;
+    padding: 0.75rem 0;
+}
+
+body.dark-mode .order-item:last-child {
+    border-bottom: none;
+}
+
+body.dark-mode .order-item img {
+    max-width: 80px;
+    border-radius: 6px;
+    background-color: #333;
+}
+
+body.dark-mode .item-info {
+    color: #ddd;
+}
+
+body.dark-mode .order-meta p {
+    color: #ccc;
+}

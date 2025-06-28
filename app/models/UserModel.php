@@ -238,6 +238,7 @@ public static function getOrdersWithItems($userId)
             o.order_date,
             o.status,
             o.total,
+            o.user_id,
             ua.street,
             ua.postal_code,
             ua.city,
@@ -261,6 +262,7 @@ public static function getOrdersWithItems($userId)
             o.order_date,
             o.status,
             o.total,
+            o.user_id,
             ua.street,
             ua.postal_code,
             ua.city,
@@ -288,6 +290,8 @@ public static function getOrdersWithItems($userId)
         $id = $row['order_id'];
         if (!isset($orders[$id])) {
             $orders[$id] = [
+                'order_id' => $id, 
+                'user_id' => $row['user_id'],
                 'order_date' => $row['order_date'],
                 'status' => $row['status'],
                 'total' => $row['total'],
@@ -302,6 +306,8 @@ public static function getOrdersWithItems($userId)
             'size' => $row['size'] ?? null
         ];
     }
+
+    ksort($orders);
 
     return $orders;
 }

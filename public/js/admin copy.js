@@ -11,12 +11,13 @@ menuSelect.addEventListener('change', function () {
     adminContent.innerHTML = '';
     document.getElementById('hinzufuegen-options').style.display = 'none';
     document.getElementById('new-parent-category-form').style.display = 'none';
+    document.getElementById("allOrdersContainer").style.display = 'none';
 
     // Aufruf unterschiedlichster Funktionen, abhängig davon, welche Auswahl im Selector getroffen wurde
     if (menuSelect.value === 'benutzerverwaltung') {
         displayBenutzerverwaltung();
     } else if (menuSelect.value === 'bestellverwaltung') {
-
+        displayBestellverwaltung();
     } else if (menuSelect.value === 'hinzufuegen') {
         displayHinzufuegen();
     }
@@ -128,6 +129,152 @@ function displayBenutzerverwaltung() {
             }
         })
 };
+
+function displayBestellverwaltung() {
+    const container = document.getElementById("allOrdersContainer");
+    container.style.display = 'block';
+
+    fetch("index.php?page=admin-get-all-orders")
+        .then(res => {
+            if (!res.ok) throw new Error("Netzwerkfehler");
+            return res.json();
+        })
+        .then(data => {
+            container.innerHTML = ""; // leeren
+
+            let currentUser = null;
+            data.forEach(order => {
+                if (currentUser !== order.user_id) {
+                    if (currentUser !== null) {
+                        container.appendChild(document.createElement('hr'));
+                    }
+                    currentUser = order.user_id;
+
+                    const h3 = document.createElement('h3');
+                    h3.textContent = `Benutzer-ID: ${currentUser}`;
+                    container.appendChild(h3);
+                }
+
+                console.log("order_id:", order.order_id);
+                const orderBox = document.createElement('div');
+                orderBox.className = 'order-box';
+                orderBox.dataset.orderId = order.order_id;
+
+                order.items.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'order-item';
+
+                    const img = document.createElement('img');
+                    img.src = BASE_URL + '/' + item.product_image.replace(/^\/+/, '');
+                    img.alt = 'Produktbild';
+
+                    const infoDiv = document.createElement('div');
+                    infoDiv.className = 'item-info';
+                    infoDiv.innerHTML = `<strong>${item.product_name}</strong><br>${item.quantity} x ${item.size}g`;
+
+                    itemDiv.appendChild(img);
+                    itemDiv.appendChild(infoDiv);
+                    orderBox.appendChild(itemDiv);
+                });
+
+                const metaDiv = document.createElement('div');
+                metaDiv.className = 'order-meta';
+
+                const statusSelect = document.createElement('select');
+                statusSelect.name = 'order_status';
+                statusSelect.className = 'order-status-select';
+
+                const statusOptions = ['in Bearbeitung', 'bezahlt', 'versendet', 'storniert', 'abgeschlossen'];
+                statusOptions.forEach(status => {
+                    const option = document.createElement('option');
+                    option.value = status;
+                    option.textContent = capitalize(status);
+                    if (status === order.status) {
+                        option.selected = true;
+                    }
+                    statusSelect.appendChild(option);
+                });
+
+                metaDiv.innerHTML = `
+                    <p><strong>Order-ID:</strong> ${order.order_id}</p>
+                    <p><strong>Datum:</strong> ${order.order_date}</p>
+                    <p><strong>Versandadresse:</strong> ${order.shipping_address}</p>
+                    <p style="text-align:right;"><strong>Gesamt:</strong> ${Number(order.total).toFixed(2)} €</p>
+                `;
+
+                const statusWrapper = document.createElement('p');
+                statusWrapper.innerHTML = `<strong>Status:</strong> `;
+                statusWrapper.appendChild(statusSelect);
+
+                metaDiv.insertBefore(statusWrapper, metaDiv.children[1]);
+
+                orderBox.appendChild(metaDiv);
+                container.appendChild(orderBox);
+            });
+
+            container.dataset.loaded = "true";
+        })
+        .then(() => {
+            // Alle Status-Selects mit EventListener versehen
+            document.querySelectorAll(".order-status-select").forEach(select => {
+                select.addEventListener("change", function () {
+                    const newStatus = this.value;
+                    const orderBox = this.closest('.order-box');
+                    const userId = orderBox.previousElementSibling?.textContent?.match(/\d+/)?.[0];
+                    const orderDate = orderBox.querySelector('.order-meta strong')?.textContent;
+
+                    // Optional: Wenn deine Bestell-ID im DOM vorhanden ist, besser direkt verwenden
+                    const orderId = orderBox.dataset.orderId;
+
+                    if (!orderId) {
+                        console.error("Bestell-ID nicht gefunden.");
+                        return;
+                    }
+
+                    console.log("Neuer Status:", newStatus);
+
+                    // Ajax an den Server schicken
+                    fetch("index.php?page=admin-update-order-status", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            order_id: orderId,
+                            new_status: newStatus
+                        })
+                    })
+                        .then(res => {
+                            if (!res.ok) throw new Error("Fehler beim Aktualisieren des Status");
+                            return res.json();
+                        })
+                        .then(result => {
+                            if (result.success) {
+                                console.log("Status erfolgreich geändert");
+                                displayBestellverwaltung();
+                            } else {
+                                throw new Error("Antwort ohne Erfolg");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Statusänderung fehlgeschlagen:", error);
+                            alert("Status konnte nicht aktualisiert werden.");
+                        });
+                });
+            });
+        })
+        .catch(error => {
+            container.innerHTML = "<p style='color:red;'>Fehler beim Laden der Bestellungen.</p>";
+            console.error(error);
+        });
+}
+
+
+// Hilfsfunktion für Großschreibung
+function capitalize(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 
 function displayHinzufuegen() {
     const hinzufuegenOptions = document.getElementById('hinzufuegen-options');

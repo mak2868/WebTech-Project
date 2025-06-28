@@ -7,9 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Adminbereich</title>
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/admin.css">
+
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <script src="<?= BASE_URL ?>/js/admin copy.js" defer></script>
+    <script>
+    const BASE_URL = "<?= rtrim(BASE_URL, '/') ?>";
+</script>
 
 </head>
 
@@ -271,6 +275,9 @@
             </form>
 
         </div>
+
+        <div id="allOrdersContainer"></div>
+
     </div>
 </body>
 
