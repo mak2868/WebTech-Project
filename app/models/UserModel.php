@@ -25,14 +25,14 @@ class UserModel
     {
         // Holt eine Instanz der Datenbankverbindung.
         $db = DB::getConnection();
-        
+
         // Bereitet eine SQL-Abfrage vor, um alle Daten eines Benutzers anhand seines Benutzernamens abzurufen.
         // Ein Prepared Statement wird verwendet, um SQL-Injections zu verhindern.
         $stmt = $db->prepare("SELECT * FROM users WHERE username = :username");
-        
+
         // Führt die Abfrage aus und bindet den Benutzernamen an den Platzhalter :username.
         $stmt->execute(['username' => $username]);
-        
+
         // Holt die erste Zeile des Abfrageergebnisses als assoziatives Array.
         // Wenn kein Benutzer gefunden wird, ist $user false.
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -77,7 +77,7 @@ class UserModel
         // Bereitet die SQL-Abfrage zum Einfügen eines neuen Benutzers vor.
         // Enthält auch first_name und last_name.
         $stmt = $db->prepare("INSERT INTO users (username, email, password_hash, first_name, last_name) VALUES (:username, :email, :password_hash, :first_name, :last_name)");
-        
+
         // Führt die Einfügeoperation aus.
         $success = $stmt->execute([
             'username' => $username,
@@ -142,7 +142,7 @@ class UserModel
             birthdate = :birthdate,
             gender = :gender
             WHERE id = :id");
-        
+
         // Führt die Aktualisierung aus.
         // Der Null Coalescing Operator (?? null) stellt sicher, dass NULL in die Datenbank geschrieben wird,
         // wenn ein Feld im $data-Array nicht vorhanden ist, anstatt eines Fehlers.
@@ -214,7 +214,7 @@ class UserModel
             return $stmt->execute([
                 'user_id' => $userId,
                 'type' => 'billing', // Setzt den Adresstyp auf 'billing', da dies ein ENUM-Wert in der DB ist.
-                                     // Wenn Sie verschiedene Adresstypen haben, müsste dieser Wert dynamisch übergeben werden.
+                // Wenn Sie verschiedene Adresstypen haben, müsste dieser Wert dynamisch übergeben werden.
                 'street' => $data['street'] ?? null,
                 'city' => $data['city'] ?? null,
                 'postal_code' => $data['zip'] ?? null, // Formularfeld 'zip' entspricht DB-Spalte 'postal_code'.
@@ -222,4 +222,105 @@ class UserModel
             ]);
         }
     }
+
+
+    public static function authenticateAdmin($username, $password) {
+    $db = DB::getConnection();
+    $stmt = $db->prepare("SELECT * FROM admin_users WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($admin && password_verify($password, $admin['password_hash'])) {
+        return true;
+    } else {
+        return false;
+    }
+} 
+
+
+    public static function getOrdersWithItems($userId)
+    {
+        $db = DB::getConnection();
+
+        $stmt = $db->prepare("
+        -- Bestellungen mit Proteinpulver
+        SELECT 
+            o.id as order_id,
+            o.order_date,
+            o.status,
+            o.total,
+            ua.street,
+            ua.postal_code,
+            ua.city,
+            ua.country,
+            pp.name as product_name,
+            ppic.product_pic1 as product_image,
+            oi.quantity,
+            oi.size
+        FROM orders o
+        JOIN order_items oi ON o.id = oi.order_id
+        LEFT JOIN user_addresses ua ON o.shipping_address_id = ua.id
+        JOIN proteinpulver_products pp ON oi.product_id = pp.pid
+        JOIN proteinpulver_pictures ppic ON pp.pid = ppic.product_id
+        WHERE o.user_id = :user_id
+
+        UNION ALL
+
+        -- Bestellungen mit Proteinriegeln
+        SELECT 
+            o.id as order_id,
+            o.order_date,
+            o.status,
+            o.total,
+            ua.street,
+            ua.postal_code,
+            ua.city,
+            ua.country,
+            pr.name as product_name,
+            rpic.product_pic1 as product_image,
+            oi.quantity,
+            oi.size
+        FROM orders o
+        JOIN order_items oi ON o.id = oi.order_id
+        LEFT JOIN user_addresses ua ON o.shipping_address_id = ua.id
+        JOIN proteinriegel_products pr ON oi.product_id = pr.pid
+        JOIN proteinriegel_pictures rpic ON pr.pid = rpic.product_id
+        WHERE o.user_id = :user_id
+
+        ORDER BY order_date DESC
+    ");
+
+        $stmt->execute(['user_id' => $userId]);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Gruppieren nach Bestellung
+        $orders = [];
+        foreach ($rows as $row) {
+            $id = $row['order_id'];
+            if (!isset($orders[$id])) {
+                $orders[$id] = [
+                    'order_date' => $row['order_date'],
+                    'status' => $row['status'],
+                    'total' => $row['total'],
+                    'shipping_address' => "{$row['street']}, {$row['postal_code']} {$row['city']}, {$row['country']}",
+                    'items' => []
+                ];
+            }
+            $orders[$id]['items'][] = [
+                'product_name' => $row['product_name'],
+                'product_image' => $row['product_image'],
+                'quantity' => $row['quantity'],
+                'size' => $row['size'] ?? null
+            ];
+        }
+
+
+
+
+
+
+        return $orders;
+    }
+
+
 }
