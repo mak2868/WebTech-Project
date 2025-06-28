@@ -22,7 +22,7 @@
     <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
-    <script src="<?= BASE_URL ?>/js/admin copy.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/admin.js" defer></script>
 
     <!-- Head-Datei -->
     <?php include __DIR__ . '/../layouts/head.php'; ?>
