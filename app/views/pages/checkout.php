@@ -23,8 +23,6 @@ $message = $message ?? null;
 
   <!-- CSS -->
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/css/index.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/css/index-darkmode.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
