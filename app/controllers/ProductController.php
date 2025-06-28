@@ -127,13 +127,18 @@ class ProductController
 public function showProducts()
 {
     $cid = $_GET['cid'] ?? null;
+    $parentId = $_GET['parentId'] ?? null;
 
-    if ($cid === null) {
-        echo "Keine Kategorie-ID übergeben.";
+    if ($parentId !== null) {
+        // Falls parentId gesetzt ist, lade alle Produkte der Unterkategorien
+        $produkte = ProductModel::getProductsByParentCategory((int)$parentId);
+    } elseif ($cid !== null) {
+        // Ansonsten, wenn cid gesetzt ist, lade Produkte dieser Kategorie
+        $produkte = ProductModel::getProductsByCategory((int)$cid);
+    } else {
+        echo "Keine Kategorie-ID oder Oberkategorie-ID übergeben.";
         return;
     }
-
-    $produkte = ProductModel::getProductsByCategory($cid);
 
     include '../app/views/pages/ProductList.php';
 }

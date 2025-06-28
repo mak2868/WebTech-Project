@@ -305,7 +305,9 @@ function renderCart() {
     }
   });
 
-  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+  const netto = total * 0.81;
+
+  totalDisplay.innerHTML = `Netto: ${netto.toFixed(2)} € <br> Gesamt: ${total.toFixed(2)} €`;
   checkCheckoutButtonState();
 }
 
@@ -956,7 +958,9 @@ function renderServerCart(cartItems) {
     if (row) container.appendChild(row);
   });
 
-  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+   const netto = total * 0.81;
+
+  totalDisplay.innerHTML = `Netto: ${netto.toFixed(2)} € <br> Gesamt: ${total.toFixed(2)} €`;
   checkCheckoutButtonState();
 }
 

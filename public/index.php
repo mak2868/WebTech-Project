@@ -76,7 +76,7 @@ switch ($page) {
         (new StaticController())->datenschutzerklaerung();
         break;
     case 'about':
-        (new StaticController())->about();
+        (new AboutController())->about();
         break;
     case 'productList':
         $controller = new ProductController();
@@ -131,6 +131,15 @@ switch ($page) {
     case 'admin-users':
         (new AdminController())->userManagement();
         break;
+        
+    case 'faq':
+        (new StaticController())->faq();
+        break;
+    case 'kontakt':
+        (new SupportController())->contact();
+        break;
+    break;
+
     default:
         echo "Seite nicht gefunden.";
 }
