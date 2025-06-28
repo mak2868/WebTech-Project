@@ -461,6 +461,67 @@ class ProductModel
     return $products;
 }
 
+public static function getProductsByParentCategory($parentID)
+{
+    $pdo = DB::getConnection();
+
+    // Hole alle Unterkategorien mit dieser parentID
+    $sqlCids = "SELECT id FROM product_categories WHERE parent_id = :parentID";
+    $stmtCids = $pdo->prepare($sqlCids);
+    $stmtCids->execute([':parentID' => $parentID]);
+    $categoryRows = $stmtCids->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$categoryRows) {
+        return [];
+    }
+
+    $categoryIds = array_column($categoryRows, 'id');
+
+    $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($parentID);
+    $tablePrefix = strtolower($tablePrefixArray[0]['name']);
+
+    $tablePics = $tablePrefix . "_pictures";
+    $tableSizesPrices = $tablePrefix . "_sizes_prices";
+    $tableProducts = $tablePrefix . "_products";
+
+    $placeholders = [];
+    $params = [];
+    foreach ($categoryIds as $index => $catId) {
+        $key = ':cid' . $index;
+        $placeholders[] = $key;
+        $params[$key] = $catId;
+    }
+
+    $sql = "SELECT 
+                p.pid,
+                p.cid, 
+                p.name, 
+                p.description, 
+                p.raters_count, 
+                p.rating, 
+                (SELECT pp.product_pic1
+                 FROM $tablePics pp 
+                 WHERE pp.product_id = p.pid 
+                 LIMIT 1) AS bild,
+                sp.price_with_tax AS preis,
+                sp.size AS size,
+                ppc.id AS parent_id
+            FROM $tableProducts p
+            JOIN $tableSizesPrices sp 
+                ON sp.product_id = p.pid
+            JOIN product_categories pc 
+                ON pc.id = p.cid
+            JOIN product_parent_categories ppc 
+                ON ppc.id = pc.parent_id
+            WHERE p.cid IN (" . implode(',', $placeholders) . ")";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 }
 
 // $products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
