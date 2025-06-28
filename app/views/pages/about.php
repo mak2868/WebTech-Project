@@ -57,7 +57,7 @@
       </div>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Marvin_Kunz.jpeg" alt="Marvin Kunz">
+        <img src="<?= BASE_URL ?>/images/Marvin_Kunz.jpg" alt="Marvin Kunz">
         <div class="team-member-text">
           <h4>Marvin Kunz</h4>
           <p>Marvin kümmert sich um Marketing und Social Media. Er verbindet Sport mit Lifestyle und sorgt dafür, dass unsere Community immer auf dem Laufenden bleibt.</p>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Merzan_Köse.jpg" alt="Merzan Köse">
+        <img src="<?= BASE_URL ?>/images/Merzan_Koese.jpeg" alt="Merzan Köse">
         <div class="team-member-text">
           <h4>Merzan Köse</h4>
           <p>Merzan liebt Outdoor-Sportarten und entwickelt gemeinsam mit dem Team innovative Ideen für neue Produkte und Aktionen.</p>

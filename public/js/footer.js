@@ -1,3 +1,12 @@
+
+/**
+ * footer.js
+ */
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("#newsletterForm");
   const success = document.querySelector(".form-success");
@@ -6,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!form) return;
 
   form.addEventListener("submit", async function (e) {
-    e.preventDefault(); // verhindert klassisches Absenden
+    e.preventDefault(); // verhindert klassisches Absenden, kein Neuladen des Browser --> JS übernimmt
 
     const formData = new FormData(form);
     const email = formData.get("email");
@@ -24,7 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       const result = await response.json();
-      console.log("Newsletter-Antwort:", result); // Debug
+
+
 
       if (result.success) {
         success.textContent = result.message || "Danke für deine Anmeldung!";
