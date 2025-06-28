@@ -18,7 +18,8 @@ class AdminModel
         FROM 
         users u
         LEFT JOIN 
-        user_addresses ua ON u.id = ua.user_id;
+        user_addresses ua ON u.id = ua.user_id
+        ORDER BY u.id;
         ");
         $stmtUser->execute();
         $users = $stmtUser->fetchAll(PDO::FETCH_ASSOC);
@@ -130,9 +131,8 @@ class AdminModel
     }
 
 
-    public static function addParentCategory($categoryName)
+    public static function addParentCategory($pdo, $categoryName)
     {
-        $pdo = DB::getConnection();
 
         $stmt = $pdo->prepare("INSERT INTO product_parent_categories(name) VALUES (:name)");
         $stmt->execute([':name' => $categoryName]);
@@ -244,9 +244,9 @@ class AdminModel
             // atomare Datenbankänderungen — alles oder nichts
 
             $productTable = $tablePrefix . "_products";
-            $stmt = $pdo->prepare("");
+            // $stmt = $pdo->prepare("");
 
-            AdminModel::createTableIfNeeded("test");
+            // AdminModel::createTableIfNeeded("test");
 
             $pdo->beginTransaction();
 
@@ -283,23 +283,6 @@ class AdminModel
 
 
             $nutrientTable = $tablePrefix . "_nutrients";
-
-            $sql = "
-    CREATE TABLE IF NOT EXISTS $nutrientTable (
-        product_id INT(11) NOT NULL,
-        energy VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        fat VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        saturates VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        carbohydrates VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        sugars VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        fibre VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        protein VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        salt VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        PRIMARY KEY (product_id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-";
-
-            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $nutrientTable (product_id, energy, fat, saturates, carbohydrates, sugars, fibre, protein, salt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->execute([
@@ -383,18 +366,7 @@ class AdminModel
 
             $pictureTable = $tablePrefix . "_pictures";
 
-            $sql = "
-    CREATE TABLE IF NOT EXISTS $pictureTable (
-        product_id INT(11) NOT NULL,
-        product_pic1 VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        product_pic2 VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        product_pic3 VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        small_pic VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        PRIMARY KEY (product_id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-";
 
-            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $pictureTable (product_id, product_pic1 , product_pic2, product_pic3, small_pic) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([
@@ -410,16 +382,7 @@ class AdminModel
 
             $descriptionTable = $tablePrefix . "_descriptions";
 
-            $sql = "
-    CREATE TABLE IF NOT EXISTS $descriptionTable (
-        product_id INT(11) NOT NULL,
-        detail1 TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        detail2 TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        PRIMARY KEY (product_id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-";
 
-            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $descriptionTable (product_id, detail1, detail2) VALUES (?, ?, ?)");
             $stmt->execute([
@@ -430,16 +393,6 @@ class AdminModel
 
             $ingredientsTable = $tablePrefix . "_ingredients";
 
-            $sql = "
-    CREATE TABLE IF NOT EXISTS $ingredientsTable (
-        product_id INT(11) NOT NULL,
-        ingredients TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        allergens TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        PRIMARY KEY (product_id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-";
-
-            $pdo->exec($sql);
 
             $stmt = $pdo->prepare("INSERT INTO $ingredientsTable (product_id, ingredients, allergens) VALUES (?, ?, ?)");
             $stmt->execute([
@@ -455,29 +408,18 @@ class AdminModel
 
             $spTable = $tablePrefix . "_sizes_prices";
 
-            $sql = "
-    CREATE TABLE IF NOT EXISTS $spTable (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        product_id INT(11) DEFAULT NULL,
-        size VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-        price_with_tax DECIMAL(10,2) DEFAULT NULL,
-        bestseller TINYINT(1) DEFAULT 0,
-        quantity_available INT(10) UNSIGNED NOT NULL DEFAULT 0,
-        PRIMARY KEY (id),
-        KEY idx_product_id (product_id)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-";
 
-            $pdo->exec($sql);
-
-            $stmt = $pdo->prepare("INSERT INTO $spTable (product_id, `size`, price_with_tax, bestseller, quantity_available) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([
-                $productId,
-                $productVariants_array[0] ?? null,
-                $productVariants_array[1] ?? null,
-                $productVariants_array[2] ?? null,
-                $productVariants_array[3] ?? 3,
-            ]);
+            for ($i = 0; $i < count($productVariants_array); $i++) {
+                $productVariants_array_oneSize = array_filter(array_map('trim', explode(',', $productVariants_array[$i])));
+                $stmt = $pdo->prepare("INSERT INTO $spTable (product_id, `size`, price_with_tax, bestseller, quantity_available) VALUES (?, ?, ?, ?, ?)");
+                $stmt->execute([
+                    $productId,
+                    $productVariants_array_oneSize[0] ?? null,
+                    $productVariants_array_oneSize[1] ?? null,
+                    $productVariants_array_oneSize[2] ?? null,
+                    $productVariants_array_oneSize[3] ?? null
+                ]);
+            }
 
             $pdo->commit();
             return true;
@@ -489,13 +431,42 @@ class AdminModel
         }
     }
 
-    public static function createTableIfNeeded($tableName)
+
+    public static function hasColumn(PDO $pdo, string $table, string $column): bool
+    {
+        $pdo = DB::getConnection();
+        $stmt = $pdo->prepare("SHOW COLUMNS FROM `$table` LIKE ?");
+        $stmt->execute([$column]);
+        return $stmt->rowCount() > 0;
+    }
+
+
+    public static function addCategoryWithTables(string $categoryName)
     {
         $pdo = DB::getConnection();
 
-        // Dynamischen Tabellennamen einfügen
+        try {
+            $pdo->beginTransaction();
+            self::addParentCategory($pdo, $categoryName);
+            $pdo->commit();
+
+            // DDL-Statements außerhalb der Transaktion
+            self::createTablesForNewParentCategory($pdo, $categoryName);
+        } catch (Exception $e) {
+            if ($pdo->inTransaction()) {
+                $pdo->rollBack();
+            }
+            throw $e;
+        }
+    }
+
+
+    public static function createTablesForNewParentCategory($pdo, $parentCategoryName)
+    {
+        $productTable = $parentCategoryName . "_products";
+
         $sql = "
-    CREATE TABLE IF NOT EXISTS `$tableName` (
+        CREATE TABLE $productTable (
         pid INT(11) NOT NULL AUTO_INCREMENT,
         cid INT(11) DEFAULT NULL,
         name VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
@@ -509,30 +480,120 @@ class AdminModel
         bestseller TINYINT(1) DEFAULT 0,
         PRIMARY KEY (pid),
         KEY idx_cid (cid)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+        ";
+
+        $pdo->exec($sql);
+
+
+        $nutrientTable = $parentCategoryName . "_nutrients";
+
+        $sql = "
+    CREATE TABLE $nutrientTable (
+        product_id INT(11) NOT NULL,
+        energy VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        fat VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        saturates VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        carbohydrates VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        sugars VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        fibre VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        protein VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        salt VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        PRIMARY KEY (product_id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-    ";
+";
 
-        try {
-            $pdo->exec($sql);
-            echo "Tabelle '$tableName' wurde erfolgreich erstellt oder existiert bereits.";
-        } catch (PDOException $e) {
-            echo "Fehler bei der Erstellung der Tabelle '$tableName': " . $e->getMessage();
-        }
+        $pdo->exec($sql);
+
+
+        $pictureTable = $parentCategoryName . "_pictures";
+
+        $sql = "
+    CREATE TABLE $pictureTable (
+        product_id INT(11) NOT NULL,
+        product_pic1 VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        product_pic2 VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        product_pic3 VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        small_pic VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        PRIMARY KEY (product_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+";
+
+        $pdo->exec($sql);
+
+
+        $descriptionTable = $parentCategoryName . "_descriptions";
+
+        $sql = "
+    CREATE TABLE $descriptionTable (
+        product_id INT(11) NOT NULL,
+        detail1 TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        detail2 TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        PRIMARY KEY (product_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+";
+
+        $pdo->exec($sql);
+
+
+        $ingredientsTable = $parentCategoryName . "_ingredients";
+
+        $sql = "
+    CREATE TABLE $ingredientsTable (
+        product_id INT(11) NOT NULL,
+        ingredients TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        allergens TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        PRIMARY KEY (product_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+";
+
+        $pdo->exec($sql);
+
+
+        $spTable = $parentCategoryName . "_sizes_prices";
+
+
+        $sql = "
+    CREATE TABLE $spTable (
+        id INT(11) NOT NULL AUTO_INCREMENT,
+        product_id INT(11) DEFAULT NULL,
+        size VARCHAR(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+        price_with_tax DECIMAL(10,2) DEFAULT NULL,
+        bestseller TINYINT(1) DEFAULT 0,
+        quantity_available INT(10) UNSIGNED NOT NULL DEFAULT 0,
+        PRIMARY KEY (id),
+        KEY idx_product_id (product_id)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+";
+
+        $pdo->exec($sql);
+
     }
 
 
-    public static function hasColumn(PDO $pdo, string $table, string $column): bool
+    public static function getAllSupportTickets()
     {
+
         $pdo = DB::getConnection();
-        $stmt = $pdo->prepare("SHOW COLUMNS FROM `$table` LIKE ?");
-        $stmt->execute([$column]);
-        return $stmt->rowCount() > 0;
+
+        $stmt = $pdo->prepare("SELECT * FROM support_tickets");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     }
 
-    public static function isPulver($cid)
+    public static function updateTicketStatus($ticketId, $newStatus)
     {
         $pdo = DB::getConnection();
 
+        $stmt = $pdo->prepare("UPDATE `support_tickets` SET `status` = :status WHERE `id` = :id");
+        $stmt->execute([
+            'status' => $newStatus,
+            'id' => $ticketId
+        ]);
+
+        return $stmt->rowCount();
     }
 
 

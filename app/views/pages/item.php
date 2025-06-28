@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/items.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">

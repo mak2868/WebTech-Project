@@ -54,9 +54,6 @@ switch ($page) {
     case 'home':
         (new HomeController())->index();
         break;
-    case 'product':
-        (new ProductController())->detail($_GET['id'] ?? null);
-        break;
     case 'login':
         (new UserController())->login();
         break;
@@ -176,6 +173,14 @@ switch ($page) {
     case 'admin-update-order-status':
         $controller = new AdminController();
         $controller->updateOrderStatus();
+        break;
+    case 'admin-get-all-support-tickets':
+        $controller = new AdminController();
+        $controller->getAllSupportTickets();
+        break;
+    case 'admin-update-ticket-status':
+        $controller = new AdminController();
+        $controller->updateTicketStatus();
         break;
 
     default:

@@ -12,12 +12,15 @@ menuSelect.addEventListener('change', function () {
     document.getElementById('hinzufuegen-options').style.display = 'none';
     document.getElementById('new-parent-category-form').style.display = 'none';
     document.getElementById("allOrdersContainer").style.display = 'none';
+    document.getElementById("new-product-form").style.display = 'none';
 
     // Aufruf unterschiedlichster Funktionen, abhängig davon, welche Auswahl im Selector getroffen wurde
     if (menuSelect.value === 'benutzerverwaltung') {
         displayBenutzerverwaltung();
     } else if (menuSelect.value === 'bestellverwaltung') {
         displayBestellverwaltung();
+    } else if (menuSelect.value === 'support') {
+        displaySupport();
     } else if (menuSelect.value === 'hinzufuegen') {
         displayHinzufuegen();
     }
@@ -220,18 +223,13 @@ function displayBestellverwaltung() {
                 select.addEventListener("change", function () {
                     const newStatus = this.value;
                     const orderBox = this.closest('.order-box');
-                    const userId = orderBox.previousElementSibling?.textContent?.match(/\d+/)?.[0];
-                    const orderDate = orderBox.querySelector('.order-meta strong')?.textContent;
-
-                    // Optional: Wenn deine Bestell-ID im DOM vorhanden ist, besser direkt verwenden
                     const orderId = orderBox.dataset.orderId;
 
-                    if (!orderId) {
-                        console.error("Bestell-ID nicht gefunden.");
-                        return;
-                    }
+
 
                     console.log("Neuer Status:", newStatus);
+                    console.log("oid:", orderId);
+
 
                     // Ajax an den Server schicken
                     fetch("index.php?page=admin-update-order-status", {
@@ -269,12 +267,130 @@ function displayBestellverwaltung() {
         });
 }
 
-
 // Hilfsfunktion für Großschreibung
 function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+function displaySupport() {
+    const container = document.getElementById("allOrdersContainer");
+    container.style.display = 'block';
+
+    fetch("index.php?page=admin-get-all-support-tickets")
+        .then(res => {
+            if (!res.ok) throw new Error("Netzwerkfehler");
+            return res.json();
+        })
+        .then(data => {
+            container.innerHTML = ""; // leeren
+
+            let currentSupportTicket = null;
+            // if (data > 0) {
+
+
+            data.forEach(ticket => {
+                if (currentSupportTicket !== ticket.user_id) {
+                    if (currentSupportTicket !== null) {
+                        container.appendChild(document.createElement('hr'));
+                    }
+                    currentSupportTicket = ticket.user_id;
+
+                    const h3 = document.createElement('h3');
+                    h3.textContent = `Benutzer-ID: ${currentSupportTicket}`;
+                    container.appendChild(h3);
+                }
+
+                const ticketBox = document.createElement('div');
+                ticketBox.className = 'ticket-box';
+                ticketBox.dataset.ticketid = ticket.id;
+
+                console.log("tid:" + ticket.id);
+
+                const metaDiv = document.createElement('div');
+                metaDiv.className = 'ticket-meta';
+
+                const statusSelect = document.createElement('select');
+                statusSelect.name = 'ticket_status';
+                statusSelect.className = 'ticket-status-select';
+
+                const statusOptions = ['open', 'in_progress', 'closed'];
+                statusOptions.forEach(status => {
+                    const option = document.createElement('option');
+                    option.value = status;
+                    option.textContent = capitalize(status);
+                    if (status === ticket.status) {
+                        option.selected = true;
+                    }
+                    statusSelect.appendChild(option);
+                });
+
+                metaDiv.innerHTML = `
+                    <p><strong>Ticket-ID:</strong> ${ticket.id}</p>
+                    <p><strong>Datum:</strong> ${ticket.created_at}</p>
+                    <p><strong>Betreff:</strong> ${ticket.subject}</p>
+                    <strong>Nachricht:</strong>
+                    <p>${ticket.message.replace(/\r?\n/g, '<br>')}</p>
+                `;
+
+                const statusWrapper = document.createElement('p');
+                statusWrapper.innerHTML = `<strong>Status:</strong> `;
+                statusWrapper.appendChild(statusSelect);
+
+                metaDiv.insertBefore(statusWrapper, metaDiv.children[1]);
+
+                ticketBox.appendChild(metaDiv);
+                container.appendChild(ticketBox);
+            });
+
+            container.dataset.loaded = "true";
+        }
+            // }
+        )
+        .then(() => {
+            // Alle Status-Selects mit EventListener versehen
+            document.querySelectorAll(".ticket-status-select").forEach(select => {
+                select.addEventListener("change", function () {
+                    const newStatus = this.value;
+                    const ticketBox = this.closest('.ticket-box');
+                    const ticketId = ticketBox.dataset.ticketid;
+
+                    console.log("Neuer Status:", newStatus);
+
+                    // Ajax an den Server schicken
+                    fetch("index.php?page=admin-update-ticket-status", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            ticket_id: ticketId,
+                            new_status: newStatus
+                        })
+                    })
+                        .then(res => {
+                            if (!res.ok) throw new Error("Fehler beim Aktualisieren des Status");
+                            return res.json();
+                        })
+                        .then(result => {
+                            if (result.success) {
+                                console.log("Status erfolgreich geändert");
+                                displaySupport();
+                            } else {
+                                throw new Error("Antwort ohne Erfolg");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Statusänderung fehlgeschlagen:", error);
+                            alert("Status konnte nicht aktualisiert werden.");
+                        });
+                });
+            });
+        })
+        .catch(error => {
+            container.innerHTML = "<p style='color:red;'>Fehler beim Laden der Tickets.</p>";
+            console.error(error);
+        });
+}
 
 function displayHinzufuegen() {
     const hinzufuegenOptions = document.getElementById('hinzufuegen-options');
@@ -637,6 +753,8 @@ async function displayHinzufuegenProdukte() {
                 if (newProductValue) data["name"] = newProductValue;
 
                 console.log("Gesendete Daten:", data);
+                console.log("Gesendete Varianten:", data["productVariants"]);
+
 
                 // Senden als JSON
                 fetch("index.php?page=admin-add-product", {

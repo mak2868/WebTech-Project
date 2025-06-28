@@ -5,20 +5,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Adminbereich</title>
+    <title>XPN | Adminbereich</title>
+    >
+    <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/admin.css">
-
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cart-slide.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
+
+    <!-- JS -->
+    <script src="<?= BASE_URL ?>/js/cart.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
+    <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
     <script src="<?= BASE_URL ?>/js/admin copy.js" defer></script>
+
+    <!-- Head-Datei -->
+    <?php include __DIR__ . '/../layouts/head.php'; ?>
+
     <script>
-    const BASE_URL = "<?= rtrim(BASE_URL, '/') ?>";
-</script>
+        const BASE_URL = "<?= rtrim(BASE_URL, '/') ?>";
+    </script>
 
 </head>
 
+<?php
+include __DIR__ . '/../layouts/navbar.php';
+?>
+
 <body>
-    <div class="container">
+    <div class="contentContainer">
         <h1>Hallo, Admin!</h1>
 
         <form>
@@ -27,6 +45,7 @@
                 <option value="" disabled selected hidden>Bitte wählen...</option>
                 <option value="benutzerverwaltung">Benutzerverwaltung</option>
                 <option value="bestellverwaltung">Bestellverwaltung</option>
+                <option value="support">Verwaltung von Supportanfragen</option>
                 <option value="hinzufuegen">Hinzufügen von neuen Elementen</option>
             </select>
         </form>
@@ -279,6 +298,11 @@
         <div id="allOrdersContainer"></div>
 
     </div>
+
+    
 </body>
+<?php include __DIR__ . '/../layouts/cartSlider.php'; ?>
+<?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>
 
 </html>

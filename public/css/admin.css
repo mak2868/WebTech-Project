@@ -1,34 +1,19 @@
 /* Grundlegendes Styling für die Seite */
+
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: self-start;
-    height: 100vh;
+    height:  100%;;
 }
 
-/* Container für den Inhalt */
-.container {
-    background-color: white;
+.contentContainer {
+    min-height: 70vh;
+      background-color: white;
     border-radius: 15px;
     padding: 40px;
     width: 100%;
-    /* max-width: 600px; */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 5vw;
+    margin-top: 5vw;    
 }
-
-/* Titel */
-h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
 /* Label und Select-Element */
 label {
     font-size: 16px;
@@ -69,7 +54,7 @@ select:focus {
     margin-top: 10px;
     background-color: #f1f5ff;
     border-radius: 10px;
-    display: none;
+    display: none; 
 }
 
 /* Stil für die ausgewählten Optionen */
@@ -185,7 +170,9 @@ select:focus {
 #newParentCategoryInput,
 #newCategoryInput,
 #newProductInput,
-input,
+#new-parent-category-form input,
+#new-category-form input,
+#new-product-form input,
 textarea {
     margin-bottom: 0.5rem;
     /* Abstand nach unten */
@@ -215,7 +202,7 @@ h4 {
 
 
 
-
+/* Code von Felix Bartel
 
 /* Bestellhistorie – rechte Spalte */
 .user-main .order-history {

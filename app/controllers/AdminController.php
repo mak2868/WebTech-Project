@@ -81,6 +81,8 @@ class AdminController
         exit;
     }
 
+
+
     public function addParentCategory()
     {
         header('Content-Type: application/json');
@@ -91,8 +93,10 @@ class AdminController
         $categoryName = $data['name'];
 
         try {
+
             // Modell aufrufen
-            AdminModel::addParentCategory($categoryName);
+            AdminModel::addCategoryWithTables($categoryName);
+
 
             // Erfolgsantwort (optional: du kannst auch $result prüfen)
             echo json_encode(['success' => true, 'message' => 'Kategorie wurde hinzugefügt.']);
@@ -215,28 +219,61 @@ class AdminController
     }
 
     public function updateOrderStatus()
-{
-    $data = json_decode(file_get_contents('php://input'), true);
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
 
-    if (!isset($data['order_id'], $data['new_status'])) {
-        http_response_code(400);
-        echo json_encode(["error" => "Ungültige Daten"]);
+        if (!isset($data['order_id'], $data['new_status'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Ungültige Daten"]);
+            exit;
+        }
+
+        $orderId = $data['order_id'];
+        $newStatus = $data['new_status'];
+
+        $affectedRows = AdminModel::updateOrderStatus($orderId, $newStatus);
+
+        if ($affectedRows > 0) {
+            echo json_encode(["success" => true]);
+        } else {
+            // Es wurde nichts geändert (z. B. gleicher Status wie vorher)
+            http_response_code(200); // Kein Fehler
+            echo json_encode(["success" => false, "message" => "Kein Update notwendig"]);
+        }
+
+    }
+
+    public function getAllSupportTickets()
+    {
+        $resultsTickets = AdminModel::getAllSupportTickets();
+
+        header('Content-Type: application/json');
+        echo json_encode($resultsTickets); 
         exit;
     }
 
-    $orderId = $data['order_id'];
-    $newStatus = $data['new_status'];
+    public function updateTicketStatus(){
+        $data = json_decode(file_get_contents('php://input'), true);
 
-    $affectedRows = AdminModel::updateOrderStatus($orderId, $newStatus);
+        if (!isset($data['ticket_id'], $data['new_status'])) {
+            http_response_code(400);
+            echo json_encode(["error" => "Ungültige Daten"]);
+            exit;
+        }
 
-if ($affectedRows > 0) {
-    echo json_encode(["success" => true]);
-} else {
-    // Es wurde nichts geändert (z. B. gleicher Status wie vorher)
-    http_response_code(200); // Kein Fehler
-    echo json_encode(["success" => false, "message" => "Kein Update notwendig"]);
-}
+        $ticketId = $data['ticket_id'];
+        $newStatus = $data['new_status'];
 
-}
+        $affectedRows = AdminModel::updateTicketStatus($ticketId, $newStatus);
+
+        if ($affectedRows > 0) {
+            echo json_encode(["success" => true]);
+        } else {
+            // Es wurde nichts geändert (z. B. gleicher Status wie vorher)
+            http_response_code(200); // Kein Fehler
+            echo json_encode(["success" => false, "message" => "Kein Update notwendig"]);
+        }
+    }
+
 
 }
