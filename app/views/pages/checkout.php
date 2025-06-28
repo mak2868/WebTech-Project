@@ -16,12 +16,13 @@ $message = $message ?? null;
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <!--MetatTag das uns  respensive design ermöglicht-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Checkout</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/css/index.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/css/index-darkmode.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
@@ -37,6 +38,7 @@ $message = $message ?? null;
   <script src="<?= BASE_URL ?>/js/footer.js" defer></script>
   <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
   <script src="js/checkout.js" defer></script>
+  <script src="<?= BASE_URL ?>/js/merge-cart.js" defer></script>
 
 
   <!-- Head-Datei -->

@@ -12,30 +12,29 @@ window.addEventListener("DOMContentLoaded", () => {
   const cartItemsContainer = document.getElementById('cartItems'); // Container für Produktdarstellung
   const cartTotalEl = document.getElementById('cartTotal'); // Gesamtpreis-Anzeige
 
-  // Falls kein Warenkorb angezeigt werden soll, Abbruch
+  // Falls kein Warenkorb angezeigt werden soll, Abbruch 
   if (!cartItemsContainer || !cartTotalEl) return;
 
   /**
    * Erstellt ein DOM-Element für ein Produkt im Checkout
    */
-  function renderItem({ name, product_name, size, quantity, price, image }) {
-    const total = price * quantity;
-    const wrapper = document.createElement("div");
-    wrapper.className = "checkout-item";
+function renderItem({ name, product_name, size, quantity, price, image }) {
+  const total = price * quantity;
+  const wrapper = document.createElement("div");
+  wrapper.className = "checkout-item";
 
-    wrapper.innerHTML = `
-      <div class="checkout-item-img">
-        <img src="${window.BASE_URL + image}" alt="${product_name || name}" />
-      </div>
-      <div class="checkout-item-details">
-        <div class="checkout-item-title"><strong>${product_name || name}</strong> (${size}g)</div>
-        <div class="checkout-item-info">${quantity} × ${Number(price).toFixed(2)} € = <strong>${total.toFixed(2)} €</strong></div>
-      </div>
-    `;
+  wrapper.innerHTML = `
+    <div class="checkout-item-img">
+      <img src="${image}" alt="${product_name || name}" />
+    </div>
+    <div class="checkout-item-details">
+      <div class="checkout-item-title"><strong>${product_name || name}</strong> (${size}g)</div>
+      <div class="checkout-item-info">${quantity} × ${Number(price).toFixed(2)} € = <strong>${total.toFixed(2)} €</strong></div>
+    </div>
+  `;
 
-    return wrapper;
-  }
-
+  return wrapper;
+}
   /**
    * Sendet den Gesamtpreis serverseitig in die Session (optional)
    */

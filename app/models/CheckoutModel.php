@@ -1,6 +1,7 @@
 <?php
 
 require_once '../app/lib/DB.php';
+require_once __DIR__ . '/../config/config.php';
 
 class CheckoutModel
 {

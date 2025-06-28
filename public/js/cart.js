@@ -163,27 +163,33 @@ function removeAllItemsFromCart() {
 function updateQuantity(index, newQuantity, isSlider) {
   let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
 
-
   // entfernt das Produkt aus dem Warenkorb, falls die Anzahl = 0
   if (newQuantity <= 0) {
-    removeFromCartMultiRow(index, isSlider);
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    if (isSlider) {
+      renderCartSlider();
+    } else {
+      renderCart();
+    }
+    stopTimer();
+    updateCartIcon();
     return;
   }
 
-  // Anpassung der Anzahl des übergebenen Produktes auf den übergebenen Wert
+  // Anpassung der Anzahl
   cart[index].quantity = newQuantity;
-
-  // fügt den Warenkorb dem localStorage hinzu
   localStorage.setItem('cart', JSON.stringify(cart));
 
-  // ruft entsprechend der aufrufenden Seite die passende Visualisierung auf 
   if (isSlider) {
-    renderCartSlider(); //nur auf cartslider.php nutzbar
+    renderCartSlider();
   } else {
-    renderCart(); // nur auf cart.php nötig
+    renderCart();
   }
+
   updateCartIcon();
 }
+
 
 
 
@@ -299,7 +305,10 @@ function renderCart() {
     }
   });
 
-  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+  const netto = total * 0.81;
+
+  totalDisplay.innerHTML = `Netto: ${netto.toFixed(2)} € <br> Gesamt: ${total.toFixed(2)} €`;
+  checkCheckoutButtonState();
 }
 
 function createSingleItemRow(item, index, itemTotal) {
@@ -434,15 +443,20 @@ function createMultiItemRow(item, allItemsOfThisType) {
     minusButton.classList.add('button', 'minus');
 
     minusButton.addEventListener("click", function (event) {
-      const currentContainerM = event.currentTarget.closest('.cart-item');
-      const buttonsInContainerM = currentContainerM.querySelectorAll("button.minus");
-      const clickedButtonM = event.currentTarget;
+  const currentContainer = event.currentTarget.closest('.cart-item');
+  const allQtyInputs = currentContainer.querySelectorAll('.cart-item-quantity-input');
+  const clickedMinus = event.currentTarget;
+  const allMinusButtons = currentContainer.querySelectorAll('.button.minus');
 
-      const quantityInputInContainerM = currentContainerM.querySelectorAll('.cart-item-quantity-input');
+  const indexFromButtons = Array.from(allMinusButtons).indexOf(clickedMinus);
+  const quantityInput = allQtyInputs[indexFromButtons];
+  const currentQuantity = Number(quantityInput.value);
 
-      const iM = Array.from(buttonsInContainerM).indexOf(clickedButtonM);
-      updateQuantityMultiRow(currentContainerM.querySelector('.cart-item-name').textContent, iM, Number(quantityInputInContainerM[iM].value) - 1, false);
-    });
+  const productName = currentContainer.querySelector('.cart-item-name')?.textContent;
+
+  updateQuantityMultiRow(productName, indexFromButtons, currentQuantity - 1, false);
+});
+
 
     const minusIcon = document.createElement('img');
     minusIcon.src = BASE_URL + '/images/minusBlack.svg';
@@ -507,14 +521,17 @@ function createMultiItemRow(item, allItemsOfThisType) {
     removeBtn.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
 
     removeBtn.addEventListener("click", function (event) {
-      const currentContainerRB = event.currentTarget.closest('.cart-item');
-      const buttonsInContainerRB = currentContainerRB.querySelectorAll("button.plus");
-      const clickedButtonRB = event.currentTarget;
+      const currentContainer = event.currentTarget.closest('.cart-item');
+      const allRemoveButtons = currentContainer.querySelectorAll(".cart-item-remove-btn");
+      const clickedRemoveButton = event.currentTarget;
 
-      const iRB = Array.from(buttonsInContainerRB).indexOf(clickedButtonRB);
-      console.log("hier");
-      removeFromCartMultiRow(currentContainerRB.querySelector('.cart-item-name').textContent, iRB, false);
+      const indexFromButtons = Array.from(allRemoveButtons).indexOf(clickedRemoveButton);
+
+      const productName = currentContainer.querySelector('.cart-item-name')?.textContent;
+
+      removeFromCartMultiRow(productName, indexFromButtons, false);
     });
+
 
     const removeIcon = document.createElement('img');
     removeIcon.src = BASE_URL + '/images/removeIcon.svg';
@@ -865,7 +882,10 @@ function renderServerCart(cartItems) {
     if (row) container.appendChild(row);
   });
 
-  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+   const netto = total * 0.81;
+
+  totalDisplay.innerHTML = `Netto: ${netto.toFixed(2)} € <br> Gesamt: ${total.toFixed(2)} €`;
+  checkCheckoutButtonState();
 }
 
 
@@ -882,7 +902,7 @@ function renderServerCart(cartItems) {
  **********************************************/
 
 /**
- * zuständig für die Visualisierug der cart.php Seite (Render-Funktion)
+ * zuständig für die Visualisierug der cartslider.php Seite (Render-Funktion)
  * @author Merzan Köse
  */
 
@@ -1158,5 +1178,39 @@ function intermediateStepAddToCart() {
   let buttonContent = selectedButton.textContent.slice(0, -1);
 
   addToCart(product.name, product.product_pic1, getTotalPrice(product.priceWithoutTax), buttonContent);
+}
+
+/**
+ * Funktion die den CheckoutBTTN blockiert wenn man kein
+ * Produkt im Warenkobr hat aber in den checkout möchte
+ */
+function checkCheckoutButtonState() {
+  const btn = document.getElementById('checkoutBtn');
+  if (!btn) return;
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (isLoggedIn) {
+    fetch('index.php?page=get-cart')
+      .then(res => res.json())
+      .then(cart => {
+        if (!Array.isArray(cart) || cart.length === 0) {
+          disableCheckoutBtn(btn);
+        }
+      })
+      .catch(() => disableCheckoutBtn(btn));
+  } else {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (cart.length === 0) {
+      disableCheckoutBtn(btn);
+    }
+  }
+}
+
+function disableCheckoutBtn(button) {
+  button.disabled = true;
+  button.title = 'Warenkorb ist leer';
+  button.style.opacity = 0.5;
+  button.style.cursor = 'not-allowed';
 }
 

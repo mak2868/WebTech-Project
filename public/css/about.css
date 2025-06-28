@@ -1,7 +1,23 @@
 /* ========== erstellt von: Nick Zetzmann ========== */
 
-.page-padding {
-  padding-top: 100px !important;
+main{
+  text-align: justify
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.about-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  margin-top: 7rem;
+  margin-bottom: 4rem;
 }
 
 .team-member {

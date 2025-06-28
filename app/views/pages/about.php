@@ -26,7 +26,7 @@
 <body>
   <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 
-  <main class="container content-wrapper page-padding">
+  <main class="about-container">
     
     <!-- Wer sind wir? - kurze Geschichte zu XPN und uns -->
     <section>
@@ -49,7 +49,7 @@
       <h2>Unser Team</h2>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Felix_Bartel.jpeg" alt="Felix Bartel">
+        <img src="<?= BASE_URL . $Felix ?>" alt="Felix Bartel">
         <div class="team-member-text">
           <h4>Felix Bartel</h4>
           <p>Felix ist unser Fitnessguru und Produktexperte. Er verbringt seine Freizeit am liebsten im Gym und kennt sich bestens mit den neuesten Supplement-Trends aus.</p>
@@ -57,7 +57,7 @@
       </div>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Marvin_Kunz.jpg" alt="Marvin Kunz">
+        <img src="<?= BASE_URL . $Marvin ?>" alt="Marvin Kunz">
         <div class="team-member-text">
           <h4>Marvin Kunz</h4>
           <p>Marvin kümmert sich um Marketing und Social Media. Er verbindet Sport mit Lifestyle und sorgt dafür, dass unsere Community immer auf dem Laufenden bleibt.</p>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Merzan_Koese.jpeg" alt="Merzan Köse">
+        <img src="<?= BASE_URL . $Merzan ?>" alt="Merzan Köse">
         <div class="team-member-text">
           <h4>Merzan Köse</h4>
           <p>Merzan liebt Outdoor-Sportarten und entwickelt gemeinsam mit dem Team innovative Ideen für neue Produkte und Aktionen.</p>
@@ -73,7 +73,7 @@
       </div>
 
       <div class="team-member">
-        <img src="<?= BASE_URL ?>/images/Nick_Zetzmann.jpeg" alt="Nick Zetzmann">
+        <img src="<?= BASE_URL . $Nick ?>" alt="Nick Zetzmann">
         <div class="team-member-text">
           <h4>Nick Zetzmann</h4>
           <p>Nick ist unser Logistik-Profi. Er sorgt dafür, dass eure Bestellungen schnell und zuverlässig bei euch ankommen, damit ihr direkt durchstarten könnt.</p>
