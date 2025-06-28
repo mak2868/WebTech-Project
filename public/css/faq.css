@@ -9,7 +9,13 @@
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     margin-top: 7rem;
     margin-bottom: 4rem;
+    color: #000;
     }
+
+body.dark-mode .faq-container {
+  background-color: #444;
+  color: #fff;
+}
 
 h1 {
     text-align: center;
@@ -33,4 +39,8 @@ h1 {
     font-size: 1rem;
     line-height: 1.5;
     color: #444;
+}
+
+body.dark-mode .faq-answer {
+  color: #fff;
 }
