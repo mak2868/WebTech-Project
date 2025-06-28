@@ -66,7 +66,7 @@
         <div class="product-card" data-price="<?= floatval($produkt['preis']) ?>">
           <div class="image-wrapper">
             <a href="<?= BASE_URL ?>/index.php?page=item&parent=<?= urlencode($produkt['parent_id']) ?>&cid=<?= urlencode($produkt['cid']) ?>&pid=<?= urlencode($produkt['pid']) ?>">
-              <img src="<?= BASE_URL . '/' . ltrim($produkt['bild'], '/') ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
+            <img src="<?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name'])?>">
             </a>
             <div class="icons">
               <div class="icon" onclick="addToCart(
