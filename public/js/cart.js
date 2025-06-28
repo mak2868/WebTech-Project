@@ -357,7 +357,17 @@ function createSingleItemRow(item, index, itemTotal) {
   plusButtonIcon.src = BASE_URL + '/images/plusBlack.svg';
 
   const sumPriceOfProductTypeSpan = document.createElement('span');
-  sumPriceOfProductTypeSpan.textContent = `${itemTotal.toFixed(2)} €`;
+  sumPriceOfProductTypeSpan.textContent = `Gesamt: ${itemTotal.toFixed(2)} €`;
+
+  const nettoPriceSpan = document.createElement('span');
+  let netto = itemTotal * 0.81;
+  nettoPriceSpan.textContent = `Netto: ${netto.toFixed(2)} €`;
+
+  const priceContainer = document.createElement('div');
+  priceContainer.appendChild(nettoPriceSpan);
+  priceContainer.appendChild(sumPriceOfProductTypeSpan);
+  priceContainer.style.display = 'flex';
+  priceContainer.style.flexDirection = 'column';
 
   const removeButton = document.createElement('button');
   removeButton.className = 'cart-item-remove-btn';
@@ -374,8 +384,8 @@ function createSingleItemRow(item, index, itemTotal) {
   firstLineItemBlock.appendChild(nameSpan);
   firstLineItemBlock.appendChild(sizeSpan);
   firstLineItemBlock.appendChild(quantityContainer);
-  firstLineItemBlock.appendChild(sumPriceOfProductTypeSpan);
   firstLineItemBlock.appendChild(removeButton);
+  firstLineItemBlock.appendChild(priceContainer);
 
   quantityContainer.appendChild(minusButton);
   quantityContainer.appendChild(quantityInput);
