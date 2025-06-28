@@ -1,3 +1,5 @@
+// Autor: Marvin Kunz
+
 const menuSelect = document.getElementById('menu');
 const adminContent = document.getElementById('adminContent');
 let unterSelectListenerAdded = false;

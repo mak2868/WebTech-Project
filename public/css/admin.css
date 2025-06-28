@@ -1,28 +1,26 @@
-/* Grundlegendes Styling für die Seite */
+/* Autor: Marvin Kunz (Ausnahme: Design Bestellverwaltung (Boxen) -> gekennzeichnet)*/
 
-body {
-    height:  100%;;
-}
 
+/* Container für den Hauptinhalt im Adminbereich */
 .contentContainer {
     min-height: 70vh;
-      background-color: white;
+    background-color: white;
     border-radius: 15px;
     padding: 40px;
     width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-top: 5vw;    
+    margin-top: 5vw;
 }
-/* Label und Select-Element */
+
+/* Label für Formularelemente */
 label {
     font-size: 16px;
-    color: #555;
     margin-bottom: 10px;
     display: block;
 }
 
-/* Auswahlmenü */
+/* Style für das Auswahlmenü (Dropdown) */
 select {
     width: 100%;
     padding: 10px;
@@ -34,7 +32,7 @@ select {
     transition: all 0.3s;
 }
 
-/* Hover und Focus-Effekte */
+/* Hover- und Focus-Effekte für das Auswahlmenü */
 select:hover,
 select:focus {
     border-color: #0056b3;
@@ -42,28 +40,30 @@ select:focus {
     outline: none;
 }
 
-/* Box für die Unteroptionen */
+/* Container für die Unteroptionen im Dropdown-Menü */
 .sub-options {
     padding: 0;
     margin: 0;
     text-align: left;
 }
 
+/* Style für die einzelnen Unteroptionen */
 .sub-options div {
     padding: 15px;
     margin-top: 10px;
     background-color: #f1f5ff;
     border-radius: 10px;
-    display: none; 
+    display: none;
 }
 
-/* Stil für die ausgewählten Optionen */
+/* Überschrift in den Unteroptionen */
 .sub-options h2 {
     font-size: 20px;
     color: #333;
     margin-bottom: 15px;
 }
 
+/* Layout für das Grid der Benutzerkarten */
 .user-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -71,6 +71,7 @@ select:focus {
     margin-top: 20px;
 }
 
+/* Style für jede Benutzerkarte */
 .user-card {
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -80,40 +81,32 @@ select:focus {
     transition: transform 0.2s ease;
 }
 
+/* Hover-Effekt für Benutzerkarten */
 .user-card:hover {
     transform: translateY(-4px);
 }
 
+/* Layout für die Benutzerformularfelder */
 .user-field {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    /* Abstand zwischen Label und Input */
     flex-wrap: nowrap;
     margin-bottom: 1rem;
 }
 
+/* Stil für das Label in den Benutzerfeldern */
 .user-field strong {
     white-space: nowrap;
-    /* verhindert Umbruch im Label */
 }
 
+/* Stil für die Eingabefelder der Benutzerformulare */
 .user-field input {
     flex: 1;
-    /* optional: Input nimmt den restlichen Platz */
     min-width: 0;
 }
 
-
-.editable {
-    background-color: #fff8dc;
-    border-radius: 4px;
-    padding: 2px 4px;
-    cursor: text;
-    display: inline-block;
-    min-width: 50px;
-}
-
+/* Style für die Löschen-Schaltfläche */
 .delete-btn {
     margin-top: 10px;
     padding: 6px 12px;
@@ -124,34 +117,33 @@ select:focus {
     cursor: pointer;
 }
 
+/* Hover-Effekt für die Löschen-Schaltfläche */
 .delete-btn:hover {
     background-color: #c0392b;
 }
 
+/* Tabellenstyle für die Admin-Tabelle */
 .admin-table {
     border-collapse: separate;
-    /* wichtig, damit spacing wirkt */
     border-spacing: 15px 8px;
-    /* horizontaler Abstand 15px, vertikal 8px */
     font-family: Arial, sans-serif;
 }
 
+/* Zellenstil für die Admin-Tabelle */
 .admin-table th,
 .admin-table td {
     text-align: left;
-    /* linksbündig */
     padding: 8px 10px;
-    /* innen Abstand für bessere Lesbarkeit */
     border-bottom: 1px solid #ddd;
-    /* dezente Trennung der Zeilen */
 }
 
+/* Stil für die Kopfzeile der Tabelle */
 .admin-table thead th {
     background-color: #f2f2f2;
-    /* leichter Hintergrund für Kopfzeile */
     font-weight: bold;
 }
 
+/* Formulare für neue Kategorien, Unterkategorien und Produkte (hidden by default) */
 #new-parent-category-form,
 #new-category-form,
 #new-product-form {
@@ -160,13 +152,14 @@ select:focus {
     gap: 0;
 }
 
+/* Style für die Buttons zum Hinzufügen von Kategorien und Produkten */
 #addParentCategoryBtn,
 #addCategoryBtn,
 #addProductBtn {
     width: 40%;
 }
 
-
+/* Stil für die Eingabefelder in den Formularen */
 #newParentCategoryInput,
 #newCategoryInput,
 #newProductInput,
@@ -175,34 +168,124 @@ select:focus {
 #new-product-form input,
 textarea {
     margin-bottom: 0.5rem;
-    /* Abstand nach unten */
     padding: 0.75rem 1rem;
-    /* Innenabstand (oben/unten & seitlich) */
     border-radius: 10px;
-    /* abgerundete Ecken */
     border: 1px solid #ccc;
-    /* hellgrauer Rand */
     font-size: 1rem;
     width: 40%;
-    /* volle Breite innerhalb des Wrappers */
 }
 
+/* Stil für Überschriften in den Formularen */
 h4 {
     width: fit-content;
 }
 
+/* Spezielles Layout für das neue Kategorie-Formular */
 #new-category-form {
     display: none;
 }
 
 
+/* ============================== */
+/*            Darkmode            */
+/* ============================== */
+
+
+/* Container für den Hauptinhalt im Adminbereich */
+body.dark-mode .contentContainer {
+    background-color: #1a1d21;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* Label für Formularelemente */
+body.dark-mode label {
+    color: #ccc;
+}
+
+/* Style für das Auswahlmenü (Dropdown) */
+body.dark-mode select {
+    border: 1px solid #848484;
+    background-color: #333;
+    color: white;
+}
+
+/* Hover- und Focus-Effekte für das Auswahlmenü */
+body.dark-mode select:hover,
+body.dark-mode select:focus {
+    background-color: #444;
+}
+
+/* Style für die einzelnen Unteroptionen */
+body.dark-mode .sub-options div {
+    background-color: #444;
+}
+
+/* Überschrift in den Unteroptionen */
+body.dark-mode .sub-options h2 {
+    color: #ccc;
+}
+
+/* Layout für das Grid der Benutzerkarten */
+body.dark-mode .user-card {
+    border: 1px solid #444;
+    background-color: #333;
+    color: white;
+}
+
+/* Stil für das Label in den Benutzerfeldern */
+body.dark-mode .user-field strong {
+    color: #ccc;
+}
+
+/* Stil für die Eingabefelder der Benutzerformulare */
+body.dark-mode .user-field input {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+}
+
+/* Style für die Löschen-Schaltfläche */
+body.dark-mode .delete-btn {
+    background-color: #e74c3c;
+}
+
+/* Hover-Effekt für die Löschen-Schaltfläche */
+body.dark-mode .delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Tabellenstyle für die Admin-Tabelle */
+body.dark-mode .admin-table th,
+body.dark-mode .admin-table td {
+    border-bottom: 1px solid #555;
+}
+
+/* Zellenstil für die Admin-Tabelle */
+body.dark-mode .admin-table thead th {
+    background-color: #444;
+}
+
+/* Formulare für neue Kategorien, Unterkategorien und Produkte (hidden by default) */
+body.dark-mode #newParentCategoryInput,
+body.dark-mode #newCategoryInput,
+body.dark-mode #newProductInput,
+body.dark-mode #new-parent-category-form input,
+body.dark-mode #new-category-form input,
+body.dark-mode #new-product-form input,
+body.dark-mode textarea {
+    border: 1px solid #555;
+    background-color: #444;
+    color: white;
+}
 
 
 
+/* ============================== */
+/*Design Bestellverwaltung (Boxen)*/
+/*     Code von Felix Bartel      */
+/* ============================== */
 
-
-
-/* Code von Felix Bartel
 
 /* Bestellhistorie – rechte Spalte */
 .user-main .order-history {

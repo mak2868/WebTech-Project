@@ -1,3 +1,5 @@
+<!-- Autor: Marvin Kunz -->
+
 <?php
 
 require_once '../app/models/AdminModel.php';

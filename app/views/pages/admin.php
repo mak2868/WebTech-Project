@@ -1,3 +1,5 @@
+<!-- Autor: Marvin Kunz -->
+
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -6,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>XPN | Adminbereich</title>
-    >
+
     <!-- CSS -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/admin.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
@@ -39,6 +41,7 @@ include __DIR__ . '/../layouts/navbar.php';
     <div class="contentContainer">
         <h1>Hallo, Admin!</h1>
 
+        <!-- Auswahlmenü für die Admintätigkeit -->
         <form>
             <label for="menu">Wählen Sie eine Option:</label>
             <select id="menu" name="menu">
@@ -50,6 +53,7 @@ include __DIR__ . '/../layouts/navbar.php';
             </select>
         </form>
 
+        <!-- Auswahlmenü für die Admintätigkeit Hinzufügen -->
         <div class="sub-options" id="sub-options">
             <div class="hinzufuegen-option" id="hinzufuegen-options" style="display:none;">
                 <h2>Hinzufügen von neuen Elementen</h2>
@@ -64,12 +68,14 @@ include __DIR__ . '/../layouts/navbar.php';
 
         <div id="adminContent"></div>
 
+        <!-- Eingabebereich neue Überkategorie-->
         <div id="new-parent-category-form">
             <label for="newParentCategoryInput">Name der neuen Kategorie:</label><br>
             <input type="text" id="newParentCategoryInput" name="newCategory" placeholder="Kategorie eingeben" />
             <button type="button" id="addParentCategoryBtn">Hinzufügen</button>
         </div>
 
+        <!-- Eingabebereich neue Unterkategorie-->
         <div id="new-category-form">
             <label for="newCategoryInput">Name der neuen Kategorie:</label><br>
             <input type="text" id="newCategoryInput" name="newCategory" placeholder="Kategorie eingeben" />
@@ -80,6 +86,7 @@ include __DIR__ . '/../layouts/navbar.php';
             <button type="button" id="addCategoryBtn">Hinzufügen</button>
         </div>
 
+        <!-- Eingabebereich neues Produkt -->
         <div id="new-product-form">
             <label for="newProductInput">Name des neuen Produkts:</label><br>
             <input type="text" id="newProductInput" name="newProduct" placeholder="Produktnamen eingeben" />
@@ -88,33 +95,33 @@ include __DIR__ . '/../layouts/navbar.php';
                 <select id="product-select"></select>
             </div>
             <form id="product-details">
-                <!-- Product Description -->
+                <!-- Produktbeschreibung -->
                 <label for="description">Beschreibung:</label>
                 <textarea id="description" name="description" rows="4" required></textarea>
 
-                <!-- Product Variants -->
+                <!-- Produktvarianten / -größen -->
                 <label for="productVariants">Produktvarianten (je Variante mit Komma, Varianten mit ; trennen):</label>
                 <textarea id="productVariants" name="productVariants"
                     placeholder="z.B.: 500g, 19.99, 1, 50; 1000g, 34.99, 0, 20" required></textarea>
 
 
-                <!-- Description Details -->
+                <!-- Beschreibungdetails -->
                 <label for="descriptionDetails">Produktdetails (2 Stück, mit ; trennen):</label>
                 <textarea id="descriptionDetails" name="descriptionDetails" rows="4" required></textarea>
 
-                <!-- Description Details -->
+                <!-- Laboranalysen -->
                 <label for="laboratory">Laboranalysen:</label>
                 <textarea id="laboratory" name="laboratory" rows="4" required></textarea>
 
-                <!-- Ingredients -->
+                <!-- Zutaten -->
                 <label for="ingredients">Zutaten:</label>
                 <textarea id="ingredients" name="ingredients" rows="4" required></textarea>
 
-                <!-- Allergens -->
+                <!-- Allergene -->
                 <label for="allergens">Allergene:</label>
                 <textarea id="allergens" name="allergens" rows="2" required></textarea>
 
-                <!-- Nutrients -->
+                <!-- Nährwerte -->
                 <fieldset>
                     <legend>Nährwerte:</legend>
                     <label for="energy">Energie:</label>
@@ -142,7 +149,7 @@ include __DIR__ . '/../layouts/navbar.php';
                     <input type="text" id="salt" name="salt" required>
                 </fieldset>
 
-                <!-- Amino Acids -->
+                <!-- Aminosäuren -->
                 <fieldset id="aminoAcids-input">
                     <legend>Aminosäuren:</legend>
                     <label for="alanine">Alanine:</label>
@@ -200,7 +207,7 @@ include __DIR__ . '/../layouts/navbar.php';
                     <input type="text" id="valine" name="valine" required>
                 </fieldset>
 
-                <!-- Usage Instructions -->
+                <!-- Anwendung -->
                 <label for="preparation">Zubereitung:</label>
                 <textarea id="preparation" name="preparation" rows="4" required></textarea>
 
@@ -212,7 +219,7 @@ include __DIR__ . '/../layouts/navbar.php';
                     <textarea id="tip" name="tip" rows="4" required></textarea>
                 </div>
 
-                <!-- Recipes -->
+                <!-- Rezepte -->
                 <fieldset id="recipes-input">
                     <legend>Rezepte:</legend>
 
@@ -274,6 +281,7 @@ include __DIR__ . '/../layouts/navbar.php';
                         required></textarea>
                 </fieldset>
 
+                <!-- Bilder -->
                 <fieldset>
                     <legend>Produktbilder:</legend>
 
@@ -299,7 +307,7 @@ include __DIR__ . '/../layouts/navbar.php';
 
     </div>
 
-    
+
 </body>
 <?php include __DIR__ . '/../layouts/cartSlider.php'; ?>
 <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>

@@ -26,7 +26,7 @@
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/initial.js" defer></script>
 
-    
+
     <!-- Head-Datei -->
     <?php include __DIR__ . '/../layouts/head.php'; ?>
 
@@ -54,6 +54,7 @@ include __DIR__ . '/../layouts/navbar.php';
     <main style="padding-top: 80px">
         <section id='top'>
             <div id='top-left'>
+                <!-- Produktbildauswahl -->
                 <div id="ProduktbildAuswahl">
                     <img src="" alt="Erstes Produktbild" onclick="switchProductbild(0)">
                     <img src="" alt="Zweites Produktbild" onclick="switchProductbild(1)">
@@ -101,8 +102,7 @@ include __DIR__ . '/../layouts/navbar.php';
                         <img id="VersandButtonImg" src="" alt="">
                         <span>In den Warenkorb</span>
                     </button>
-                    <img id="FavButton" onclick="intermediateStepChangeWishListStatus()"
-                        src="" alt="">
+                    <img id="FavButton" onclick="intermediateStepChangeWishListStatus()" src="" alt="">
                     <br>
                 </div>
                 <p id="statusDistribution"></p>
