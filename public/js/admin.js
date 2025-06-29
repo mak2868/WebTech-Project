@@ -1,3 +1,9 @@
+/**
+ * admin.js
+ * zuständig für die clientseitige Steuerung + Visualisierung der admin.php - Seite
+ * @author Marvin Kunz
+ */
+
 const menuSelect = document.getElementById('menu');
 const adminContent = document.getElementById('adminContent');
 let unterSelectListenerAdded = false;
@@ -27,8 +33,11 @@ menuSelect.addEventListener('change', function () {
 
 })
 
+/**
+ * Funktion, die sich um die Benutzerverwaltung kümmert (Visualisierung aller Benutzer + Anstoßen der Speicherung von vorgenommen Änderungen)
+ */
 function displayBenutzerverwaltung() {
-    fetch('index.php?page=admin-users')
+    fetch('index.php?page=admin-users') // Visualisierung
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
@@ -65,7 +74,6 @@ function displayBenutzerverwaltung() {
                 userList += `</div>`;
                 adminContent.innerHTML = userList;
 
-                // Speichern mit Enter
                 document.querySelectorAll('.user-field input').forEach(field => {
                     field.addEventListener('keydown', function (e) {
                         if (e.key === 'Enter') {
@@ -76,7 +84,7 @@ function displayBenutzerverwaltung() {
                             const userId = userCard.getAttribute('data-id');
                             const isAddressField = field.closest('#address') !== null;
 
-                            fetch('index.php?page=admin-update-user-field', {
+                            fetch('index.php?page=admin-update-user-field', { // Speicherung (Auslöser: siehe Eventlistener Enter-Button)
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({
@@ -90,7 +98,6 @@ function displayBenutzerverwaltung() {
                                 .then(data => {
                                     if (data.success) {
                                         displayBenutzerverwaltung();
-                                        // alert('Änderung gespeichert!');
                                     } else {
                                         alert('Fehler beim Speichern: ' + data.error);
                                     }
@@ -106,12 +113,11 @@ function displayBenutzerverwaltung() {
                     });
                 });
 
-                // Löschen
                 document.querySelectorAll('.delete-btn').forEach(button => {
                     button.addEventListener('click', function () {
                         const userId = this.closest('.user-card').getAttribute('data-id');
                         if (confirm(`Soll Benutzer mit ID ${userId} gelöscht werden?`)) {
-                            fetch('index.php?page=admin-delete-user', {
+                            fetch('index.php?page=admin-delete-user', { // Löschen (Auslöser: siehe Eventlistener delete-Button)
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ id: userId })
@@ -133,17 +139,20 @@ function displayBenutzerverwaltung() {
         })
 };
 
+/**
+ * Funktion, die sich um die Bestellverwaltung kümmert (Visualisierung aller Bestellungen + Anstoßen der Speicherung von vorgenommen Statusänderungen)
+ */
 function displayBestellverwaltung() {
     const container = document.getElementById("allOrdersContainer");
     container.style.display = 'block';
 
-    fetch("index.php?page=admin-get-all-orders")
+    fetch("index.php?page=admin-get-all-orders") // Visualisierung aller Bestellungen
         .then(res => {
             if (!res.ok) throw new Error("Netzwerkfehler");
             return res.json();
         })
         .then(data => {
-            container.innerHTML = ""; // leeren
+            container.innerHTML = ""; 
 
             let currentUser = null;
             data.forEach(order => {
@@ -158,7 +167,6 @@ function displayBestellverwaltung() {
                     container.appendChild(h3);
                 }
 
-                console.log("order_id:", order.order_id);
                 const orderBox = document.createElement('div');
                 orderBox.className = 'order-box';
                 orderBox.dataset.orderId = order.order_id;
@@ -218,21 +226,13 @@ function displayBestellverwaltung() {
             container.dataset.loaded = "true";
         })
         .then(() => {
-            // Alle Status-Selects mit EventListener versehen
             document.querySelectorAll(".order-status-select").forEach(select => {
                 select.addEventListener("change", function () {
                     const newStatus = this.value;
                     const orderBox = this.closest('.order-box');
                     const orderId = orderBox.dataset.orderId;
 
-
-
-                    console.log("Neuer Status:", newStatus);
-                    console.log("oid:", orderId);
-
-
-                    // Ajax an den Server schicken
-                    fetch("index.php?page=admin-update-order-status", {
+                    fetch("index.php?page=admin-update-order-status", { // Übermitteln von Statusänderungen (-> Übergabe an den Controller)
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -267,11 +267,18 @@ function displayBestellverwaltung() {
         });
 }
 
-// Hilfsfunktion für Großschreibung
+/**
+ * Hilfsfunktion für Großschreibung
+ * @param {String für die Konvertierung} s 
+ * @returns String mit großem Anfangsbuchstaben
+ */
 function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
+/**
+ * Funktion, die sich um die Verwaltung der Supporttickets kümmert (Visualisierung aller Supporttickets + Anstoßen der Speicherung von vorgenommen Statusänderungen)
+ */
 function displaySupport() {
     const container = document.getElementById("allOrdersContainer");
     container.style.display = 'block';
@@ -282,11 +289,9 @@ function displaySupport() {
             return res.json();
         })
         .then(data => {
-            container.innerHTML = ""; // leeren
+            container.innerHTML = ""; 
 
             let currentSupportTicket = null;
-            // if (data > 0) {
-
 
             data.forEach(ticket => {
                 if (currentSupportTicket !== ticket.user_id) {
@@ -303,8 +308,6 @@ function displaySupport() {
                 const ticketBox = document.createElement('div');
                 ticketBox.className = 'ticket-box';
                 ticketBox.dataset.ticketid = ticket.id;
-
-                console.log("tid:" + ticket.id);
 
                 const metaDiv = document.createElement('div');
                 metaDiv.className = 'ticket-meta';
@@ -343,21 +346,15 @@ function displaySupport() {
             });
 
             container.dataset.loaded = "true";
-        }
-            // }
-        )
+        })
         .then(() => {
-            // Alle Status-Selects mit EventListener versehen
             document.querySelectorAll(".ticket-status-select").forEach(select => {
                 select.addEventListener("change", function () {
                     const newStatus = this.value;
                     const ticketBox = this.closest('.ticket-box');
                     const ticketId = ticketBox.dataset.ticketid;
 
-                    console.log("Neuer Status:", newStatus);
-
-                    // Ajax an den Server schicken
-                    fetch("index.php?page=admin-update-ticket-status", {
+                    fetch("index.php?page=admin-update-ticket-status", { // Änderung des Ticketstatus (Starten des Speicherungsprozesses)
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -392,6 +389,9 @@ function displaySupport() {
         });
 }
 
+/**
+ * Visualisierung des Auswahlsmenü (Überkategorie, Unterkategorie, Produkt) + Aufrufen der entsprechenden Funktion
+ */
 function displayHinzufuegen() {
     const hinzufuegenOptions = document.getElementById('hinzufuegen-options');
     hinzufuegenOptions.style.display = 'block';
@@ -400,7 +400,7 @@ function displayHinzufuegen() {
 
     const unterSelect = document.getElementById('hinzufuegen-select');
 
-    unterSelect.value = ''; // Zurücksetzen, falls schon was gewählt
+    unterSelect.value = ''; 
     if (!unterSelectListenerAdded) {
         unterSelectListenerAdded = true;
         unterSelect.addEventListener('change', () => {
@@ -418,9 +418,12 @@ function displayHinzufuegen() {
     }
 }
 
+/**
+ * Funktion, die sich um den Bereich kümmert, in welchem neue Überkategorien erstellt werden können (Visualisierung + Anstoßen der Speicherung von vorgenommen Änderungen)
+ */
 function displayHinzufuegenUeberkategorie() {
 
-    showParentCategories();
+    showParentCategories(); // Visualisierung bereits existierender Kategorien
 
     const containerU = document.getElementById('new-parent-category-form');
     containerU.style.display = 'block';
@@ -439,8 +442,7 @@ function displayHinzufuegenUeberkategorie() {
                     return;
                 }
 
-                console.log("fetch kommt");
-                fetch("index.php?page=admin-add-parent-category", {
+                fetch("index.php?page=admin-add-parent-category", { // Anlegen einer neuen Überkategorie (Starten des Speicherungsprozesses)
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -454,8 +456,6 @@ function displayHinzufuegenUeberkategorie() {
                         return response.json();
                     })
                     .then(data => {
-                        console.log("Antwort vom Server:", data);
-
                         if (data.success) {
                             alert("Kategorie erfolgreich hinzugefügt!");
                             input.value = "";
@@ -474,11 +474,13 @@ function displayHinzufuegenUeberkategorie() {
     }
 }
 
+/**
+ * Visualisierung aller Überkategorien
+ */
 function showParentCategories() {
-    fetch('index.php?page=admin-show-parent-category')
+    fetch('index.php?page=admin-show-parent-category') // Anzeigen aller Überkategorien
         .then(response => response.text())
         .then(text => {
-            console.log('Raw response text:', text);
             let data;
             try {
                 data = JSON.parse(text);
@@ -494,7 +496,6 @@ function showParentCategories() {
                 return;
             }
 
-            // Jetzt kannst du sicher foreach nutzen
             let html = `
             <table class="admin-table">
                 <thead>
@@ -518,11 +519,13 @@ function showParentCategories() {
             const container = document.getElementById('new-parent-category-form');
             container.style.display = 'block';
 
-
-
         });
 }
 
+/**
+ * Funktion, die sich um den Bereich kümmert, in welchem neue Unterkategorien erstellt werden können (Visualisierung + Anstoßen der Speicherung von vorgenommen Änderungen)
+ * @returns (nur im Fehlerfall)
+ */
 async function displayHinzufuegenUnterkategorie() {
 
     const parentCategories = await showAllCategories();
@@ -535,7 +538,6 @@ async function displayHinzufuegenUnterkategorie() {
     const containerU = document.getElementById('new-category-form');
     containerU.style.display = 'block';
 
-    console.log(parentCategories);
     let selectBox = document.getElementById('parent-category-select');
     selectBox.innerHTML = '';
 
@@ -565,7 +567,6 @@ async function displayHinzufuegenUnterkategorie() {
                     return;
                 }
 
-                console.log("fetch kommt");
                 fetch("index.php?page=admin-add-category", {
                     method: "POST",
                     headers: {
@@ -580,8 +581,6 @@ async function displayHinzufuegenUnterkategorie() {
                         return response.json();
                     })
                     .then(data => {
-                        console.log("Antwort vom Server:", data);
-
                         if (data.success) {
                             alert("Kategorie erfolgreich hinzugefügt!");
                             input.value = "";
@@ -600,6 +599,10 @@ async function displayHinzufuegenUnterkategorie() {
     }
 }
 
+/**
+ * Visualisierung aller Kategorien
+ * @returns Kategorien
+ */
 async function showAllCategories() {
     const response = await fetch('index.php?page=admin-show-all-categories');
     const text = await response.text();
@@ -677,7 +680,12 @@ async function showAllCategories() {
     return mainCategories;
 }
 
+/**
+ * Funktion, die sich um den Bereich kümmert, in welchem neue Produkte erstellt werden können (Visualisierung + Anstoßen der Speicherung von vorgenommen Änderungen)
+ */
 async function displayHinzufuegenProdukte() {
+   
+    // Visualisierung aller benltigten Elemente
     const containerProduct = document.getElementById('new-product-form');
     containerProduct.style.display = 'block';
 
@@ -685,19 +693,16 @@ async function displayHinzufuegenProdukte() {
     productDetailInputs.style.display = 'none';
 
     const categoryNameList = await getCategories();
-    console.log(categoryNameList);
 
     let selectBox = document.getElementById('product-select');
     selectBox.innerHTML = '';
 
-    // Erstellt das "Bitte wählen..." Option
     const defaultOption = document.createElement('option');
     defaultOption.textContent = 'Bitte wählen...';
-    defaultOption.disabled = true;  // macht es nicht auswählbar
-    defaultOption.selected = true;  // macht es standardmäßig ausgewählt
+    defaultOption.disabled = true;  
+    defaultOption.selected = true;  
     selectBox.appendChild(defaultOption);
 
-    // Hinzufügen aller auswählbaren Kategorien
     for (let i = 0; i < categoryNameList.length; i++) {
         const selectItem = document.createElement('option');
 
@@ -710,7 +715,6 @@ async function displayHinzufuegenProdukte() {
         const value = e.target.value;
 
         const boolIsPulver = await isPulver(value);
-        console.log(boolIsPulver);
 
         productDetailInputs.style.display = 'block';
         document.getElementById('aminoAcids-input').style.display = 'block';
@@ -718,45 +722,38 @@ async function displayHinzufuegenProdukte() {
         document.getElementById('recipes-input').style.display = 'block';
 
         if (!boolIsPulver) {
-            console.log("ja");
             document.getElementById('aminoAcids-input').style.display = 'none';
             document.getElementById('recipes-input').style.display = 'none';
             document.getElementById('tipDiv').style.display = 'none';
         } else if (value === "Isolat") {
             document.getElementById('recipes-input').style.display = 'none';
         }
-
-
     });
 
     const addProductBtn = document.getElementById("addProductBtn");
 
+    // Anstoßen des Prozesses zur Übermittlung des neuen Produktes
     if (addProductBtn) {
         if (!addProductBtn.dataset.listenerAdded) {
             document.getElementById("addProductBtn").addEventListener("click", () => {
                 const form = document.querySelector('#product-details');
                 const data = {};
 
-                // Sichtbare Felder sammeln (input, textarea, select)
                 form.querySelectorAll('input, textarea, select').forEach(el => {
-                    const isVisible = el.offsetParent !== null; // check für Sichtbarkeit
+                    const isVisible = el.offsetParent !== null; 
                     if (el.name && !el.disabled && isVisible) {
                         data[el.name] = el.value;
                     }
                 });
 
-                // Zusätzlich: Kategorie und Name extra setzen, falls nicht im form enthalten
                 const select = document.getElementById("product-select");
                 if (select) data["category"] = select.value.toLowerCase();
 
                 const newProductValue = document.getElementById("newProductInput")?.value;
                 if (newProductValue) data["name"] = newProductValue;
 
-                console.log("Gesendete Daten:", data);
-                console.log("Gesendete Varianten:", data["productVariants"]);
 
-
-                // Senden als JSON
+                // Senden der Eingaben als JSON
                 fetch("index.php?page=admin-add-product", {
                     method: "POST",
                     headers: {
@@ -767,23 +764,24 @@ async function displayHinzufuegenProdukte() {
                     .then(response => response.json())
                     .then(result => {
                         if (result.success) {
-                            alert("✅ Produkt erfolgreich hinzugefügt!");
+                            alert("Produkt erfolgreich hinzugefügt!");
                         } else {
-                            alert("❌ Fehler beim Hinzufügen: " + (result.message || "Unbekannter Fehler"));
+                            alert("Fehler beim Hinzufügen: " + (result.message || "Unbekannter Fehler"));
                         }
                     })
                     .catch(error => {
                         console.error("Fehler beim Senden:", error);
-                        alert("❌ Netzwerkfehler oder Serverproblem.");
+                        alert("Netzwerkfehler oder Serverproblem.");
                     });
             });
-
-
-
         }
     }
 }
 
+/**
+ * gibt alle Unterkategorien zurück
+ * @returns Unterkategorien (Namen)
+ */
 async function getCategories() {
     const response = await fetch('index.php?page=admin-get-categories');
     const text = await response.text();
@@ -811,7 +809,9 @@ async function getCategories() {
     return categoriesName;
 }
 
-
+/**
+ * Funktion, die alle Visualisierungen des Hinzufügen-Bereichs ausblendet
+ */
 function hideEverythingFromHinzufuegen() {
 
     const containerCategory = document.getElementById('new-category-form');
@@ -827,6 +827,11 @@ function hideEverythingFromHinzufuegen() {
 
 }
 
+/**
+ * Ermittlung, ob eine Kategorie ein Pulver ist oder nicht (-> Anstoßen des entsprechenden Controllers)
+ * @param {Kategorie} value 
+ * @returns true: ist ein Pulver; false: ist kein Pulver
+ */
 async function isPulver(value) {
     const response = await fetch(`index.php?page=admin-is-pulver&value=${encodeURIComponent(value)}`);
     const data = await response.json();

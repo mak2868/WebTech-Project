@@ -1,5 +1,8 @@
-// Author: Marvin
-
+/**
+ * items.js
+ * zuständig für die clientseitige Steuerung + Visualisierung der item.php - Seite
+ * @author Marvin Kunz
+ */
 
 window.openPanel = openPanel;
 window.switchRecipe = switchRecipe;
@@ -19,8 +22,19 @@ let selectedPic;
 let picProductNotOnListSrc = null;
 let picProductOnListSrc = null;
 
+/* =================================== */
+/* Zentrale Funktionen zur Darstellung */
+/* =================================== */
 
-
+/**
+ * Zwischenschritt, zur Vorbereitung auf den erstmaligen Aufruf der renderItemSite()
+ * -> clientseitige Überprüfung der vom Server kommenden Parameter auf Existenz und korrekten Syntax
+ * -> Aufruf der Funktion renderItemSite() mit allen überprüften Parametern sowie den extrahierten Daten des ausgewählten Produktes aus allen Produktdaten der Kategorie
+ * @param {ID der Überkategorie des ausgewählten Produktes} parentID 
+ * @param {ID der Unterkategorie des ausgewählten Produktes} cid 
+ * @param {ID des ausgewählten Produktes} pid 
+ * @param {Index des ausgewählten Produktes innerhalb des Datenarrays der Kategorie} idInData 
+ */
 function intermediateStepRenderItemSite(parentID, cid, pid, idInData) {
     if ((isNaN(cid) && isNaN(pid) && isNaN(parentID)) || (cid == null && pid == null && parentID == null)) {
         console.error("Parameter error (cid + pid + parentID):", cid, pid, parentID);
@@ -36,18 +50,27 @@ function intermediateStepRenderItemSite(parentID, cid, pid, idInData) {
 
 }
 
+/**
+ * Visualisierung / Befüllen aller HTML Elementen auf der item.php - Seite (teilweise abhängig von dem darzustellenden Produkt: bspw. bei Riegeln werden keine Rezepte dargestellt)
+ * @param {Daten des ausgewählten Produktes} prod 
+ * @param {ID der Unterkategorie des ausgewählten Produktes} lcid 
+ * @param {ID des ausgewählten Produktes} pid 
+ * @param {ID der Überkategorie des ausgewählten Produktes} parentID 
+ * @param {Index des ausgewählten Produktes innerhalb des Datenarrays der Kategorie != pid} idInData 
+ * 
+ * Information: alle Übergabeparameter werden zur Visualisierung des Produktes benötigt, außer die Parent-ID -> sicherstellen der korrekten Parameter bei erneutem Aufruf der item-Seite bspw. nach Sortenwechsel
+ */
 function renderItemSite(prod, lcid, pid, parentID, idInData) {
     product = prod;
     cid = lcid;
 
-   history.pushState(
-    { cid: cid, pid: pid, parentID: parentID },
-    '',
-    '?page=item&parent=' + encodeURIComponent(parentID) +
-    '&cid=' + encodeURIComponent(cid) +
-    '&pid=' + encodeURIComponent(pid)
-);
-
+    history.pushState(
+        { cid: cid, pid: pid, parentID: parentID },
+        '',
+        '?page=item&parent=' + encodeURIComponent(parentID) +
+        '&cid=' + encodeURIComponent(cid) +
+        '&pid=' + encodeURIComponent(pid)
+    );
 
     if (initial) {
         initial = false;
@@ -207,20 +230,15 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
 
     document.getElementById('laboratory').textContent = product.laboratory;
 
-
-
     const produktbildAuswahl = document.getElementById('ProduktbildAuswahl');
     produktbildAuswahl.getElementsByTagName('img')[0].src = product.product_pic1;
     produktbildAuswahl.getElementsByTagName('img')[1].src = product.product_pic2;
     produktbildAuswahl.getElementsByTagName('img')[2].src = product.product_pic3;
 
-
     const activeProductPic = document.querySelector('#Produktbild img')
     activeProductPic.src = product.product_pic1;
     selectedPic = 0;
     createDots();
-
-
 
     activeProductPic.addEventListener('touchstart', function (event) {
         touchStartX = event.changedTouches[0].screenX;
@@ -234,6 +252,13 @@ function renderItemSite(prod, lcid, pid, parentID, idInData) {
     document.getElementById('klBild').src = product.small_pic;
 }
 
+/* ================================ */
+/* Steuerung des Responsive Designs */
+/* ================================ */
+
+/**
+ * Steuerung des Wechsel der Produktbilder bei kleinen Endgeräten durch eine Wisch-/Swipebewegung
+ */
 function handleSwipe() {
     const swipeThreshold = 50;
 
@@ -254,6 +279,9 @@ function handleSwipe() {
     }
 }
 
+/**
+ * Erstellung einer Anzeige (kleine Punkte), die das ausgewählte Bild bei kleinen Endgeräten zeigt
+ */
 function createDots() {
     const dotContainer = document.getElementById('dotContainer');
     dotContainer.innerHTML = ''; // Alte Dots entfernen
@@ -268,6 +296,9 @@ function createDots() {
     }
 }
 
+/**
+ * steuert die Darstellung der ersten Zeile (Produktüberschrift, Bewertungssterne, Anzeige der Anzahl der Bewertungen)
+ */
 function setPositionFirstLine() {
     const firstLineContainer = document.getElementById('firstLine');
     const nameContainer = document.getElementById('name');
@@ -281,7 +312,7 @@ function setPositionFirstLine() {
     const ratingWidth = ratingCountContainer.offsetWidth;
 
     // Wenn der verfügbare Platz mehr ist als die Breite der Elemente nebeneinander, dann behalte sie in einer Reihe
-    if (availableWidthFL >= (nameWidth + ratingWidth + 90)) {  // 50px Puffer für gap
+    if (availableWidthFL >= (nameWidth + ratingWidth + 90)) {
         firstLineContainer.style.flexDirection = 'row';
         firstLineContainer.style.alignItems = 'center';
         firstLineContainer.style.gap = '0.5rem';
@@ -293,6 +324,14 @@ function setPositionFirstLine() {
     }
 }
 
+/* =============================== */
+/* Funktionalitäten / Berechnungen */
+/* =============================== */
+
+/**
+ * steurt das Öffnen / die Visualisierung eines Panels (bspw. Inhalt)
+ * @param {Index, des zu öffnenden Panels} activatedIndex 
+ */
 function openPanel(activatedIndex) {
     const acc = document.querySelectorAll('#accordion');
 
@@ -318,7 +357,10 @@ function openPanel(activatedIndex) {
 
 }
 
-
+/**
+ * steuert die Anzeige des ausgewählten Rezeptes
+ * @param {Index des ausgewählten Rezeptes} selectedRecipe 
+ */
 function switchRecipe(selectedRecipe) {
     if (cid == 1 || cid == 3) {
         if (selectedRecipe == undefined) {
@@ -362,7 +404,10 @@ function switchRecipe(selectedRecipe) {
     }
 }
 
-
+/**
+ * steuert den Wechsel zwischen den verschiedenen Produktbildern (große Anzeige) sowie dem Auswahlbereich (kleine Anzeige aller Bilder)
+ * @param {Index des neu ausgewählten Bildes} pictureNumber 
+ */
 function switchProductbild(pictureNumber) {
     const pics = document.querySelectorAll('#ProduktbildAuswahl img');
 
@@ -399,13 +444,12 @@ function switchProductbild(pictureNumber) {
         productPic.src = picsSrc[pictureNumber];
         createDots()
     }
-
-
-
 }
 
-
-// Model: Woher Daten?
+/**
+ * clientseitige Berechnung des Produktpreises anhand der ausgewählten Produktgröße
+ * @returns Produktpreises des ausgewählten Produktes 
+ */
 function getTotalPrice() {
     let selectedButton = document.querySelector('#VerpackungsgrößenButtons button.active');
     let buttonContent = selectedButton.textContent.slice(0, -1);
@@ -421,6 +465,12 @@ function getTotalPrice() {
     return returnValue;
 }
 
+/**
+ * clientseitige Berechnung des Kilopreises anhand der übergebenen Parameter
+ * @param {Preis der Produktgröße} price 
+ * @param {Gewicht der Produktgröße} totalWeight 
+ * @returns 
+ */
 function getPricePerKG(price, totalWeight) {
     totalWeight = String(totalWeight).slice(0, -1);
     if (totalWeight == "12x45") {
@@ -435,6 +485,10 @@ function getPricePerKG(price, totalWeight) {
     return returnValue.toFixed(2);
 }
 
+/**
+ * Wechsel zwischen den verschiedenen Produktgröße -> korrekte Visualisierung der Buttons, Aufruf entsprechender Preisberechnungsfunktionen & Visualisierung
+ * @param {*} selectedButton 
+ */
 function changeSelectedSize(selectedButton) {
     const allButtons = document.querySelectorAll('#VerpackungsgrößenButtons button');
     if (!selectedButton.classList.contains('notAvailable')) {
@@ -450,7 +504,9 @@ function changeSelectedSize(selectedButton) {
     }
 }
 
-
+/**
+ * Aufruf der Funktion zur Darstellung der ersten Zeile bei Anpassung der Bildschirmgröße (-> Responsive Design ohne Neuladen der Seite)
+ */
 let previousWidth = window.innerWidth;
 
 setInterval(function () {
@@ -461,4 +517,3 @@ setInterval(function () {
         setPositionFirstLine();
     }
 }, 100);
-

@@ -1,7 +1,7 @@
 <?php
 /**
  * Ließt JSON aus, befüllt die Datenbank
- * @author: Felix Bartel
+ * @author: Felix Bartel, Marvin Kunz (Anpassungen + Erweiterungen)
  */
 ?>
 

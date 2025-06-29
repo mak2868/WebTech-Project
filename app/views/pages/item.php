@@ -37,10 +37,10 @@
 include __DIR__ . '/../layouts/navbar.php';
 ?>
 
+    <!-- Übergabe der Produktdaten einer Kategorie an den Client -->
 <?php if (!empty($produkte)): ?>
     <script>
         const data = <?php echo json_encode($produkte, JSON_UNESCAPED_UNICODE); ?>;
-        console.log("Daten geladen:", data);
     </script>
 <?php else: ?>
     <script>
@@ -343,6 +343,7 @@ include __DIR__ . '/../layouts/navbar.php';
     <?php include '../app/views/layouts/cookieBanner.php'; ?>
     <?php include '../app/views/layouts/footer.php'; ?>
 
+    <!-- Erzeugung aller geeigeten Parametern + Aufruf der zwischengelagerten Funktion zur Erstellung der Item-Seite -->
     <script defer>
         document.addEventListener("DOMContentLoaded", () => {
             const parentID = <?php echo json_encode($parentID); ?>;

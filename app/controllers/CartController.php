@@ -1,7 +1,7 @@
 <?php
 /**
  * Controller für den Warenkorb
- * @author: Marvin Kunz, Felix Bartel
+ * @author: Felix Bartel
  */
 ?>
 

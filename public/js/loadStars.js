@@ -1,6 +1,14 @@
+/**
+ * loadStars.js
+ * erstellt anhand eines übergebenen Ratings dynamisch die passende Anzeige / Visualisierung durch Sterne auf einer Skala von 0-5 Sternen in Form eines Canvas
+ * (-> Nutzung auf verschiedensten Seiten mit Produktanzeigen)
+ * @author Marvin Kunz
+ */
+
 function createStars(rating) {
     return new Promise((resolve, reject) => {
-        
+
+        // Laden aller Bilder
         const basePath = "/WebTech-Project/public/images";
 
         const emptyImg = new Image(); emptyImg.src = basePath + "/StarEmpty.svg";
@@ -27,6 +35,8 @@ function createStars(rating) {
             img.onerror = () => reject("Fehler beim Laden: " + img.src);
         });
     }).then(([emptyImg, oneQImg, halfImg, threeQImg, fullImg]) => {
+        
+        // Berechnungen für die benötigten Sterne und deren Anzahl
         const mod = rating % 1;
         const fullStarsCount = Math.floor(rating);
         let threeQ = false, half = false, oneQ = false;
@@ -35,6 +45,7 @@ function createStars(rating) {
         else if (mod >= 0.5) half = true;
         else if (mod >= 0.25) oneQ = true;
 
+        // Erstellung des Canvas 
         const canvas = document.createElement("canvas");
         canvas.width = 90;
         canvas.height = 18;
