@@ -1,4 +1,14 @@
 <?php
+/**
+ * Datenbankschnittstelle um mit getConnection() redundaten Code zu sparen - Wiederverwendbarkeit
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
+<?php
 
 class DB {
     private static $pdo = null;

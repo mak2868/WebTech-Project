@@ -1,4 +1,12 @@
 <?php
+/**
+ * Controller für impressum, datenschutzerklärung und faq
+ * @author: Felix Bartel
+ */
+?>
+
+
+<?php
 
 class StaticController {
     public function impressum() {

@@ -1,4 +1,13 @@
 <?php
+/**
+ * Schreibt die E-Mail in die Tabelle newsletter_signups, gibt Dublikat aus, falls E-Mail bereits vorhanden
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+<?php
 require_once __DIR__ . '/../lib/DB.php';
 
 class NewsletterModel {
