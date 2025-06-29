@@ -2,7 +2,7 @@
 /**
  * Warenkorb (view)
  * <div class="cart-container" id="cart-items"> wird dynamisch mit den Produkten befüllt.
- * @author: Felix Bartel, Marvin Kunz
+ * @author: Felix Bartel
  */
 ?>
 
