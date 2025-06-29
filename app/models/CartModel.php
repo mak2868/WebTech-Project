@@ -1,3 +1,15 @@
+
+<?php
+/**
+ * Warenkorb (serversetig)
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
+
 <?php
 
 require_once '../app/lib/DB.php';
