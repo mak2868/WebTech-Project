@@ -1,5 +1,4 @@
-// Author: Merzan
-
+// Author: Merzan Köse
 
 document.addEventListener("DOMContentLoaded", () => {
   // Zugriff auf die relevanten DOM-Elemente (Eingabefelder & Button)
@@ -14,8 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Funktion zur Validierung der Eingaben
   function validateUserForm() {
     const usernameValid = usernameInput.value.length >= 5 &&
-                          /[A-Z]/.test(usernameInput.value) &&
-                          /[a-z]/.test(usernameInput.value);
+      /[A-Z]/.test(usernameInput.value) &&
+      /[a-z]/.test(usernameInput.value);
 
     const pwValid = passwordInput.value.length >= 10;
 
