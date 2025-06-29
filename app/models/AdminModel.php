@@ -452,6 +452,8 @@ class AdminModel
     public static function saveFullProduct($data)
     {
         $pdo = DB::getConnection();
+
+        // Abfrage, um alle Namen der Parentkategorie zu erhalten
         $stmt = $pdo->prepare("
         SELECT name
         FROM product_parent_categories
@@ -461,6 +463,7 @@ class AdminModel
 
         $maxPid = 0;
 
+        // geht alle Produkttabellen aller Kategorien durch, um die aktuelle (höchste) PID zu erhalten -> Ermittlung der neuen PID für das neue Produkt
         foreach ($names as $name) {
             $table = $name . "_products";
 
@@ -472,8 +475,10 @@ class AdminModel
             }
         }
 
+        // Setzte der neuen PID für das neue Produkt
         $productId = $maxPid + 1;
 
+        // Abfrage, um den Namen der Parentkategorie zu erhalten -> Präfix für den Tabellennamen
         $stmt = $pdo->prepare("
         SELECT ppc.name AS parent_name
         FROM product_categories pc
@@ -487,24 +492,19 @@ class AdminModel
             throw new Exception("Keine Parent-Category für '{$data['category']}' gefunden");
         }
 
-
         try {
 
+            // Ermittlung der Category-ID (cid)
             $stmtCategoryID = $pdo->prepare("SELECT id FROM product_categories WHERE `name` = ?");
             $stmtCategoryID->execute([$data['category']]);
-            $cid = $stmtCategoryID->fetchColumn();  // Holt direkt den Wert der ersten Spalte (id)
-
-
-            // atomare Datenbankänderungen — alles oder nichts
+            $cid = $stmtCategoryID->fetchColumn(); 
 
             $productTable = $tablePrefix . "_products";
-            // $stmt = $pdo->prepare("");
 
-            // AdminModel::createTableIfNeeded("test");
-
+            // atomare Datenbankänderungen — alles oder nichts (entweder werden alle Datensetze hinzugefügt oder keiner)
             $pdo->beginTransaction();
 
-
+            // Befüllen aller Tabllen + ggf. Aufbereitung der Daten (bspw. für die Tabelle ..._sizes_prices)
             if (AdminModel::hasColumn($pdo, $productTable, 'tip')) {
                 $stmt = $pdo->prepare("INSERT INTO $productTable (`description`, preparation, recommendation, tip, laboratory, cid, `name`, pid) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 $params = [
@@ -551,7 +551,7 @@ class AdminModel
                 $data['salt']
             ]);
 
-            // Optional: Nur wenn Pulver
+            // Befüllen nur dann, wenn es ein Proteinpulver ist (andere Produkte haben die entsprechenden Tabellen nicht)
             if (strtolower(trim($tablePrefix)) === "proteinpulver") {
 
                 $aminoAcidsTable = $tablePrefix . "_amino_acids";
@@ -580,7 +580,6 @@ class AdminModel
                 ]);
             }
 
-            // Rezepte speichern
             for ($i = 1; $i <= 3; $i++) {
                 if (!empty($data["recipeTitle{$i}"])) {
                     $stmt = $pdo->prepare("INSERT INTO proteinpulver_recipes (product_id, title, short_title, `portion`) VALUES (?, ?, ?, ?)");
@@ -620,8 +619,6 @@ class AdminModel
 
             $pictureTable = $tablePrefix . "_pictures";
 
-
-
             $stmt = $pdo->prepare("INSERT INTO $pictureTable (product_id, product_pic1 , product_pic2, product_pic3, small_pic) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([
                 $productId,
@@ -636,8 +633,6 @@ class AdminModel
 
             $descriptionTable = $tablePrefix . "_descriptions";
 
-
-
             $stmt = $pdo->prepare("INSERT INTO $descriptionTable (product_id, detail1, detail2) VALUES (?, ?, ?)");
             $stmt->execute([
                 $productId,
@@ -647,7 +642,6 @@ class AdminModel
 
             $ingredientsTable = $tablePrefix . "_ingredients";
 
-
             $stmt = $pdo->prepare("INSERT INTO $ingredientsTable (product_id, ingredients, allergens) VALUES (?, ?, ?)");
             $stmt->execute([
                 $productId,
@@ -655,13 +649,10 @@ class AdminModel
                 $data['allergens'] ?? null
             ]);
 
-
-
             $productVariants = $data['productVariants'];
             $productVariants_array = array_filter(array_map('trim', explode(';', $productVariants)));
 
             $spTable = $tablePrefix . "_sizes_prices";
-
 
             for ($i = 0; $i < count($productVariants_array); $i++) {
                 $productVariants_array_oneSize = array_filter(array_map('trim', explode(',', $productVariants_array[$i])));
@@ -681,18 +672,22 @@ class AdminModel
 
             $pdo->rollBack();
             error_log("Fehler beim Speichern des Produkts: " . $e->getMessage());
-            throw $e;  // WICHTIG: Exception weiterwerfen
+            throw $e;  
         }
     }
 
+    /**
+     * Überprüfung, ob eine Spalte in einer Tabelle existiert oder nicht (-> Entscheidungsgrundlage für das Befüllen von Seiten)
+     * @param PDO $pdo: Datenbankverbindung
+     * @param string $table: Tabelle, in welcher Spaltenexistenz überprüft werden soll
+     * @param string $column: Spalte, deren Existenz überprüft werden soll
+     * @return bool
+     */
     public static function hasColumn(PDO $pdo, string $table, string $column): bool
     {
-        $pdo = DB::getConnection();
         $stmt = $pdo->prepare("SHOW COLUMNS FROM `$table` LIKE ?");
         $stmt->execute([$column]);
         return $stmt->rowCount() > 0;
     }
-
-    
 
 }
