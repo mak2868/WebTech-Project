@@ -1,4 +1,9 @@
-<!-- Autor: Marvin Kunz -->
+<?php
+/**
+ * Adminbereich (model)
+ * @author: Marvin Kunz
+ */
+?>
 
 <?php
 require_once __DIR__ . '/../lib/DB.php';
@@ -8,7 +13,15 @@ require_once __DIR__ . '/../config/config.php';
 class AdminModel
 {
 
-    public static function getAllUser()
+    /* ============================== */
+    /*       Benutzerverwaltung       */
+    /* ============================== */
+
+     /**
+      * gibt alle in der DB hinterlegten Nutzer und deren Eigenschaften zurück
+      * @return array User + deren Daten
+      */
+     public static function getAllUser()
     {
         $pdo = DB::getConnection();
 
@@ -29,18 +42,28 @@ class AdminModel
         return $users;
     }
 
+    /**
+     * gibt alle User IDs zurück (-> Verwendung: Abfrage nach allen Bestellungen; efolgt anhand der UserID)
+     * @return array User IDs
+     */
     public static function getAllUserIDs()
     {
         $pdo = DB::getConnection();
 
-        $stmtUser = $pdo->prepare("
-        SELECT id FROM users");
+        $stmtUser = $pdo->prepare("SELECT id FROM users");
         $stmtUser->execute();
         $userIDs = $stmtUser->fetchAll(PDO::FETCH_COLUMN);
 
         return $userIDs;
     }
 
+    /**
+     * Schreibt die vollzogenen Änderungen an Nutzerdaten in die Datenbank, sofern sie in der Tabelle users und nicht user_addresses erfolgt (-> entsprechender Aufruf im Controller)
+     * @param mixed $userID: ID des veränderten Users
+     * @param mixed $changedColumn: Spalte, an welcher Änderungen vorgenommen wurden
+     * @param mixed $changedValue: neuer Wert, der in die Datenbank geschrieben werden soll
+     * @return bool Wert, der zurückgibt, ob die UPDATE-Anweisung erfolgreich war oder nicht 
+     */
     public static function updateUserData($userID, $changedColumn, $changedValue)
     {
         $pdo = DB::getConnection();
@@ -57,11 +80,18 @@ class AdminModel
         ]);
     }
 
+    /**
+     * Schreibt die vollzogenen Änderungen der nutzerbezogenen Adressdaten in die Datenbank
+     * @param mixed $userID: ID des veränderten Users
+     * @param mixed $changedColumn: Spalte, an welcher Änderungen vorgenommen wurden
+     * @param mixed $changedValue: neuer Wert, der in die Datenbank geschrieben werden soll
+     * @return bool Wert, der angibt, ob die UPDATE-Anweisung erfolgreich war oder nicht
+     */
     public static function updateUserAddressData($userID, $changedColumn, $changedValue)
     {
         $pdo = DB::getConnection();
 
-        // 1. Prüfen, ob Adresse für diesen Benutzer existiert
+        // 1. Prüfen, ob Adresse für übergebenen Benutzer existiert
         $checkStmt = $pdo->prepare("SELECT 1 FROM user_addresses WHERE user_id = ?");
         $checkStmt->execute([$userID]);
         $exists = $checkStmt->fetchColumn() !== false;
@@ -91,7 +121,11 @@ class AdminModel
         }
     }
 
-
+    /**
+     * Löschen des angegebnen User aus der Datenbank
+     * @param mixed $userID: ID des zu löschenden Users
+     * @return bool Wert, der angibt, ob die DELETE-Anweisung erfolgreich war oder nicht
+     */
     public static function deleteUser($userID)
     {
         $pdo = DB::getConnection();
@@ -108,6 +142,16 @@ class AdminModel
         ]);
     }
 
+    /* ============================== */
+    /*       Bestellverwaltung        */
+    /* ============================== */
+
+    /**
+     * Aktualisieren des Bearbeitungsstatus einer Bestellung
+     * @param mixed $orderId: ID der Bestellung, dessen Status angepasst werden soll
+     * @param mixed $newStatus: Status, den die Bestellung erhalten soll
+     * @return int gibt die Anzahl der veränderten Zeilen zuürck (-> Kontrolle, ob erfolgreich oder nicht)
+     */
     public static function updateOrderStatus($orderId, $newStatus)
     {
         $pdo = DB::getConnection();
@@ -120,6 +164,48 @@ class AdminModel
         return $stmt->rowCount(); // Gibt z. B. 1 zurück, wenn eine Zeile geändert wurde
     }
 
+     /* ============================== */
+    /*       Supportverwaltung        */
+    /* ============================== */
+
+    /**
+     * gibt alle Supportticktes mit all ihren Daten aus der Datenbank zurücl
+     * @return array enthält alle Supportticktes
+     */
+    public static function getAllSupportTickets()
+    {
+
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("SELECT * FROM support_tickets");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    /**
+     * Aktualisieren des Bearbeitungsstatus eines Supporttickets
+     * @param mixed $ticketId: ID des Tickets, dessen Status angepasst werden soll
+     * @param mixed $newStatus: Status, den das Ticket erhalten soll
+     * @return int gibt die Anzahl der veränderten Zeilen zuürck (-> Kontrolle, ob erfolgreich oder nicht)
+     */
+    public static function updateTicketStatus($ticketId, $newStatus)
+    {
+        $pdo = DB::getConnection();
+
+        $stmt = $pdo->prepare("UPDATE `support_tickets` SET `status` = :status WHERE `id` = :id");
+        $stmt->execute([
+            'status' => $newStatus,
+            'id' => $ticketId
+        ]);
+
+        return $stmt->rowCount();
+    }
+
+    /* ============================== */
+    /*        Hinzufügen von...       */
+    /* ============================== */
 
     public static function getAllParentCategories()
     {
@@ -131,7 +217,6 @@ class AdminModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
-
 
     public static function addParentCategory($pdo, $categoryName)
     {
@@ -433,7 +518,6 @@ class AdminModel
         }
     }
 
-
     public static function hasColumn(PDO $pdo, string $table, string $column): bool
     {
         $pdo = DB::getConnection();
@@ -441,7 +525,6 @@ class AdminModel
         $stmt->execute([$column]);
         return $stmt->rowCount() > 0;
     }
-
 
     public static function addCategoryWithTables(string $categoryName)
     {
@@ -461,7 +544,6 @@ class AdminModel
             throw $e;
         }
     }
-
 
     public static function createTablesForNewParentCategory($pdo, $parentCategoryName)
     {
@@ -572,40 +654,4 @@ class AdminModel
 
     }
 
-
-    public static function getAllSupportTickets()
-    {
-
-        $pdo = DB::getConnection();
-
-        $stmt = $pdo->prepare("SELECT * FROM support_tickets");
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    }
-
-    public static function updateTicketStatus($ticketId, $newStatus)
-    {
-        $pdo = DB::getConnection();
-
-        $stmt = $pdo->prepare("UPDATE `support_tickets` SET `status` = :status WHERE `id` = :id");
-        $stmt->execute([
-            'status' => $newStatus,
-            'id' => $ticketId
-        ]);
-
-        return $stmt->rowCount();
-    }
-
-
-
 }
-
-
-// $user = AdminModel::getAllUser();
-// echo '<pre>';
-// print_r($user);
-// echo '</pre>';
-
-// AdminModel::createTableIfNeeded("tue_products");

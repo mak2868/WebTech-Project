@@ -1,4 +1,9 @@
-<!-- Autor: Marvin Kunz -->
+<?php
+/**
+ * Adminbereich (view)
+ * @author: Marvin Kunz
+ */
+?>
 
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
 <!DOCTYPE html>

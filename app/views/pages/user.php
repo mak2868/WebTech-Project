@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzerbereich</title> 
+    <title>XPN | Benutzerbereich</title> 
 
     <!-- Einbindung globaler und registrierungsbezogener CSS-Dateien -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">

@@ -1,4 +1,9 @@
-<!-- Autor: Marvin Kunz -->
+<?php
+/**
+ * Adminbereich (controller)
+ * @author: Marvin Kunz
+ */
+?>
 
 <?php
 
@@ -24,6 +29,10 @@ class AdminController
 
     public function showAdmin()
     {
+          if (!isset($_SESSION['is_admin'])) {
+            header("Location: index.php?page=login&redirect=admin");
+            exit;
+            }
 
         // View laden und Variablen an die View übergeben
         require_once '../app/views/pages/admin.php';

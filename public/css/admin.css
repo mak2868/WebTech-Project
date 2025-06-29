@@ -300,7 +300,7 @@ body.dark-mode textarea {
 }
 
 /* Einzelne Bestellung */
-.order-box {
+.order-box, .ticket-box {
     margin-bottom: 2rem;
     padding: 1rem;
     border: 1px solid #ccc;
@@ -341,7 +341,7 @@ body.dark-mode .order-history {
     color: #f0f0f0;
 }
 
-body.dark-mode .order-box {
+body.dark-mode .order-box, body.dark-mode .ticket-box {
     background-color: #2a2a2a;
     border: 1px solid #444;
     border-radius: 10px;

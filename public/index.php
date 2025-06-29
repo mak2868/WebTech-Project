@@ -189,7 +189,6 @@ switch ($page) {
     case 'kontakt':
         (new SupportController())->contact();
         break;
-    break;
 
     default:
         echo "Seite nicht gefunden.";
