@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benutzerbereich</title>
+    <title>Benutzerbereich</title> 
 
     <!-- Einbindung globaler und registrierungsbezogener CSS-Dateien -->
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
@@ -20,7 +20,6 @@
     <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>
     <script src="<?= BASE_URL ?>/js/cookieBanner.js" defer></script>
     <script src="<?= BASE_URL ?>/js/merge-cart.js" defer></script>
-
 
      <!-- Head-Datei -->
     <?php include __DIR__ . '/../layouts/head.php'; ?>

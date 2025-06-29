@@ -20,7 +20,7 @@ class NewsletterController {
     $saveResult = $model->saveEmail($email);
 
     if ($saveResult === true) {
-      echo json_encode(['success' => true, 'message' => '🎉 Erfolgreich angemeldet, bleib gespannt!.']);
+      echo json_encode(['success' => true, 'message' => '🎉 Erfolgreich angemeldet, bleib gespannt!']);
     } elseif ($saveResult === 'duplicate') {
       echo json_encode(['success' => false, 'message' => 'Du erhältst für diese E-Mail Adresse bereits unseren Newsletter.']);
     } else {

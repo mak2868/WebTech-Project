@@ -9,6 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
  * um Daten aus der Datenbank abzurufen und zu speichern, und lädt die entsprechenden Views.
  * @author Merzan
  */
+
 class UserController
 {
     /**
@@ -17,53 +18,56 @@ class UserController
      */
     public function login()
     {
-        // Startet die Session, falls noch nicht geschehen.
-        // Die Session ist notwendig, um den Benutzerstatus (eingeloggt/nicht eingeloggt)
-        // und Benutzerdaten über mehrere Seiten hinweg zu speichern.
+        // Starte die Session, falls noch nicht aktiv
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
-        $error = null; // Variable zum Speichern von Fehlermeldungen für die View.
+        $error = null; // Zum Anzeigen von Fehlern bei falschem Login
 
-        // Prüft, ob das Formular per POST abgeschickt wurde.
+        // Nur wenn das Formular per POST abgeschickt wurde
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Empfängt Benutzername und Passwort aus dem Formular.
-            // Der ??-Operator (Null Coalescing Operator) stellt sicher,
-            // dass die Variable leer ist, falls das POST-Feld nicht existiert,
-            // um PHP-Notices zu vermeiden.
+            // Benutzereingaben holen (Username & Passwort)
             $username = $_POST['username'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            // Lädt das UserModel, das für die Datenbankoperationen zuständig ist.
+            // Lade das UserModel für die Authentifizierung
             require_once '../app/models/UserModel.php';
-            
-            // Versucht, den Benutzer über das UserModel zu authentifizieren.
-            // Die Methode authenticate() gibt entweder ein Benutzer-Array bei Erfolg
-            // oder false bei Fehlschlag zurück.
+
+            // Prüfe, ob es sich um einen Admin handelt
+            if (UserModel::authenticateAdmin($username, $password)) {
+                $_SESSION['is_admin'] = true;
+                header('Location: index.php?page=admin');
+                exit;
+            }
+
+
+            // Versuche den Benutzer mit den eingegebenen Daten zu authentifizieren
             $user = UserModel::authenticate($username, $password);
 
-            // Prüft, ob die Authentifizierung erfolgreich war.
+            // Wenn Authentifizierung erfolgreich war:
             if ($user) {
-                // Wenn erfolgreich, werden die Benutzerdaten in der Session gespeichert.
-                // Dies markiert den Benutzer als eingeloggt.
+                // Benutzer in der Session speichern
                 $_SESSION['user'] = $user;
-                $_SESSION['user_id'] = $user['id']; 
+                $_SESSION['user_id'] = $user['id'];
 
-                
-                // Leitet den Benutzer zur Profilseite um.
-                // header() muss aufgerufen werden, bevor Inhalte an den Browser gesendet wurden.
-                // exit; beendet die Skriptausführung, um sicherzustellen, dass die Weiterleitung sofort erfolgt.
-                header('Location: index.php?page=home');
+                // Weiterleitungsziel ermitteln (z. B. "checkout" oder "home")
+                // Falls jemand als Gast zur Kasse wollte → redirect=checkout
+                $redirectPage = $_POST['redirect'] ?? $_GET['redirect'] ?? 'home';
+
+                // Weiterleitung zur Zielseite nach Login
+                header('Location: index.php?page=' . urlencode($redirectPage));
                 exit;
             } else {
-                // Wenn die Authentifizierung fehlschlägt, wird eine Fehlermeldung gesetzt.
+                // Bei Fehlschlag Fehlermeldung setzen
                 $error = "Benutzername oder Passwort ist falsch!";
             }
         }
-        // Lädt die Login-View. Die $error-Variable ist in dieser View verfügbar.
+
+        // Login-Formular anzeigen (inkl. möglicher Fehlermeldung)
         require '../app/views/pages/login.php';
     }
+
 
     /**
      * Verwaltet den Logout-Prozess des Benutzers.
@@ -75,13 +79,13 @@ class UserController
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        
+
         // Löscht alle Session-Variablen.
         $_SESSION = [];
-        
+
         // Zerstört die Session auf dem Server.
         session_destroy();
-        
+
         // Leitet den Benutzer zur Login-Seite um.
         header('Location: index.php?page=login');
         exit;
@@ -121,7 +125,7 @@ class UserController
             } else {
                 // Lädt das UserModel für die Registrierungslogik.
                 require_once '../app/models/UserModel.php';
-                
+
                 // Ruft die register-Methode im UserModel auf.
                 // Gibt true bei Erfolg oder eine Fehlermeldung zurück.
                 $registration_result = UserModel::register($username, $email, $password, $firstName, $lastName);
@@ -169,7 +173,7 @@ class UserController
 
         // Lädt das UserModel für Datenbankoperationen.
         require_once '../app/models/UserModel.php';
-        
+
         $error = null;   // Für Fehlermeldungen.
         $success = null; // Für Erfolgsmeldungen.
 
@@ -216,13 +220,13 @@ class UserController
             // Prüft, ob beide Update-Operationen erfolgreich waren.
             if ($userUpdateResult === true && $addressSaveResult === true) {
                 $success = "Profil und Adresse erfolgreich aktualisiert!";
-                
+
                 // Aktualisiert die Session mit den neuesten Benutzerdaten (wichtig, falls sich z.B. der Name ändert).
-                $_SESSION['user'] = UserModel::getUserById($userId); 
-                
+                $_SESSION['user'] = UserModel::getUserById($userId);
+
                 // Aktualisiert die lokalen Variablen für die erneute Anzeige der View.
-                $userdata = $_SESSION['user']; 
-                $addressdata = UserModel::getUserAddressByUserId($userId); 
+                $userdata = $_SESSION['user'];
+                $addressdata = UserModel::getUserAddressByUserId($userId);
             } else {
                 $error = "Profil oder Adresse konnte nicht gespeichert werden.";
                 // Hier könnte man detailliertere Fehlermeldungen hinzufügen,

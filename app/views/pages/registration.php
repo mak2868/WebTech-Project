@@ -6,6 +6,9 @@
 
 <head>
   <meta charset="UTF-8"> <!-- Zeichencodierung UTF-8 für Sonderzeichen -->
+  <!--MetatTag das uns  respensive design ermöglicht-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Registrierung</title> <!-- Titel, der im Browser-Tab angezeigt wird -->
 
 
@@ -24,8 +27,6 @@
 
    <!-- Head-Datei -->
   <?php include __DIR__ . '/../layouts/head.php'; ?>
-
-
 </head>
 
 

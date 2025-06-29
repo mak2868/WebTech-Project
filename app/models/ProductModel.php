@@ -426,6 +426,8 @@ class ProductModel
     if (!$parentRow) {
         return [];
     }
+
+    
     $parentID = $parentRow['parent_id'];
 
 /* Hole Tabellenpraefix durch uebergeordnete Kategorie (z. B. "pulver") */
@@ -468,6 +470,13 @@ class ProductModel
 
 /* Rueckgabe des Array der Produkte */
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($products as &$product) {
+if (!empty($product['bild'])) {
+                        $product['bild'] = BASE_URL . $product['bild'];
+    }
+}
+
     return $products;
 }
 

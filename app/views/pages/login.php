@@ -5,6 +5,8 @@
 
 <head>
     <meta charset="UTF-8"> <!-- Zeichensatz UTF-8 für Umlaute usw. -->
+    <!--MetatTag das uns  respensive design ermöglicht-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title> <!-- Titel, der im Browser-Tab angezeigt wird -->
 
     <!-- CSS -->
@@ -23,8 +25,6 @@
 
     <!-- Head-Datei -->
     <?php include __DIR__ . '/../layouts/head.php'; ?>
-    
-
 
 </head>
 
@@ -36,6 +36,10 @@
 
             <!-- Formular zum Einloggen (POST wird an Server gesendet) -->
             <form action="/WebTech-Project/public/index.php?page=login" method="post">
+                <?php if (isset($_GET['redirect'])): ?>
+                    <input type="hidden" name="redirect" value="<?= htmlspecialchars($_GET['redirect']) ?>">
+                <?php endif; ?>
+
                 <?php if (!empty($error)): ?>
                     <div class="form-error"><?= htmlspecialchars($error) ?></div>
                 <?php endif; ?>

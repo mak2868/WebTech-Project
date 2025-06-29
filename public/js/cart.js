@@ -163,27 +163,33 @@ function removeAllItemsFromCart() {
 function updateQuantity(index, newQuantity, isSlider) {
   let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
 
-
   // entfernt das Produkt aus dem Warenkorb, falls die Anzahl = 0
   if (newQuantity <= 0) {
-    removeFromCartMultiRow(index, isSlider);
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    if (isSlider) {
+      renderCartSlider();
+    } else {
+      renderCart();
+    }
+    stopTimer();
+    updateCartIcon();
     return;
   }
 
-  // Anpassung der Anzahl des übergebenen Produktes auf den übergebenen Wert
+  // Anpassung der Anzahl
   cart[index].quantity = newQuantity;
-
-  // fügt den Warenkorb dem localStorage hinzu
   localStorage.setItem('cart', JSON.stringify(cart));
 
-  // ruft entsprechend der aufrufenden Seite die passende Visualisierung auf 
   if (isSlider) {
-    renderCartSlider(); //nur auf cartslider.php nutzbar
+    renderCartSlider();
   } else {
-    renderCart(); // nur auf cart.php nötig
+    renderCart();
   }
+
   updateCartIcon();
 }
+
 
 
 
@@ -299,8 +305,20 @@ function renderCart() {
     }
   });
 
-  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+  const netto = total * 0.81;
+
+  totalDisplay.innerHTML = `Netto: ${netto.toFixed(2)} € <br> Gesamt: ${total.toFixed(2)} €`;
+  checkCheckoutButtonState();
 }
+
+
+
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp nur eine Size im Warenkorb befindet
+ * @param item, index, itemTotal
+ * @author Felix Bartel, Marvin Kunz
+ */
+
 
 function createSingleItemRow(item, index, itemTotal) {
   const row = document.createElement('div');
@@ -389,6 +407,13 @@ function createSingleItemRow(item, index, itemTotal) {
 
 
 
+
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp mehrere Sizes im Warenkorb befinden
+ * @param item, allItemsOfThisType
+ * @author Felix Bartel, Marvin Kunz
+ */
+
 function createMultiItemRow(item, allItemsOfThisType) {
   let totalSum = 0;
 
@@ -434,15 +459,20 @@ function createMultiItemRow(item, allItemsOfThisType) {
     minusButton.classList.add('button', 'minus');
 
     minusButton.addEventListener("click", function (event) {
-      const currentContainerM = event.currentTarget.closest('.cart-item');
-      const buttonsInContainerM = currentContainerM.querySelectorAll("button.minus");
-      const clickedButtonM = event.currentTarget;
+  const currentContainer = event.currentTarget.closest('.cart-item');
+  const allQtyInputs = currentContainer.querySelectorAll('.cart-item-quantity-input');
+  const clickedMinus = event.currentTarget;
+  const allMinusButtons = currentContainer.querySelectorAll('.button.minus');
 
-      const quantityInputInContainerM = currentContainerM.querySelectorAll('.cart-item-quantity-input');
+  const indexFromButtons = Array.from(allMinusButtons).indexOf(clickedMinus);
+  const quantityInput = allQtyInputs[indexFromButtons];
+  const currentQuantity = Number(quantityInput.value);
 
-      const iM = Array.from(buttonsInContainerM).indexOf(clickedButtonM);
-      updateQuantityMultiRow(currentContainerM.querySelector('.cart-item-name').textContent, iM, Number(quantityInputInContainerM[iM].value) - 1, false);
-    });
+  const productName = currentContainer.querySelector('.cart-item-name')?.textContent;
+
+  updateQuantityMultiRow(productName, indexFromButtons, currentQuantity - 1, false);
+});
+
 
     const minusIcon = document.createElement('img');
     minusIcon.src = BASE_URL + '/images/minusBlack.svg';
@@ -507,13 +537,17 @@ function createMultiItemRow(item, allItemsOfThisType) {
     removeBtn.style.gridRow = `${rowIndex} / ${rowIndex + 1}`;
 
     removeBtn.addEventListener("click", function (event) {
-      const currentContainerRB = event.currentTarget.closest('.cart-item');
-      const buttonsInContainerRB = currentContainerRB.querySelectorAll("button.plus");
-      const clickedButtonRB = event.currentTarget;
+      const currentContainer = event.currentTarget.closest('.cart-item');
+      const allRemoveButtons = currentContainer.querySelectorAll(".cart-item-remove-btn");
+      const clickedRemoveButton = event.currentTarget;
 
-      const iRB = Array.from(buttonsInContainerRB).indexOf(clickedButtonRB);
-      removeFromCartMultiRow(currentContainerRB.querySelector('.cart-item-name').textContent, iRB, false);
+      const indexFromButtons = Array.from(allRemoveButtons).indexOf(clickedRemoveButton);
+
+      const productName = currentContainer.querySelector('.cart-item-name')?.textContent;
+
+      removeFromCartMultiRow(productName, indexFromButtons, false);
     });
+
 
     const removeIcon = document.createElement('img');
     removeIcon.src = BASE_URL + '/images/removeIcon.svg';
@@ -543,7 +577,10 @@ function createMultiItemRow(item, allItemsOfThisType) {
  **********************************************/
 
 
-
+/**
+ *  Lädt die serverseitige Warenkorb-Daten eines eingeloggten Users
+ * @author Felix Bartel
+ */
 
 function loadServerCart() {
   fetch('index.php?page=get-cart')
@@ -557,6 +594,13 @@ function loadServerCart() {
     })
     .catch(err => console.error('Fehler beim Laden des Server-Warenkorbs:', err));
 }
+
+
+/**
+ * @param name, image, price, size
+ * @author Felix Bartel, Marvin Kunz
+ */
+
 
 function addToCart(name, image, price, size) {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -594,12 +638,27 @@ function addToCart(name, image, price, size) {
     let existing = cart.find(i => i.name === name && i.size === size);
     if (existing) existing.quantity += 1;
     else cart.push(item);
+    cart.forEach(item => {
+      if(item.name === name){
+        item.lastAdded = true;
+      }
+    });
+    cart = sortCart(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
     openCart();
     renderCartSlider();
     updateCartIcon();
   }
 }
+
+
+
+/**
+ * Ändert serverseitig die Anzahl, löscht wenn Anzahl 0
+ * Schreibt Anzahl in DB, aktualisiert entsprechend den Warenkorb mit dem Aufruf von loadServerCart()
+ * @param itemId, quantity
+ * @author Felix Bartel
+ */
 
 function updateServerQuantity(itemId, quantity) {
   if (quantity <= 0) {
@@ -626,6 +685,15 @@ function updateServerQuantity(itemId, quantity) {
 
 
 
+
+/**
+ * Löscht serverseitig das Item und aktualisiert den Warenkorb über Aufruf von loadServerCart()
+ * @param itemId
+ * @author Felix Bartel
+ */
+
+
+
 function removeServerItem(itemId) {
   fetch('index.php?page=remove-cart-item', {
     method: 'POST',
@@ -645,6 +713,14 @@ function removeServerItem(itemId) {
 
 
 
+
+
+/**
+ * Löscht serverseitig den kompletten Warenkorb, 
+ * aktualisiert entsprechend den Warenkorb mit Aufruf der Funktion loadServerCart()
+ * @author Felix Bartel
+ */
+
 function clearServerCart() {
   fetch('index.php?page=clear-cart', { method: 'POST' })
     .then(() => {
@@ -661,7 +737,11 @@ function clearServerCart() {
 
 
 
-
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp nur eine Size im Warenkorb befindet
+ * @param item, itemTotal
+ * @author Felix Bartel
+ */
 
 function createSingleItemRowServer(item, itemTotal) {
   const row = document.createElement('div');
@@ -747,6 +827,14 @@ function createSingleItemRowServer(item, itemTotal) {
 
 
 
+
+
+/**
+ * Greift, und erstellt Ansicht, wenn für den selben Produkttyp mehrere Sizes im Warenkorb befinden
+ * @param item, allItemsOfThisType
+ * @author Felix Bartel
+ */
+
 function createMultiItemRowServer(item, allItemsOfThisType) {
   const row = document.createElement('div');
   row.className = 'cart-item';
@@ -812,6 +900,18 @@ function createMultiItemRowServer(item, allItemsOfThisType) {
 }
 
 
+
+
+
+
+/**
+ * zeigt alle serverseitigen Warenkorb-Artikel an, 
+ * berechnet den Gesamtpreis und gruppiert Produkte mit mehreren Größen zu einer gemeinsamen Darstellung.
+ * @param cartItems
+ * @author Felix Bartel
+ */
+
+
 function renderServerCart(cartItems) {
   const container = document.getElementById('cart-items');
   const totalDisplay = document.getElementById('cart-total');
@@ -858,7 +958,10 @@ function renderServerCart(cartItems) {
     if (row) container.appendChild(row);
   });
 
-  totalDisplay.textContent = `Gesamt: ${total.toFixed(2)} €`;
+   const netto = total * 0.81;
+
+  totalDisplay.innerHTML = `Netto: ${netto.toFixed(2)} € <br> Gesamt: ${total.toFixed(2)} €`;
+  checkCheckoutButtonState();
 }
 
 
@@ -875,7 +978,7 @@ function renderServerCart(cartItems) {
  **********************************************/
 
 /**
- * zuständig für die Visualisierug der cart.php Seite (Render-Funktion)
+ * zuständig für die Visualisierug der cartslider.php Seite (Render-Funktion)
  * @author Merzan Köse
  */
 
@@ -942,6 +1045,16 @@ function renderClientCartSlider() {
 }
 
 
+
+
+
+
+/**
+ * zeigt alle serverseitigen Warenkorb-Artikel im Slider an, 
+ * @param cartItems
+ * @author Felix Bartel
+ */
+
 function renderServerCartSlider(cartItems) {
   const cartItemsContainer =
     document.getElementById('cartItems') ||
@@ -990,6 +1103,12 @@ function renderServerCartSlider(cartItems) {
     cartTotalSlider.textContent = total.toFixed(2) + " €";
   }
 }
+
+
+
+
+
+
 
 function openCart() {
   const slider = document.getElementById("cartSlider");
@@ -1151,5 +1270,39 @@ function intermediateStepAddToCart() {
   let buttonContent = selectedButton.textContent.slice(0, -1);
 
   addToCart(product.name, product.product_pic1, getTotalPrice(product.priceWithoutTax), buttonContent);
+}
+
+/**
+ * Funktion die den CheckoutBTTN blockiert wenn man kein
+ * Produkt im Warenkobr hat aber in den checkout möchte
+ */
+function checkCheckoutButtonState() {
+  const btn = document.getElementById('checkoutBtn');
+  if (!btn) return;
+
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (isLoggedIn) {
+    fetch('index.php?page=get-cart')
+      .then(res => res.json())
+      .then(cart => {
+        if (!Array.isArray(cart) || cart.length === 0) {
+          disableCheckoutBtn(btn);
+        }
+      })
+      .catch(() => disableCheckoutBtn(btn));
+  } else {
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    if (cart.length === 0) {
+      disableCheckoutBtn(btn);
+    }
+  }
+}
+
+function disableCheckoutBtn(button) {
+  button.disabled = true;
+  button.title = 'Warenkorb ist leer';
+  button.style.opacity = 0.5;
+  button.style.cursor = 'not-allowed';
 }
 

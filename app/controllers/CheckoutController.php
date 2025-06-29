@@ -133,6 +133,7 @@ class CheckoutController
 
         require_once __DIR__ . '/../models/CheckoutModel.php';
         require_once __DIR__ . '/../models/OrderModel.php';
+          require_once __DIR__ . '/../models/ProductModel.php';
 
         $coupon = $_SESSION['coupon'] ?? null;
         $total = CheckoutModel::calculateTotal($cart, $coupon);

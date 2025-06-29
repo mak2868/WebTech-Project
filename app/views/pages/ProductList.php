@@ -73,7 +73,7 @@
           <div class="image-wrapper">
             <!-- Bild-Link zur Produkt-item-Seite -->
             <a href="<?= BASE_URL ?>/index.php?page=item&parent=<?= urlencode($produkt['parent_id']) ?>&cid=<?= urlencode($produkt['cid']) ?>&pid=<?= urlencode($produkt['pid']) ?>">
-              <img src="<?= BASE_URL . '/' . ltrim($produkt['bild'], '/') ?>" alt="<?= htmlspecialchars($produkt['name']) ?>">
+            <img src="<?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name'])?>">
             </a>
             <!-- In den Warenkorb-Icon -->
             <div class="icons">
