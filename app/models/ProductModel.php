@@ -544,7 +544,15 @@ public static function getProductsByParentCategory($parentID)
     $stmt->execute($params);
 
 /* Rueckgabe aller Produkte der Unterkategorien */    
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($products as &$product) {
+    if (!empty($product['bild'])) {
+        $product['bild'] = BASE_URL . $product['bild'];
+    }
+}
+
+return $products;
 }
 
 
