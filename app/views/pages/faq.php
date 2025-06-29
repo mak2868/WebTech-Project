@@ -28,7 +28,6 @@
 <body>
   <?php include __DIR__ . '/../layouts/navbar.php'; ?>
 
-<body>
     <main class="faq-container">
         <h1>Häufig gestellte Fragen (FAQ)</h1>
 

@@ -20,6 +20,7 @@
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+  margin-left: 2rem;
 }
 
 .filter-content {
@@ -43,6 +44,7 @@
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-right: 2rem;
 }
 .slider-wrapper {
   position: relative;
