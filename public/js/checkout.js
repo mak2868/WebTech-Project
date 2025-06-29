@@ -1,3 +1,5 @@
+// Erstellt von Merzan Köse
+
 // Script wird ausgeführt, sobald das DOM vollständig geladen ist
 window.addEventListener("DOMContentLoaded", () => {
   // Prüft, ob der Benutzer eingeloggt ist (vom Server gesetzt)

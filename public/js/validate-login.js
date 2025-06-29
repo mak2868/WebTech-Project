@@ -1,8 +1,4 @@
 // Author: Merzan
-// das meiste Controller
-
-
-
 
 // Referenzen auf die relevanten DOM-Elemente holen
 const username = document.getElementById("username");  // Eingabefeld für Benutzername

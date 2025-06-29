@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/../lib/db.php';
 
+//Autor: Merzan Köse
+
 class CheckoutController
 {
     /**

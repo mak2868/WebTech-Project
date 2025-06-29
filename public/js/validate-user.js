@@ -1,6 +1,4 @@
 // Author: Merzan
-// Meiste Controller
-// Datenbankzugriffe in Model
 
 document.addEventListener("DOMContentLoaded", () => {
   // Zugriff auf die relevanten DOM-Elemente (Eingabefelder & Button)
