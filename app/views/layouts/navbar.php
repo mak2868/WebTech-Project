@@ -21,6 +21,22 @@ function getImagePath($images, $keyword) {
 }
 ?>
 
+
+
+<!-- Hinweis bei deaktiviertem JavaScript -->
+<noscript>
+  <div class="no-js-modal">
+    <div class="modal-content">
+      <h1>JavaScript ist deaktiviert</h1>
+      <p>Bitte aktiviere JavaScript in deinen Browsereinstellungen, um den Webshop zu verwenden.</p>
+    </div>
+  </div>
+</noscript>
+
+
+
+
+
 <div id="navbar" class="navbar">
   <div class="navbar-container">
 
