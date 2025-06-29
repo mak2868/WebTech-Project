@@ -1,4 +1,3 @@
-
 /* ========== Layout-Grundstruktur ========== */
 .checkout-container {
   display: flex;
@@ -6,7 +5,7 @@
   gap: 2rem;
   justify-content: center;
   align-items: flex-start;
-  padding:  6rem 2rem 2rem 2rem;
+  padding: 6rem 2rem 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -117,7 +116,7 @@
 }
 
 .promo-code button {
-  background:  #16b36a;
+  background: #16b36a;
   color: white;
   border: none;
   padding: 0.7rem 1.3rem;
@@ -127,7 +126,7 @@
 }
 
 .promo-code button:hover {
-  background:  #09985a;
+  background: #09985a;
 }
 
 /* ========== Dark Mode Anpassung ========== */
@@ -173,29 +172,19 @@ body.dark-mode .promo-code button:hover {
   object-fit: contain;
 }
 
-.checkout-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
 .checkout-item-img img {
   width: 60px;
   height: auto;
   border-radius: 0.5rem;
 }
 
-.checkout-item-details {
-  display: flex;
-  flex-direction: column;
-}
 
 .checkout-item-title {
   font-weight: bold;
 }
 
-body.dark-mode .checkout-item-info {  /* färbt die Anzahl der einzelnen Produkte und preise weis */
+body.dark-mode .checkout-item-info {
+  /* färbt die Anzahl der einzelnen Produkte und preise weis */
   color: #fff;
 }
 
@@ -204,7 +193,7 @@ footer {
   margin-top: 2rem;
 }
 
-.checkout-summary #cartItems > div {
+.checkout-summary #cartItems>div {
   padding: 0.5rem 0;
   border-bottom: 1px solid #ddd;
 }
@@ -227,12 +216,12 @@ footer {
 }
 
 body.dark-mode .promo-code button {
-  background: #f4c15d; 
+  background: #f4c15d;
   color: #111;
 }
 
 body.dark-mode .promo-code button:hover {
-  background: white; 
+  background: white;
 }
 
 body.dark-mode .qty {
@@ -241,11 +230,9 @@ body.dark-mode .qty {
 }
 
 .summary-savings {
-  color: black; 
+  color: black;
 }
 
-body.dark-mode .summary-savings{
+body.dark-mode .summary-savings {
   color: white;
 }
-
-
