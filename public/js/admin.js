@@ -146,13 +146,13 @@ function displayBestellverwaltung() {
     const container = document.getElementById("allOrdersContainer");
     container.style.display = 'block';
 
-    fetch("index.php?page=admin-get-all-orders")
+    fetch("index.php?page=admin-get-all-orders") // Visualisierung aller Bestellungen
         .then(res => {
             if (!res.ok) throw new Error("Netzwerkfehler");
             return res.json();
         })
         .then(data => {
-            container.innerHTML = ""; // leeren
+            container.innerHTML = ""; 
 
             let currentUser = null;
             data.forEach(order => {
@@ -167,7 +167,6 @@ function displayBestellverwaltung() {
                     container.appendChild(h3);
                 }
 
-                console.log("order_id:", order.order_id);
                 const orderBox = document.createElement('div');
                 orderBox.className = 'order-box';
                 orderBox.dataset.orderId = order.order_id;
@@ -227,21 +226,13 @@ function displayBestellverwaltung() {
             container.dataset.loaded = "true";
         })
         .then(() => {
-            // Alle Status-Selects mit EventListener versehen
             document.querySelectorAll(".order-status-select").forEach(select => {
                 select.addEventListener("change", function () {
                     const newStatus = this.value;
                     const orderBox = this.closest('.order-box');
                     const orderId = orderBox.dataset.orderId;
 
-
-
-                    console.log("Neuer Status:", newStatus);
-                    console.log("oid:", orderId);
-
-
-                    // Ajax an den Server schicken
-                    fetch("index.php?page=admin-update-order-status", {
+                    fetch("index.php?page=admin-update-order-status", { // Übermitteln von Statusänderungen (-> Übergabe an den Controller)
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -318,8 +309,6 @@ function displaySupport() {
                 ticketBox.className = 'ticket-box';
                 ticketBox.dataset.ticketid = ticket.id;
 
-                console.log("tid:" + ticket.id);
-
                 const metaDiv = document.createElement('div');
                 metaDiv.className = 'ticket-meta';
 
@@ -364,8 +353,6 @@ function displaySupport() {
                     const newStatus = this.value;
                     const ticketBox = this.closest('.ticket-box');
                     const ticketId = ticketBox.dataset.ticketid;
-
-                    console.log("Neuer Status:", newStatus);
 
                     fetch("index.php?page=admin-update-ticket-status", { // Änderung des Ticketstatus (Starten des Speicherungsprozesses)
                         method: "POST",
@@ -455,7 +442,6 @@ function displayHinzufuegenUeberkategorie() {
                     return;
                 }
 
-                console.log("fetch kommt");
                 fetch("index.php?page=admin-add-parent-category", { // Anlegen einer neuen Überkategorie (Starten des Speicherungsprozesses)
                     method: "POST",
                     headers: {
@@ -470,8 +456,6 @@ function displayHinzufuegenUeberkategorie() {
                         return response.json();
                     })
                     .then(data => {
-                        console.log("Antwort vom Server:", data);
-
                         if (data.success) {
                             alert("Kategorie erfolgreich hinzugefügt!");
                             input.value = "";
@@ -497,7 +481,6 @@ function showParentCategories() {
     fetch('index.php?page=admin-show-parent-category') // Anzeigen aller Überkategorien
         .then(response => response.text())
         .then(text => {
-            console.log('Raw response text:', text);
             let data;
             try {
                 data = JSON.parse(text);
@@ -555,7 +538,6 @@ async function displayHinzufuegenUnterkategorie() {
     const containerU = document.getElementById('new-category-form');
     containerU.style.display = 'block';
 
-    console.log(parentCategories);
     let selectBox = document.getElementById('parent-category-select');
     selectBox.innerHTML = '';
 
@@ -585,7 +567,6 @@ async function displayHinzufuegenUnterkategorie() {
                     return;
                 }
 
-                console.log("fetch kommt");
                 fetch("index.php?page=admin-add-category", {
                     method: "POST",
                     headers: {
@@ -600,8 +581,6 @@ async function displayHinzufuegenUnterkategorie() {
                         return response.json();
                     })
                     .then(data => {
-                        console.log("Antwort vom Server:", data);
-
                         if (data.success) {
                             alert("Kategorie erfolgreich hinzugefügt!");
                             input.value = "";
@@ -714,7 +693,6 @@ async function displayHinzufuegenProdukte() {
     productDetailInputs.style.display = 'none';
 
     const categoryNameList = await getCategories();
-    console.log(categoryNameList);
 
     let selectBox = document.getElementById('product-select');
     selectBox.innerHTML = '';

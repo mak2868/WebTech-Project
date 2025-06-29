@@ -41,7 +41,6 @@ include __DIR__ . '/../layouts/navbar.php';
 <?php if (!empty($produkte)): ?>
     <script>
         const data = <?php echo json_encode($produkte, JSON_UNESCAPED_UNICODE); ?>;
-        console.log("Daten geladen:", data);
     </script>
 <?php else: ?>
     <script>
