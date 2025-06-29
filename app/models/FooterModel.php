@@ -1,4 +1,13 @@
 <?php
+/**
+ * Lädt Bildpfade, parentId + name für footer.php
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+<?php
 
 require_once __DIR__ . '/../lib/DB.php';
 

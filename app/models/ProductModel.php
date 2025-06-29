@@ -6,6 +6,13 @@ class ProductModel
 {
 
 
+    
+
+/**
+ * Funktion um die Bestseller aus der DB zuholen damit sie in der view home.php präsentiert werden können
+ * @author Felix Bartel
+ */
+
    public static function getBestseller() {
     $pdo = DB::getConnection();
 

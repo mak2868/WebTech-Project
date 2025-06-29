@@ -1,4 +1,18 @@
 <?php
+/**
+ * navbar (view)
+ * Lädt Links dynamisch aus DB
+ * Enthält Meldung für deaktiviertes JavaScript
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
+
+
+<?php
 require_once __DIR__ . '/../../config/config.php';
 
 if (session_status() === PHP_SESSION_NONE) {

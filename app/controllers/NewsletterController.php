@@ -1,4 +1,14 @@
 <?php
+/**
+ * Übergibt Daten an view (footer.php)
+ * Manipuliert Model (NewsletterModel)
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+<?php
 require_once __DIR__ . '/../models/NewsletterModel.php';
 
 class NewsletterController {
