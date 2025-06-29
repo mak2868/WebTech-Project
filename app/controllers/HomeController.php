@@ -1,4 +1,13 @@
 <?php
+/**
+ * Controller für die view home.php
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

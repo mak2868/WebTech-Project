@@ -1,4 +1,15 @@
 <?php
+/**
+ * Ließt JSON aus, befüllt die Datenbank
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
+
+<?php
 // DB-Verbindung herstellen
 $host = 'localhost';
 $db   = 'webtech-projekt';

@@ -1,4 +1,18 @@
 <?php
+/**
+ * Warenkorb (view)
+ * <div class="cart-container" id="cart-items"> wird dynamisch mit den Produkten befüllt.
+ * @author: Felix Bartel, Marvin Kunz
+ */
+?>
+
+
+
+
+
+
+
+<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }

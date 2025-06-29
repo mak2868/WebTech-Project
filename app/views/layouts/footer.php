@@ -1,3 +1,13 @@
+<?php
+/**
+ * footer.php (view)
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
 
 <?php
@@ -21,13 +31,14 @@
 
       <div class="footer-wrapper">
         <div class="footer-links">
-          <a href="<?= BASE_URL ?>/?page=about">About</a>
+          <a href="<?= BASE_URL ?>/?page=faq">FAQ</a>
           <a href="<?= BASE_URL ?>/?page=kontakt">Kontakt</a>
           <?php foreach ($footerLinks as $link): ?>
-            <a href="<?= BASE_URL ?>/?page=<?= htmlspecialchars($link['url']) ?>List">
+            <a href="<?= BASE_URL ?>/index.php?page=productList&parentId=<?= urlencode($link['id']) ?>">
               <?= htmlspecialchars($link['name']) ?>
-            </a>
-          <?php endforeach; ?> 
+              </a>
+            <?php endforeach; ?>
+ 
         </div>
         <div class="footer-social">
           <?php foreach ($icons as $icon): ?>                                                   

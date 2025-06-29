@@ -1,3 +1,15 @@
+
+/**
+ * navbar.js für die Steuerung von scroll, hover, darkmode verhalten
+ * auswechseln der icons je nach Status
+ * Mobile Burger Menü Funktionalität
+ * @author Felix Bartel
+ */
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.getElementById('navbar');
   const burgerBtn = document.getElementById('burgerBtn');
@@ -13,6 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let isScrolled = false;
   let isHover = false;
 
+
+
+  
+  /**
+   * CSS Klassen werden gesetzt, je nach Zustand der zuvor gesetzten Variblen (isDark, isScrolled, isHover)
+   * Da das Darkmode-Verhalten über den Mond/Sonne Button in Navbar gesteuert wird, wird hier auch die Klasse dark-mode im body gesetzt
+   */
+
   function updateNavbar() {
     navbar.classList.toggle('dark-mode', isDark);
     navbar.classList.toggle('scrolled', isScrolled);
@@ -26,7 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Cart-Icon-Update
+  /**
+   * Prüft ob der User eingeloggt ist, wenn ja holt Warenkorb serversetig (fetch),
+   * wenn nein dann clientseitig aus localStorage
+   * Icon ändert sich wenn Artikel im Warenkorb sind 
+   * (Echtzeitaktualisierung, da die Funktion updateCartIcon bei jeglichen Funktionen im cart.js, welche Einfluss darauf haben
+   * ob Produkte im Warenkorb sind, hinzugefügt wurde.)
+   */
+
+
   window.updateCartIcon = function updateCartIcon() {
     if (!cartIcon) return;
 
@@ -78,12 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Burger Menü Logik
   burgerBtn?.addEventListener('click', () => {
-  mobileMenu?.classList.toggle('open');
-  burgerIcon?.classList.toggle('open');
-});
+    mobileMenu?.classList.toggle('open'); //enthält gesamten Inhalt von Mobile Menü
+    burgerIcon?.classList.toggle('open');
+  });
 
 
-  // Mobile Dropdowns aufklappen
+  // Mobile Dropdowns aufklappen: Klasse .open (display:flex) wird gesetzt bei click
   document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
     toggle.addEventListener('click', () => {
       const parent = toggle.closest('.mobile-dropdown');

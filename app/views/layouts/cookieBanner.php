@@ -1,3 +1,14 @@
+<?php
+/**
+ * cookieBanner
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
+
 <div id="cookie-banner" class="cookie-banner hidden">
   <div class="cookie-banner__content">
     <h3 class="cookie-banner__title">

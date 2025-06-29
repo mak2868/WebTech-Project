@@ -8,7 +8,8 @@ require_once '../app/lib/DB.php';
  * die Benutzerdaten und Benutzeradressen betreffen.
  * Es agiert als Schnittstelle zwischen der Anwendung und den 'users'-
  * und 'user_addresses'-Tabellen in der Datenbank.
- * @author Merzan
+ * @author Merzan Köse
+ * @author (Bestellhistorie) Felix Bartel
  */
 class UserModel
 {
@@ -240,6 +241,10 @@ class UserModel
 
 
 
+/**
+ * Holt sich die, für die Bestellübersicht nötigen, Daten aus der Tabelle orders und order_items
+ * @author: Felix Bartel
+ */
 
     public static function getOrdersWithItems($userId)
     {

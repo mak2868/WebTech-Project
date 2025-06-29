@@ -1,4 +1,18 @@
 <?php
+/**
+ * navbar (view)
+ * Lädt Links dynamisch aus DB
+ * Enthält Meldung für deaktiviertes JavaScript
+ * @author: Felix Bartel
+ */
+?>
+
+
+
+
+
+
+<?php
 require_once __DIR__ . '/../../config/config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -22,6 +36,22 @@ function getImagePath($images, $keyword)
   return ''; // fallback
 }
 ?>
+
+
+
+<!-- Hinweis bei deaktiviertem JavaScript -->
+<noscript>
+  <div class="no-js-modal">
+    <div class="modal-content">
+      <h1>JavaScript ist deaktiviert</h1>
+      <p>Bitte aktiviere JavaScript in deinen Browsereinstellungen, um den Webshop zu verwenden.</p>
+    </div>
+  </div>
+</noscript>
+
+
+
+
 
 <div id="navbar" class="navbar">
   <div class="navbar-container">

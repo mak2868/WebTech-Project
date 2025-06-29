@@ -88,7 +88,7 @@
           </div>
           <p class="desc"><?= htmlspecialchars($produkt['description'] ?? '') ?></p>
           
-          <p class="price"><?= number_format(floatval($produkt['preis']), 2, ',', '.') ?>€</p>
+          <p class="price"><?= number_format(floatval($produkt['preis']), 2, '.') ?>€</p>
         </div>
       <?php endforeach; ?>
     </div>
