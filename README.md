@@ -10,7 +10,8 @@ Erstellung eines Webshops für Fitnessprodukte (v.a. Proteinpulver und Proteinri
 
 Sonstige Informationen: 
      
-        - primär benutzter Browser: Chrome 
+        - primär benutzter Browser: Chrome
+        - Name des Datenbankschemas; webtech-projekt
         - Zugangsdaten: 
                 - Admin: 
                         Benutzername: Admin Root
