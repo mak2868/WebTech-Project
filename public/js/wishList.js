@@ -2,7 +2,7 @@
 // Datenbankzugriffe in Model
 
 
-function changeWishListStatus(name, image, price){
+function changeWishListStatus(){
 
     const pic = document.getElementById('FavButton');
 

@@ -1,7 +1,7 @@
 // Author: Marvin
 
 
-window.createStars = createStars;
+// window.createStars = createStars;
 window.openPanel = openPanel;
 window.switchRecipe = switchRecipe;
 window.switchProductbild = switchProductbild;
@@ -9,7 +9,6 @@ window.getTotalPrice = getTotalPrice;
 window.getPricePerKG = getPricePerKG;
 window.changeSelectedSize = changeSelectedSize;
 window.renderItemSite = renderItemSite;
-window.intermediateStepChangeWishListStatus = intermediateStepChangeWishListStatus;
 window.intermediateStepRenderItemSite = intermediateStepRenderItemSite;
 
 let product;
@@ -297,101 +296,101 @@ function setPositionFirstLine() {
     }
 }
 
-function createStars(rating) {
-    return new Promise((resolve, reject) => {
+// function createStars(rating) {
+//     return new Promise((resolve, reject) => {
 
-        const emptyImg = new Image();
-        emptyImg.src = "/WebTech-Project/public/images/StarEmpty.svg";
+//         const emptyImg = new Image();
+//         emptyImg.src = "/WebTech-Project/public/images/StarEmpty.svg";
 
-        const oneQImg = new Image();
-        oneQImg.src = "/WebTech-Project/public/images/StarOneQuarter.svg";
+//         const oneQImg = new Image();
+//         oneQImg.src = "/WebTech-Project/public/images/StarOneQuarter.svg";
 
-        const halfImg = new Image();
-        halfImg.src = "/WebTech-Project/public/images/StarHalf.svg";
+//         const halfImg = new Image();
+//         halfImg.src = "/WebTech-Project/public/images/StarHalf.svg";
 
-        const threeQImg = new Image();
-        threeQImg.src = "/WebTech-Project/public/images/StarThreeQuarter.svg";
+//         const threeQImg = new Image();
+//         threeQImg.src = "/WebTech-Project/public/images/StarThreeQuarter.svg";
 
-        const fullImg = new Image();
-        fullImg.src = "/WebTech-Project/public/images/StarFull.svg";
+//         const fullImg = new Image();
+//         fullImg.src = "/WebTech-Project/public/images/StarFull.svg";
 
-        const images = [emptyImg, oneQImg, halfImg, threeQImg, fullImg];
+//         const images = [emptyImg, oneQImg, halfImg, threeQImg, fullImg];
 
-        let imagesLoaded = 0;
-        const totalImages = images.length;
+//         let imagesLoaded = 0;
+//         const totalImages = images.length;
 
-        const checkLoaded = () => {
-            imagesLoaded++;
-            if (imagesLoaded === totalImages) {
-                resolve([emptyImg, oneQImg, halfImg, threeQImg, fullImg]);
-            }
-        };
+//         const checkLoaded = () => {
+//             imagesLoaded++;
+//             if (imagesLoaded === totalImages) {
+//                 resolve([emptyImg, oneQImg, halfImg, threeQImg, fullImg]);
+//             }
+//         };
 
-        images.forEach((img) => {
-            img.onload = checkLoaded;
-            img.onerror = () => {
-                console.error(`Fehler beim Laden des Bildes: ${img.src}`);
-                reject("Error loading images");
-            };
-        });
-    }).then(([emptyImg, oneQImg, halfImg, threeQImg, fullImg]) => {
+//         images.forEach((img) => {
+//             img.onload = checkLoaded;
+//             img.onerror = () => {
+//                 console.error(`Fehler beim Laden des Bildes: ${img.src}`);
+//                 reject("Error loading images");
+//             };
+//         });
+//     }).then(([emptyImg, oneQImg, halfImg, threeQImg, fullImg]) => {
 
-        const mod = rating % 1;
-        const fullStarsCount = Math.floor(rating);
+//         const mod = rating % 1;
+//         const fullStarsCount = Math.floor(rating);
 
-        let threeQStarCount = false;
-        let halfStarCount = false;
-        let oneQStarCount = false;
+//         let threeQStarCount = false;
+//         let halfStarCount = false;
+//         let oneQStarCount = false;
 
-        if (mod !== 0) {
-            if (mod >= 0.75) {
-                threeQStarCount = true;
-            } else if (mod >= 0.5) {
-                halfStarCount = true;
-            } else if (mod >= 0.25) {
-                oneQStarCount = true;
-            }
-        }
+//         if (mod !== 0) {
+//             if (mod >= 0.75) {
+//                 threeQStarCount = true;
+//             } else if (mod >= 0.5) {
+//                 halfStarCount = true;
+//             } else if (mod >= 0.25) {
+//                 oneQStarCount = true;
+//             }
+//         }
 
-        const canvas = document.createElement("canvas");
-        canvas.width = 90;
-        canvas.height = 18;
-        const ctx = canvas.getContext("2d");
+//         const canvas = document.createElement("canvas");
+//         canvas.width = 90;
+//         canvas.height = 18;
+//         const ctx = canvas.getContext("2d");
 
-        let currentPosition = 0;
+//         let currentPosition = 0;
 
-        for (let i = 0; i < fullStarsCount; i++) {
-            ctx.drawImage(fullImg, currentPosition * 16 + currentPosition * 2, 0);
-            currentPosition++;
-        }
+//         for (let i = 0; i < fullStarsCount; i++) {
+//             ctx.drawImage(fullImg, currentPosition * 16 + currentPosition * 2, 0);
+//             currentPosition++;
+//         }
 
-        if (oneQStarCount) {
-            ctx.drawImage(oneQImg, currentPosition * 16 + currentPosition * 2, 0);
-            currentPosition++;
-        }
+//         if (oneQStarCount) {
+//             ctx.drawImage(oneQImg, currentPosition * 16 + currentPosition * 2, 0);
+//             currentPosition++;
+//         }
 
-        if (halfStarCount) {
-            ctx.drawImage(halfImg, currentPosition * 16 + currentPosition * 2, 0);
-            currentPosition++;
-        }
+//         if (halfStarCount) {
+//             ctx.drawImage(halfImg, currentPosition * 16 + currentPosition * 2, 0);
+//             currentPosition++;
+//         }
 
-        if (threeQStarCount) {
-            ctx.drawImage(threeQImg, currentPosition * 16 + currentPosition * 2, 0);
-            currentPosition++;
-        }
+//         if (threeQStarCount) {
+//             ctx.drawImage(threeQImg, currentPosition * 16 + currentPosition * 2, 0);
+//             currentPosition++;
+//         }
 
-        for (let i = currentPosition; i < 5; i++) {
-            ctx.drawImage(emptyImg, currentPosition * 16 + currentPosition * 2, 0);
-            currentPosition++;
-            canvas.classList.add("invert-keep");
-        }
+//         for (let i = currentPosition; i < 5; i++) {
+//             ctx.drawImage(emptyImg, currentPosition * 16 + currentPosition * 2, 0);
+//             currentPosition++;
+//             canvas.classList.add("invert-keep");
+//         }
 
-        ctx.scale(0.15, 0.15);
-        return canvas;
-    }).catch((error) => {
-        console.error("Fehler beim Laden der Bilder:", error);
-    });
-};
+//         ctx.scale(0.15, 0.15);
+//         return canvas;
+//     }).catch((error) => {
+//         console.error("Fehler beim Laden der Bilder:", error);
+//     });
+// };
 
 function openPanel(activatedIndex) {
     const acc = document.querySelectorAll('#accordion');
@@ -551,15 +550,6 @@ function changeSelectedSize(selectedButton) {
 }
 
 
-// Model, ist halt so ein Daten bums
-function intermediateStepChangeWishListStatus() {
-    const name = product.name;
-    const image = '/WebTech-Project/public/images/Choco Whey.webp';
-    const price = getTotalPrice(product.priceWithoutTax);
-
-    changeWishListStatus(name, image, price);
-}
-
 let previousWidth = window.innerWidth;
 
 setInterval(function () {
@@ -567,7 +557,7 @@ setInterval(function () {
 
     if (previousWidth !== currentWidth) {
         previousWidth = currentWidth;
-        setPositionFirstLine();  // Deine Funktion hier aufrufen
+        setPositionFirstLine();
     }
 }, 100);
 

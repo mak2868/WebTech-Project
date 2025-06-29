@@ -102,7 +102,7 @@ include __DIR__ . '/../layouts/navbar.php';
                         <img id="VersandButtonImg" src="" alt="">
                         <span>In den Warenkorb</span>
                     </button>
-                    <img id="FavButton" onclick="intermediateStepChangeWishListStatus()" src="" alt="">
+                    <img id="FavButton" onclick="changeWishListStatus()" src="" alt="">
                     <br>
                 </div>
                 <p id="statusDistribution"></p>
