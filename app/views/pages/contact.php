@@ -6,14 +6,15 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>XPN | Kontakt</title>
 
     <!-- CSS -->
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
-  <link rel="stylesheet" href="<?= BASE_URL ?>/css/contact.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/footer.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>/css/contact.css">
 
 <!-- JS -->
   <script src="<?= BASE_URL ?>/js/navbar.js" defer></script>

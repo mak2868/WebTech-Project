@@ -11,26 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterDropdown = document.querySelector('.filter-dropdown');
   const container = document.querySelector('.product-grid');
 
-  
-priceRange.addEventListener('input', () => {
-  const value = priceRange.value;
-  priceValue.textContent = value + '€';
 
-  // Position berechnen
-  const percent = (value - priceRange.min) / (priceRange.max - priceRange.min);
-  const sliderWidth = priceRange.offsetWidth;
-  const thumbOffset = sliderWidth * percent;
-
-  priceValue.style.left = `${thumbOffset}px`;
-
-  filterAndSortProducts();
-});
-
-  // Produkte initial speichern, damit immer ueber alle Produkte gefiltert/sortiert wird
+  // Produkte initial speichern, damit immer ueber alle Produkte gefiltert/sortiert wird, 
+  // sonst werden nach erstem aussortieren die PRodukte nicht wieder angezeigt, auch wenn deren Preis wieder ueberschritten wird
   originalProducts = Array.from(container.querySelectorAll('.product-card'));
 
   priceRange.addEventListener('input', () => {
-    priceValue.textContent = '€' + priceRange.value;
+    priceValue.textContent =priceRange.value + '€';
     filterAndSortProducts();
   });
 

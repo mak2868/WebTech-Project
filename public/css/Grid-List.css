@@ -50,19 +50,14 @@
   margin-top: 1.5rem;
 }
 
-#price-range {
+.price-range {
   width: 100%;
 }
 
-#price-value {
-  position: absolute;
-  top: 100%; /* unterhalb des Sliders zuzeigen */
-  right: 0;
-  transform: translateX(-50%);
-  white-space: nowrap;
+.price-value {
+  position: static;
+  margin-top: 0.5rem;
   font-size: 0.9rem;
-  margin-top: 4px;
-  transition: rigth 0.1s ease-out;
 }
 
 /* ========== Produkt-Grid ========== */
@@ -178,6 +173,42 @@
 }
 
 /* ========== Darkmode ========== */
-.dark-mode .product-card{
-  background-color: darkgrey;
+body.dark-mode .product-card {
+  background-color: #444;
+  color: #fff;
+}
+
+body.dark-mode .title,
+body.dark-mode .size,
+body.dark-mode .desc,
+body.dark-mode .rating,
+body.dark-mode .reviews,
+body.dark-mode .price,
+body.dark-mode .price-kg,
+body.dark-mode .flavor {
+  color: #fff;
+}
+
+body.dark-mode .reviews {
+  color: #fff;
+}
+
+body.dark-mode .filter-content {
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .sort-dropdown select {
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #777;
+}
+
+body.dark-mode .image-wrapper {
+  background-color: #555;
+}
+
+body.dark-mode #price-value {
+  color: #fff;
 }
