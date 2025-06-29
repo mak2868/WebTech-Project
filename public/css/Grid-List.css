@@ -18,8 +18,9 @@
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
-  color: white;
+  color: #fff;
   cursor: pointer;
+  margin-left: 2rem;
 }
 
 .filter-content {
@@ -27,7 +28,7 @@
   position: absolute;
   top: 2.5rem;
   left: 1.5rem;
-  background-color: white;
+  background-color: #fff;
   padding: 2.5rem;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -43,6 +44,7 @@
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
+  margin-right: 2rem;
 }
 .slider-wrapper {
   position: relative;
@@ -79,12 +81,11 @@
   transition: transform 0.2s ease;
 }
 
-/* Ergänzung für die Icon-Position */
 .image-wrapper {
   position: relative;
   margin-bottom: 0.25rem;
   padding-top: 2rem;
-  background-color:lightgrey;
+  background-color:#cccccc;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -120,7 +121,6 @@
   height: 18px;
   object-fit: contain;
 }
-
 
 .flavor {
   font-size: 0.9rem;
@@ -194,9 +194,9 @@ body.dark-mode .reviews {
 }
 
 body.dark-mode .filter-content {
-  background-color: #333;
+  background-color: #555;
   color: #fff;
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 8px #fff;
 }
 
 body.dark-mode .sort-dropdown select {

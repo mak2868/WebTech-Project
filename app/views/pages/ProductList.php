@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XPN | Produkte</title>
 
-    <!-- CSS -->
+  <!-- CSS -->
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css" />
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/Grid-List.css" />
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/navbar_transparent.css" />
@@ -25,8 +25,8 @@
   <script src="<?= BASE_URL ?>/js/loadStars.js" defer></script>
 
 
-   <!-- Head-Datei -->
-    <?php include __DIR__ . '/../layouts/head.php'; ?>
+  <!-- Head-Datei -->
+  <?php include __DIR__ . '/../layouts/head.php'; ?>
 
     
 </head>
@@ -37,10 +37,14 @@
   <main>
     <!-- Filter- und Sortierleiste -->
     <div class="filter-sort-bar">
+
+    <!-- Filter ausklappbar per button -->
       <div class="filter-dropdown">
         <button id="filter-toggle"> Filter</button>
       <div class="filter-content" id="filter-content">
         <label for="price-range">Max. Preis:</label>
+
+      <!-- Slider zum einstellen der Preisrange im Filter -->
         <div class="slider-wrapper">
          <input type="range" id="price-range" min="0" max="230" value="180">
         <div id="price-value">180€</div>
@@ -48,6 +52,7 @@
       </div>
     </div>
 
+  <!-- Sortierbereich -->
     <div class="sort-dropdown">
       <label for="sort-select">Sortieren:</label>
       <select id="sort-select">
@@ -60,14 +65,17 @@
     </div>
   </div>
 
+  <!-- Produktuebersicht -->
     <div class="container">
       <div class="product-grid">
       <?php foreach ($produkte as $produkt): ?>
         <div class="product-card" data-price="<?= floatval($produkt['preis']) ?>">
           <div class="image-wrapper">
+            <!-- Bild-Link zur Produkt-item-Seite -->
             <a href="<?= BASE_URL ?>/index.php?page=item&parent=<?= urlencode($produkt['parent_id']) ?>&cid=<?= urlencode($produkt['cid']) ?>&pid=<?= urlencode($produkt['pid']) ?>">
             <img src="<?= htmlspecialchars($produkt['bild']) ?>" alt="<?= htmlspecialchars($produkt['name'])?>">
             </a>
+            <!-- In den Warenkorb-Icon -->
             <div class="icons">
               <div class="icon" onclick="addToCart(
                 '<?= htmlspecialchars($produkt['name']) ?>',
@@ -79,15 +87,18 @@
               </div>
       </div>
           </div>
+          <!-- Infos zum Produkt -->
           <p class="flavor"><?= htmlspecialchars($produkt['geschmack'] ?? '') ?></p>
           <h3 class="title"><?= htmlspecialchars($produkt['name']) ?></h3>
           <p class="size"><?= htmlspecialchars($produkt['size'] ?? '') ?> g</p>
+          <!-- Bewertung und Anzahl -->
           <div class="rating">
             <div class="stars" data-rating="<?= htmlspecialchars($produkt['rating'] ?? '0') ?>"></div>
             <span class="reviews">(<?= htmlspecialchars($produkt['raters_count'] ?? '0') ?>)</span>
           </div>
+          <!-- Beschreibung -->
           <p class="desc"><?= htmlspecialchars($produkt['description'] ?? '') ?></p>
-          
+          <!-- Preisanzeige -->
           <p class="price"><?= number_format(floatval($produkt['preis']), 2, '.') ?>€</p>
         </div>
       <?php endforeach; ?>
@@ -101,4 +112,3 @@
   <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
 </html>
-

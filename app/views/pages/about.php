@@ -29,7 +29,7 @@
 
   <main class="about-container">
     
-    <!-- Wer sind wir? - kurze Geschichte zu XPN und uns -->
+<!-- Wer sind wir? - kurze Geschichte zu XPN und uns -->
     <section>
       <h2>Wer sind wir?</h2>
       <p>
@@ -45,7 +45,7 @@
       </p><br><br>
     </section>
 
-    <!-- Teamvorstellung mit Bilder & Kurztext -->
+<!-- Teamvorstellung mit Bilder & Kurztext -->
     <section>
       <h2>Unser Team</h2>
 
@@ -82,7 +82,7 @@
       </div><br><br>
     </section>
 
-    <!-- Unsere Motivation -->
+<!-- Unsere Motivation -->
     <section>
       <h2>Unsere Motivation</h2>
       <p>
