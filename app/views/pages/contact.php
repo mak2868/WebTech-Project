@@ -32,12 +32,15 @@
 
       <h1>Kontaktformular</h1>
 
+<!-- PHP-Bedingung: Zeigt Fehlermeldung, wenn $error gesetzt ist -->
+<!-- Wenn kein Fehler vorhanden, sondern erfolgreich abgelaufen: Zeigt Erfolgsnachricht -->
       <?php if (!empty($error)): ?>
         <p class="form-message error"><?= htmlspecialchars($error) ?></p>
       <?php elseif (!empty($success)): ?>
         <p class="form-message success"><?= htmlspecialchars($success) ?></p>
       <?php endif; ?>
 
+<!-- HTML-Formular zur Kontaktaufnahme mittels Name, E-Mail, Betreff und die Nachricht-->
       <form id="contactForm" action="index.php?page=kontakt" method="post">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" required>
@@ -50,7 +53,8 @@
 
         <label for="message">Nachricht</label>
         <textarea name="message" id="message" required></textarea>
-
+        
+<!-- Absende-Button (initial deaktiviert) -->
         <button type="submit" id="submitBtn" disabled>Absenden</button>
       </form>
     </div>

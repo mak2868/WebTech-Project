@@ -1,6 +1,7 @@
 <!-- erstellt von: Nick Zetzmann -->
 
 <?php require_once __DIR__ . '/../../config/config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -31,6 +32,10 @@
     <main class="faq-container">
         <h1>Häufig gestellte Fragen (FAQ)</h1>
 
+<!-- Jede Frage besteht aus einem Button und einem versteckten Antwortbereich -->
+<!-- 'aria' sorgt für Barrierefreiheit: screenreader koennen erkennen, ob die Antwort sichtbar ist -->
+<!-- auch ohne 'aria' moeglich, via hidden: z.B. hier faq-answer hidden; CSS: display:none -->
+<!-- und dann in der JAVAScript per Klick-Eventlistener naechstes Element, hier Antwort, auswaehlen und CSS hidden per toggle umschalten, folglich Antwort ist sichtbar  -->
        <section class="faq-item">
             <button class="faq-question" aria-expanded="false" aria-controls="faq1">Wer steht hinter XPN?</button>
             <div id="faq1" class="faq-answer" hidden>
