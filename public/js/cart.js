@@ -456,19 +456,19 @@ function createMultiItemRow(item, allItemsOfThisType) {
     minusButton.classList.add('button', 'minus');
 
     minusButton.addEventListener("click", function (event) {
-  const currentContainer = event.currentTarget.closest('.cart-item');
-  const allQtyInputs = currentContainer.querySelectorAll('.cart-item-quantity-input');
-  const clickedMinus = event.currentTarget;
-  const allMinusButtons = currentContainer.querySelectorAll('.button.minus');
+      const currentContainer = event.currentTarget.closest('.cart-item');
+      const allQtyInputs = currentContainer.querySelectorAll('.cart-item-quantity-input');
+      const clickedMinus = event.currentTarget;
+      const allMinusButtons = currentContainer.querySelectorAll('.button.minus');
 
-  const indexFromButtons = Array.from(allMinusButtons).indexOf(clickedMinus);
-  const quantityInput = allQtyInputs[indexFromButtons];
-  const currentQuantity = Number(quantityInput.value);
+      const indexFromButtons = Array.from(allMinusButtons).indexOf(clickedMinus);
+      const quantityInput = allQtyInputs[indexFromButtons];
+      const currentQuantity = Number(quantityInput.value);
 
-  const productName = currentContainer.querySelector('.cart-item-name')?.textContent;
+      const productName = currentContainer.querySelector('.cart-item-name')?.textContent;
 
-  updateQuantityMultiRow(productName, indexFromButtons, currentQuantity - 1, false);
-});
+      updateQuantityMultiRow(productName, indexFromButtons, currentQuantity - 1, false);
+    });
 
 
     const minusIcon = document.createElement('img');
@@ -635,7 +635,7 @@ function addToCart(name, image, price, size) {
     if (existing) existing.quantity += 1;
     else cart.push(item);
     cart.forEach(item => {
-      if(item.name === name){
+      if (item.name === name) {
         item.lastAdded = true;
       }
     });
@@ -954,7 +954,7 @@ function renderServerCart(cartItems) {
     if (row) container.appendChild(row);
   });
 
-   const netto = total * 0.81;
+  const netto = total * 0.81;
 
   totalDisplay.innerHTML = `Netto: ${netto.toFixed(2)} € <br> Gesamt: ${total.toFixed(2)} €`;
   checkCheckoutButtonState();

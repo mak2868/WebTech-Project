@@ -2,13 +2,16 @@
 
 require_once __DIR__ . '/../lib/db.php';
 
+//Autor: Merzan Köse
+
 class CheckoutController
 {
     /**
      * Zeigt die Checkout-Seite an und behandelt ggf. Gutscheineingabe per POST.
      */
     public function showCheckout()
-    {    $message = null;
+    {
+        $message = null;
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -34,8 +37,8 @@ class CheckoutController
                 if ($coupon) {
                     // Gutschein-Daten in der Session speichern
                     $_SESSION['coupon'] = [
-                        'code'  => $coupon['code'],
-                        'type'  => $coupon['discount_type'],
+                        'code' => $coupon['code'],
+                        'type' => $coupon['discount_type'],
                         'value' => (float) $coupon['discount_value']
                     ];
                 } else {
@@ -45,11 +48,11 @@ class CheckoutController
         }
 
         // Checkout-Daten vorbereiten
-        $userId    = $_SESSION['user']['id'];
-        $user      = UserModel::getUserById($userId);
+        $userId = $_SESSION['user']['id'];
+        $user = UserModel::getUserById($userId);
         $cartItems = CartModel::getCartItems($userId);
-        $coupon    = $_SESSION['coupon'] ?? null;
-        $address   = UserModel::getUserAddressByUserId($userId);
+        $coupon = $_SESSION['coupon'] ?? null;
+        $address = UserModel::getUserAddressByUserId($userId);
 
         // Checkout-View laden
         require __DIR__ . '/../views/pages/checkout.php';
@@ -78,8 +81,8 @@ class CheckoutController
 
             if ($coupon) {
                 $_SESSION['coupon'] = [
-                    'code'  => $coupon['code'],
-                    'type'  => $coupon['discount_type'],
+                    'code' => $coupon['code'],
+                    'type' => $coupon['discount_type'],
                     'value' => (float) $coupon['discount_value']
                 ];
                 echo json_encode(['success' => true]);
@@ -133,7 +136,7 @@ class CheckoutController
 
         require_once __DIR__ . '/../models/CheckoutModel.php';
         require_once __DIR__ . '/../models/OrderModel.php';
-          require_once __DIR__ . '/../models/ProductModel.php';
+        require_once __DIR__ . '/../models/ProductModel.php';
 
         $coupon = $_SESSION['coupon'] ?? null;
         $total = CheckoutModel::calculateTotal($cart, $coupon);

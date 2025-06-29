@@ -1,8 +1,15 @@
 <?php
+/**
+ * 
+ * @author: Merzan Köse
+ */
+?>
+
+<?php
 require_once __DIR__ . '/../../config/config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Session nur starten, wenn sie noch nicht läuft
+  session_start(); // Session nur starten, wenn sie noch nicht läuft
 }
 //Author: Merzan
 // Aktuelle Gutschein-Daten (für Anzeige und JS)
@@ -14,6 +21,7 @@ $message = $message ?? null;
 
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8">
   <!--MetatTag das uns  respensive design ermöglicht-->
@@ -28,8 +36,8 @@ $message = $message ?? null;
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/cookieBanner.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/css/checkout.css">
   <script>
-  window.BASE_URL = "<?= BASE_URL ?>";
-</script>
+    window.BASE_URL = "<?= BASE_URL ?>";
+  </script>
 
 
   <!-- JS -->
@@ -44,7 +52,7 @@ $message = $message ?? null;
   <!-- Head-Datei -->
   <?php include __DIR__ . '/../layouts/head.php'; ?>
 
-  
+
 
   <!-- Daten für JavaScript bereitstellen -->
   <script>
@@ -95,7 +103,8 @@ $message = $message ?? null;
         <!-- Land -->
         <div class="form-group">
           <label>Land:</label>
-          <input type="text" name="country" value="<?= htmlspecialchars($address['country'] ?? 'Deutschland') ?>" required>
+          <input type="text" name="country" value="<?= htmlspecialchars($address['country'] ?? 'Deutschland') ?>"
+            required>
         </div>
 
         <!-- Versteckte Daten und Button -->
@@ -143,4 +152,5 @@ $message = $message ?? null;
   <?php include __DIR__ . '/../layouts/cookieBanner.php'; ?>
   <?php include __DIR__ . '/../layouts/footer.php'; ?>
 </body>
+
 </html>
