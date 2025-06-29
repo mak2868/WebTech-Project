@@ -64,7 +64,6 @@ function sortCart(cart) {
  */
 function getIndexInCart(name, indexFromButtons) {
   let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
-  console.log(cart);
   // Variable, die das Auftreten der unterschiedlichen Größen eines Produktes zählt
   let countItemWithName = 0;
 
@@ -102,7 +101,6 @@ function getIndexInCart(name, indexFromButtons) {
 function removeFromCart(index, isSlider) {
   let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
   cart.splice(index, 1); // entfernt das Produkt
-  console.log("ja");
   // stoppt den Timer, falls der Warenkorb leer ist
   if (cart.length === 0) {
     stopTimer();
@@ -133,7 +131,6 @@ function removeFromCart(index, isSlider) {
  */
 function removeFromCartMultiRow(name, indexFromButtons, isSlider) {
   let indexInCart = getIndexInCart(name, indexFromButtons);
-  console.log("indexInCart");
   removeFromCart(indexInCart, isSlider);
 }
 
@@ -596,7 +593,6 @@ function addToCart(name, image, price, size) {
     })
       .then(res => res.text())
       .then(text => {
-        console.log('Antwort vom Server:', text);
         try {
           const json = JSON.parse(text);
           openCart();
