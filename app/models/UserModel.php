@@ -257,6 +257,7 @@ class UserModel
             o.order_date,
             o.status,
             o.total,
+            o.user_id,
             ua.street,
             ua.postal_code,
             ua.city,
@@ -280,6 +281,7 @@ class UserModel
             o.order_date,
             o.status,
             o.total,
+            o.user_id,
             ua.street,
             ua.postal_code,
             ua.city,
@@ -301,26 +303,30 @@ class UserModel
         $stmt->execute(['user_id' => $userId]);
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        // Gruppieren nach Bestellung
-        $orders = [];
-        foreach ($rows as $row) {
-            $id = $row['order_id'];
-            if (!isset($orders[$id])) {
-                $orders[$id] = [
-                    'order_date' => $row['order_date'],
-                    'status' => $row['status'],
-                    'total' => $row['total'],
-                    'shipping_address' => "{$row['street']}, {$row['postal_code']} {$row['city']}, {$row['country']}",
-                    'items' => []
-                ];
-            }
-            $orders[$id]['items'][] = [
-                'product_name' => $row['product_name'],
-                'product_image' => $row['product_image'],
-                'quantity' => $row['quantity'],
-                'size' => $row['size'] ?? null
+    // Gruppieren nach Bestellung
+    $orders = [];
+    foreach ($rows as $row) {
+        $id = $row['order_id'];
+        if (!isset($orders[$id])) {
+            $orders[$id] = [
+                'order_id' => $id, 
+                'user_id' => $row['user_id'],
+                'order_date' => $row['order_date'],
+                'status' => $row['status'],
+                'total' => $row['total'],
+                'shipping_address' => "{$row['street']}, {$row['postal_code']} {$row['city']}, {$row['country']}",
+                'items' => []
             ];
         }
+        $orders[$id]['items'][] = [
+            'product_name' => $row['product_name'],
+            'product_image' => $row['product_image'],
+            'quantity' => $row['quantity'],
+            'size' => $row['size'] ?? null
+        ];
+    }
+
+    ksort($orders);
 
         return $orders;
     }

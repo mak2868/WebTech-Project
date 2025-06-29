@@ -22,7 +22,7 @@ function getCart() {
 
 
 /**
- * Sortiert den Warenkorb nach: Name und Größe de Produktes, zsätzlich stehen alle Größen des zuletzt hinzugefügten Produktes ganz vorne
+ * Sortiert den Warenkorb nach: Name und Größe des Produktes, zusätzlich stehen alle Größen des zuletzt hinzugefügten Produktes ganz vorne
  * @param {Warenkorb, der zuvor geladen wurde} cart 
  * @returns nach festgelegten Regeln sortierten Warenkorb
  * @author Marvin Kunz
@@ -64,10 +64,8 @@ function sortCart(cart) {
  */
 function getIndexInCart(name, indexFromButtons) {
   let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
-
   // Variable, die das Auftreten der unterschiedlichen Größen eines Produktes zählt
   let countItemWithName = 0;
-  let returnValue;
 
   // Schleife, die den Warenkorb durchläuft
   for (let i = 0; i < cart.length; i++) {
@@ -103,7 +101,6 @@ function getIndexInCart(name, indexFromButtons) {
 function removeFromCart(index, isSlider) {
   let cart = localStorage.getItem('isLoggedIn') === 'true' ? [] : getCart();
   cart.splice(index, 1); // entfernt das Produkt
-
   // stoppt den Timer, falls der Warenkorb leer ist
   if (cart.length === 0) {
     stopTimer();
@@ -622,7 +619,6 @@ function addToCart(name, image, price, size) {
     })
       .then(res => res.text())
       .then(text => {
-        console.log('Antwort vom Server:', text);
         try {
           const json = JSON.parse(text);
           openCart();

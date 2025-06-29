@@ -54,9 +54,6 @@ switch ($page) {
     case 'home':
         (new HomeController())->index();
         break;
-    case 'product':
-        (new ProductController())->detail($_GET['id'] ?? null);
-        break;
     case 'login':
         (new UserController())->login();
         break;
@@ -126,10 +123,64 @@ switch ($page) {
         require_once '../app/views/pages/thankyou.php';
         break;
     case 'admin':
-        (new AdminController())->showAdmin();
+        $controller = new AdminController();
+        $controller->showAdmin();
         break;
     case 'admin-users':
-        (new AdminController())->userManagement();
+        $controller = new AdminController();
+        $controller->userManagement();
+        break;
+    case 'admin-update-user-field':
+        $controller = new AdminController();
+        $controller->updateUserData();
+        break;
+    case 'admin-delete-user':
+        $controller = new AdminController();
+        $controller->deleteUser();
+        break;
+    case 'admin-show-parent-category':
+        $controller = new AdminController();
+        $controller->showAllParentCategories();
+        break;
+    case 'admin-add-parent-category':
+        $controller = new AdminController();
+        $controller->addParentCategory();
+        break;
+    case 'admin-show-all-categories':
+        $controller = new AdminController();
+        $controller->showAllCategories();
+        break;
+    case 'admin-add-category':
+        $controller = new AdminController();
+        $controller->addCategory();
+        break;
+    case 'admin-get-categories':
+        $controller = new AdminController();
+        $controller->getCategories();
+        break;
+    case 'admin-is-pulver':
+        $controller = new AdminController();
+        $controller->isPulver();
+        break;
+    case 'admin-add-product':
+        $controller = new AdminController();
+        $controller->addProduct();
+        break;
+    case 'admin-get-all-orders':
+        $controller = new AdminController();
+        $controller->getAllOrders();
+        break;
+    case 'admin-update-order-status':
+        $controller = new AdminController();
+        $controller->updateOrderStatus();
+        break;
+    case 'admin-get-all-support-tickets':
+        $controller = new AdminController();
+        $controller->getAllSupportTickets();
+        break;
+    case 'admin-update-ticket-status':
+        $controller = new AdminController();
+        $controller->updateTicketStatus();
         break;
         
     case 'faq':
@@ -138,8 +189,8 @@ switch ($page) {
     case 'kontakt':
         (new SupportController())->contact();
         break;
-    break;
 
     default:
         echo "Seite nicht gefunden.";
 }
+?>

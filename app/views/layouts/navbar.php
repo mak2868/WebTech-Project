@@ -16,22 +16,24 @@
 require_once __DIR__ . '/../../config/config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
 
-$isLoggedIn = isset($_SESSION['user']);
-$username = $isLoggedIn ? htmlspecialchars($_SESSION['user']['username']) : null;
+$isLoggedIn = isset($_SESSION['user']) || isset($_SESSION['is_admin']);
+$isAdmin = isset($_SESSION['is_admin']);
+$username = $isLoggedIn && !$isAdmin ? htmlspecialchars($_SESSION['user']['username']) : null;
 
 $navbarData = $_SESSION['navbarData'] ?? ['categories' => [], 'images' => []];
 $categories = $navbarData['categories'] ?? [];
 
-function getImagePath($images, $keyword) {
-    foreach ($images as $img) {
-        if (stripos($img, $keyword) !== false) {
-            return BASE_URL . $img;
-        }
+function getImagePath($images, $keyword)
+{
+  foreach ($images as $img) {
+    if (stripos($img, $keyword) !== false) {
+      return BASE_URL . $img;
     }
-    return ''; // fallback
+  }
+  return ''; // fallback
 }
 ?>
 
@@ -90,10 +92,15 @@ function getImagePath($images, $keyword) {
       <div class="nav-dropdown user-dropdown">
         <?php if ($isLoggedIn): ?>
           <div class="navbar-icon">
-            <img src="<?= getImagePath($navbarData['images'], 'user-logged-in') ?>" alt="User" class="user-icon" />
+            <img src="<?= getImagePath($navbarData['images'], $isAdmin ? 'admin' : 'user-logged-in') ?>" alt="User"
+              class="user-icon" />
           </div>
           <div class="nav-dropdown-list dropdown-left-align">
-            <a href="<?= BASE_URL ?>/index.php?page=profile" class="nav-dropdown-link">Benutzerbereich</a>
+            <?php if (!$isAdmin): ?>
+              <a href="<?= BASE_URL ?>/index.php?page=profile" class="nav-dropdown-link">Benutzerbereich</a>
+            <?php else: ?>
+              <a href="<?= BASE_URL ?>/index.php?page=admin" class="nav-dropdown-link">Adminbereich</a>
+            <?php endif; ?>
             <a href="<?= BASE_URL ?>/index.php?page=logout" class="nav-dropdown-link">Abmelden</a>
           </div>
         <?php else: ?>

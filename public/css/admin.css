@@ -1,0 +1,375 @@
+/* Autor: Marvin Kunz (Ausnahme: Design Bestellverwaltung (Boxen) -> gekennzeichnet)*/
+
+
+/* Container für den Hauptinhalt im Adminbereich */
+.contentContainer {
+    min-height: 70vh;
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 5vw;
+}
+
+/* Label für Formularelemente */
+label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Style für das Auswahlmenü (Dropdown) */
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    transition: all 0.3s;
+}
+
+/* Hover- und Focus-Effekte für das Auswahlmenü */
+select:hover,
+select:focus {
+    border-color: #0056b3;
+    background-color: #f0f8ff;
+    outline: none;
+}
+
+/* Container für die Unteroptionen im Dropdown-Menü */
+.sub-options {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+/* Style für die einzelnen Unteroptionen */
+.sub-options div {
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #f1f5ff;
+    border-radius: 10px;
+    display: none;
+}
+
+/* Überschrift in den Unteroptionen */
+.sub-options h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Layout für das Grid der Benutzerkarten */
+.user-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Style für jede Benutzerkarte */
+.user-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+/* Hover-Effekt für Benutzerkarten */
+.user-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Layout für die Benutzerformularfelder */
+.user-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    margin-bottom: 1rem;
+}
+
+/* Stil für das Label in den Benutzerfeldern */
+.user-field strong {
+    white-space: nowrap;
+}
+
+/* Stil für die Eingabefelder der Benutzerformulare */
+.user-field input {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Style für die Löschen-Schaltfläche */
+.delete-btn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover-Effekt für die Löschen-Schaltfläche */
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Tabellenstyle für die Admin-Tabelle */
+.admin-table {
+    border-collapse: separate;
+    border-spacing: 15px 8px;
+    font-family: Arial, sans-serif;
+}
+
+/* Zellenstil für die Admin-Tabelle */
+.admin-table th,
+.admin-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Stil für die Kopfzeile der Tabelle */
+.admin-table thead th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Formulare für neue Kategorien, Unterkategorien und Produkte (hidden by default) */
+#new-parent-category-form,
+#new-category-form,
+#new-product-form {
+    display: none;
+    text-align: left;
+    gap: 0;
+}
+
+/* Style für die Buttons zum Hinzufügen von Kategorien und Produkten */
+#addParentCategoryBtn,
+#addCategoryBtn,
+#addProductBtn {
+    width: 40%;
+}
+
+/* Stil für die Eingabefelder in den Formularen */
+#newParentCategoryInput,
+#newCategoryInput,
+#newProductInput,
+#new-parent-category-form input,
+#new-category-form input,
+#new-product-form input,
+textarea {
+    margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 40%;
+}
+
+/* Stil für Überschriften in den Formularen */
+h4 {
+    width: fit-content;
+}
+
+/* Spezielles Layout für das neue Kategorie-Formular */
+#new-category-form {
+    display: none;
+}
+
+
+/* ============================== */
+/*            Darkmode            */
+/* ============================== */
+
+
+/* Container für den Hauptinhalt im Adminbereich */
+body.dark-mode .contentContainer {
+    background-color: #1a1d21;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+/* Label für Formularelemente */
+body.dark-mode label {
+    color: #ccc;
+}
+
+/* Style für das Auswahlmenü (Dropdown) */
+body.dark-mode select {
+    border: 1px solid #848484;
+    background-color: #333;
+    color: white;
+}
+
+/* Hover- und Focus-Effekte für das Auswahlmenü */
+body.dark-mode select:hover,
+body.dark-mode select:focus {
+    background-color: #444;
+}
+
+/* Style für die einzelnen Unteroptionen */
+body.dark-mode .sub-options div {
+    background-color: #444;
+}
+
+/* Überschrift in den Unteroptionen */
+body.dark-mode .sub-options h2 {
+    color: #ccc;
+}
+
+/* Layout für das Grid der Benutzerkarten */
+body.dark-mode .user-card {
+    border: 1px solid #444;
+    background-color: #333;
+    color: white;
+}
+
+/* Stil für das Label in den Benutzerfeldern */
+body.dark-mode .user-field strong {
+    color: #ccc;
+}
+
+/* Stil für die Eingabefelder der Benutzerformulare */
+body.dark-mode .user-field input {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+}
+
+/* Style für die Löschen-Schaltfläche */
+body.dark-mode .delete-btn {
+    background-color: #e74c3c;
+}
+
+/* Hover-Effekt für die Löschen-Schaltfläche */
+body.dark-mode .delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Tabellenstyle für die Admin-Tabelle */
+body.dark-mode .admin-table th,
+body.dark-mode .admin-table td {
+    border-bottom: 1px solid #555;
+}
+
+/* Zellenstil für die Admin-Tabelle */
+body.dark-mode .admin-table thead th {
+    background-color: #444;
+}
+
+/* Formulare für neue Kategorien, Unterkategorien und Produkte (hidden by default) */
+body.dark-mode #newParentCategoryInput,
+body.dark-mode #newCategoryInput,
+body.dark-mode #newProductInput,
+body.dark-mode #new-parent-category-form input,
+body.dark-mode #new-category-form input,
+body.dark-mode #new-product-form input,
+body.dark-mode textarea {
+    border: 1px solid #555;
+    background-color: #444;
+    color: white;
+}
+
+
+
+/* ============================== */
+/*Design Bestellverwaltung (Boxen)*/
+/*     Code von Felix Bartel      */
+/* ============================== */
+
+
+/* Bestellhistorie – rechte Spalte */
+.user-main .order-history {
+    flex: 1 1 37.5%;
+    max-width: 37.5%;
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+/* Einzelne Bestellung */
+.order-box, .ticket-box {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+}
+
+/* Produktdarstellung in Bestellung */
+.order-item {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.order-item img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.item-info {
+    /* flex-grow: 1; */
+    width: fit-content;
+}
+
+/* Optional für Meta-Daten (Datum, Status, etc.) */
+.order-meta p {
+    margin: 0.25rem 0;
+}
+
+
+
+/* Bestellhistorie im Darkmode */
+body.dark-mode .order-history {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+body.dark-mode .order-box, body.dark-mode .ticket-box {
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+body.dark-mode .order-item {
+    display: flex;
+    gap: 1rem;
+    border-bottom: 1px solid #444;
+    padding: 0.75rem 0;
+}
+
+body.dark-mode .order-item:last-child {
+    border-bottom: none;
+}
+
+body.dark-mode .order-item img {
+    max-width: 80px;
+    border-radius: 6px;
+    background-color: #333;
+}
+
+body.dark-mode .item-info {
+    color: #ddd;
+}
+
+body.dark-mode .order-meta p {
+    color: #ccc;
+}
