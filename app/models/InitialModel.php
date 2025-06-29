@@ -1,4 +1,13 @@
 <?php
+/**
+ * Initial (model) 
+ * Anwendung: wird verwendet, um das Fenstersymbols des Browser mit dem Firmenlogo zu befüllen (-> wird initial auf jeder Seite aufgerufen)
+ * @author: Marvin Kunz
+ */
+?>
+
+
+<?php
 require_once __DIR__ . '../../lib/DB.php';
 require_once __DIR__ . '/../config/config.php';
 

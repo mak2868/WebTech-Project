@@ -108,7 +108,12 @@ class ProductModel
 
 
 
-
+    /**
+     * gibt alle Produkte einer Kategorie (Unterkategorie) zurück
+     * @param mixed $categoryID: ID der Kategorie deren Items zurückgegeben werden soll
+     * @return array Items
+     * @author Marvin Kunz
+     */
     public static function getAllItemsOfCategory($categoryID)
     {
         $pdo = DB::getConnection();
@@ -126,7 +131,6 @@ class ProductModel
         $parentName = strtolower($typeRow['parent_name']); // z. B. 'proteinpulver' oder 'proteinriegel'
 
         // Passende Tabellennamen definieren
-
         $productTable = $parentName . '_products';
         $pictureTable = $parentName . '_pictures';
         $nutrientTable = $parentName . '_nutrients';
@@ -137,7 +141,6 @@ class ProductModel
         }
         $sizesPricesTable = $parentName . '_sizes_prices';
         $descriptionTable = $parentName . '_descriptions';
-
 
         // 1. Produkte aus Kategorie laden
         if (isset($productTable) && $productTable != null) {
@@ -199,10 +202,10 @@ class ProductModel
                     // 4. Nährwerte
                     if (isset($nutrientTable) && $nutrientTable != null) {
                         $stmtNut = $pdo->prepare("
-                SELECT energy, fat, saturates, carbohydrates, sugars, fibre, protein, salt 
-                FROM  $nutrientTable
-                WHERE product_id = ?
-                ");
+                        SELECT energy, fat, saturates, carbohydrates, sugars, fibre, protein, salt 
+                        FROM  $nutrientTable
+                        WHERE product_id = ?
+                        ");
                         $stmtNut->execute([$productId]);
                         $product['substance']['nutrients'] = $stmtNut->fetch(PDO::FETCH_ASSOC);
                     }
@@ -334,6 +337,11 @@ class ProductModel
         return $products;
     }
 
+    /**
+     * gibt alle IDs der Überkategorie zurück
+     * @return array IDs
+     * @author Marvin Kunz
+     */
     public static function getAllParentIDs()
     {
         $pdo = DB::getConnection();
@@ -345,6 +353,12 @@ class ProductModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * gibt alle IDs zurück, die "Kinder" der übergeordneten Kategorie sind
+     * @param mixed $parentID: ID der Überkategorie dessen Kinder "bestimmt" werden sollen
+     * @return array IDs     
+     * @author Marvin Kunz
+     */
     public static function getAllCids($parentID)
     {
         $pdo = DB::getConnection();
@@ -356,6 +370,13 @@ class ProductModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * gibt alle IDs zurück, die Teil der übergebenen Kategorie sind
+     * @param mixed $parentID: ID der zugehörigen Überkategorie
+     * @param mixed $categoryID: ID der Unterkategorie dessen Produkt-IDs bestimmt werden soll 
+     * @return array IDs
+     * @author Marvin Kunz
+     */
     public static function getAllPidsOfOneCids($parentID, $categoryID)
     {
         $pdo = DB::getConnection();
@@ -364,8 +385,6 @@ class ProductModel
         $tablePrefix = strtolower($tablePrefixArray[0]['name']);
 
         $table = $tablePrefix . "_products";
-        // return ($tablePrefix . "_products");
-
 
         $stmt = $pdo->prepare("
             SELECT pid FROM $table WHERE cid = ?
@@ -374,6 +393,12 @@ class ProductModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * gibt den Kategorienamen der übergebenenen Überkategorie-ID zurück
+     * @param mixed $parentID: ID dessen Namen bestimmt werden soll
+     * @return array Namen der Kategorie
+     * @author Marvin Kunz
+     */
     public static function getParentCategoryNameFromParentID($parentID)
     {
         $pdo = DB::getConnection();
@@ -386,6 +411,13 @@ class ProductModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * überprüft, ob die eine Tabelle mit dem übergebenen Namen existiert
+     * @param PDO $pdo Datenbankverbindung
+     * @param string $tableName Tabellennamen, dessen Existenz überprüft werden soll
+     * @return bool gibt true bei Existenz zurück
+     * @author Marvin Kunz
+     */
     public static function tableExists(PDO $pdo, string $tableName): bool
     {
         $stmt = $pdo->prepare("
@@ -564,28 +596,3 @@ return $products;
 
 
 }
-
-// $products = ProductModel::getAllItemsOfCategory(3); // z. B. Kategorie "Vegan Whey"
-// echo '<pre>';
-// print_r($products);
-// echo '</pre>';
-
-// $cids = ProductModel::getAllCids();
-// echo '<pre>';
-// print_r($cids);
-// echo '</pre>';
-
-// $pids = ProductModel::getAllPidsOfOneCids(2, 4);
-// echo '<pre>';
-// print_r($pids);
-// echo '</pre>';
-
-// $parentids = ProductModel::getAllParentIDs();
-// echo '<pre>';
-// print_r($parentids);
-// echo '</pre>';
-
-// $bestseller = ProductModel::getBestseller();
-// echo '<pre>';
-// print_r($bestseller);
-// echo '</pre>';

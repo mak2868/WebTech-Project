@@ -1,6 +1,6 @@
 // Author: Merzan
-// das meiste Controller
-// Datenbankzugriffe in Model
+
+
 document.addEventListener("DOMContentLoaded", function() {
 // Zugriff auf die Formularfelder und den Absende-Button
 const form = document.getElementById("registerForm");

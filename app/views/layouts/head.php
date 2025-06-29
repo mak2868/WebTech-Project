@@ -1,4 +1,12 @@
 <?php
+/**
+ * head.php / initial (view) 
+ * Anwendung: wird verwendet, um das Fenstersymbols des Browser mit dem Firmenlogo zu befüllen (-> wird initial auf jeder Seite aufgerufen)
+ * @author: Marvin Kunz
+ */
+?>
+
+<?php
 $symbolData = $_SESSION['fenstersymbolData'] ?? [];
 ?>
 
