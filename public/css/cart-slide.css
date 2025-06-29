@@ -1,31 +1,53 @@
+/* erstellt bon Merzan Köse */
+
 .cart-slider {
-  position: fixed;              /* Am Bildschirm fixiert, bleibt sichtbar beim Scrollen */
-  right: 0; top: 0;             /* Immer rechts oben */
-  width: 410px; max-width: 100vw; /* Feste Breite, maximal Bildschirmbreite */
-  height: 100vh;                /* Volle Höhe vom Fenster */
-  background: #fff;             
-  box-shadow: -2px 0 24px rgba(0,0,0,0.12); /* Schatten links, wirkt wie „über“ der Seite */
-  z-index: 10000;               /* Liegt über allem anderen */
-  display: flex; flex-direction: column; /* Flexbox für Spaltenanordnung */
-  padding: 0;                   
-  border-radius: 16px 0 0 16px; /* Links oben/unten abgerundet */
-  overflow-y: auto;             /* Scrollbar falls viel Inhalt */
-  font-family: 'Inter', Arial, sans-serif; /* Moderne Schrift */
-  transform: translateX(100%); /* Standard: Slider ist nach rechts aus dem Viewport verschoben, also "versteckt" */
-  transition: transform 0.3s cubic-bezier(.33,1.02,.39,.98); /* Smoothes Hereinsliden beim Öffnen/Schließen */
+  position: fixed;
+  /* Am Bildschirm fixiert, bleibt sichtbar beim Scrollen */
+  right: 0;
+  top: 0;
+  /* Immer rechts oben */
+  width: 410px;
+  max-width: 100vw;
+  /* Feste Breite, maximal Bildschirmbreite */
+  height: 100vh;
+  /* Volle Höhe vom Fenster */
+  background: #fff;
+  box-shadow: -2px 0 24px rgba(0, 0, 0, 0.12);
+  /* Schatten links, wirkt wie „über“ der Seite */
+  z-index: 10000;
+  /* Liegt über allem anderen */
+  display: flex;
+  flex-direction: column;
+  /* Flexbox für Spaltenanordnung */
+  padding: 0;
+  border-radius: 16px 0 0 16px;
+  /* Links oben/unten abgerundet */
+  overflow-y: auto;
+  /* Scrollbar falls viel Inhalt */
+  font-family: 'Inter', Arial, sans-serif;
+  /* Moderne Schrift */
+  transform: translateX(100%);
+  /* Standard: Slider ist nach rechts aus dem Viewport verschoben, also "versteckt" */
+  transition: transform 0.3s cubic-bezier(.33, 1.02, .39, .98);
+  /* Smoothes Hereinsliden beim Öffnen/Schließen */
 }
 
-.cart-slider.open { /* Wenn die Klasse 'open' gesetzt wird (per JS), slidet der Slider ins Bild */
-transform: translateX(0);
+.cart-slider.open {
+  /* Wenn die Klasse 'open' gesetzt wird (per JS), slidet der Slider ins Bild */
+  transform: translateX(0);
 }
 
 
 .cart-header {
-  display: flex;                       /* Flexbox für horizontale Ausrichtung */
-  align-items: center;                 /* Vertikal zentriert */
-  justify-content: space-between;      /* Abstand zwischen Titel und Close-Button */
+  display: flex;
+  /* Flexbox für horizontale Ausrichtung */
+  align-items: center;
+  /* Vertikal zentriert */
+  justify-content: space-between;
+  /* Abstand zwischen Titel und Close-Button */
   padding: 1rem 1.4rem 0.31rem 1.4rem;
-  border-bottom: 1px solid #ececec;    /* Dünne Linie unten als Trennung */
+  border-bottom: 1px solid #ececec;
+  /* Dünne Linie unten als Trennung */
   background: #fff;
   position: relative;
 }
@@ -37,110 +59,157 @@ transform: translateX(0);
 
 .close-icon {
   font-size: 2rem;
-  color:#111;
+  color: #111;
   cursor: pointer;
-  padding: 0.25rem 0.45rem;    /* Kleines Klickfeld */
+  padding: 0.25rem 0.45rem;
+  /* Kleines Klickfeld */
   border-radius: 50%;
   transition: background 0.15s, color 0.15s;
 }
 
-.close-icon:hover{color:#676767;}
+.close-icon:hover {
+  color: #676767;
+}
 
 .cart-promo {
-  display: flex;                   /* Horizontale Anordnung */
-  align-items: center;             /* Vertikal zentriert */
-  gap: 0.5rem;                     /* Abstand zwischen den Elementen */
-  margin: 1.5rem 1.5rem 0.5rem 1.5rem; /* Außenabstand oben/rechts/unten/links */
+  display: flex;
+  /* Horizontale Anordnung */
+  align-items: center;
+  /* Vertikal zentriert */
+  gap: 0.5rem;
+  /* Abstand zwischen den Elementen */
+  margin: 1.5rem 1.5rem 0.5rem 1.5rem;
+  /* Außenabstand oben/rechts/unten/links */
 }
 
 .cart-promo input {
-  flex: 1;                         /* Nimmt verfügbaren Platz ein */
-  border-radius: 24px;             /* Starke Rundung */
-  border: 1px solid #eee;          /* Heller Rand */
-  padding: 0.7rem 1rem;            /* Innenabstand */
-  font-size: 1.05rem;              /* Etwas größere Schrift */
+  flex: 1;
+  /* Nimmt verfügbaren Platz ein */
+  border-radius: 24px;
+  /* Starke Rundung */
+  border: 1px solid #eee;
+  /* Heller Rand */
+  padding: 0.7rem 1rem;
+  /* Innenabstand */
+  font-size: 1.05rem;
+  /* Etwas größere Schrift */
 }
 
 .cart-promo button {
-  border-radius: 24px;             /* Runde Ecken */
-  background: #111;                /* Dunkler Hintergrund */
-  color: #fff;                     /* Weiße Schrift */
-  border: none;                    /* Kein Rand */
-  padding: 0.7rem 1.3rem;          /* Innenabstand */
-  font-weight: bold;               /* Fett */
-  font-size: 1rem;                 /* Normale Schriftgröße */
-  cursor: pointer;                 /* Hand beim Hover */
-  transition: background .2s;      /* Farbwechsel bei Hover */
+  border-radius: 24px;
+  /* Runde Ecken */
+  background: #111;
+  /* Dunkler Hintergrund */
+  color: #fff;
+  /* Weiße Schrift */
+  border: none;
+  /* Kein Rand */
+  padding: 0.7rem 1.3rem;
+  /* Innenabstand */
+  font-weight: bold;
+  /* Fett */
+  font-size: 1rem;
+  /* Normale Schriftgröße */
+  cursor: pointer;
+  /* Hand beim Hover */
+  transition: background .2s;
+  /* Farbwechsel bei Hover */
 }
-.cart-promo button:hover { background: #16b36a; } /* Grün bei Hover */
+
+.cart-promo button:hover {
+  background: #16b36a;
+}
+
+/* Grün bei Hover */
 
 
 .promo-badge {
-  background: #16b36a;    /* Grün als Erfolgs-Badge */
-  color: #fff;            /* Weiße Schrift */
-  font-weight: 600;       /* Halbfett */
-  border-radius: 16px;    /* Runde Ecken */
-  padding: 0.4rem 1rem;   /* Innenabstand */
-  margin-right: .5rem;    /* Abstand rechts */
-  font-size: .98rem;      /* Etwas kleinere Schrift */
+  background: #16b36a;
+  /* Grün als Erfolgs-Badge */
+  color: #fff;
+  /* Weiße Schrift */
+  font-weight: 600;
+  /* Halbfett */
+  border-radius: 16px;
+  /* Runde Ecken */
+  padding: 0.4rem 1rem;
+  /* Innenabstand */
+  margin-right: .5rem;
+  /* Abstand rechts */
+  font-size: .98rem;
+  /* Etwas kleinere Schrift */
 }
 
 .cart-item {
-  display: flex; /* Flex, linksbündig, Abstand */
-  align-items: f
-  lex-start; 
-  gap: 1rem;  
-  margin: 1.4rem 1.5rem 1.4rem 1.5rem;   /* Außenabstand */
-  padding-bottom: 1.4rem; 
-  border-bottom: 1px solid #eee; /* Trennungslinie unten */
+  display: flex;
+  /* Flex, linksbündig, Abstand */
+  align-items: f lex-start;
+  gap: 1rem;
+  margin: 1.4rem 1.5rem 1.4rem 1.5rem;
+  /* Außenabstand */
+  padding-bottom: 1.4rem;
+  border-bottom: 1px solid #eee;
+  /* Trennungslinie unten */
 }
 
 .cart-item-image img {
-  width: 70px; height: 70px; 
-  border-radius: 8px;      /* Bildgröße und runde Ecken */
-  background: #f6f6f6;   /* Heller Bildhintergrund */
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  /* Bildgröße und runde Ecken */
+  background: #f6f6f6;
+  /* Heller Bildhintergrund */
 }
 
 .cart-item-main {
-flex: 1; }                         /* Nimmt restlichen Platz ein */
+  flex: 1;
+}
+
+/* Nimmt restlichen Platz ein */
 
 .cart-item-title {
   font-weight: bold;
   font-size: 1.15rem;
 }
 
-.cart-item-desc { /* ist für den Zusatztext choco z..B. bei whey*/
+.cart-item-desc {
+  /* ist für den Zusatztext choco z..B. bei whey*/
   font-size: 0.98rem;
-   color: #676767;                /* Kleine, graue Beschreibung */
+  color: #676767;
+  /* Kleine, graue Beschreibung */
 }
 
 .cart-item-bottom-row {
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; /* remove/Menge nebeneinander */
-  margin-top: 0.5rem;              /* Abstand nach oben */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* remove/Menge nebeneinander */
+  margin-top: 0.5rem;
+  /* Abstand nach oben */
 }
 
 .qty-row {
-  display: flex; 
-  align-items: center; 
-  background: #fafafa; /* Mengensteuerung mit hellgrauem Hintergrund */
-  border-radius: 12px; 
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  /* Mengensteuerung mit hellgrauem Hintergrund */
+  border-radius: 12px;
   padding: 0.3rem 0.5rem;
 }
 
 .qty-btn {
-  border: none; 
-  background: #fff; 
-  border-radius: 50%;       /* Runder Button */
-  font-size: 1.3rem; 
-  width: 32px; 
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  /* Runder Button */
+  font-size: 1.3rem;
+  width: 32px;
   height: 32px;
-  cursor: pointer; 
+  cursor: pointer;
   box-shadow: 0 0 0 1.5px #eee;
-  margin: 0 .2rem; 
-  display: flex; 
-  align-items: center; 
+  margin: 0 .2rem;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -152,42 +221,51 @@ flex: 1; }                         /* Nimmt restlichen Platz ein */
 }
 
 .saving-badge {
-  background: #e72d34; 
-  color: #fff; 
-  font-size: 0.93rem;    /* Roter Spar-Badge */
-  border-radius: 8px; 
+  background: #e72d34;
+  color: #fff;
+  font-size: 0.93rem;
+  /* Roter Spar-Badge */
+  border-radius: 8px;
   padding: .25rem .7rem;
-  margin-top: .2rem; 
+  margin-top: .2rem;
   display: inline-block;
 }
 
 .cart-summary {
-  margin: 1.5rem; 
-  font-size: 1.09rem;                      /* Zusammenfassung mit Abstand */
+  margin: 1.5rem;
+  font-size: 1.09rem;
+  /* Zusammenfassung mit Abstand */
 }
 
 .cart-summary .total {
-  font-size: 1.35rem; 
-  font-weight: bold;                   /* Gesamtsumme groß & fett */
-  margin-top: .8rem; 
+  font-size: 1.35rem;
+  font-weight: bold;
+  /* Gesamtsumme groß & fett */
+  margin-top: .8rem;
   margin-bottom: .8rem;
 }
 
 .checkout-btn {
-  width: calc(100% - 3rem); 
-  margin: 1.2rem 1.5rem 2.5rem 1.5rem; /* Großzügig, volle Breite */
-  background: #16b36a; 
+  width: calc(100% - 3rem);
+  margin: 1.2rem 1.5rem 2.5rem 1.5rem;
+  /* Großzügig, volle Breite */
+  background: #16b36a;
   color: #fff;
-   border: none;
-  font-size: 1.25rem; 
+  border: none;
+  font-size: 1.25rem;
   font-weight: 700;
-  border-radius: 32px; 
+  border-radius: 32px;
   padding: 1.2rem 0;
-  cursor: pointer; 
+  cursor: pointer;
   transition: background .2s;
-  box-shadow: 0 4px 18px rgba(22,179,106,.08);
+  box-shadow: 0 4px 18px rgba(22, 179, 106, .08);
 }
-.checkout-btn:hover { background: #09985a; }                 /* Dunkleres Grün beim Hover */
+
+.checkout-btn:hover {
+  background: #09985a;
+}
+
+/* Dunkleres Grün beim Hover */
 
 .remove-btn {
   width: 24px;
@@ -207,14 +285,15 @@ flex: 1; }                         /* Nimmt restlichen Platz ein */
 /*==== Darkmode für unseren Cartslider ====*/
 
 body.dark-mode .cart-slider {
-  background: #23232a;  
-  color: #f5f5f7;       
+  background: #23232a;
+  color: #f5f5f7;
 }
 
 body.dark-mode .cart-header {
   background: #23232a;
   border-bottom: 1px solid #292933;
 }
+
 body.dark-mode .header-title {
   color: #fafafa;
 }
@@ -225,6 +304,7 @@ body.dark-mode.cart-item {
   background: #23232a;
   border-bottom: 1px solid #292933;
 }
+
 body.dark-mode .cart-item-title {
   color: #fff;
   font-weight: bold;
@@ -233,6 +313,7 @@ body.dark-mode .cart-item-title {
 body.dark-mode .item-total {
   color: #fff;
 }
+
 body.dark-mode .qty-row {
   background: #18181b;
 }
@@ -240,6 +321,7 @@ body.dark-mode .qty-row {
 body.dark-mode .cart-summary {
   color: #fff;
 }
+
 body.dark-mode .cart-summary .total {
   color: #fff;
 }
@@ -273,7 +355,7 @@ body.dark-mode .qty-btn {
   width: 50px;
   height: 50px;
   cursor: pointer;
-    transition: transform 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .close-x-icon:hover {
@@ -287,4 +369,3 @@ body.dark-mode .close-x {
 body:not(.dark-mode) .close-x {
   content: url('/WebTech-Project/public/images/CloseButtonSlider.png');
 }
-

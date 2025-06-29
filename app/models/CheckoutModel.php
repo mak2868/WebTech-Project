@@ -1,5 +1,5 @@
 <?php
-
+//Autor: Merzan Köse
 require_once '../app/lib/DB.php';
 require_once __DIR__ . '/../config/config.php';
 

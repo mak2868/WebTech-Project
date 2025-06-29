@@ -1,3 +1,5 @@
+// Erstellt von Merzan Köse
+
 // Script wird ausgeführt, sobald das DOM vollständig geladen ist
 window.addEventListener("DOMContentLoaded", () => {
   // Prüft, ob der Benutzer eingeloggt ist (vom Server gesetzt)
@@ -18,12 +20,12 @@ window.addEventListener("DOMContentLoaded", () => {
   /**
    * Erstellt ein DOM-Element für ein Produkt im Checkout
    */
-function renderItem({ name, product_name, size, quantity, price, image }) {
-  const total = price * quantity;
-  const wrapper = document.createElement("div");
-  wrapper.className = "checkout-item";
+  function renderItem({ name, product_name, size, quantity, price, image }) {
+    const total = price * quantity;
+    const wrapper = document.createElement("div");
+    wrapper.className = "checkout-item";
 
-  wrapper.innerHTML = `
+    wrapper.innerHTML = `
     <div class="checkout-item-img">
       <img src="${image}" alt="${product_name || name}" />
     </div>
@@ -33,10 +35,10 @@ function renderItem({ name, product_name, size, quantity, price, image }) {
     </div>
   `;
 
-  return wrapper;
-}
+    return wrapper;
+  }
   /**
-   * Sendet den Gesamtpreis serverseitig in die Session (optional)
+   * Sendet den Gesamtpreis serverseitig in die Session 
    */
   function sendCartTotal(total) {
     fetch("index.php?page=set-cart-total", {
