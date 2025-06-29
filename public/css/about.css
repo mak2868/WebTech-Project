@@ -1,4 +1,4 @@
-/*erstellt von: Nick Zetzmann*/
+/* === erstellt von: Nick Zetzmann ==== */
 
 main {
   text-align: justify;
@@ -52,7 +52,7 @@ body.dark-mode .about-container {
   flex: 1;
 }
 
-/* Responsive Anpassungen */
+/* Responsive Anpassungen - Bilder und Text der team-member werden untereinander und nicht versetzt links rechts angezeigt */
 
 @media (max-width: 768px) {
   .team-member {

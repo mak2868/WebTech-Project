@@ -123,17 +123,27 @@ class ProductController
         
     }
 
+    
+/** @author Nick Zetzmann
+ * Zeigt eine Produktliste basierend auf der uebergebenen Kategorie-ID (cid) oder Oberkategorie-ID (parentId) an.
+ * 
+ * Wird 'parentId' uebergeben, laedt die Funktion alle Produkte aus den zugehoerigen Unterkategorien.
+ * Wird 'cid' uebergeben, laedt sie nur die Produkte aus dieser einen Kategorie.
+ * 
+ * @return void Gibt eine HTML-View aus oder eine Fehlermeldung, wenn keine ID uebergeben wurde.
+ */
 
 public function showProducts()
 {
+/* Hole Kategorie-ID oder Oberkategorie-ID aus der URL (?cid= oder ?parentId=) */
     $cid = $_GET['cid'] ?? null;
     $parentId = $_GET['parentId'] ?? null;
 
     if ($parentId !== null) {
-        // Falls parentId gesetzt ist, lade alle Produkte der Unterkategorien
+/* Falls parentId gesetzt ist, lade alle Produkte der Unterkategorien */
         $produkte = ProductModel::getProductsByParentCategory((int)$parentId);
     } elseif ($cid !== null) {
-        // Ansonsten, wenn cid gesetzt ist, lade Produkte dieser Kategorie
+/* Ansonsten, wenn cid gesetzt ist, lade Produkte dieser Kategorie* */
         $produkte = ProductModel::getProductsByCategory((int)$cid);
     } else {
         echo "Keine Kategorie-ID oder Oberkategorie-ID übergeben.";

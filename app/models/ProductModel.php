@@ -402,10 +402,16 @@ class ProductModel
         return $stmt->fetchColumn() > 0;
     }
 
+/** @author Nick Zetzmann
+ * 
+*/
+
+
   public static function getProductsByCategory($cid)
 {
     $pdo = DB::getConnection();
 
+/* wantedSize zur Sicherstellung, dass bei entsprechender cid nur die Produktkarten mit der entsprechenden Groesse gezeigt/geladen wird */
     if (in_array($cid, [1, 2, 3])) {
         $wantedSize = '500';
     } elseif (in_array($cid, [4, 5, 6])) {
@@ -415,9 +421,10 @@ class ProductModel
     }
 
     if (!$wantedSize) {
-        return []; // Für andere Kategorien nichts anzeigen (Fallback)
+        return []; /* Für andere Kategorien leer zurueckgeben */
     }
 
+/* Bestimme parent_id zu dieser Kategorie */
     $sqlParent = "SELECT parent_id FROM product_categories WHERE id = :cid";
     $stmtParent = $pdo->prepare($sqlParent);
     $stmtParent->execute([':cid' => $cid]);
@@ -430,13 +437,16 @@ class ProductModel
     
     $parentID = $parentRow['parent_id'];
 
+/* Hole Tabellenpraefix durch uebergeordnete Kategorie (z. B. "pulver") */
     $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($parentID);
     $tablePrefix = strtolower($tablePrefixArray[0]['name']);
 
+/* Bestimme konkrete Tabellennamen */
     $tablePics = $tablePrefix . "_pictures";
     $tableSizesPrices = $tablePrefix . "_sizes_prices";
     $tableProducts = $tablePrefix . "_products";
 
+/* SQL-Abfrage zum laden von Produkten mit bestimmter Größe in dieser Kategorie */
     $sql = "SELECT 
                 p.pid,
                 p.cid, 
@@ -465,6 +475,7 @@ class ProductModel
         ':wantedSize' => $wantedSize
     ]);
 
+/* Rueckgabe des Array der Produkte */
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($products as &$product) {
@@ -480,7 +491,7 @@ public static function getProductsByParentCategory($parentID)
 {
     $pdo = DB::getConnection();
 
-    // Hole alle Unterkategorien mit dieser parentID
+/* Hole alle Unterkategorien mit dieser parentID */
     $sqlCids = "SELECT id FROM product_categories WHERE parent_id = :parentID";
     $stmtCids = $pdo->prepare($sqlCids);
     $stmtCids->execute([':parentID' => $parentID]);
@@ -490,8 +501,10 @@ public static function getProductsByParentCategory($parentID)
         return [];
     }
 
+/* Extrahiere nur die IDs der Unterkategorien */
     $categoryIds = array_column($categoryRows, 'id');
 
+/* Tabellenpraefix bestimmen (z. B. "pulver") */
     $tablePrefixArray = ProductModel::getParentCategoryNameFromParentID($parentID);
     $tablePrefix = strtolower($tablePrefixArray[0]['name']);
 
@@ -499,6 +512,9 @@ public static function getProductsByParentCategory($parentID)
     $tableSizesPrices = $tablePrefix . "_sizes_prices";
     $tableProducts = $tablePrefix . "_products";
 
+/* Dynamische Placeholder für IN-Klausel erzeugen
+ * Grund: Wir wissen nicht im Voraus, wie viele Kategorien (p.cid) abgefragt werden muessen.
+ * SQL erlaubt keine direkte Uebergabe eines Arrays bei "IN (...)", daher muss pro Kategorie ein eigener Platzhalter erstellt werden.*/
     $placeholders = [];
     $params = [];
     foreach ($categoryIds as $index => $catId) {
@@ -507,6 +523,7 @@ public static function getProductsByParentCategory($parentID)
         $params[$key] = $catId;
     }
 
+/* SQL-Abfrage mit dynamischer IN-Liste */
     $sql = "SELECT 
                 p.pid,
                 p.cid, 
@@ -533,7 +550,16 @@ public static function getProductsByParentCategory($parentID)
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+/* Rueckgabe aller Produkte der Unterkategorien */    
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($products as &$product) {
+    if (!empty($product['bild'])) {
+        $product['bild'] = BASE_URL . $product['bild'];
+    }
+}
+
+return $products;
 }
 
 
